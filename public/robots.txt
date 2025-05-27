@@ -1,0 +1,6 @@
+# Allow all crawlers full access
+User-agent: *
+Disallow:
+
+# Point bots to your sitemap
+Sitemap: https://www.alelken.in/sitemap.xml
