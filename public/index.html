@@ -238,79 +238,74 @@
             flex-wrap: wrap;
         }
 
+        /* Added styles for cta-button and cta-button-secondary */
         .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            display: inline-block;
+            padding: 1rem 2rem;
             background: var(--primary-black);
             color: var(--primary-white);
-            padding: 1rem 2rem;
             text-decoration: none;
             font-weight: 600;
+            border-radius: 8px;
             font-size: 0.95rem;
             letter-spacing: 0.05em;
-            border-radius: 8px;
-            border: 2px solid var(--primary-black);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .cta-button:hover {
-            background: transparent;
-            color: var(--primary-black);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            background: var(--gray-800);
+            transform: translateY(-1px);
         }
 
         .cta-button-secondary {
             background: transparent;
-            color: var(--gray-700);
-            border: 2px solid var(--gray-300);
+            border: 1px solid var(--primary-black);
+            color: var(--primary-black);
         }
 
         .cta-button-secondary:hover {
             background: var(--gray-100);
-            border-color: var(--gray-400);
+        }
+
+        .cta-button:focus,
+        .cta-button-secondary:focus {
+            outline: 2px solid var(--primary-black);
+            outline-offset: 2px;
+        }
+
+        .product .vision-item {
+            background: var(--primary-white);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-md);
             color: var(--primary-black);
         }
 
-        .floating-element {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.1;
+        .product .vision-item h3,
+        .product .vision-item p {
+            color: var(--primary-black);
         }
 
-        .floating-triangle {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-black);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: floatTriangle 20s ease-in-out infinite;
+        .product .vision-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        @keyframes floatTriangle {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, -30px) rotate(90deg); }
-            50% { transform: translate(-20px, -20px) rotate(180deg); }
-            75% { transform: translate(30px, 10px) rotate(270deg); }
+        .product .vision-item .principle-icon {
+            font-size: 2.5rem;
+            color: var(--primary-black);
+            margin-bottom: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
+        .product .vision-item:hover {
+            background: var(--gray-50);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: -5s;
-        }
-
-        .floating-element:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: -10s;
+        .product .vision-item:hover .principle-icon {
+            transform: scale(1.1);
+            color: var(--gray-700);
         }
 
         .section {
@@ -625,6 +620,43 @@
             <div class="cta-group">
                 <a href="#contact" class="cta-button">Join Our Journey</a>
                 <a href="#about" class="cta-button cta-button-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="product" class="section product">
+        <div class="container">
+            <div class="product-content animate-on-scroll">
+                <h2 class="section-title">Coming Soon: A Revolutionary Wellness Platform</h2>
+                <p class="section-subtitle">We're crafting a unique space where technology meets human connection to elevate your well-being. This platform bridges the gap between you and verified wellness professionals, offering a fresh approach to personal growth and daily balance.</p>
+                
+                <div class="vision-grid">
+                    <div class="vision-item animate-on-scroll">
+                        <i class="fas fa-video principle-icon" aria-hidden="true"></i>
+                        <h3>Expert Connections</h3>
+                        <p>Engage in real-time video sessions with trusted professionals who specialize in general guidance and personal development.</p>
+                    </div>
+                    <div class="vision-item animate-on-scroll">
+                        <i class="fas fa-compass principle-icon" aria-hidden="true"></i>
+                        <h3>Personalized Journey</h3>
+                        <p>Enjoy a tailored experience with mood-based content, assessments, and mindful exercises designed just for you.</p>
+                    </div>
+                    <div class="vision-item animate-on-scroll">
+                        <i class="fas fa-spa principle-icon" aria-hidden="true"></i>
+                        <h3>Holistic Wellness</h3>
+                        <p>Dive into a rich library of podcasts, music, and audiobooks, infused with culturally rooted practices like Indian yoga and meditation.</p>
+                    </div>
+                    <div class="vision-item animate-on-scroll">
+                        <i class="fas fa-shield-alt principle-icon" aria-hidden="true"></i>
+                        <h3>Trusted & Secure</h3>
+                        <p>Feel confident with our rigorous therapist verification and a steadfast commitment to your privacy and security.</p>
+                    </div>
+                </div>
+
+                <div class="cta-group" style="margin-top: 3rem;">
+                    <a href="#contact" class="cta-button">Join the Waitlist</a>
+                    <p style="color: var(--gray-600); margin-top: 1rem;">Be among the first to explore a platform built with purpose and care.</p>
+                </div>
             </div>
         </div>
     </section>
