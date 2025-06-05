@@ -1,7 +1,0 @@
-curl -X POST "https://www.bing.com/indexnow?url=https://alelken.in/&key=f3defc5e5cfa4f0c8f48ef19c0a5759b"
-Invoke-WebRequest : A parameter cannot be found that matches parameter name 'X'.
-At line:1 char:6
-+ curl -X POST "https://www.bing.com/indexnow?url=https://alelken.in/&k ...
-+      ~~
-    + CategoryInfo          : InvalidArgument: (:) [Invoke-WebRequest], ParameterBindingException
-    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
