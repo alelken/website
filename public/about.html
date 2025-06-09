@@ -8,10 +8,10 @@
     <title>About Us | Alelken</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Fonts -->
@@ -22,411 +22,30 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <style>
-        :root {
-            --primary-black: #000000;
-            --primary-white: #ffffff;
-            --gray-50: #fafafa;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-700: #404040;
-            --gray-800: #262626;
-            --gray-900: #171717;
-            --gradient-primary: linear-gradient(135deg, #000000 0%, #404040 100%);
-            --gradient-secondary: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-900);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
-
-        .nav-logo {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--background-color);
-            z-index: 1000;
-            padding: 2rem;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-nav.active {
-            transform: translateX(0);
-        }
-
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .mobile-nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-
-        .close-nav {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .close-nav span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .close-nav span:first-child {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .close-nav span:last-child {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .about-hero {
-            padding: 120px 0 60px;
-            background: var(--gradient-secondary);
-            text-align: center;
-        }
-
-        .about-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .about-hero p {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .team-section {
-            padding: 4rem 0;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: var(--primary-white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .team-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .team-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-bottom: 1.5rem;
-            object-fit: cover;
-        }
-
-        .team-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--gray-900);
-        }
-
-        .team-card .role {
-            color: var(--gray-600);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .team-card p {
-            color: var(--gray-600);
-        }
-
-        .values-section {
-            background: var(--gradient-primary);
-            color: var(--primary-white);
-            padding: 4rem 0;
-        }
-
-        .values-section .section-title h2 {
-            color: var(--primary-white);
-        }
-
-        .values-section .section-title p {
-            color: var(--gray-200);
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .value-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .value-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-white);
-        }
-
-        .value-card p {
-            color: var(--gray-200);
-        }
-
-        .footer {
-            background: var(--gray-900);
-            color: var(--primary-white);
-            padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--primary-white);
-        }
-
-        .footer-section p {
-            color: var(--gray-300);
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--gray-300);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-white);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: var(--gray-300);
-            font-size: 1.25rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-white);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--gray-700);
-            padding-top: 1.5rem;
-            text-align: center;
-            color: var(--gray-400);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .about-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .mobile-nav {
-                display: block;
-            }
-
-            .team-grid,
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+    
+    <!-- Structured Data (Schema Markup) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alelken",
+        "url": "https://www.alelken.com",
+        "logo": "https://www.alelken.com/assets/images/logo.svg",
+        "description": "Alelken builds next-generation, human-centered technology solutions that restore what's broken, empower what's overlooked, and drive sustainable impact.",
+        "sameAs": [
+            "https://www.linkedin.com/company/alelken",
+            "https://x.com/AlelkenTech"
+        ]
+    }
+    </script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="/">Alelken</a>
+                <img src="/assets/images/logo.svg" alt="Alelken" class="nav-logo">
             </div>
             <div class="nav-links">
                 <a href="/">Home</a>
@@ -479,12 +98,12 @@
                 </div>
                 <div class="team-card">
                     <img src="/team/1.jpeg" alt="Balraj">
-                    <h3>Karthick Balraj</h3>
+                    <h3>Karthick B</h3>
                     <div class="role">Cofounder & Project Director</div>
                     <p>Product strategist focused on creating intuitive and impactful user experiences.</p>
                 </div>
                 <div class="team-card">
-                    <img src="/team/1.jpeg" alt="Selvaraj">
+                    <img src="/team/karthick_selvaraj.jpg" alt="Selvaraj">
                     <h3>Karthick Selvaraj</h3>
                     <div class="role">Media Team Lead</div>
                     <p> Experienced in Content Creation. </p>
@@ -523,7 +142,9 @@
                     <h3>Alelken</h3>
                     <p>Building human-centered technology solutions for mental wellness and ethical AI.</p>
                     <div class="social-links">
-                        <a href="https://x.com/AlelkenTech" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://x.com/AlelkenTech" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                          </svg></a>
                         <a href="https://www.linkedin.com/company/alelken" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="https://www.github.com/alelken" aria-label="GitHub"><i class="fab fa-github"></i></a>
                         <a href="mailto:support@alelken.in" aria-label="Email"><i class="fas fa-envelope"></i></a>
@@ -546,22 +167,25 @@
     </footer>
 
     <script>
+        // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');
         const mobileNav = document.querySelector('.mobile-nav');
         const closeNav = document.querySelector('.close-nav');
+        const body = document.body;
 
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.add('active');
-        });
+        function toggleMobileNav() {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
 
-        closeNav.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-        });
+        hamburger.addEventListener('click', toggleMobileNav);
+        closeNav.addEventListener('click', toggleMobileNav);
 
         // Close mobile nav when clicking a link
         document.querySelectorAll('.mobile-nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
+                toggleMobileNav();
             });
         });
     </script>

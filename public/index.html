@@ -8,10 +8,10 @@
     <title>Alelken</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Fonts -->
@@ -22,6 +22,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+    
     <!-- Structured Data (Schema Markup) -->
     <script type="application/ld+json">
     {
@@ -29,7 +32,7 @@
         "@type": "Organization",
         "name": "Alelken",
         "url": "https://www.alelken.com",
-        "logo": "https://www.alelken.com/logo.svg",
+        "logo": "https://www.alelken.com/assets/images/logo.svg",
         "description": "Alelken builds next-generation, human-centered technology solutions that restore what's broken, empower what's overlooked, and drive sustainable impact.",
         "sameAs": [
             "https://www.linkedin.com/company/alelken",
@@ -37,660 +40,13 @@
         ]
     }
     </script>
-    
-    <style>
-        :root {
-            --primary-black: #000000;
-            --primary-white: #ffffff;
-            --gray-50: #fafafa;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-700: #404040;
-            --gray-800: #262626;
-            --gray-900: #171717;
-            --gradient-primary: linear-gradient(135deg, #000000 0%, #404040 100%);
-            --gradient-secondary: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-900);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        * {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--gray-100);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gray-400);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gray-600);
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-100%);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
-
-        .nav-logo {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--background-color);
-            z-index: 1000;
-            padding: 2rem;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-nav.active {
-            transform: translateX(0);
-        }
-
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .mobile-nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-
-        .close-nav {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .close-nav span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .close-nav span:first-child {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .close-nav span:last-child {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .hero {
-            padding-top: 120px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero-logo {
-            height: 160px;
-            width: auto;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--primary-black);
-            color: var(--primary-white);
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            border-radius: 8px;
-            border: 2px solid var(--primary-black);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-md);
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--primary-black);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .cta-button-secondary {
-            background: transparent;
-            color: var(--gray-700);
-            border: 2px solid var(--gray-300);
-        }
-
-        .cta-button-secondary:hover {
-            background: var(--gray-100);
-            border-color: var(--gray-400);
-            color: var(--primary-black);
-        }
-
-        .floating-element {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.1;
-        }
-
-        .floating-triangle {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-black);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: floatTriangle 20s ease-in-out infinite;
-        }
-
-        @keyframes floatTriangle {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, -30px) rotate(90deg); }
-            50% { transform: translate(-20px, -20px) rotate(180deg); }
-            75% { transform: translate(30px, 10px) rotate(270deg); }
-        }
-
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: -5s;
-        }
-
-        .floating-element:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: -10s;
-        }
-
-        .section {
-            padding: 8rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--primary-black);
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto 5rem;
-            line-height: 1.7;
-        }
-
-        .about {
-            background: var(--primary-white);
-        }
-
-        .about-content {
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .value-card {
-            padding: 2.5rem;
-            background: var(--gray-50);
-            border-radius: 16px;
-            border: 1px solid var(--gray-200);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .value-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--gray-300);
-        }
-
-        .value-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .value-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-black);
-        }
-
-        .value-card p {
-            color: var(--gray-600);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .vision {
-            background: var(--gradient-primary);
-            color: var(--primary-white);
-        }
-
-        .vision .section-title,
-        .vision .section-subtitle {
-            color: var(--primary-white);
-        }
-
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 4rem;
-        }
-
-        .vision-item {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .vision-item:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .vision-item h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-white);
-        }
-
-        .vision-item p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-
-        .philosophy {
-            background: var(--primary-white);
-        }
-
-        .philosophy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .principle {
-            text-align: center;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .principle-icon {
-            font-size: 3rem;
-            color: var(--primary-black);
-            margin-bottom: 1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .principle:hover .principle-icon {
-            transform: scale(1.1) rotate(5deg);
-            color: var(--gray-700);
-        }
-
-        .principle h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-black);
-        }
-
-        .principle p {
-            color: var(--gray-600);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .contact {
-            background: var(--gradient-secondary);
-            text-align: center;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .email-signup {
-            display: flex;
-            gap: 1rem;
-            margin-top: 3rem;
-            padding: 8px;
-            background: var(--primary-white);
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--gray-200);
-        }
-
-        .email-input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: none;
-            background: transparent;
-            font-size: 1rem;
-            color: var(--gray-900);
-            outline: none;
-            font-family: inherit;
-        }
-
-        .email-input::placeholder {
-            color: var(--gray-400);
-        }
-
-        .email-submit {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            border: none;
-            padding: 1rem 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .email-submit:hover {
-            background: var(--gray-800);
-            transform: translateY(-1px);
-        }
-
-        footer {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            text-align: center;
-            padding: 3rem 0;
-        }
-
-        footer p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .animate-on-scroll.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-                line-height: 1.2;
-                padding: 0 1rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-                padding: 0 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .mobile-nav {
-                display: block;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                padding: 2rem 1rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
-            }
-
-            .cta-section {
-                padding: 3rem 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 2rem;
-                padding: 0 1rem;
-            }
-
-            .cta-section p {
-                font-size: 1.1rem;
-                padding: 0 1rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.75rem;
-            }
-
-            .cta-section p {
-                font-size: 1rem;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="/">Alelken</a>
+                <img src="/assets/images/logo.svg" alt="Alelken" class="nav-logo">
+                
             </div>
             <div class="nav-links">
                 <a href="/">Home</a>
@@ -721,7 +77,7 @@
 
     <section class="hero">
         <div class="hero-logo-container">
-            <img src="/logo.svg" alt="Alelken" class="hero-logo">
+            <img src="/assets/images/logo.svg" alt="Alelken" class="hero-logo">
         </div>
         <div class="floating-element floating-triangle"></div>
         <div class="floating-element floating-triangle"></div>
@@ -893,6 +249,29 @@
             lastScrollY = currentScrollY;
         });
 
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const closeNav = document.querySelector('.close-nav');
+        const body = document.body;
+
+        function toggleMobileNav() {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileNav);
+        closeNav.addEventListener('click', toggleMobileNav);
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileNav();
+            });
+        });
+
+        // Email Signup
         document.querySelector('.email-submit').addEventListener('click', function(e) {
             e.preventDefault();
             const emailInput = document.querySelector('.email-input');
@@ -912,36 +291,18 @@
                 emailInput.focus();
                 
                 setTimeout(() => {
-                    emailInput.style.borderColor = 'transparent';
+                    emailInput.style.borderColor = 'var(--gray-200)';
                 }, 2000);
             }
         });
 
+        // Floating Elements Animation
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const floatingElements = document.querySelectorAll('.floating-element');
             floatingElements.forEach(el => {
                 const speed = 0.05;
                 el.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-
-        const hamburger = document.querySelector('.hamburger');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const closeNav = document.querySelector('.close-nav');
-
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.add('active');
-        });
-
-        closeNav.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-        });
-
-        // Close mobile nav when clicking a link
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
             });
         });
     </script>

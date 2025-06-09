@@ -1,0 +1,61 @@
+{
+    "jobs": [
+        {
+            "id": "ai-engineer",
+            "title": "Senior AI Engineer",
+            "location": "Remote",
+            "type": "Full-time",
+            "description": "Lead the development of our AI-powered mental wellness features, focusing on ethical AI and user privacy.",
+            "requirements": [
+                "5+ years of experience in AI/ML development",
+                "Strong background in natural language processing",
+                "Experience with ethical AI implementation",
+                "Proficiency in Python and relevant ML frameworks"
+            ],
+            "benefits": [
+                "Competitive salary",
+                "Health insurance",
+                "Remote work flexibility",
+                "Professional development budget"
+            ]
+        },
+        {
+            "id": "product-designer",
+            "title": "Product Designer",
+            "location": "Remote",
+            "type": "Full-time",
+            "description": "Create intuitive and engaging user experiences for our mental wellness platform.",
+            "requirements": [
+                "3+ years of product design experience",
+                "Strong portfolio demonstrating UX/UI skills",
+                "Experience with design systems",
+                "Proficiency in Figma and related tools"
+            ],
+            "benefits": [
+                "Competitive salary",
+                "Health insurance",
+                "Remote work flexibility",
+                "Design tools subscription"
+            ]
+        },
+        {
+            "id": "full-stack-dev",
+            "title": "Full Stack Developer",
+            "location": "Remote",
+            "type": "Full-time",
+            "description": "Build and maintain our web and mobile applications with a focus on performance and security.",
+            "requirements": [
+                "4+ years of full-stack development",
+                "Experience with React and Node.js",
+                "Strong understanding of security best practices",
+                "Experience with cloud platforms"
+            ],
+            "benefits": [
+                "Competitive salary",
+                "Health insurance",
+                "Remote work flexibility",
+                "Learning and development budget"
+            ]
+        }
+    ]
+} 
