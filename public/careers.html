@@ -158,6 +158,50 @@
         </div>
     </footer>
 
+    <!-- Application Form Modal -->
+    <div class="application-modal" id="applicationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Apply for <span id="jobTitle"></span></h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="applicationForm" class="application-form">
+                <input type="hidden" id="jobId" name="jobId">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="experience">Years of Experience *</label>
+                    <input type="number" id="experience" name="experience" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume/CV *</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter</label>
+                    <textarea id="coverLetter" name="coverLetter" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="portfolio">Portfolio URL (if applicable)</label>
+                    <input type="url" id="portfolio" name="portfolio">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');
@@ -221,7 +265,7 @@
                         </ul>
                     </div>
                 </div>
-                <a href="#" class="btn" data-job-id="${job.id}">Apply Now</a>
+                <button class="btn apply-btn" data-job-id="${job.id}" data-job-title="${job.title}">Apply Now</button>
             `;
             return card;
         }
@@ -237,8 +281,168 @@
             expandBtn.querySelector('i').className = isExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
         });
 
+        // Application Modal Functionality
+        const modal = document.getElementById('applicationModal');
+        const closeModal = document.getElementById('closeModal');
+        const applicationForm = document.getElementById('applicationForm');
+        const jobTitleSpan = document.getElementById('jobTitle');
+        const jobIdInput = document.getElementById('jobId');
+
+        // Open modal when clicking Apply Now
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('apply-btn')) {
+                const jobId = e.target.dataset.jobId;
+                const jobTitle = e.target.dataset.jobTitle;
+                jobTitleSpan.textContent = jobTitle;
+                jobIdInput.value = jobId;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            applicationForm.reset();
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                applicationForm.reset();
+            }
+        });
+
+        // Handle form submission
+        applicationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(applicationForm);
+            
+            try {
+                // Here you would typically send the form data to your backend
+                // For now, we'll just show a success message
+                alert('Thank you for your application! We will review it and get back to you soon.');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                applicationForm.reset();
+            } catch (error) {
+                console.error('Error submitting application:', error);
+                alert('There was an error submitting your application. Please try again.');
+            }
+        });
+
         // Initialize jobs
         loadJobs();
     </script>
+
+    <style>
+        /* Modal Styles */
+        .application-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .application-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .application-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-actions {
+            margin-top: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Job Card Button Styles */
+        .apply-btn {
+            width: 100%;
+            margin-top: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .apply-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </body>
 </html>
