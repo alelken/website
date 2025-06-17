@@ -1,61 +1,185 @@
 {
     "jobs": [
-        {
-            "id": "ai-engineer",
-            "title": "Senior AI Engineer",
-            "location": "Remote",
-            "type": "Full-time",
-            "description": "Lead the development of our AI-powered mental wellness features, focusing on ethical AI and user privacy.",
-            "requirements": [
-                "5+ years of experience in AI/ML development",
-                "Strong background in natural language processing",
-                "Experience with ethical AI implementation",
-                "Proficiency in Python and relevant ML frameworks"
-            ],
-            "benefits": [
-                "Competitive salary",
-                "Health insurance",
-                "Remote work flexibility",
-                "Professional development budget"
-            ]
-        },
-        {
-            "id": "product-designer",
-            "title": "Product Designer",
-            "location": "Remote",
-            "type": "Full-time",
-            "description": "Create intuitive and engaging user experiences for our mental wellness platform.",
-            "requirements": [
-                "3+ years of product design experience",
-                "Strong portfolio demonstrating UX/UI skills",
-                "Experience with design systems",
-                "Proficiency in Figma and related tools"
-            ],
-            "benefits": [
-                "Competitive salary",
-                "Health insurance",
-                "Remote work flexibility",
-                "Design tools subscription"
-            ]
-        },
-        {
-            "id": "full-stack-dev",
-            "title": "Full Stack Developer",
-            "location": "Remote",
-            "type": "Full-time",
-            "description": "Build and maintain our web and mobile applications with a focus on performance and security.",
-            "requirements": [
-                "4+ years of full-stack development",
-                "Experience with React and Node.js",
-                "Strong understanding of security best practices",
-                "Experience with cloud platforms"
-            ],
-            "benefits": [
-                "Competitive salary",
-                "Health insurance",
-                "Remote work flexibility",
-                "Learning and development budget"
-            ]
-        }
+      {
+        "id": "flutter-developer",
+        "title": "Flutter Developer",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "Develop and maintain high-quality cross-platform mobile apps for Alayn’s mental wellness platform, ensuring performance and usability.",
+        "requirements": [
+          "2+ years of experience in Flutter development",
+          "Strong knowledge of Dart and mobile app architecture",
+          "Experience integrating RESTful APIs",
+          "Portfolio of published apps on Google Play or App Store"
+        ],
+        "benefits": [
+          "Competitive salary in INR",
+          "Flexible remote work",
+          "Learning and development budget"
+        ]
+      },
+      {
+        "id": "backend-engineer",
+        "title": "Backend Engineer",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "Build scalable and secure backend systems powering Alayn’s wellness features, ensuring data privacy and reliability.",
+        "requirements": [
+          "3+ years of backend development experience",
+          "Expertise in Node.js, Python, or similar",
+          "Experience with cloud platforms (GCP/AWS/Azure)",
+          "Understanding of API security and data privacy"
+        ],
+        "benefits": [
+          "Competitive salary in INR",
+          "Remote work flexibility",
+          "Professional development opportunities"
+        ]
+      },
+      {
+        "id": "editor-1",
+        "title": "Editor",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Edit, fact-check, and refine educational and wellness content for Alayn’s media library.",
+        "requirements": [
+          "2+ years of professional editing experience",
+          "Strong attention to detail and language skills",
+          "Ability to adapt to different content tones",
+          "Familiarity with wellness or educational topics preferred"
+        ],
+        "benefits": [
+          "Attractive compensation in INR",
+          "Flexible contract terms",
+          "Work with a creative team"
+        ]
+      },
+      {
+        "id": "editor-2",
+        "title": "Editor",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Edit, fact-check, and refine educational and wellness content for Alayn’s media library.",
+        "requirements": [
+          "2+ years of professional editing experience",
+          "Strong attention to detail and language skills",
+          "Ability to adapt to different content tones",
+          "Familiarity with wellness or educational topics preferred"
+        ],
+        "benefits": [
+          "Attractive compensation in INR",
+          "Flexible contract terms",
+          "Work with a creative team"
+        ]
+      },
+      {
+        "id": "voice-actor-1",
+        "title": "Voice Actor",
+        "location": "Remote",
+        "type": "Freelance",
+        "description": "Record high-quality audio for Alayn’s guided exercises, stories, and meditations.",
+        "requirements": [
+          "1+ years of voice acting or narration experience",
+          "Clear, expressive speaking voice",
+          "Ability to record in multiple Indian languages is a plus",
+          "Good audio recording setup at home"
+        ],
+        "benefits": [
+          "Freelance compensation in INR",
+          "Flexible hours",
+          "Contribute to a meaningful wellness platform"
+        ]
+      },
+      {
+        "id": "voice-actor-2",
+        "title": "Voice Actor",
+        "location": "Remote",
+        "type": "Freelance",
+        "description": "Record high-quality audio for Alayn’s guided exercises, stories, and meditations.",
+        "requirements": [
+          "1+ years of voice acting or narration experience",
+          "Clear, expressive speaking voice",
+          "Ability to record in multiple Indian languages is a plus",
+          "Good audio recording setup at home"
+        ],
+        "benefits": [
+          "Freelance compensation in INR",
+          "Flexible hours",
+          "Contribute to a meaningful wellness platform"
+        ]
+      },
+      {
+        "id": "voice-actor-3",
+        "title": "Voice Actor",
+        "location": "Remote",
+        "type": "Freelance",
+        "description": "Record high-quality audio for Alayn’s guided exercises, stories, and meditations.",
+        "requirements": [
+          "1+ years of voice acting or narration experience",
+          "Clear, expressive speaking voice",
+          "Ability to record in multiple Indian languages is a plus",
+          "Good audio recording setup at home"
+        ],
+        "benefits": [
+          "Freelance compensation in INR",
+          "Flexible hours",
+          "Contribute to a meaningful wellness platform"
+        ]
+      },
+      {
+        "id": "content-editor-1",
+        "title": "Content Editor",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Curate, edit, and enhance digital content for Alayn’s wellness library, ensuring accuracy and engagement.",
+        "requirements": [
+          "2+ years in digital content editing",
+          "Excellent command of English and/or Indian languages",
+          "Experience in wellness, education, or lifestyle content",
+          "Familiarity with SEO is a plus"
+        ],
+        "benefits": [
+          "Competitive pay in INR",
+          "Remote and flexible contract",
+          "Collaborative work environment"
+        ]
+      },
+      {
+        "id": "content-editor-2",
+        "title": "Content Editor",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Curate, edit, and enhance digital content for Alayn’s wellness library, ensuring accuracy and engagement.",
+        "requirements": [
+          "2+ years in digital content editing",
+          "Excellent command of English and/or Indian languages",
+          "Experience in wellness, education, or lifestyle content",
+          "Familiarity with SEO is a plus"
+        ],
+        "benefits": [
+          "Competitive pay in INR",
+          "Remote and flexible contract",
+          "Collaborative work environment"
+        ]
+      },
+      {
+        "id": "content-editor-3",
+        "title": "Content Editor",
+        "location": "Remote",
+        "type": "Contract",
+        "description": "Curate, edit, and enhance digital content for Alayn’s wellness library, ensuring accuracy and engagement.",
+        "requirements": [
+          "2+ years in digital content editing",
+          "Excellent command of English and/or Indian languages",
+          "Experience in wellness, education, or lifestyle content",
+          "Familiarity with SEO is a plus"
+        ],
+        "benefits": [
+          "Competitive pay in INR",
+          "Remote and flexible contract",
+          "Collaborative work environment"
+        ]
+      }
     ]
-} 
+  }
+  
