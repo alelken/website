@@ -309,7 +309,14 @@ nav {
 .benefits-section h2,
 .jobs-section h2,
 .features h2,
-.values-section .section-title h2,
+.values-section .section-title h2{
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-black);
+}
+
 .cta-section h2 {
     font-size: 2.25rem;
     font-weight: 700;
@@ -376,6 +383,12 @@ nav {
 .value-card {
     padding: 2.5rem;
     background: var(--gray-50);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .team-card,
@@ -435,6 +448,24 @@ nav {
 
 .feature-card:hover::before {
     opacity: 1;
+}
+
+.value-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary-black);
+}
+
+.value-card p {
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .value-card h3,
@@ -512,7 +543,8 @@ nav {
 /* Grid Layouts */
 .team-grid,
 .benefits-grid,
-.values-grid {
+.values-grid,
+.about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
