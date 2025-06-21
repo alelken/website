@@ -173,24 +173,24 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">What We're Building</h2>
           <p className="section-subtitle">The future needs technology that heals rather than harms, empowers rather than exploits, and connects rather than divides. We're developing platforms and systems that address fundamental challenges in:</p>
-          <div className="vision-grid">
-            <div className="vision-item animate-on-scroll">
+          <div className="about-grid">
+            <div className="value-card animate-on-scroll">
               <h3>Education &amp; Development</h3>
               <p>Learning systems that unlock human potential and foster meaningful growth</p>
             </div>
-            <div className="vision-item animate-on-scroll">
+            <div className="value-card animate-on-scroll">
               <h3>Leadership &amp; Growth</h3>
               <p>Tools that develop authentic character and principled leadership</p>
             </div>
-            <div className="vision-item animate-on-scroll">
+            <div className="value-card animate-on-scroll">
               <h3>Ethical AI &amp; Governance</h3>
               <p>Artificial intelligence guided by moral principles and human values</p>
             </div>
-            <div className="vision-item animate-on-scroll">
+            <div className="value-card animate-on-scroll">
               <h3>Creative Expression</h3>
               <p>Platforms that enable meaningful storytelling and artistic creation</p>
             </div>
-            <div className="vision-item animate-on-scroll">
+            <div className="value-card animate-on-scroll">
               <h3>Resource Stewardship</h3>
               <p>Transparent systems for accountability and responsible resource management</p>
             </div>

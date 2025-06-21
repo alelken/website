@@ -381,15 +381,22 @@ nav {
     overflow: hidden;
 }
 
-.value-card {
-    padding: 2.5rem;
-    background: var(--gray-50);
+.value-card,
+.vision-item {
+    background: var(--primary-black) !important;
+    color: var(--primary-white) !important;
     border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-    height: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    padding: 2.5rem;
+    min-width: 280px;
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    border: 1px solid var(--primary-black);
 }
 
 .team-card,
@@ -451,17 +458,14 @@ nav {
     opacity: 1;
 }
 
-.value-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--primary-black);
+.value-card h3,
+.vision-item h3 {
+    color: var(--primary-white) !important;
 }
 
-.value-card p {
-    color: var(--gray-600);
-    line-height: 1.6;
-    margin: 0;
+.value-card p,
+.vision-item p {
+    color: var(--primary-white) !important;
 }
 
 .value-card:hover {
@@ -1027,18 +1031,30 @@ nav {
         padding: 1.5rem;
     }
 
-    .about-grid {
+    .about-grid,
+    .vision-grid {
         display: flex;
         overflow-x: auto;
         gap: 1.5rem;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
-
-    .about-grid .value-card {
+    .about-grid .value-card,
+    .vision-grid .vision-item,
+    .about-grid .vision-item,
+    .vision-grid .value-card {
         flex: 0 0 80%;
         scroll-snap-align: start;
         min-width: 250px;
+    }
+    .about-grid::-webkit-scrollbar,
+    .vision-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .about-grid,
+    .vision-grid {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .cta-section {
