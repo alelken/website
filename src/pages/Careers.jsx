@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import useMobileNav from "../hooks/useMobileNav";
 import Footer from "../components/Footer.jsx";
 import JobModal from "../components/JobModal.jsx";
+import JobDetailsModal from "../components/JobDetailsModal.jsx";
 
 const Careers = () => {
   useMobileNav();
   const [jobs, setJobs] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+  const [applyingJob, setApplyingJob] = useState(null);
 
   useEffect(() => {
     fetch('/data/jobs.json')
@@ -113,7 +115,15 @@ const Careers = () => {
     </div>
   </section>
   <Footer />
-  <JobModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+  <JobDetailsModal
+    job={selectedJob}
+    onClose={() => setSelectedJob(null)}
+    onApply={job => {
+      setSelectedJob(null);
+      setApplyingJob(job);
+    }}
+  />
+  <JobModal job={applyingJob} onClose={() => setApplyingJob(null)} />
 </div>
   );
 }
