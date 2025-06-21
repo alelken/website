@@ -1,28 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useMobileNav from "../hooks/useMobileNav";
 import Footer from "../components/Footer.jsx";
+
 const Careers = () => {
   useMobileNav();
+  const [jobs, setJobs] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+  const [activeJob, setActiveJob] = useState(null);
+
+  useEffect(() => {
+    fetch('/data/jobs.json')
+      .then(res => res.json())
+      .then(data => setJobs(data.jobs))
+      .catch(err => console.error('Failed to load jobs', err));
+  }, []);
+
   return (
-<div>
-<header>
-    <nav>
-      <div className="logo">
-        <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo" />
-      </div>
-      <div className="nav-links">
-        <a href="/">Home</a>
-        <a href="/product">Product</a>
-        <a href="/careers">Careers</a>
-        <a href="/about">About Us</a>
-      </div>
-      <div className="hamburger">
-        <span />
-        <span />
-        <span />
-      </div>
-    </nav>
-  </header>
+    <div>
+      <header>
+        <nav>
+          <div className="logo">
+            <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo" />
+          </div>
+          <div className="nav-links">
+            <a href="/">Home</a>
+            <a href="/product">Product</a>
+            <a href="/careers">Careers</a>
+            <a href="/about">About Us</a>
+          </div>
+          <div className="hamburger">
+            <span />
+            <span />
+            <span />
+          </div>
+        </nav>
+      </header>
   <div className="mobile-nav">
     <div className="close-nav">
       <span />
@@ -67,18 +79,50 @@ const Careers = () => {
     <div className="container">
       <h2>Open Positions</h2>
       <p className="section-subtitle">Explore our current job opportunities and find the perfect role to advance your career while making a difference.</p>
-      <div className="jobs-container">
+      <div className={`jobs-container${expanded ? ' expanded' : ''}`}>
         <div className="jobs-scroll-container" id="jobsScrollContainer">
-          {/* Job cards will be dynamically inserted here */}
+          {jobs.map(job => (
+            <div
+              key={job.id}
+              className={`job-card${activeJob === job.id ? ' expanded' : ''}`}
+              onClick={() => setActiveJob(activeJob === job.id ? null : job.id)}
+            >
+              <h3>{job.title}</h3>
+              <div className="job-meta">
+                <span><i className="fas fa-map-marker-alt" />{job.location}</span>
+                <span><i className="fas fa-clock" />{job.type}</span>
+              </div>
+              <p>{job.description}</p>
+              <div className="job-details">
+                <h4>Requirements</h4>
+                <ul>
+                  {job.requirements.map(req => (
+                    <li key={req}>{req}</li>
+                  ))}
+                </ul>
+                <h4>Benefits</h4>
+                <ul>
+                  {job.benefits.map(b => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+              <button className="btn">Apply Now</button>
+            </div>
+          ))}
         </div>
         <div className="scroll-indicator">
           <i className="fas fa-chevron-right" />
         </div>
       </div>
       <div className="expand-jobs-container">
-        <button className="expand-jobs-btn" id="expandJobsBtn">
-          <span>View All Positions</span>
-          <i className="fas fa-chevron-down" />
+        <button
+          className="expand-jobs-btn"
+          id="expandJobsBtn"
+          onClick={() => setExpanded(!expanded)}
+        >
+          <span>{expanded ? 'Collapse' : 'View All Positions'}</span>
+          <i className={`fas fa-chevron-${expanded ? 'up' : 'down'}`} />
         </button>
       </div>
     </div>

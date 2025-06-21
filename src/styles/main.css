@@ -547,7 +547,7 @@ nav {
 .values-grid,
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -1025,6 +1025,20 @@ nav {
 
     .feature-card {
         padding: 1.5rem;
+    }
+
+    .about-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 1.5rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .about-grid .value-card {
+        flex: 0 0 80%;
+        scroll-snap-align: start;
+        min-width: 250px;
     }
 
     .cta-section {
