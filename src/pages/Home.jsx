@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
 
 const Home = () => {
   useEffect(() => {
@@ -38,18 +39,6 @@ const Home = () => {
     };
     window.addEventListener('scroll', onScroll);
 
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const closeNav = document.querySelector('.close-nav');
-    const body = document.body;
-    const toggleMobileNav = () => {
-      hamburger.classList.toggle('active');
-      mobileNav.classList.toggle('active');
-      body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-    };
-    hamburger.addEventListener('click', toggleMobileNav);
-    closeNav.addEventListener('click', toggleMobileNav);
-    document.querySelectorAll('.mobile-nav-links a').forEach(link => link.addEventListener('click', toggleMobileNav));
 
     const emailBtn = document.querySelector('.email-submit');
     if (emailBtn) {
@@ -93,36 +82,7 @@ const Home = () => {
 
   return (
     <div>
-      <header>
-        <nav>
-          <div className="logo">
-            <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo" />
-          </div>
-          <div className="nav-links">
-            <a href="/">Home</a>
-            <a href="/product">Product</a>
-            <a href="/careers">Careers</a>
-            <a href="/about">About Us</a>
-          </div>
-          <div className="hamburger">
-            <span />
-            <span />
-            <span />
-          </div>
-        </nav>
-      </header>
-      <div className="mobile-nav">
-        <div className="close-nav">
-          <span />
-          <span />
-        </div>
-        <div className="mobile-nav-links">
-          <a href="/">Home</a>
-          <a href="/product">Product</a>
-          <a href="/careers">Careers</a>
-          <a href="/about">About Us</a>
-        </div>
-      </div>
+      <Header />
       <section className="hero">
         <div className="hero-logo-container">
           <img src="/assets/images/logo.svg" alt="Alelken" className="hero-logo" />
