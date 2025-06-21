@@ -1294,3 +1294,9 @@ nav {
     text-align: center;
     font-weight: 600;
 }
+
+/* Job Details inside modal */
+.job-modal .job-details {
+    display: block;
+    margin-top: 1.5rem;
+}
