@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Footer from "../components/Footer.jsx";
 
 const Home = () => {
   useEffect(() => {
@@ -231,11 +232,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <footer>
-        <div className="container">
-          <p>© 2025 Alelken. Building with purpose.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react'
 import useMobileNav from '../hooks/useMobileNav'
+import Footer from '../components/Footer.jsx'
 
 const About = () => {
   useMobileNav()
@@ -71,26 +72,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3>Alelken</h3>
-              <p>Building human-centered technology solutions for mental wellness and ethical AI.</p>
-            </div>
-            <div className="footer-section">
-              <h3>Company</h3>
-              <ul className="footer-links">
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/careers">Careers</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2025 Alelken. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

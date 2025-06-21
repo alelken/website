@@ -365,6 +365,7 @@ nav {
 .cta-section p {
     margin-bottom: 2rem;
     opacity: 0.9;
+    color: var(--gray-300);
 }
 
 /* Card Styles */
