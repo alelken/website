@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useMobileNav from "../hooks/useMobileNav";
 import Footer from "../components/Footer.jsx";
+import JobModal from "../components/JobModal.jsx";
+import JobDetailsModal from "../components/JobDetailsModal.jsx";
 
 const Careers = () => {
   useMobileNav();
   const [jobs, setJobs] = useState([]);
   const [expanded, setExpanded] = useState(false);
-  const [activeJob, setActiveJob] = useState(null);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [applyingJob, setApplyingJob] = useState(null);
 
   useEffect(() => {
     fetch('/data/jobs.json')
@@ -82,32 +85,16 @@ const Careers = () => {
       <div className={`jobs-container${expanded ? ' expanded' : ''}`}>
         <div className="jobs-scroll-container" id="jobsScrollContainer">
           {jobs.map(job => (
-            <div
-              key={job.id}
-              className={`job-card${activeJob === job.id ? ' expanded' : ''}`}
-              onClick={() => setActiveJob(activeJob === job.id ? null : job.id)}
-            >
+            <div key={job.id} className="job-card">
               <h3>{job.title}</h3>
               <div className="job-meta">
                 <span><i className="fas fa-map-marker-alt" />{job.location}</span>
                 <span><i className="fas fa-clock" />{job.type}</span>
               </div>
               <p>{job.description}</p>
-              <div className="job-details">
-                <h4>Requirements</h4>
-                <ul>
-                  {job.requirements.map(req => (
-                    <li key={req}>{req}</li>
-                  ))}
-                </ul>
-                <h4>Benefits</h4>
-                <ul>
-                  {job.benefits.map(b => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-              <button className="btn">Apply Now</button>
+              <button className="btn" onClick={() => setSelectedJob(job)}>
+                Show More
+              </button>
             </div>
           ))}
         </div>
@@ -128,6 +115,15 @@ const Careers = () => {
     </div>
   </section>
   <Footer />
+  <JobDetailsModal
+    job={selectedJob}
+    onClose={() => setSelectedJob(null)}
+    onApply={job => {
+      setSelectedJob(null);
+      setApplyingJob(job);
+    }}
+  />
+  <JobModal job={applyingJob} onClose={() => setApplyingJob(null)} />
 </div>
   );
 }
