@@ -23,12 +23,21 @@ const Home = () => {
     const onScroll = () => {
       const header = document.querySelector('header');
       const currentScrollY = window.scrollY;
+      const dark = document.body.classList.contains('dark');
       if (currentScrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+        header.style.background = dark
+          ? 'rgba(0, 0, 0, 0.65)'
+          : 'rgba(255, 255, 255, 0.95)';
+        header.style.borderBottom = dark
+          ? '1px solid rgba(255, 255, 255, 0.1)'
+          : '1px solid rgba(0, 0, 0, 0.1)';
       } else {
-        header.style.background = 'rgba(255, 255, 255, 0.8)';
-        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.05)';
+        header.style.background = dark
+          ? 'rgba(0, 0, 0, 0.5)'
+          : 'rgba(255, 255, 255, 0.8)';
+        header.style.borderBottom = dark
+          ? '1px solid rgba(255, 255, 255, 0.05)'
+          : '1px solid rgba(0, 0, 0, 0.05)';
       }
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
         header.style.transform = 'translateY(-100%)';

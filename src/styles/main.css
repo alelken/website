@@ -103,7 +103,7 @@ header {
 
 body.dark header,
 body.dark nav {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.65);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -438,6 +438,11 @@ body.dark .mobile-nav-links a {
     color: var(--gray-300);
 }
 
+body.dark .section-subtitle,
+body.dark p {
+    color: var(--gray-800);
+}
+
 /* Card Styles */
 .value-card,
 .team-card,
@@ -632,6 +637,16 @@ body.dark .mobile-nav-links a {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+}
+
+.about-values .about-content {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.about-values {
+    padding: 4rem 0;
 }
 
 .features-grid {
@@ -1001,8 +1016,8 @@ body.dark .vision .section-subtitle {
 
 /* Footer Styles */
 .footer {
-    background: var(--primary-black);
-    color: var(--primary-white);
+    background: #000;
+    color: #fff;
     padding: 80px 0 40px;
 }
 
@@ -1017,7 +1032,7 @@ body.dark .vision .section-subtitle {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: var(--primary-white);
+    color: #fff;
 }
 
 .footer-section p {
@@ -1039,7 +1054,7 @@ body.dark .vision .section-subtitle {
 }
 
 .social-links a:hover {
-    color: var(--primary-white);
+    color: #fff;
 }
 
 .footer-links {
@@ -1059,7 +1074,7 @@ body.dark .vision .section-subtitle {
 }
 
 .footer-links a:hover {
-    color: var(--primary-white);
+    color: #fff;
 }
 
 .footer-bottom {
