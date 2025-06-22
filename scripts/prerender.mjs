@@ -9,8 +9,16 @@ const template = await fs.readFile(path.resolve(__dirname, '../dist/index.html')
 const routes = ['/', '/product', '/about', '/careers', '/blog']
 
 for (const url of routes) {
-  const appHtml = render(url)
-  const html = template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+  let initialData = {}
+  if (url === '/careers') {
+    const data = JSON.parse(await fs.readFile(path.resolve(__dirname, '../public/data/jobs.json'), 'utf-8'))
+    initialData.jobs = data.jobs
+  }
+  const appHtml = render(url, initialData)
+  let html = template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+  if (Object.keys(initialData).length) {
+    html = html.replace('</body>', `<script>window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};<\/script></body>`)
+  }
   const filePath = path.resolve(__dirname, `../dist${url === '/' ? '/index.html' : url + '/index.html'}`)
   await fs.mkdir(path.dirname(filePath), { recursive: true })
   await fs.writeFile(filePath, html)
