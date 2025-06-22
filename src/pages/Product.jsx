@@ -17,26 +17,30 @@ const Product = () => {
       <section className="features">
         <div className="container">
           <h2>Key Features</h2>
-          <p className="section-subtitle">Discover powerful tools designed to support your mental wellness journey with personalized care and proven techniques.</p>
+          <p className="section-subtitle">Alayn brings together expert guidance and intelligent tools to help you thrive.</p>
           <div className="features-grid">
             <div className="feature-card">
-              <h3>Personalized Support</h3>
-              <p>AI-powered insights and recommendations tailored to your unique mental health journey.</p>
+              <h3>Real-time Video Therapy</h3>
+              <p>Connect with certified therapists for live sessions on everyday concerns like career or parenting advice. Therapists set their own rates, while Alayn adds a transparent platform fee.</p>
             </div>
             <div className="feature-card">
-              <h3>Mindfulness Tools</h3>
-              <p>Guided meditation, breathing exercises, and stress management techniques.</p>
+              <h3>Therapist Videos &amp; Workshops</h3>
+              <p>Premium users enjoy exclusive video lessons and can join interactive workshops hosted by experts. Workshop tickets include a small commission so therapists are rewarded for their time.</p>
             </div>
             <div className="feature-card">
-              <h3>Progress Tracking</h3>
-              <p>Monitor your mental well-being with intuitive analytics and progress reports.</p>
+              <h3>Personality Analysis</h3>
+              <p>Our AI combines established psychological frameworks with Gemini models to deliver personalized insights and recommendations tailored to you.</p>
             </div>
             <div className="feature-card">
-              <h3>Community Connection</h3>
-              <p>Share victories and challenges with peers to stay motivated and accountable.</p>
+              <h3>Media Library</h3>
+              <p>Learn practical lessons from history with content created by our team in English, Tamil, Hindi, and Kannada. Two pieces are free&mdash;the rest unlock with Premium.</p>
+            </div>
+            <div className="feature-card">
+              <h3>Mindful Exercises</h3>
+              <p>Access curated exercises from trusted partners. Start with a free introductory routine and upgrade to explore the full library.</p>
             </div>
           </div>
-          <p style={{ marginTop: '2rem' }}>Our platform combines evidence-based practices with advanced AI to guide you every step of the way. Whether you're managing daily stress or seeking deeper mindfulness, the app adapts to your needs.</p>
+          <p style={{ marginTop: '2rem' }}>These features combine ethical AI and human expertise to guide you toward lasting well-being. Alayn adapts to your needs whether you are just starting out or looking to deepen existing habits.</p>
         </div>
       </section>
       <section className="cta-section">
