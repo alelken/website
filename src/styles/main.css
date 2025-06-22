@@ -23,8 +23,6 @@
 }
 
 body.dark {
-    --primary-black: #ffffff;
-    --primary-white: #000000;
     --text-color: #fafafa;
     --primary-color: #ffffff;
     --gray-50: #171717;
@@ -444,17 +442,21 @@ body.dark p {
 }
 
 /* Card Styles */
-.value-card,
-.team-card,
-.benefit-card,
-.feature-card,
-.blog-card {
+.card {
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid var(--gray-200);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+}
+
+.value-card,
+.team-card,
+.benefit-card,
+.feature-card,
+.blog-card {
+    /* inherits .card styles */
 }
 
 /* Default card style: white background, dark text */
@@ -699,31 +701,6 @@ body.dark .vision .section-subtitle {
 
 .vision-item {
     text-align: center;
-    padding: 2.5rem 2rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.vision-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.vision-item h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--primary-white);
-}
-
-.vision-item p {
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    font-size: 0.9rem;
 }
 
 /* Philosophy Section */

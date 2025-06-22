@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
+import Card from "../components/Card.jsx";
 
 const Home = () => {
   useEffect(() => {
@@ -89,22 +90,18 @@ const Home = () => {
           <h2 className="section-title">What We're Building</h2>
           <p className="section-subtitle">Our focus is creating tools that improve mental health for everyone. Here are four ways our technology helps you thrive:</p>
           <div className="about-grid">
-            <div className="value-card animate-on-scroll">
-              <h3>Stress Management</h3>
-              <p>Quick exercises and guidance to calm your mind and body when life feels overwhelming.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Mindfulness Practices</h3>
-              <p>Daily meditations and breathing techniques that build lasting resilience.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Community Support</h3>
-              <p>Connect with others on a similar journey to share encouragement and accountability.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Progress Insights</h3>
-              <p>Personalized analytics to help you see how far you've come and where to grow.</p>
-            </div>
+            <Card className="value-card animate-on-scroll" title="Stress Management">
+              Quick exercises and guidance to calm your mind and body when life feels overwhelming.
+            </Card>
+            <Card className="value-card animate-on-scroll" title="Mindfulness Practices">
+              Daily meditations and breathing techniques that build lasting resilience.
+            </Card>
+            <Card className="value-card animate-on-scroll" title="Community Support">
+              Connect with others on a similar journey to share encouragement and accountability.
+            </Card>
+            <Card className="value-card animate-on-scroll" title="Progress Insights">
+              Personalized analytics to help you see how far you've come and where to grow.
+            </Card>
           </div>
         </div>
       </section>

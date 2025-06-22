@@ -1,6 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer.jsx'
 import Header from '../components/Header.jsx'
+import Card from '../components/Card.jsx'
 
 const About = () => {
   return (
@@ -21,22 +22,18 @@ const About = () => {
             <p className="section-subtitle">Alelken is founded on the belief that technology should serve humanity's highest potential. We're a team of builders, thinkers, and problem-solvers committed to creating solutions that prioritize human dignity, ethical innovation, and sustainable impact.</p>
           </div>
           <div className="about-grid">
-            <div className="value-card">
-              <h3>Integrity First</h3>
-              <p>Transparent processes, honest communication, and accountable leadership in everything we build and deliver.</p>
-            </div>
-            <div className="value-card">
-              <h3>Human Dignity</h3>
-              <p>Every person matters, every voice deserves to be heard, and technology should elevate human potential.</p>
-            </div>
-            <div className="value-card">
-              <h3>Stewardship</h3>
-              <p>Responsible use of resources, sustainable innovation, and building solutions for long-term impact.</p>
-            </div>
-            <div className="value-card">
-              <h3>Excellence</h3>
-              <p>Uncompromising quality in design, development, and delivery of our technological solutions.</p>
-            </div>
+            <Card className="value-card" title="Integrity First">
+              Transparent processes, honest communication, and accountable leadership in everything we build and deliver.
+            </Card>
+            <Card className="value-card" title="Human Dignity">
+              Every person matters, every voice deserves to be heard, and technology should elevate human potential.
+            </Card>
+            <Card className="value-card" title="Stewardship">
+              Responsible use of resources, sustainable innovation, and building solutions for long-term impact.
+            </Card>
+            <Card className="value-card" title="Excellence">
+              Uncompromising quality in design, development, and delivery of our technological solutions.
+            </Card>
           </div>
         </div>
       </section>
@@ -47,24 +44,18 @@ const About = () => {
             <p>The passionate individuals behind Alelken, each bringing unique expertise to advance mental wellness through technology.</p>
           </div>
           <div className="team-grid">
-            <div className="team-card">
-              <img src="/team/1.jpeg" alt="HariKrishna" />
-              <h3>HariKrishna</h3>
+            <Card className="team-card" image={{ src: '/team/1.jpeg', alt: 'HariKrishna' }} title="HariKrishna">
               <div className="role">Founder &amp; CEO</div>
-              <p>Experienced in AI, Machine Learning, and Android Development.</p>
-            </div>
-            <div className="team-card">
-              <img src="/team/1.jpeg" alt="Balraj" />
-              <h3>Karthick B</h3>
+              Experienced in AI, Machine Learning, and Android Development.
+            </Card>
+            <Card className="team-card" image={{ src: '/team/1.jpeg', alt: 'Balraj' }} title="Karthick B">
               <div className="role">Cofounder &amp; Project Director</div>
-              <p>Product strategist focused on creating intuitive and impactful user experiences.</p>
-            </div>
-            <div className="team-card">
-              <img src="/team/karthick_selvaraj.jpg" alt="Selvaraj" />
-              <h3>Karthick Selvaraj</h3>
+              Product strategist focused on creating intuitive and impactful user experiences.
+            </Card>
+            <Card className="team-card" image={{ src: '/team/karthick_selvaraj.jpg', alt: 'Selvaraj' }} title="Karthick Selvaraj">
               <div className="role">Media Team Lead</div>
-              <p>Experienced in Content Creation.</p>
-            </div>
+              Experienced in Content Creation.
+            </Card>
           </div>
         </div>
       </section>
