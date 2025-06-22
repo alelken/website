@@ -5,18 +5,19 @@ import JobDetailsModal from "../components/JobDetailsModal.jsx";
 import Header from "../components/Header.jsx";
 import Card from "../components/Card.jsx";
 
-const Careers = () => {
-  const [jobs, setJobs] = useState([]);
+const Careers = ({ initialJobs = [] }) => {
+  const [jobs, setJobs] = useState(initialJobs);
   const [expanded, setExpanded] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [applyingJob, setApplyingJob] = useState(null);
 
   useEffect(() => {
+    if (initialJobs.length) return;
     fetch('/data/jobs.json')
       .then(res => res.json())
       .then(data => setJobs(data.jobs))
       .catch(err => console.error('Failed to load jobs', err));
-  }, []);
+  }, [initialJobs]);
 
   return (
     <div>
