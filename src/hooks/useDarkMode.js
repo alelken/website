@@ -10,6 +10,7 @@ const useDarkMode = () => {
 
   useEffect(() => {
     document.body.classList.toggle('dark', enabled)
+    document.documentElement.classList.toggle('dark', enabled)
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('theme', enabled ? 'dark' : 'light')
     }

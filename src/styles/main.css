@@ -82,7 +82,7 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
-    color: var(--primary-black);
+    color: var(--gray-900);
 }
 
 /* Header & Navigation */
@@ -382,7 +382,7 @@ body.dark .mobile-nav-links a {
     font-weight: 700;
     text-align: center;
     margin-bottom: 1rem;
-    color: var(--primary-black);
+    color: var(--gray-900);
 }
 
 .cta-section h2 {
@@ -462,8 +462,8 @@ body.dark p {
 /* Default card style: white background, dark text */
 .value-card,
 .vision-item {
-    background: var(--primary-white) !important;
-    color: var(--primary-black) !important;
+    background: var(--gray-50) !important;
+    color: var(--gray-900) !important;
     border-radius: 16px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     padding: 2.5rem;
@@ -493,7 +493,7 @@ body.dark p {
 
 .benefits-section .benefit-card,
 .values-section .value-card {
-    background: var(--primary-white);
+    background: var(--gray-50);
 }
 
 .value-card::before,
@@ -544,7 +544,7 @@ body.dark p {
 
 .value-card h3,
 .vision-item h3 {
-    color: var(--primary-black) !important;
+    color: var(--gray-900) !important;
 }
 
 .value-card p,
@@ -660,7 +660,7 @@ body.dark p {
 
 /* Vision Section */
 .vision {
-    background: var(--primary-white);
+    background: var(--gray-50);
     color: var(--gray-900);
 }
 
@@ -705,7 +705,7 @@ body.dark .vision .section-subtitle {
 
 /* Philosophy Section */
 .philosophy {
-    background: var(--primary-white);
+    background: var(--gray-50);
 }
 
 .philosophy-grid {
@@ -723,7 +723,7 @@ body.dark .vision .section-subtitle {
 
 .principle-icon {
     font-size: 3rem;
-    color: var(--primary-black);
+    color: var(--gray-900);
     margin-bottom: 1rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -827,7 +827,7 @@ body.dark .vision .section-subtitle {
 
 .job-card {
     flex: 0 0 350px;
-    background: var(--primary-white);
+    background: var(--gray-50);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: var(--shadow-md);
@@ -913,7 +913,7 @@ body.dark .vision .section-subtitle {
 .jobs-section .scroll-indicator {
     width: 40px;
     height: 40px;
-    background: var(--primary-white);
+    background: var(--gray-50);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -983,7 +983,7 @@ body.dark .vision .section-subtitle {
 .team-section,
 .benefits-section,
 .features {
-    background: var(--primary-white);
+    background: var(--gray-50);
 }
 
 .jobs-section,
@@ -1363,7 +1363,7 @@ body.dark .vision .section-subtitle {
 }
 
 .job-modal {
-    background: var(--primary-white);
+    background: var(--gray-50);
     border-radius: 16px;
     padding: 2rem;
     max-width: 600px;
@@ -1433,13 +1433,13 @@ body.dark .vision .section-subtitle {
 /* Vision card styles */
 .vision .value-card,
 .vision .vision-item {
-    background: var(--primary-white);
-    color: var(--primary-black);
+    background: var(--gray-50);
+    color: var(--gray-900);
     border: 1px solid var(--gray-200);
 }
 .vision .value-card h3,
 .vision .vision-item h3 {
-    color: var(--primary-black);
+    color: var(--gray-900);
 }
 .vision .value-card p,
 .vision .vision-item p {
@@ -1477,7 +1477,7 @@ body.dark .vision .value-card::before {
 }
 
 .blog-card {
-    background: var(--primary-white);
+    background: var(--gray-50);
     border: 1px solid var(--gray-200);
     border-radius: 12px;
     padding: 1.5rem;
