@@ -1,6 +1,6 @@
 # Alelken / Alayn Website
 
-This repository hosts the marketing site for **Alayn**, an AI-driven wellness application. The project is built with React and Vite and deployed to Firebase Hosting. A prerender plugin is included to generate static pages during the build step so search engines can index the content easily.
+This repository hosts the marketing site for **Alayn**, an AI-driven wellness application. The project is built with React and Vite and deployed to Firebase Hosting. Static pages are generated using **react-snap**, which crawls each route after the Vite build to produce pre-rendered HTML for search engines.
 
 ## Getting Started
 
@@ -13,7 +13,7 @@ This repository hosts the marketing site for **Alayn**, an AI-driven wellness ap
    ```bash
    npm run dev
    ```
-4. Build for production (static pages are generated automatically)
+4. Build for production (pre-rendered pages will be generated automatically)
    ```bash
    npm run build
    ```
