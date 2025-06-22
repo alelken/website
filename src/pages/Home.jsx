@@ -40,29 +40,6 @@ const Home = () => {
     window.addEventListener('scroll', onScroll);
 
 
-    const emailBtn = document.querySelector('.email-submit');
-    if (emailBtn) {
-      emailBtn.addEventListener('click', e => {
-        e.preventDefault();
-        const emailInput = document.querySelector('.email-input');
-        const email = emailInput.value.trim();
-        if (email && email.includes('@')) {
-          emailBtn.innerHTML = 'Thank You!';
-          emailBtn.style.background = '#22c55e';
-          emailInput.value = '';
-          setTimeout(() => {
-            emailBtn.innerHTML = 'Stay Updated';
-            emailBtn.style.background = 'var(--primary-black)';
-          }, 2000);
-        } else {
-          emailInput.style.borderColor = '#ef4444';
-          emailInput.focus();
-          setTimeout(() => {
-            emailInput.style.borderColor = 'var(--gray-200)';
-          }, 2000);
-        }
-      });
-    }
 
     const floatingElements = document.querySelectorAll('.floating-element');
     const onScrollFloat = () => {
@@ -92,67 +69,32 @@ const Home = () => {
         <div className="floating-element floating-triangle" />
         <div className="hero-content container">
           <h1>Transformative Technology.<br />Human-Centered Purpose.</h1>
-          <p className="subtitle">We're developing next-generation systems that restore what's broken, empower what's overlooked, and build what truly matters for tomorrow's world.</p>
+          <p className="subtitle">Alelken is developing an AI-driven mental health app focused on daily guidance and personal growth.</p>
           <div className="cta-group">
-            <a href="/product" className="cta-button">Explore Our Product</a>
-            <a href="/about" className="cta-button cta-button-secondary">Learn More</a>
-          </div>
-        </div>
-      </section>
-      <section id="about" className="section about">
-        <div className="container">
-          <div className="about-content animate-on-scroll">
-            <h2 className="section-title">Who We Are</h2>
-            <p className="section-subtitle">Alelken is founded on the belief that technology should serve humanity's highest potential. We're a team of builders, thinkers, and problem-solvers committed to creating solutions that prioritize human dignity, ethical innovation, and sustainable impact.</p>
-          </div>
-          <div className="about-grid">
-            <div className="value-card animate-on-scroll">
-              <h3>Integrity First</h3>
-              <p>Transparent processes, honest communication, and accountable leadership in everything we build and deliver.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Human Dignity</h3>
-              <p>Every person matters, every voice deserves to be heard, and technology should elevate human potential.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Stewardship</h3>
-              <p>Responsible use of resources, sustainable innovation, and building solutions for long-term impact.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Excellence</h3>
-              <p>Uncompromising quality in design, development, and delivery of our technological solutions.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Service</h3>
-              <p>Technology that serves people and communities, empowering them rather than replacing them.</p>
-            </div>
+            <a href="/product" className="cta-button">Learn More</a>
           </div>
         </div>
       </section>
       <section id="vision" className="section vision">
         <div className="container">
           <h2 className="section-title">What We're Building</h2>
-          <p className="section-subtitle">The future needs technology that heals rather than harms, empowers rather than exploits, and connects rather than divides. We're developing platforms and systems that address fundamental challenges in:</p>
+          <p className="section-subtitle">Our focus is creating tools that improve mental health for everyone. Here are four ways our technology helps you thrive:</p>
           <div className="about-grid">
             <div className="value-card animate-on-scroll">
-              <h3>Education &amp; Development</h3>
-              <p>Learning systems that unlock human potential and foster meaningful growth</p>
+              <h3>Stress Management</h3>
+              <p>Quick exercises and guidance to calm your mind and body when life feels overwhelming.</p>
             </div>
             <div className="value-card animate-on-scroll">
-              <h3>Leadership &amp; Growth</h3>
-              <p>Tools that develop authentic character and principled leadership</p>
+              <h3>Mindfulness Practices</h3>
+              <p>Daily meditations and breathing techniques that build lasting resilience.</p>
             </div>
             <div className="value-card animate-on-scroll">
-              <h3>Ethical AI &amp; Governance</h3>
-              <p>Artificial intelligence guided by moral principles and human values</p>
+              <h3>Community Support</h3>
+              <p>Connect with others on a similar journey to share encouragement and accountability.</p>
             </div>
             <div className="value-card animate-on-scroll">
-              <h3>Creative Expression</h3>
-              <p>Platforms that enable meaningful storytelling and artistic creation</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Resource Stewardship</h3>
-              <p>Transparent systems for accountability and responsible resource management</p>
+              <h3>Progress Insights</h3>
+              <p>Personalized analytics to help you see how far you've come and where to grow.</p>
             </div>
           </div>
         </div>
@@ -176,18 +118,6 @@ const Home = () => {
               <i className="fas fa-users principle-icon" aria-hidden="true" />
               <h3>Multiplication</h3>
               <p>Creating platforms that empower others to build, lead, and make lasting positive impact.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="contact" className="section contact">
-        <div className="container">
-          <div className="contact-content animate-on-scroll">
-            <h2 className="section-title">Be Part of Something Meaningful</h2>
-            <p className="section-subtitle">We're looking for extraordinary people who believe technology can be a force for good. Whether you're a developer, designer, thinker, or builder—if you share our vision, we want to hear from you.</p>
-            <div className="email-signup">
-              <input type="email" className="email-input" placeholder="Enter your email address" required />
-              <button type="submit" className="email-submit">Stay Updated</button>
             </div>
           </div>
         </div>

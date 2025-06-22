@@ -4,6 +4,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Product from './pages/Product.jsx'
 import Careers from './pages/Careers.jsx'
+import Blog from './pages/Blog.jsx'
 
 const App = () => (
   <Router>
@@ -12,6 +13,7 @@ const App = () => (
       <Route path="/about" element={<About />} />
       <Route path="/product" element={<Product />} />
       <Route path="/careers" element={<Careers />} />
+      <Route path="/blog" element={<Blog />} />
     </Routes>
   </Router>
 )

@@ -14,6 +14,7 @@ const Header = () => {
             <a href="/">Home</a>
             <a href="/product">Product</a>
             <a href="/careers">Careers</a>
+            <a href="/blog">Blog</a>
             <a href="/about">About Us</a>
           </div>
           <div className="hamburger">
@@ -32,6 +33,7 @@ const Header = () => {
           <a href="/">Home</a>
           <a href="/product">Product</a>
           <a href="/careers">Careers</a>
+          <a href="/blog">Blog</a>
           <a href="/about">About Us</a>
         </div>
       </div>
