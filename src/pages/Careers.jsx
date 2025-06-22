@@ -3,6 +3,7 @@ import Footer from "../components/Footer.jsx";
 import JobModal from "../components/JobModal.jsx";
 import JobDetailsModal from "../components/JobDetailsModal.jsx";
 import Header from "../components/Header.jsx";
+import Card from "../components/Card.jsx";
 
 const Careers = () => {
   const [jobs, setJobs] = useState([]);
@@ -33,18 +34,15 @@ const Careers = () => {
       <h2>Why Work With Us</h2>
       <p className="section-subtitle">Join a team that values innovation, work-life balance, and making a real difference in people's lives.</p>
       <div className="benefits-grid">
-        <div className="benefit-card">
-          <h3>Meaningful Impact</h3>
-          <p>Work on technology that directly improves people's mental well-being and quality of life.</p>
-        </div>
-        <div className="benefit-card">
-          <h3>Growth &amp; Learning</h3>
-          <p>Continuous opportunities for professional development and skill enhancement.</p>
-        </div>
-        <div className="benefit-card">
-          <h3>Work-Life Balance</h3>
-          <p>Flexible schedules, remote work options, and a supportive work environment.</p>
-        </div>
+        <Card className="benefit-card" title="Meaningful Impact">
+          Work on technology that directly improves people's mental well-being and quality of life.
+        </Card>
+        <Card className="benefit-card" title="Growth &amp; Learning">
+          Continuous opportunities for professional development and skill enhancement.
+        </Card>
+        <Card className="benefit-card" title="Work-Life Balance">
+          Flexible schedules, remote work options, and a supportive work environment.
+        </Card>
       </div>
     </div>
   </section>
