@@ -68,11 +68,10 @@ const Home = () => {
         <div className="floating-element floating-triangle" />
         <div className="floating-element floating-triangle" />
         <div className="hero-content container">
-          <h1>AI-Driven Mental Wellness</h1>
-          <p className="subtitle">Alelken is building a human-centered platform that helps you manage stress and improve well-being.</p>
+          <h1>Transformative Technology.<br />Human-Centered Purpose.</h1>
+          <p className="subtitle">Alelken is developing an AI-driven mental health app focused on daily guidance and personal growth.</p>
           <div className="cta-group">
-            <a href="/product" className="cta-button">Join Early Access</a>
-            <a href="/about" className="cta-button cta-button-secondary">Learn More</a>
+            <a href="/product" className="cta-button">Learn More</a>
           </div>
         </div>
       </section>

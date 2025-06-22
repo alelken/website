@@ -8,7 +8,11 @@ const posts = Object.entries(
 ).map(([path, content]) => {
   const lines = content.trim().split('\n')
   const title = lines[0].replace(/^#\s+/, '')
-  const excerpt = lines.slice(1).find(l => l.trim()) || ''
+  const excerpt = lines
+    .slice(1)
+    .filter(l => l.trim())
+    .slice(0, 5)
+    .join(' ')
   return {
     slug: path.split('/').pop().replace('.md', ''),
     title,
