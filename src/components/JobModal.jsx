@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
-import { db, storage } from "../firebase.js";
+import { db } from "../firebase.js";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const JobModal = ({ job, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -15,12 +14,18 @@ const JobModal = ({ job, onClose }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      let resumeUrl = null;
+      let resumeUri = null;
       const resumeFile = fileRef.current.files[0];
       if (resumeFile) {
-        const storageRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name}`);
-        await uploadBytes(storageRef, resumeFile);
-        resumeUrl = await getDownloadURL(storageRef);
+        const formData = new FormData();
+        formData.append('file', resumeFile);
+        const res = await fetch(import.meta.env.VITE_RESUME_UPLOAD_ENDPOINT, {
+          method: 'POST',
+          body: formData,
+        });
+        if (!res.ok) throw new Error('Upload failed');
+        const data = await res.json();
+        resumeUri = data.uri;
       }
 
       await addDoc(collection(db, 'applications'), {
@@ -28,7 +33,7 @@ const JobModal = ({ job, onClose }) => {
         jobTitle: job.title,
         name,
         email,
-        resumeUrl,
+        resumeUri,
         createdAt: serverTimestamp(),
       });
       setSubmitted(true);

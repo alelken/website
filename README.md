@@ -11,6 +11,8 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-## Job Applications with Firebase
+## Job Applications with Firestore and MongoDB
 
-Job applications are saved directly to Firestore and uploaded resumes are stored in Firebase Storage. Copy `.env.example` to `.env` and fill in your Firebase project credentials to enable this functionality.
+Job applications are written directly to Firestore. Uploaded resumes are sent to an API that stores them in MongoDB and returns a URI. That URI is saved alongside the application record in Firestore.
+
+Copy `.env.example` to `.env` and fill in your Firebase project credentials. Set `VITE_RESUME_UPLOAD_ENDPOINT` to the URL of the upload API handling the MongoDB storage.
