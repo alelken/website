@@ -195,6 +195,7 @@ body.dark .mobile-nav-links a {
     display: none;
     cursor: pointer;
     padding: 0.5rem;
+    margin-left: 0.5rem;
     z-index: 1001;
 }
 
@@ -242,6 +243,8 @@ body.dark .mobile-nav-links a {
     flex-direction: column;
     gap: 2rem;
     margin-top: 4rem;
+    align-items: flex-start;
+    padding-left: 1rem;
 }
 
 .mobile-nav-links a {

@@ -19,9 +19,6 @@ const Header = () => {
             <a href="/blog">Blog</a>
             <a href="/about">About Us</a>
           </div>
-          <button className="theme-toggle" onClick={() => setDark(!dark)} aria-label="Toggle dark mode">
-            {dark ? <i className="fas fa-sun" /> : <i className="fas fa-moon" />}
-          </button>
           <div className="hamburger">
             <span />
             <span />
