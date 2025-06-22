@@ -91,41 +91,11 @@ const Home = () => {
         <div className="floating-element floating-triangle" />
         <div className="floating-element floating-triangle" />
         <div className="hero-content container">
-          <h1>Transformative Technology.<br />Human-Centered Purpose.</h1>
-          <p className="subtitle">We're developing next-generation systems that restore what's broken, empower what's overlooked, and build what truly matters for tomorrow's world.</p>
+          <h1>AI-Driven Mental Wellness</h1>
+          <p className="subtitle">Alelken is building a human-centered platform that helps you manage stress and improve well-being.</p>
           <div className="cta-group">
-            <a href="/product" className="cta-button">Explore Our Product</a>
+            <a href="/product" className="cta-button">Join Early Access</a>
             <a href="/about" className="cta-button cta-button-secondary">Learn More</a>
-          </div>
-        </div>
-      </section>
-      <section id="about" className="section about">
-        <div className="container">
-          <div className="about-content animate-on-scroll">
-            <h2 className="section-title">Who We Are</h2>
-            <p className="section-subtitle">Alelken is founded on the belief that technology should serve humanity's highest potential. We're a team of builders, thinkers, and problem-solvers committed to creating solutions that prioritize human dignity, ethical innovation, and sustainable impact.</p>
-          </div>
-          <div className="about-grid">
-            <div className="value-card animate-on-scroll">
-              <h3>Integrity First</h3>
-              <p>Transparent processes, honest communication, and accountable leadership in everything we build and deliver.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Human Dignity</h3>
-              <p>Every person matters, every voice deserves to be heard, and technology should elevate human potential.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Stewardship</h3>
-              <p>Responsible use of resources, sustainable innovation, and building solutions for long-term impact.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Excellence</h3>
-              <p>Uncompromising quality in design, development, and delivery of our technological solutions.</p>
-            </div>
-            <div className="value-card animate-on-scroll">
-              <h3>Service</h3>
-              <p>Technology that serves people and communities, empowering them rather than replacing them.</p>
-            </div>
           </div>
         </div>
       </section>

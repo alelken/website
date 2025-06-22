@@ -1365,3 +1365,35 @@ nav {
 .vision .vision-item p {
     color: var(--primary-white) !important;
 }
+
+/* Blog styles */
+.blog-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-list li {
+    margin-bottom: 1rem;
+}
+
+.blog-list a {
+    color: var(--primary-black);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-post h1,
+.blog-post h2,
+.blog-post h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post p {
+    margin-bottom: 1rem;
+}
