@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { db } from "../firebase.js";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, doc, getDoc } from "firebase/firestore";
 
 const JobModal = ({ job, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -17,9 +17,13 @@ const JobModal = ({ job, onClose }) => {
       let resumeUri = null;
       const resumeFile = fileRef.current.files[0];
       if (resumeFile) {
+        const configSnap = await getDoc(doc(db, 'config', 'mongodb'));
+        if (!configSnap.exists()) throw new Error('Upload URI not configured');
+        const uploadUri = configSnap.data().uri;
+
         const formData = new FormData();
         formData.append('file', resumeFile);
-        const res = await fetch(import.meta.env.VITE_RESUME_UPLOAD_ENDPOINT, {
+        const res = await fetch(uploadUri, {
           method: 'POST',
           body: formData,
         });

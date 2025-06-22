@@ -13,6 +13,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## Job Applications with Firestore and MongoDB
 
-Job applications are written directly to Firestore. Uploaded resumes are sent to an API that stores them in MongoDB and returns a URI. That URI is saved alongside the application record in Firestore.
+Job applications are written directly to Firestore. When a user uploads a resume, the app first reads a MongoDB upload URI from a Firestore `config` document. The file is then posted to that URI and the returned link is saved alongside the application record in Firestore.
 
-Copy `.env.example` to `.env` and fill in your Firebase project credentials. Set `VITE_RESUME_UPLOAD_ENDPOINT` to the URL of the upload API handling the MongoDB storage.
+Copy `.env.example` to `.env` and fill in your Firebase project credentials. Firestore should contain a document at `config/mongodb` with a field `uri` pointing to the upload location.
