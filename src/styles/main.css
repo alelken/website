@@ -1539,3 +1539,29 @@ body.dark .vision .value-card::before {
     gap: 0.5rem;
 }
 
+.desktop-only {
+    display: inline-block;
+}
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+body.dark .btn,
+body.dark .cta-button,
+body.dark .expand-jobs-btn,
+body.dark .apply-form button {
+  background: var(--primary-white) !important;
+  color: var(--primary-black) !important;
+  border-color: var(--primary-white) !important;
+}
+body.dark .btn:hover,
+body.dark .cta-button:hover,
+body.dark .expand-jobs-btn:hover,
+body.dark .apply-form button:hover {
+  background: transparent !important;
+  color: var(--primary-white) !important;
+  border-color: var(--primary-white) !important;
+}
+
