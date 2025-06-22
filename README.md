@@ -10,3 +10,7 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Job Applications with Firebase
+
+Job applications are saved directly to Firestore and uploaded resumes are stored in Firebase Storage. Copy `.env.example` to `.env` and fill in your Firebase project credentials to enable this functionality.
