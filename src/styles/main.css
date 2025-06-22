@@ -1381,7 +1381,7 @@ nav {
 /* Blog styles */
 .blog-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     list-style: none;
     padding: 0;
@@ -1404,13 +1404,17 @@ nav {
     margin-bottom: 1rem;
     font-size: 1.25rem;
     text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .blog-card p {
     color: var(--gray-600);
     margin-bottom: 0;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

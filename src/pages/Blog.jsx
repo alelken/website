@@ -11,7 +11,7 @@ const posts = Object.entries(
   const excerpt = lines
     .slice(1)
     .filter(l => l.trim())
-    .slice(0, 5)
+    .slice(0, 4)
     .join(' ')
   return {
     slug: path.split('/').pop().replace('.md', ''),
