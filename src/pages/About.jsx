@@ -37,10 +37,6 @@ const About = () => {
               <h3>Excellence</h3>
               <p>Uncompromising quality in design, development, and delivery of our technological solutions.</p>
             </div>
-            <div className="value-card">
-              <h3>Service</h3>
-              <p>Technology that serves people and communities, empowering them rather than replacing them.</p>
-            </div>
           </div>
         </div>
       </section>

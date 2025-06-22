@@ -31,7 +31,12 @@ const Product = () => {
               <h3>Progress Tracking</h3>
               <p>Monitor your mental well-being with intuitive analytics and progress reports.</p>
             </div>
+            <div className="feature-card">
+              <h3>Community Connection</h3>
+              <p>Share victories and challenges with peers to stay motivated and accountable.</p>
+            </div>
           </div>
+          <p style={{ marginTop: '2rem' }}>Our platform combines evidence-based practices with advanced AI to guide you every step of the way. Whether you're managing daily stress or seeking deeper mindfulness, the app adapts to your needs.</p>
         </div>
       </section>
       <section className="cta-section">
