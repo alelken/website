@@ -40,29 +40,6 @@ const Home = () => {
     window.addEventListener('scroll', onScroll);
 
 
-    const emailBtn = document.querySelector('.email-submit');
-    if (emailBtn) {
-      emailBtn.addEventListener('click', e => {
-        e.preventDefault();
-        const emailInput = document.querySelector('.email-input');
-        const email = emailInput.value.trim();
-        if (email && email.includes('@')) {
-          emailBtn.innerHTML = 'Thank You!';
-          emailBtn.style.background = '#22c55e';
-          emailInput.value = '';
-          setTimeout(() => {
-            emailBtn.innerHTML = 'Stay Updated';
-            emailBtn.style.background = 'var(--primary-black)';
-          }, 2000);
-        } else {
-          emailInput.style.borderColor = '#ef4444';
-          emailInput.focus();
-          setTimeout(() => {
-            emailInput.style.borderColor = 'var(--gray-200)';
-          }, 2000);
-        }
-      });
-    }
 
     const floatingElements = document.querySelectorAll('.floating-element');
     const onScrollFloat = () => {
@@ -155,10 +132,6 @@ const Home = () => {
           <div className="contact-content animate-on-scroll">
             <h2 className="section-title">Be Part of Something Meaningful</h2>
             <p className="section-subtitle">We're looking for extraordinary people who believe technology can be a force for good. Whether you're a developer, designer, thinker, or builder—if you share our vision, we want to hear from you.</p>
-            <div className="email-signup">
-              <input type="email" className="email-input" placeholder="Enter your email address" required />
-              <button type="submit" className="email-submit">Stay Updated</button>
-            </div>
           </div>
         </div>
       </section>

@@ -372,7 +372,8 @@ nav {
 .value-card,
 .team-card,
 .benefit-card,
-.feature-card {
+.feature-card,
+.blog-card {
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid var(--gray-200);
@@ -419,7 +420,8 @@ nav {
 }
 
 .value-card::before,
-.feature-card::before {
+.feature-card::before,
+.blog-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -439,7 +441,8 @@ nav {
 .value-card:hover,
 .team-card:hover,
 .benefit-card:hover,
-.feature-card:hover {
+.feature-card:hover,
+.blog-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
 }
@@ -453,7 +456,8 @@ nav {
     border-color: var(--gray-300);
 }
 
-.value-card:hover::before {
+.value-card:hover::before,
+.blog-card:hover::before {
     transform: scaleX(1);
 }
 
@@ -497,7 +501,8 @@ nav {
 .value-card p,
 .team-card p,
 .benefit-card p,
-.feature-card p {
+.feature-card p,
+.blog-card p {
     color: var(--gray-600);
     line-height: 1.6;
     font-size: 0.9375rem;
@@ -1366,20 +1371,42 @@ nav {
     color: var(--primary-white) !important;
 }
 
+.vision .value-card::before {
+    background: var(--primary-white);
+}
+
 /* Blog styles */
-.blog-list ul {
+.blog-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
     list-style: none;
     padding: 0;
 }
 
-.blog-list li {
-    margin-bottom: 1rem;
+.blog-card {
+    background: var(--primary-white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
 }
 
-.blog-list a {
-    color: var(--primary-black);
-    text-decoration: none;
-    font-weight: 600;
+.blog-card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.blog-card p {
+    color: var(--gray-600);
+    margin-bottom: 0;
+}
+
+.blog-card .btn {
+    margin-top: 1rem;
+    width: fit-content;
 }
 
 .blog-post {
@@ -1396,4 +1423,11 @@ nav {
 
 .blog-post p {
     margin-bottom: 1rem;
+}
+
+.back-btn {
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }

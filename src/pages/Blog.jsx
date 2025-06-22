@@ -5,11 +5,17 @@ import Footer from '../components/Footer.jsx'
 
 const posts = Object.entries(
   import.meta.glob('../posts/*.md', { as: 'raw', eager: true })
-).map(([path, content]) => ({
-  slug: path.split('/').pop().replace('.md', ''),
-  title: content.trim().split('\n')[0].replace(/^#\s+/, ''),
-  content,
-}))
+).map(([path, content]) => {
+  const lines = content.trim().split('\n')
+  const title = lines[0].replace(/^#\s+/, '')
+  const excerpt = lines.slice(1).find(l => l.trim()) || ''
+  return {
+    slug: path.split('/').pop().replace('.md', ''),
+    title,
+    excerpt,
+    content,
+  }
+})
 
 const Blog = () => {
   const [active, setActive] = useState(null)
@@ -20,14 +26,16 @@ const Blog = () => {
       <Header />
       <div className="container" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
         {!active && (
-          <div className="blog-list">
+          <div>
             <h1>Blog</h1>
-            <ul>
+            <ul className="blog-list">
               {posts.map(p => (
-                <li key={p.slug}>
-                  <a href="#" onClick={e => { e.preventDefault(); setActive(p.slug) }}>
-                    {p.title}
-                  </a>
+                <li key={p.slug} className="blog-card">
+                  <h2>{p.title}</h2>
+                  {p.excerpt && <p>{p.excerpt}</p>}
+                  <button className="btn" onClick={e => { e.preventDefault(); setActive(p.slug) }}>
+                    Read More
+                  </button>
                 </li>
               ))}
             </ul>
@@ -35,7 +43,8 @@ const Blog = () => {
         )}
         {active && (
           <div className="blog-post">
-            <button className="btn" onClick={() => setActive(null)} style={{ marginBottom: '1rem' }}>
+            <button className="btn back-btn" onClick={() => setActive(null)}>
+              <i className="fas fa-arrow-left" aria-hidden="true" />
               Back to posts
             </button>
             <ReactMarkdown>{post.content}</ReactMarkdown>
