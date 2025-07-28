@@ -39,13 +39,7 @@ const Product = () => {
           <p style={{ marginTop: '2rem' }}>These features combine ethical AI and human expertise to guide you toward lasting well-being. Alayn adapts to your needs whether you are just starting out or looking to deepen existing habits.</p>
         </div>
       </section>
-      <section className="cta-section">
-        <div className="container">
-          <h2>Start Your Journey to Better Mental Health</h2>
-          <p>Join thousands of users who have transformed their lives with our app.</p>
-          <a href="#" className="btn">Download Now</a>
-        </div>
-      </section>
+
       <Footer />
     </div>
   )
