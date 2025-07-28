@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
@@ -22,7 +23,9 @@ const posts = Object.entries(
 })
 
 const Blog = () => {
-  const [active, setActive] = useState(null)
+  const { slug } = useParams()
+  const navigate = useNavigate()
+  const [active, setActive] = useState(slug || null)
   const [isMobile, setIsMobile] = useState(false)
 
   React.useEffect(() => {
@@ -40,8 +43,13 @@ const Blog = () => {
       <div className="container" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
         <h1>Blog</h1>
         {active && (
+          // sync url for direct access via share
+          slug !== active && navigate(`/blog/${active}`, { replace: true }),
           <div className="blog-post" style={{marginBottom: '2rem'}}>
-            <button className="btn back-btn" onClick={() => setActive(null)}>
+            <button className="btn back-btn" onClick={() => {
+              setActive(null)
+              navigate('/blog')
+            }}>
               <i className="fas fa-arrow-left" aria-hidden="true" />
               Back
             </button>
@@ -62,6 +70,7 @@ const Blog = () => {
                   onClick={e => {
                     e.preventDefault();
                     setActive(p.slug);
+                    navigate(`/blog/${p.slug}`)
                     window.scrollTo(0, 0);
                   }}
                 >

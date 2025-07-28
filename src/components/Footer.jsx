@@ -16,8 +16,8 @@ const Footer = () => (
             <a href="https://www.linkedin.com/company/alelken" aria-label="LinkedIn">
               <i className="fab fa-linkedin" />
             </a>
-            <a href="https://www.github.com/alelken" aria-label="GitHub">
-              <i className="fab fa-github" />
+            <a href="https://www.instagram.com/alelkentech" aria-label="Instagram">
+              <i className="fab fa-instagram" />
             </a>
             <a href="mailto:support@alelken.in" aria-label="Email">
               <i className="fas fa-envelope" />
@@ -27,7 +27,6 @@ const Footer = () => (
         <div className="footer-section">
           <h3>Company</h3>
           <ul className="footer-links">
-            <li><a href="/about">About Us</a></li>
             <li><a href="/careers">Careers</a></li>
             <li><a href="/press">Press</a></li>
             <li><a href="/blog">Blog</a></li>
