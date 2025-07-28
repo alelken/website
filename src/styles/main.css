@@ -1504,10 +1504,21 @@ body.dark .vision .section-subtitle {
 
 /* Vision card styles */
 .vision .value-card,
-.vision .vision-item {
+.vision .vision-item,
+.blog-card {
     background: var(--gray-50);
     color: var(--gray-900);
     border: 1px solid var(--gray-200);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vision .value-card:hover,
+.vision .vision-item:hover,
+.blog-card:hover {
+    box-shadow: var(--shadow-lg);
 }
 .vision .value-card h3,
 .vision .vision-item h3 {
@@ -1518,8 +1529,19 @@ body.dark .vision .section-subtitle {
     color: var(--gray-600);
 }
 
-.vision .value-card::before {
+.vision .value-card::before,
+.vision .vision-item::before {
     background: var(--primary-black);
+    animation: triangleFloat 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes triangleFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
 body.dark .vision .value-card,
@@ -1639,19 +1661,93 @@ body.dark .apply-form button:hover {
   border-color: var(--primary-white) !important;
 }
 
-.blog-card .blog-readmore-btn {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-@media (min-width: 769px) {
-  .back-btn {
-    justify-content: flex-start;
-    width: fit-content;
-    min-width: 120px;
-    padding: 1rem 2.5rem;
+/* Unified Button Styles */
+.btn, .back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #8e7206;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 600;
     font-size: 1rem;
-  }
+    line-height: 1.5;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: var(--shadow-md);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.btn:hover, .back-btn:hover {
+    background-color: white;
+    color: #8e7206;
+    border: 1px solid #8e7206;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+body.dark .btn, body.dark .back-btn {
+    background-color: #8e7206;
+    color: var(--primary-navy);
+    border: 1px solid #8e7206;
+}
+
+body.dark .btn:hover, body.dark .back-btn:hover {
+    background-color: var(--primary-navy);
+    color: #8e7206;
+    border: 1px solid #8e7206;
+}
+
+/* Blog Specific Buttons - Unified with site-wide button styles */
+.blog-card .btn {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.back-btn {
+    margin: 1.5rem 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #8e7206;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+/* Dark mode overrides are handled by the base button styles */
+body.dark .btn {
+    background-color: #8e7206;
+    color: var(--primary-navy);
+    border-color: #8e7206;
+}
+
+body.dark .btn:hover {
+    background-color: #8e7206;
+    color: var(--primary-navy);
+    border-color: #8e7206;
+}
+
+body.dark .back-btn {
+    background-color: transparent;
+    color: #8e7206;
+    border-color: #8e7206;
+}
+
+body.dark .back-btn:hover {
+    background-color: #8e7206;
+    color: #8e7206;
+}

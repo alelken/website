@@ -6,7 +6,6 @@ import Product from './pages/Product.jsx'
 import Careers from './pages/Careers.jsx'
 import Blog from './pages/Blog.jsx'
 
-
 const App = ({ initialData = {} }) => (
   <Routes>
     <Route path="/" element={<Home />} />
@@ -14,8 +13,8 @@ const App = ({ initialData = {} }) => (
     <Route path="/product" element={<Product />} />
     <Route path="/careers" element={<Careers initialJobs={initialData.jobs} />} />
     <Route path="/blog" element={<Blog />} />
+    <Route path="/blog/:slug" element={<Blog />} />
   </Routes>
-
 )
 
 export default App
