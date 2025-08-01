@@ -19,9 +19,9 @@ const Footer = () => (
             <a href="https://www.instagram.com/alelkentech" aria-label="Instagram">
               <i className="fab fa-instagram" />
             </a>
-            <a href="mailto:support@alelken.in" aria-label="Email">
+            {/*<a href="mailto:support@alelken.in" aria-label="Email">
               <i className="fas fa-envelope" />
-            </a>
+            </a>*/}
           </div>
         </div>
         <div className="footer-section">

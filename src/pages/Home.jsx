@@ -78,52 +78,52 @@ const Home = () => {
         <div className="floating-element floating-triangle" />
         <div className="floating-element floating-triangle" />
         <div className="hero-content container">
-          <h1>Transformative Technology.<br />Human-Centered Purpose.</h1>
-          <p className="subtitle">Alelken is developing an AI-driven mental health app focused on daily guidance and personal growth.</p>
+          <h1>Innovative Technology.<br />Human-Centered Solutions.</h1>
+          <p className="subtitle">Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.</p>
           <div className="cta-group">
-            <a href="/product" className="cta-button">Learn More</a>
+            <a href="/product" className="cta-button">Discover Our Solutions</a>
           </div>
         </div>
       </section>
       <section id="vision" className="section vision">
         <div className="container">
-          <h2 className="section-title">What We're Building</h2>
-          <p className="section-subtitle">Our focus is creating tools that improve mental health for everyone. Here are four ways our technology helps you thrive:</p>
+          <h2 className="section-title">Our Current Focus</h2>
+          <p className="section-subtitle">We're building comprehensive wellness solutions that address real human needs. Our flagship platform focuses on four core areas that drive meaningful personal growth:</p>
           <div className="about-grid">
             <Card className="value-card animate-on-scroll" title="Stress Management">
-              Quick exercises and guidance to calm your mind and body when life feels overwhelming.
+              Evidence-based techniques and personalized guidance to help users effectively manage stress and maintain emotional balance in daily life.
             </Card>
-            <Card className="value-card animate-on-scroll" title="Mindfulness Practices">
-              Daily meditations and breathing techniques that build lasting resilience.
+            <Card className="value-card animate-on-scroll" title="Mindfulness Development">
+              Structured meditation programs and mindfulness exercises designed to build sustained focus, clarity, and mental resilience.
             </Card>
-            <Card className="value-card animate-on-scroll" title="Community Support">
-              Connect with others on a similar journey to share encouragement and accountability.
+            <Card className="value-card animate-on-scroll" title="Community Connection">
+              Thoughtfully designed social features that foster genuine connections and provide meaningful support networks for personal development.
             </Card>
-            <Card className="value-card animate-on-scroll" title="Progress Insights">
-              Personalized analytics to help you see how far you've come and where to grow.
+            <Card className="value-card animate-on-scroll" title="Progress Tracking">
+              Comprehensive analytics and insights that help users understand their growth patterns and identify opportunities for continued development.
             </Card>
           </div>
         </div>
       </section>
       <section id="philosophy" className="section philosophy">
         <div className="container">
-          <h2 className="section-title">Our Approach</h2>
-          <p className="section-subtitle">We believe the best technology is invisible—it simply makes life better. Our solutions are designed with three fundamental principles that guide every decision we make:</p>
+          <h2 className="section-title">Our Philosophy</h2>
+          <p className="section-subtitle">We believe technology should enhance human potential without overwhelming it. Our approach is grounded in three core principles that guide everything we build:</p>
           <div className="philosophy-grid">
             <div className="principle animate-on-scroll">
               <i className="fas fa-hammer principle-icon" aria-hidden="true" />
               <h3>Restoration</h3>
-              <p>Fixing what's broken in existing systems, healing dysfunction rather than simply digitalizing it.</p>
+              <p>Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.</p>
             </div>
             <div className="principle animate-on-scroll">
               <i className="fas fa-arrow-up principle-icon" aria-hidden="true" />
               <h3>Elevation</h3>
-              <p>Helping people reach their full potential through tools that build character and capability.</p>
+              <p>Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.</p>
             </div>
             <div className="principle animate-on-scroll">
               <i className="fas fa-users principle-icon" aria-hidden="true" />
               <h3>Multiplication</h3>
-              <p>Creating platforms that empower others to build, lead, and make lasting positive impact.</p>
+              <p>Building platforms that enable others to create, lead, and generate positive impact that extends far beyond our direct reach.</p>
             </div>
           </div>
         </div>
