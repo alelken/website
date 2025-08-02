@@ -74,9 +74,6 @@ const Home = () => {
         <div className="hero-logo-container">
           <img src="/assets/images/logo.svg" alt="Alelken" className="hero-logo" />
         </div>
-        <div className="floating-element floating-triangle" />
-        <div className="floating-element floating-triangle" />
-        <div className="floating-element floating-triangle" />
         <div className="hero-content container">
           <h1>Innovative Technology.<br />Human-Centered Solutions.</h1>
           <p className="subtitle">Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.</p>
@@ -90,16 +87,16 @@ const Home = () => {
           <h2 className="section-title">Our Current Focus</h2>
           <p className="section-subtitle">We're building comprehensive wellness solutions that address real human needs. Our flagship platform focuses on four core areas that drive meaningful personal growth:</p>
           <div className="about-grid">
-            <Card className="value-card animate-on-scroll" title="Stress Management">
+            <Card className="feature-card animate-on-scroll" title="Stress Management">
               Evidence-based techniques and personalized guidance to help users effectively manage stress and maintain emotional balance in daily life.
             </Card>
-            <Card className="value-card animate-on-scroll" title="Mindfulness Development">
+            <Card className="feature-card animate-on-scroll" title="Mindfulness Development">
               Structured meditation programs and mindfulness exercises designed to build sustained focus, clarity, and mental resilience.
             </Card>
-            <Card className="value-card animate-on-scroll" title="Community Connection">
+            <Card className="feature-card animate-on-scroll" title="Community Connection">
               Thoughtfully designed social features that foster genuine connections and provide meaningful support networks for personal development.
             </Card>
-            <Card className="value-card animate-on-scroll" title="Progress Tracking">
+            <Card className="feature-card animate-on-scroll" title="Progress Tracking">
               Comprehensive analytics and insights that help users understand their growth patterns and identify opportunities for continued development.
             </Card>
           </div>

@@ -19,6 +19,27 @@ const Careers = ({ initialJobs = [] }) => {
       .catch(err => console.error('Failed to load jobs', err));
   }, [initialJobs]);
 
+  useEffect(() => {
+    const container = document.getElementById('jobsScrollContainer');
+    if (!container) return;
+
+    const updateActiveDot = () => {
+      const dots = document.querySelectorAll('.scroll-dot');
+      const scrollPosition = container.scrollLeft;
+      const cardWidth = container.offsetWidth;
+      const activeIndex = Math.round(scrollPosition / cardWidth);
+      
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+      });
+    };
+
+    container.addEventListener('scroll', updateActiveDot);
+    updateActiveDot(); // Initial state
+
+    return () => container.removeEventListener('scroll', updateActiveDot);
+  }, [jobs.length]);
+
   return (
     <div>
       <Header />
@@ -102,8 +123,10 @@ const Careers = ({ initialJobs = [] }) => {
                 </div>
               ))}
             </div>
-            <div className="scroll-indicator">
-              <i className="fas fa-chevron-right" />
+            <div className="scroll-dots">
+              {[...Array(Math.ceil(jobs.length / 3))].map((_, idx) => (
+                <span key={idx} className="scroll-dot" />
+              ))}
             </div>
           </div>
           <div className="expand-jobs-container">
