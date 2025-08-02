@@ -1,9 +1,41 @@
-import React from 'react'
-import Footer from '../components/Footer.jsx'
-import Header from '../components/Header.jsx'
-import Card from '../components/Card.jsx'
+import React, { useRef } from 'react';
+import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.jsx';
+import Card from '../components/Card.jsx';
+import ScrollDots from '../components/ScrollDots';
+import { useScrollDots } from '../hooks/useScrollDots';
 
 const Product = () => {
+  const featuresGridRef = useRef(null);
+  
+  const featureItems = [
+    {
+      title: "Advanced Personality Analysis",
+      content: "Comprehensive assessment tools that evaluate emotional intelligence, self-awareness, motivation, and social skills to create personalized wellness pathways with daily exercises tailored to your unique profile."
+    },
+    {
+      title: "Curated Media Library",
+      content: "Inspirational stories, expert podcasts, and articles featuring diverse narratives from Indian philosophers, unsung heroes, and thought leaders. Content available in multiple formats to promote resilience and cultural connection."
+    },
+    {
+      title: "Guided Mindful Exercises",
+      content: "Comprehensive practices across eight wellness domains including stress management, social skills, career guidance, relationships, parenting, spiritual exploration, and specialized women's health programs incorporating yoga, pranayama, and meditation."
+    },
+    {
+      title: "Professional Therapy & Workshops",
+      content: "Access to certified therapists for individual sessions and group workshops covering specialized areas including addiction recovery, career development, relationship building, and holistic wellness practices."
+    },
+    {
+      title: "Cultural Integration",
+      content: "Traditional Indian practices seamlessly woven with modern therapeutic methods, ensuring culturally relevant content that resonates with Indian values and lifestyle patterns."
+    },
+    {
+      title: "Adaptive Personalization",
+      content: "Dynamic recommendation system that evolves based on your progress, mood patterns, and preferences, offering structured wellness plans designed for sustained engagement and measurable improvement."
+    }
+  ];
+  
+  const activeFeatureIndex = useScrollDots(featuresGridRef, featureItems.length);
   return (
     <div>
       <Header />
@@ -20,26 +52,22 @@ const Product = () => {
         <div className="container">
           <h2>Core Features</h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
-          <div className="features-grid">
-            <Card className="feature-card" title="Advanced Personality Analysis">
-              Comprehensive assessment tools that evaluate emotional intelligence, self-awareness, motivation, and social skills to create personalized wellness pathways with daily exercises tailored to your unique profile.
-            </Card>
-            <Card className="feature-card" title="Curated Media Library">
-              Inspirational stories, expert podcasts, and articles featuring diverse narratives from Indian philosophers, unsung heroes, and thought leaders. Content available in multiple formats to promote resilience and cultural connection.
-            </Card>
-            <Card className="feature-card" title="Guided Mindful Exercises">
-              Comprehensive practices across eight wellness domains including stress management, social skills, career guidance, relationships, parenting, spiritual exploration, and specialized women's health programs incorporating yoga, pranayama, and meditation.
-            </Card>
-            <Card className="feature-card" title="Professional Therapy & Workshops">
-              Access to certified therapists for individual sessions and group workshops covering specialized areas including addiction recovery, career development, relationship building, and holistic wellness practices.
-            </Card>
-            <Card className="feature-card" title="Cultural Integration">
-              Traditional Indian practices seamlessly woven with modern therapeutic methods, ensuring culturally relevant content that resonates with Indian values and lifestyle patterns.
-            </Card>
-            <Card className="feature-card" title="Adaptive Personalization">
-              Dynamic recommendation system that evolves based on your progress, mood patterns, and preferences, offering structured wellness plans designed for sustained engagement and measurable improvement.
-            </Card>
+          <div className="features-grid" ref={featuresGridRef}>
+            {featureItems.map((feature, index) => (
+              <Card 
+                key={index} 
+                className="feature-card" 
+                title={feature.title}
+              >
+                {feature.content}
+              </Card>
+            ))}
           </div>
+          <ScrollDots 
+            count={featureItems.length} 
+            activeIndex={activeFeatureIndex} 
+            className="feature-dots"
+          />
         </div>
       </section>
 

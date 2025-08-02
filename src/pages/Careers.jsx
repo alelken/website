@@ -19,26 +19,51 @@ const Careers = ({ initialJobs = [] }) => {
       .catch(err => console.error('Failed to load jobs', err));
   }, [initialJobs]);
 
+  // Calculate number of dots based on screen size and job count
+  const calculateDots = () => {
+    if (typeof window === 'undefined') return 0;
+    const isMobile = window.innerWidth < 768;
+    return isMobile ? jobs.length : Math.ceil(jobs.length / 3);
+  };
+
+  const [dotCount, setDotCount] = useState(calculateDots());
+
   useEffect(() => {
     const container = document.getElementById('jobsScrollContainer');
     if (!container) return;
 
-    const updateActiveDot = () => {
+    const handleResize = () => {
+      setDotCount(calculateDots());
+      updateActiveDot(container);
+    };
+
+    const updateActiveDot = (container) => {
       const dots = document.querySelectorAll('.scroll-dot');
+      if (!dots.length) return;
+      
       const scrollPosition = container.scrollLeft;
       const cardWidth = container.offsetWidth;
-      const activeIndex = Math.round(scrollPosition / cardWidth);
+      const scrollWidth = container.scrollWidth - container.clientWidth;
+      const activeIndex = Math.round((scrollPosition / Math.max(scrollWidth, 1)) * (dotCount - 1));
       
       dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === activeIndex);
       });
     };
 
-    container.addEventListener('scroll', updateActiveDot);
-    updateActiveDot(); // Initial state
-
-    return () => container.removeEventListener('scroll', updateActiveDot);
-  }, [jobs.length]);
+    const handleScroll = () => updateActiveDot(container);
+    
+    container.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    // Initial update
+    handleResize();
+    
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [jobs.length, dotCount]);
 
   return (
     <div>
@@ -124,8 +149,22 @@ const Careers = ({ initialJobs = [] }) => {
               ))}
             </div>
             <div className="scroll-dots">
-              {[...Array(Math.ceil(jobs.length / 3))].map((_, idx) => (
-                <span key={idx} className="scroll-dot" />
+              {[...Array(dotCount)].map((_, idx) => (
+                <span 
+                  key={idx} 
+                  className={`scroll-dot ${idx === 0 ? 'active' : ''}`}
+                  onClick={() => {
+                    const container = document.getElementById('jobsScrollContainer');
+                    if (container) {
+                      const scrollWidth = container.scrollWidth - container.clientWidth;
+                      const scrollLeft = (idx / (dotCount - 1 || 1)) * scrollWidth;
+                      container.scrollTo({
+                        left: scrollLeft,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                />
               ))}
             </div>
           </div>

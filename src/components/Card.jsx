@@ -1,16 +1,34 @@
-import React from 'react'
+import React from 'react';
 
-const Card = ({ title, children, image, button, className = '', ...rest }) => (
+const Card = ({ 
+  title, 
+  children, 
+  image, 
+  icon,
+  button, 
+  className = '', 
+  ...rest 
+}) => (
   <div className={`card ${className}`} {...rest}>
-    {image && <img src={image.src} alt={image.alt || ''} className="card-image" />}
-    {title && <h3>{title}</h3>}
-    {typeof children === 'string' ? <p>{children}</p> : children}
-    {button && (
-      <a href={button.href} className="btn" onClick={button.onClick}>
-        {button.label}
-      </a>
-    )}
+    <div className="card-content">
+      {icon && <div className="card-icon">{icon}</div>}
+      {title && <h3 className="card-title">{title}</h3>}
+      {image && <img src={image.src} alt={image.alt || ''} className="card-image" />}
+      <div className="card-body">
+        {typeof children === 'string' ? <p>{children}</p> : children}
+      </div>
+      {button && (
+        <a 
+          href={button.href} 
+          className="btn" 
+          onClick={button.onClick}
+          aria-label={button.ariaLabel || button.label}
+        >
+          {button.label}
+        </a>
+      )}
+    </div>
   </div>
-)
+);
 
-export default Card
+export default Card;
