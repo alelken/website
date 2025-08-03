@@ -1,3 +1,6 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
 /* Header Styles */
 header {
   width: 100%;
@@ -386,8 +389,6 @@ body {
 }
 
 /* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
     color: var(--secondary-navy);
@@ -1105,18 +1106,17 @@ body.dark .mobile-nav {
   overflow: hidden;
 }
 
+/* Base card carousel styles */
 .card-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  padding: 2rem 0;
-  margin: 0 -1rem;
-  scroll-padding: 0 50%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  padding: 2rem 0;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .card-carousel::-webkit-scrollbar {
@@ -1124,11 +1124,10 @@ body.dark .mobile-nav {
 }
 
 .card-carousel-item {
-  flex: 0 0 300px;
-  scroll-snap-align: center;
-  padding: 0 0.5rem;
+  width: 100%;
   box-sizing: border-box;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
 }
 
 .card-carousel-item > * {
@@ -1136,20 +1135,47 @@ body.dark .mobile-nav {
   width: 100%;
 }
 
-/* Center first and last items */
-.card-carousel::before,
-.card-carousel::after {
-  content: '';
-  flex: 0 0 1px;
-  scroll-snap-align: start;
-}
+/* Responsive grid adjustments */
+@media (max-width: 1023px) {
+  .card-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding: 2rem 1rem;
+    margin: 0 -1rem;
+    scroll-padding: 0 50%;
+    gap: 1.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-.card-carousel::before {
-  padding-left: calc(50% - 150px);
-}
+  .card-carousel::-webkit-scrollbar {
+    display: none;
+  }
 
-.card-carousel::after {
-  padding-right: calc(50% - 150px);
+  .card-carousel-item {
+    flex: 0 0 300px;
+    scroll-snap-align: center;
+    padding: 0 0.5rem;
+  }
+
+  /* Center first and last items on mobile */
+  .card-carousel::before,
+  .card-carousel::after {
+    content: '';
+    flex: 0 0 1px;
+    scroll-snap-align: start;
+  }
+
+  .card-carousel::before {
+    padding-left: calc(50% - 150px);
+  }
+
+  .card-carousel::after {
+    padding-right: calc(50% - 150px);
+  }
 }
 
 /* Dots navigation */

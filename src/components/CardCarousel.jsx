@@ -2,37 +2,33 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showDots, setShowDots] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  // Check if we should show dots based on container width
-  const checkShowDots = useCallback(() => {
-    if (!containerRef.current) return;
-    const container = containerRef.current;
-    const shouldShowDots = container.scrollWidth > container.clientWidth;
-    setShowDots(shouldShowDots);
+  // Check if we're on mobile
+  const checkIfMobile = useCallback(() => {
+    setIsMobile(window.innerWidth < 1024);
   }, []);
 
   // Handle window resize
   useEffect(() => {
+    checkIfMobile();
+    
     const handleResize = () => {
-      checkShowDots();
-      // Re-center the active card after resize
-      if (activeIndex >= 0 && activeIndex < items.length) {
-        scrollToIndex(activeIndex);
-      }
+      checkIfMobile();
     };
 
     window.addEventListener('resize', handleResize);
-    checkShowDots();
     return () => window.removeEventListener('resize', handleResize);
-  }, [activeIndex, checkShowDots, items.length]);
+  }, [checkIfMobile]);
 
-  // Scroll to specific card index
-  const scrollToIndex = (index) => {
+  // Scroll to specific card index (for mobile carousel)
+  const scrollToIndex = useCallback((index) => {
+    if (!isMobile) return;
+    
     const container = containerRef.current;
     if (!container) return;
 
@@ -56,10 +52,12 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
 
       setActiveIndex(index);
     }
-  };
+  }, [isMobile]);
 
-  // Handle scroll events to update active dot
+  // Handle scroll events to update active dot (for mobile)
   const handleScroll = useCallback(() => {
+    if (!isMobile) return;
+    
     const container = containerRef.current;
     if (!container) return;
     
@@ -89,77 +87,97 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
     if (closestCard !== null && closestCard !== activeIndex) {
       setActiveIndex(closestCard);
     }
-  }, [activeIndex]);
+  }, [activeIndex, isMobile]);
   
-  // Initial centering of first card
-  useEffect(() => {
-    if (containerRef.current && items.length > 0) {
-      // Small timeout to ensure DOM is ready
-      const timer = setTimeout(() => {
-        scrollToIndex(0);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [items.length]);
-
-  // Add scroll event listener
+  // Add/remove event listeners based on mobile state
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     
-    container.addEventListener('scroll', handleScroll, { passive: true });
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    if (isMobile) {
+      // Only add scroll listener, don't auto-scroll to first card on mount
+      container.addEventListener('scroll', handleScroll);
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+      };
+    }
+    
+    // For desktop, ensure we have the grid layout
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll, isMobile]);
 
-  // Touch and drag handlers
-  const handleMouseDown = (e) => {
-    isDragging.current = true;
-    startX.current = e.pageX - containerRef.current.offsetLeft;
-    scrollLeft.current = containerRef.current.scrollLeft;
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 2; // Adjust scroll speed
-    containerRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-  };
-
-  const handleMouseLeave = () => {
-    isDragging.current = false;
-  };
-
-  // Touch event handlers
+  // Touch event handlers for mobile
   const handleTouchStart = (e) => {
+    if (!isMobile) return;
     isDragging.current = true;
     startX.current = e.touches[0].pageX - containerRef.current.offsetLeft;
     scrollLeft.current = containerRef.current.scrollLeft;
   };
 
   const handleTouchMove = (e) => {
-    if (!isDragging.current) return;
+    if (!isMobile || !isDragging.current) return;
+    e.preventDefault();
     const x = e.touches[0].pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 2;
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+  };
+
+  // Mouse event handlers for desktop (fallback)
+  const handleMouseDown = (e) => {
+    if (isMobile) return;
+    isDragging.current = true;
+    startX.current = e.pageX - containerRef.current.offsetLeft;
+    scrollLeft.current = containerRef.current.scrollLeft;
+    containerRef.current.style.cursor = 'grabbing';
+    containerRef.current.style.userSelect = 'none';
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    if (containerRef.current) {
+      containerRef.current.style.cursor = 'grab';
+      containerRef.current.style.removeProperty('user-select');
+    }
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    if (containerRef.current) {
+      containerRef.current.style.cursor = 'grab';
+      containerRef.current.style.removeProperty('user-select');
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (isMobile || !isDragging.current) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
     const walk = (x - startX.current) * 2;
     containerRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
   return (
     <div className={`card-carousel-container ${className}`}>
-      <div 
+      <div
         ref={containerRef}
         className="card-carousel"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleMouseUp}
+        onTouchStart={isMobile ? handleTouchStart : undefined}
+        onTouchMove={isMobile ? handleTouchMove : undefined}
+        onTouchEnd={isMobile ? handleTouchEnd : undefined}
+        onMouseDown={isMobile ? undefined : handleMouseDown}
+        onMouseLeave={isMobile ? undefined : handleMouseLeave}
+        onMouseUp={isMobile ? undefined : handleMouseUp}
+        onMouseMove={isMobile ? undefined : handleMouseMove}
+        style={{
+          cursor: isMobile ? (isDragging.current ? 'grabbing' : 'grab') : 'default',
+          userSelect: isMobile && isDragging.current ? 'none' : 'auto'
+        }}
       >
         {items.map((item, index) => (
           <div key={index} className="card-carousel-item">
@@ -168,14 +186,14 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
         ))}
       </div>
       
-      {showDots && items.length > 1 && (
+      {isMobile && items.length > 1 && (
         <div className="card-carousel-dots">
           {items.map((_, index) => (
             <button
               key={index}
               className={`card-carousel-dot ${index === activeIndex ? 'active' : ''}`}
               onClick={() => scrollToIndex(index)}
-              aria-label={`Go to card ${index + 1} of ${items.length}`}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>

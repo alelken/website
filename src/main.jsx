@@ -1,15 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import "./styles/main.css"
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import './styles/main.css';
+import { router } from './routes';
 
-const initialData = window.__INITIAL_DATA__ || {}
+// Initialize any client-side data
+const initialData = window.__INITIAL_DATA__ || {};
 
+// Clear the initial data from the window object
+delete window.__INITIAL_DATA__;
+
+// Create the root and render the app
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <App initialData={initialData} />
-    </BrowserRouter>
-  </StrictMode>,
-)
+    <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />
+  </StrictMode>
+);

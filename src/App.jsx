@@ -1,24 +1,14 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
-import Product from './pages/Product.jsx'
-import Careers from './pages/Careers.jsx'
-import Blog from './pages/Blog.jsx'
-import MetaTags from './components/MetaTags.jsx'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import MetaTags from './components/MetaTags';
 
-const App = ({ initialData = {} }) => (
-  <>
-    <MetaTags />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/careers" element={<Careers initialJobs={initialData.jobs} />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/blog/:slug" element={<Blog />} />
-    </Routes>
-  </>
-)
+const App = () => {
+  return (
+    <>
+      <MetaTags />
+      <Outlet />
+    </>
+  );
+};
 
-export default App
+export default App;
