@@ -1,9 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
 import Card from '../components/Card.jsx';
-import ScrollDots from '../components/ScrollDots';
-import { useScrollDots } from '../hooks/useScrollDots';
+import CardCarousel from '../components/CardCarousel.jsx';
 
 const Product = () => {
   const featuresGridRef = useRef(null);
@@ -35,7 +34,16 @@ const Product = () => {
     }
   ];
   
-  const activeFeatureIndex = useScrollDots(featuresGridRef, featureItems.length);
+  // Feature card component
+  const FeatureCard = ({ title, content }) => (
+    <Card 
+      className="feature-card"
+      title={title}
+    >
+      <p className="card-description">{content}</p>
+    </Card>
+  );
+
   return (
     <div>
       <Header />
@@ -50,30 +58,19 @@ const Product = () => {
 
       <section className="features">
         <div className="container">
-          <h2>Core Features</h2>
+          <h2 className="section-title center-title">Core Features</h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
-          <div className="features-grid" ref={featuresGridRef}>
-            {featureItems.map((feature, index) => (
-              <Card 
-                key={index} 
-                className="feature-card" 
-                title={feature.title}
-              >
-                {feature.content}
-              </Card>
-            ))}
-          </div>
-          <ScrollDots 
-            count={featureItems.length} 
-            activeIndex={activeFeatureIndex} 
-            className="feature-dots"
+          <CardCarousel 
+            items={featureItems}
+            cardComponent={FeatureCard}
+            className="features-carousel"
           />
         </div>
       </section>
 
       <section className="accessibility">
         <div className="container">
-          <h2>Built for Every Indian</h2>
+          <h2 className="section-title center-title">Built for Every Indian</h2>
           <p className="section-subtitle">Designed with India's diverse landscape in mind, ensuring mental wellness support reaches every corner of the country.</p>
           <div className="accessibility-grid">
             <div className="accessibility-feature">
@@ -98,7 +95,7 @@ const Product = () => {
 
       <section className="mission">
         <div className="container">
-          <h2>Addressing India's Mental Health Challenge</h2>
+          <h2 className="section-title center-title">Addressing India's Mental Health Challenge</h2>
           <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
           <div className="mission-content">
             <div className="mission-stats">

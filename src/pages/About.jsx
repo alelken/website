@@ -38,7 +38,7 @@ const About = () => {
       <section className="about-values">
         <div className="container">
           <div className="about-content">
-            <h2 className="section-title">Who We Are</h2>
+            <h2 className="section-title center-title">Who We Are</h2>
             <p className="section-subtitle">Alelken is founded on the belief that technology should serve humanity's highest potential. We're a team of builders, thinkers, and problem-solvers committed to creating solutions that prioritize human dignity, ethical innovation, and sustainable impact.</p>
           </div>
           <div className="about-grid" ref={aboutGridRef}>
@@ -53,7 +53,7 @@ const About = () => {
       </section>
       <section className="team-section">
         <div className="container">
-          <div className="section-title">
+          <div className="section-title center-title">
             <h2>Meet Our Team</h2>
             <p>The passionate individuals behind Alelken, each bringing unique expertise to advance mental wellness through technology.</p>
           </div>

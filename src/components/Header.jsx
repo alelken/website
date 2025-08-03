@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion';
-import ThemeToggle from './ThemeToggle.jsx';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 
 // Breakpoint for mobile/desktop view
@@ -177,7 +176,6 @@ const Header = () => {
           </div>
           
           <div className="nav-actions">
-           
             {/* Mobile Menu Button - Only visible on mobile */}
             <button 
               className="menu-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors lg:hidden" 
@@ -241,8 +239,7 @@ const Header = () => {
                 ))}
               </div>
             <div className="mobile-nav-footer">
-              <ThemeToggle />
-              <p className="copyright">  {new Date().getFullYear()} Alelken. All rights reserved.</p>
+              <p className="copyright">{new Date().getFullYear()} Alelken. All rights reserved.</p>
             </div>
           </motion.div>
         </>
