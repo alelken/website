@@ -4,109 +4,133 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
+  const itemRefs = useRef([]);
+  const scrollTimeout = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
   // Check if we're on mobile
   const checkIfMobile = useCallback(() => {
-    setIsMobile(window.innerWidth < 1024);
+    const mobile = window.innerWidth < 1024;
+    setIsMobile(mobile);
+    return mobile;
   }, []);
 
   // Handle window resize
   useEffect(() => {
-    checkIfMobile();
-    
     const handleResize = () => {
-      checkIfMobile();
+      const wasMobile = isMobile;
+      const nowMobile = checkIfMobile();
+      
+      // If we switched between mobile and desktop, reset the container
+      if (wasMobile !== nowMobile && containerRef.current) {
+        containerRef.current.scrollLeft = 0;
+        setActiveIndex(0);
+      }
     };
 
+    checkIfMobile();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [checkIfMobile]);
+  }, [checkIfMobile, isMobile]);
 
-  // Scroll to specific card index (for mobile carousel)
+  // Scroll to specific card index
   const scrollToIndex = useCallback((index) => {
-    if (!isMobile) return;
-    
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || index < 0 || index >= items.length) return;
 
-    const cards = Array.from(container.children).filter(
-      child => child.classList && child.classList.contains('card-carousel-item')
-    );
-
-    if (cards[index]) {
-      const containerWidth = container.offsetWidth;
-      const card = cards[index];
-      const cardRect = card.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      const containerScrollLeft = container.scrollLeft;
-      const cardLeft = cardRect.left - containerRect.left + containerScrollLeft;
-      const scrollPosition = cardLeft - (containerWidth / 2) + (cardRect.width / 2);
-
-      container.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-      });
-
-      setActiveIndex(index);
-    }
-  }, [isMobile]);
-
-  // Handle scroll events to update active dot (for mobile)
-  const handleScroll = useCallback(() => {
-    if (!isMobile) return;
-    
-    const container = containerRef.current;
-    if (!container) return;
-    
-    const cards = Array.from(container.children).filter(
-      child => child.classList && child.classList.contains('card-carousel-item')
-    );
-
-    if (cards.length === 0) return;
+    const card = itemRefs.current[index];
+    if (!card) return;
 
     const containerRect = container.getBoundingClientRect();
-    const containerCenter = containerRect.left + (containerRect.width / 2);
-    
-    let closestCard = null;
-    let minDistance = Infinity;
-    
-    cards.forEach((card, index) => {
-      const cardRect = card.getBoundingClientRect();
-      const cardCenter = cardRect.left + (cardRect.width / 2);
-      const distance = Math.abs(cardCenter - containerCenter);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestCard = index;
-      }
+    const cardRect = card.getBoundingClientRect();
+    const scrollLeft = container.scrollLeft;
+    const cardLeft = cardRect.left - containerRect.left + scrollLeft;
+    const cardWidth = cardRect.width;
+    const scrollPosition = cardLeft - (containerRect.width / 2) + (cardWidth / 2);
+
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
     });
+
+    setActiveIndex(index);
+  }, [items.length]);
+
+  // Handle scroll events to update active dot
+  const handleScroll = useCallback(() => {
+    if (!isMobile || !containerRef.current) return;
     
-    if (closestCard !== null && closestCard !== activeIndex) {
-      setActiveIndex(closestCard);
-    }
+    clearTimeout(scrollTimeout.current);
+    scrollTimeout.current = setTimeout(() => {
+      const container = containerRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + (containerRect.width / 2);
+      
+      let closestCard = null;
+      let minDistance = Infinity;
+      
+      itemRefs.current.forEach((card, index) => {
+        if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + (cardRect.width / 2);
+        const distance = Math.abs(cardCenter - containerCenter);
+        
+        // Update active state for visual feedback
+        card.setAttribute('data-snap-active', distance < 100 ? 'true' : 'false');
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestCard = index;
+        }
+      });
+      
+      if (closestCard !== null && closestCard !== activeIndex) {
+        setActiveIndex(closestCard);
+      }
+    }, 150); // Slight debounce for better performance
   }, [activeIndex, isMobile]);
   
-  // Add/remove event listeners based on mobile state
+  // Set up event listeners and initial state
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     
-    if (isMobile) {
-      // Only add scroll listener, don't auto-scroll to first card on mount
-      container.addEventListener('scroll', handleScroll);
-      return () => {
-        container.removeEventListener('scroll', handleScroll);
-      };
-    }
+    // Initialize item refs
+    itemRefs.current = itemRefs.current.slice(0, items.length);
     
-    // For desktop, ensure we have the grid layout
+    // Set initial active state
+    const updateActiveStates = () => {
+      if (!isMobile) return;
+      
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + (containerRect.width / 2);
+      
+      itemRefs.current.forEach((card, index) => {
+        if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + (cardRect.width / 2);
+        const distance = Math.abs(cardCenter - containerCenter);
+        
+        card.setAttribute('data-snap-active', distance < 100 ? 'true' : 'false');
+      });
+    };
+    
+    // Initial update
+    updateActiveStates();
+    
+    // Set up scroll listener
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Clean up
     return () => {
       container.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout.current);
     };
-  }, [handleScroll, isMobile]);
+  }, [handleScroll, isMobile, items.length]);
 
   // Touch event handlers for mobile
   const handleTouchStart = (e) => {
@@ -114,18 +138,48 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
     isDragging.current = true;
     startX.current = e.touches[0].pageX - containerRef.current.offsetLeft;
     scrollLeft.current = containerRef.current.scrollLeft;
+    containerRef.style.scrollSnapType = 'none';
+    containerRef.style.scrollBehavior = 'auto';
   };
 
   const handleTouchMove = (e) => {
     if (!isMobile || !isDragging.current) return;
     e.preventDefault();
     const x = e.touches[0].pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 2;
+    const walk = x - startX.current;
     containerRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
   const handleTouchEnd = () => {
+    if (!isMobile) return;
     isDragging.current = false;
+    containerRef.style.scrollSnapType = 'x mandatory';
+    containerRef.style.scrollBehavior = 'smooth';
+    
+    // Snap to nearest card after drag ends
+    const container = containerRef.current;
+    const scrollPosition = container.scrollLeft + (container.offsetWidth / 2);
+    
+    let closestCard = null;
+    let minDistance = Infinity;
+    
+    itemRefs.current.forEach((card, index) => {
+      if (!card) return;
+      
+      const cardRect = card.getBoundingClientRect();
+      const cardLeft = cardRect.left + container.scrollLeft - container.getBoundingClientRect().left;
+      const cardCenter = cardLeft + (cardRect.width / 2);
+      const distance = Math.abs(cardCenter - scrollPosition);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestCard = index;
+      }
+    });
+    
+    if (closestCard !== null) {
+      scrollToIndex(closestCard);
+    }
   };
 
   // Mouse event handlers for desktop (fallback)
@@ -136,6 +190,8 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
     scrollLeft.current = containerRef.current.scrollLeft;
     containerRef.current.style.cursor = 'grabbing';
     containerRef.current.style.userSelect = 'none';
+    containerRef.current.style.scrollSnapType = 'none';
+    containerRef.current.style.scrollBehavior = 'auto';
   };
 
   const handleMouseLeave = () => {
@@ -143,14 +199,46 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
     if (containerRef.current) {
       containerRef.current.style.cursor = 'grab';
       containerRef.current.style.removeProperty('user-select');
+      containerRef.current.style.scrollSnapType = 'x mandatory';
+      containerRef.current.style.scrollBehavior = 'smooth';
     }
   };
 
   const handleMouseUp = () => {
-    isDragging.current = false;
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'grab';
-      containerRef.current.style.removeProperty('user-select');
+    if (isDragging.current) {
+      isDragging.current = false;
+      
+      if (containerRef.current) {
+        containerRef.current.style.cursor = 'grab';
+        containerRef.current.style.removeProperty('user-select');
+        containerRef.current.style.scrollSnapType = 'x mandatory';
+        containerRef.current.style.scrollBehavior = 'smooth';
+        
+        // Snap to nearest card after drag ends
+        const container = containerRef.current;
+        const scrollPosition = container.scrollLeft + (container.offsetWidth / 2);
+        
+        let closestCard = null;
+        let minDistance = Infinity;
+        
+        itemRefs.current.forEach((card, index) => {
+          if (!card) return;
+          
+          const cardRect = card.getBoundingClientRect();
+          const cardLeft = cardRect.left + container.scrollLeft - container.getBoundingClientRect().left;
+          const cardCenter = cardLeft + (cardRect.width / 2);
+          const distance = Math.abs(cardCenter - scrollPosition);
+          
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestCard = index;
+          }
+        });
+        
+        if (closestCard !== null) {
+          scrollToIndex(closestCard);
+        }
+      }
     }
   };
 
@@ -158,7 +246,7 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
     if (isMobile || !isDragging.current) return;
     e.preventDefault();
     const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX.current) * 2;
+    const walk = x - startX.current;
     containerRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
@@ -167,20 +255,32 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
       <div
         ref={containerRef}
         className="card-carousel"
-        onTouchStart={isMobile ? handleTouchStart : undefined}
-        onTouchMove={isMobile ? handleTouchMove : undefined}
-        onTouchEnd={isMobile ? handleTouchEnd : undefined}
-        onMouseDown={isMobile ? undefined : handleMouseDown}
-        onMouseLeave={isMobile ? undefined : handleMouseLeave}
-        onMouseUp={isMobile ? undefined : handleMouseUp}
-        onMouseMove={isMobile ? undefined : handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
         style={{
-          cursor: isMobile ? (isDragging.current ? 'grabbing' : 'grab') : 'default',
-          userSelect: isMobile && isDragging.current ? 'none' : 'auto'
+          cursor: isMobile ? (isDragging.current ? 'grabbing' : 'grab') : 'grab',
+          userSelect: isDragging.current ? 'none' : 'auto',
+          WebkitOverflowScrolling: 'touch',
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
+          scrollSnapType: isMobile ? 'x mandatory' : 'none',
+          scrollBehavior: 'smooth',
+          overscrollBehaviorX: 'contain'
         }}
       >
         {items.map((item, index) => (
-          <div key={index} className="card-carousel-item">
+          <div 
+            key={index} 
+            ref={el => itemRefs.current[index] = el}
+            className="card-carousel-item"
+            data-snap-active={index === activeIndex ? 'true' : 'false'}
+          >
             <CardComponent {...item} />
           </div>
         ))}
@@ -193,7 +293,10 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
               key={index}
               className={`card-carousel-dot ${index === activeIndex ? 'active' : ''}`}
               onClick={() => scrollToIndex(index)}
+              onKeyDown={(e) => e.key === 'Enter' && scrollToIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === activeIndex ? 'true' : 'false'}
+              tabIndex={0}
             />
           ))}
         </div>

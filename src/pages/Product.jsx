@@ -47,7 +47,7 @@ const Product = () => {
   return (
     <div>
       <Header />
-      <section className="product-hero">
+      <section className="product-hero page-section">
         <div className="container">
           <div className="product-hero-content">
             <h1>Alayn: India's Comprehensive Life Guide</h1>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const defaultMeta = {
-  title: 'Alelken - Innovative Technology, Human-Centered Solutions',
+  title: 'Home | Alelken',
   description: 'Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.',
   image: '/assets/images/android-chrome-512x512.png',
 };
@@ -10,17 +10,17 @@ const defaultMeta = {
 const pageSpecificMeta = {
   '/': defaultMeta,
   '/product': {
-    title: 'Alelken - Our Products',
+    title: 'Product | Alelken',
     description: 'Discover our comprehensive wellness solutions focused on stress management, mindfulness development, community connection, and progress tracking.',
     image: '/assets/images/android-chrome-512x512.png',
   },
   '/careers': {
-    title: 'Careers at Alelken',
+    title: 'Careers | Alelken',
     description: 'Join our team and help build technology solutions that enhance human wellbeing and personal development.',
     image: '/assets/images/android-chrome-512x512.png',
   },
   '/blog': {
-    title: 'Alelken Blog',
+    title: 'Blog | Alelken',
     description: 'Insights and updates about wellness technology, personal development, and our journey in building human-centered solutions.',
     image: '/assets/images/android-chrome-512x512.png',
   },
@@ -31,14 +31,12 @@ export default function MetaTags() {
   const currentPath = location.pathname;
   
   const meta = pageSpecificMeta[currentPath] || defaultMeta;
-  const siteUrl = 'https://alelken.com'; // Update this with your actual domain
+  const siteUrl = 'https://alelken.in'; 
 
   useEffect(() => {
-    // Update standard meta tags
     document.title = meta.title;
     document.querySelector('meta[name="description"]').setAttribute('content', meta.description);
     
-    // Update Twitter Card meta tags
     const metaTags = {
       'twitter:card': 'summary_large_image',
       'twitter:site': '@AlelkenTech',
@@ -58,12 +56,9 @@ export default function MetaTags() {
       tag.setAttribute('content', content);
     });
 
-    // Cleanup function
     return () => {
-      // We don't remove the tags on cleanup as they should persist,
-      // but you might want to reset them to default values
     };
   }, [currentPath]);
 
-  return null; // This component doesn't render anything
+  return null;
 }

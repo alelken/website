@@ -145,18 +145,19 @@ const Careers = ({ initialJobs = [] }) => {
   }, [updateDots, handleScroll, handleScrollEnd]);
 
   return (
-    <div>
+    <div className="careers-page">
       <Header />
-      <section className="careers-hero">
-        <div className="container">
-          <div className="careers-hero-content">
-            <h1>Shape the Future of Human Wellness</h1>
-            <p>Join Alelken in building transformative technology solutions that enhance human potential and create meaningful impact across diverse communities. We're seeking exceptional talent to help us redefine how technology serves humanity.</p>
+      <main>
+        <section className="careers-hero">
+          <div className="container">
+            <div className="careers-hero-content">
+              <h1>Shape the Future of Human Wellness</h1>
+              <p>Join Alelken in building transformative technology solutions that enhance human potential and create meaningful impact across diverse communities. We're seeking exceptional talent to help us redefine how technology serves humanity.</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="company-culture">
+        <section className="company-culture">
         <div className="container">
           <h2 className="section-title center-title">Our Culture & Values</h2>
           <p className="section-subtitle">At Alelken, we foster an environment where innovation meets purpose, and every team member contributes to our mission of human-centered technology development.</p>
@@ -251,10 +252,11 @@ const Careers = ({ initialJobs = [] }) => {
           <p className="section-subtitle">If you're passionate about using technology to solve meaningful problems and want to be part of a team that's building the future of human wellness, we'd love to hear from you.</p>
           <div className="mission-cta">
             <p>Don't see the perfect role? We're always interested in connecting with exceptional talent who share our vision.</p>
-            <a href="mailto:careers@alelken.com" className="cta-button">Get in Touch</a>
+            <a href="mailto:support@alelken.com" className="cta-button">Get in Touch</a>
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
       <JobDetailsModal
