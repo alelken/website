@@ -93,11 +93,17 @@ const NotFound = () => {
             --shadow-color: rgba(0, 0, 0, 0.3);
             --footer-text: var(--gray-300);
             --footer-heading: var(--primary-white);
+            --text-color: #F9F9F9; /* Ensure text is light in dark mode */
+            --background: #1E1E1E; /* Dark background */
           }
          
           body {
-            background: var(--neutral-white);
-            color: var(--text-dark);
+            background: var(--background);
+            color: var(--text-color);
+          }
+          
+          .not-found-text {
+            color: var(--gray-300) !important;
           }
         }
         /* Not Found Specific Styles */
@@ -108,7 +114,11 @@ const NotFound = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 3rem 1rem;
+          padding: 2rem 1rem;
+          
+          @media (min-width: 768px) {
+            padding: 3rem 1rem;
+          }
         }
         .not-found-content {
           text-align: center;
@@ -116,34 +126,61 @@ const NotFound = () => {
           margin: 0 auto;
         }
         .not-found-404 {
-          font-size: 9rem;
+          font-size: 6rem;
           font-weight: 700;
           color: var(--primary-gold);
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
+          line-height: 1;
+          
+          @media (min-width: 768px) {
+            font-size: 9rem;
+            margin-bottom: 1rem;
+          }
         }
         .not-found-title {
-          font-size: 2.25rem;
+          font-size: 1.75rem;
           font-weight: 600;
-          color: var(--gray-800);
-          margin-bottom: 1.5rem;
+          color: var(--text-color);
+          margin-bottom: 1rem;
+          line-height: 1.2;
+          
+          @media (min-width: 768px) {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+          }
         }
         .not-found-text {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           color: var(--gray-600);
           margin-bottom: 2rem;
           padding: 0 1rem;
+          line-height: 1.6;
+          
+          @media (min-width: 768px) {
+            font-size: 1.25rem;
+          }
         }
         .not-found-button {
           display: inline-flex;
           align-items: center;
-          padding: 0.75rem 1.5rem;
+          padding: 0.5rem 1.25rem;
           background-color: var(--primary-gold);
-          color: var(--primary-navy);
+          color: var(--primary-navy) !important;
           font-weight: 600;
-          border-radius: 0.5rem;
+          font-size: 0.875rem;
+          border-radius: 0.375rem;
           text-decoration: none;
-          transition: all 0.3s ease;
-          box-shadow: var(--shadow-md);
+          transition: all 0.2s ease;
+          box-shadow: var(--shadow-sm);
+          border: none;
+          cursor: pointer;
+          line-height: 1.25;
+          
+          @media (max-width: 480px) {
+            width: auto;
+            min-width: 120px;
+            padding: 0.5rem 1rem;
+          }
         }
         .not-found-button:hover {
           background-color: #E6C200;

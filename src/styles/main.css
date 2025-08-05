@@ -1,9 +1,9 @@
 /* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
-/* ======================
-   Header & Navigation
-   ====================== */
+/* Card Styles */
+@import './cards.css';
+
 /* ======================
    Header & Navigation
    ====================== */
@@ -501,6 +501,14 @@ select:focus {
                 border-color 0.3s ease,
                 color 0.3s ease;
     color: var(--text-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .card:hover {
@@ -1452,7 +1460,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 /* Fix for SVG icons */
-svg, .icon {
+.icon svg {
   fill: var(--primary-gold) !important;
   color: var(--primary-gold) !important;
   stroke: var(--primary-gold) !important;
@@ -1657,6 +1665,7 @@ svg, .icon {
   box-sizing: border-box;
   height: 100%;
   min-height: 100%;
+  width: 100%;
   
   /* Visual Styling */
   background: var(--card-bg);
@@ -2064,11 +2073,10 @@ svg, .icon {
   width: 96px;
   height: 96px;
   margin: 0 auto 2rem;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)); /* Gold gradient, keeping as is */
   border-radius: 50%;
   transition: all 0.4s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .feature-icon::after {
@@ -2079,14 +2087,14 @@ svg, .icon {
   right: -4px;
   bottom: -4px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), transparent);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), transparent); /* Gold gradient, keeping as is */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .feature-card:hover .feature-icon {
   transform: scale(1.1) translateY(-5px);
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08));
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08)); /* Gold gradient, keeping as is */
 }
 
 .feature-card:hover .feature-icon::after {
@@ -3184,11 +3192,14 @@ body.dark .footer {
 }
 
 .footer-section h3 {
-    color: var(--footer-heading);
-    font-size: 1.25rem;
+    color: #ffffff; /* Force white color */
+    font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     text-align: left;
+    background: none; /* Ensure no background */
+    padding: 0; /* Remove any padding */
+    text-shadow: none; /* Remove any text shadow */
 }
 
 .footer-section p {
@@ -3206,7 +3217,7 @@ body.dark .footer {
 }
 
 .social-links a {
-    color: var(--primary-gold) !important;
+    color: var(--primary-white) !important;
     font-size: 1.5rem;
     transition: all 0.3s ease;
     display: flex;
@@ -3215,15 +3226,16 @@ body.dark .footer {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(230, 194, 0, 0.1); /* Gold tint, keeping as is */
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
 .social-links a:hover {
     color: var(--primary-white) !important;
-    background: var(--primary-gold) !important;
-    background: var(--primary-gold);
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 4px 12px rgba(230, 194, 0, 0.2);
 }
 
 /* Adjust icon sizes */
@@ -3231,9 +3243,10 @@ body.dark .footer {
     font-size: 1.2rem;
 }
 
-.social-links svg {
+.social-links .custom svg {
     width: 1.2rem;
     height: 1.2rem;
+    color: var(--primary-white);
 }
 
 .footer-links {
@@ -3263,12 +3276,12 @@ body.dark .footer {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--primary-gold);
+    background-color: var(--primary-white);
     transition: width 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: var(--primary-gold);
+    color: var(--primary-white);
 }
 
 .footer-links a:hover:after {
