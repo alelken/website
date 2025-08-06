@@ -1652,158 +1652,137 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 /* ======================
-   Feature Cards
+  /* ======================
+   Feature Cards (Using Philosophy Card Style)
    ====================== */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
 .feature-card {
-  /* Layout */
+  background: transparent;
+  border-radius: var(--card-radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all var(--transition-speed) ease;
+  border: none;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
   height: 100%;
-  min-height: 100%;
-  width: 100%;
-  
-  /* Visual Styling */
-  background: var(--card-bg);
-  border-radius: var(--card-radius);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  padding: 2rem 1.5rem;
-  
-  /* Transitions */
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-              transform 0.3s ease,
-              box-shadow 0.3s ease;
-}
-
-/* Top accent bar on hover */
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-gold), var(--primary-gold-dark));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* Hover and Focus States */
-.feature-card:hover,
-.feature-card:focus-within {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  border-color: transparent;
-  outline: none;
-}
-
-.feature-card:hover::before,
-.feature-card:focus-within::before {
-  opacity: 1;
-}
-
-/* Feature Icons */
-.feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--primary-gold);
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.feature-card:hover .feature-icon,
-.feature-card:focus-within .feature-icon {
-  transform: scale(1.1);
-}
-
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .feature-card {
-    flex: 0 0 280px;
-    scroll-snap-align: center;
-    scroll-margin: 0 2rem;
-    flex-shrink: 0;
-    margin: 0 0.5rem;
-    width: calc(100% - 1rem);
-  }
-}
-
-/* Page Section Spacing */
-.page-section {
-  padding: 6rem 0;
-}
-
-.page-section:first-child {
-  padding-top: 8rem;
-}
- 
-
-.feature-card:hover::before {
-  opacity: 1;
+  box-sizing: border-box;
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border-color: transparent; /* Intentionally transparent */
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-color: var(--primary-gold);
 }
 
+/* Feature Icon - Clean */
 .feature-icon {
-  font-size: 2.5rem;
+  margin: 0 auto 1.5rem;
   color: var(--primary-gold);
+  font-size: 2rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 2rem;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)); /* Gold gradient, keeping as is */
-  border-radius: 50%;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.feature-icon::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), transparent); /* Gold gradient, keeping as is */
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  justify-content: center;
+  transition: transform 0.3s ease;
 }
 
 .feature-card:hover .feature-icon {
-  transform: scale(1.1) translateY(-5px);
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08)); /* Gold gradient, keeping as is */
-}
-
-.feature-card:hover .feature-icon::after {
-  opacity: 1;
+  transform: scale(1.1) rotate(5deg);
 }
 
 .feature-card h3 {
-  font-size: 1.75rem;
-  margin: 0 0 1.25rem;
-  color: var(--secondary-navy);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-navy);
   font-weight: 600;
-  letter-spacing: -0.01em;
 }
 
 .feature-card p {
   color: var(--gray-600);
-  line-height: 1.7;
-  margin: 0;
-  font-size: 1.1rem;
-  max-width: 85%;
-  margin: 0 auto;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.feature-card .btn {
+  margin-top: auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.35rem;
+  }
+  
+  .feature-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem 0;
+    margin: 0 -1rem;
+    scroll-padding: 0 1rem;
+  }
+  
+  .feature-card {
+    flex: 0 0 85%;
+    max-width: 85%;
+    scroll-snap-align: start;
+    margin: 0 0.5rem;
+    height: auto;
+  }
+  
+  .feature-card:first-child {
+    margin-left: 1rem;
+  }
+  
+  .feature-card:last-child {
+    margin-right: 1rem;
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+.feature-card:target {
+  animation: highlight 1.5s ease-out;
+}
+
+@keyframes highlight {
+  0% { box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 200, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 200, 0, 0); }
 }
 
 /* Philosophy Grid */
@@ -1980,14 +1959,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   margin: 0 auto;
   padding: 0 2rem;
   box-sizing: border-box;
-}
-
-/* Feature Icons */
-.feature-icon {
-  font-size: 2.5rem;
-  color: var(--primary-gold);
-  margin-bottom: 1.5rem;
-  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .feature-card:hover .feature-icon {
@@ -2695,7 +2666,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 .value-card::before,
-.feature-card::before,
 .blog-card::before {
     content: '';
     position: absolute;
@@ -2706,17 +2676,12 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
     background: var(--gradient-accent);
     transform: scaleX(0);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.feature-card::before {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
 .value-card:hover,
 .team-card:hover,
 .benefit-card:hover,
-.feature-card:hover,
 .blog-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
@@ -2728,9 +2693,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
     transform: scaleX(1);
 }
 
-.feature-card:hover::before {
-    opacity: 1;
-}
+
 
 .value-card h3,
 .vision-item h3 {
@@ -2821,7 +2784,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 
 .jobs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     padding: 1.5rem 0;
     width: 100%;
@@ -3332,8 +3295,8 @@ body.dark .footer {
     
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 0 1.5rem;
+        text-align: center;
+        gap: 2rem;
     }
     
     .footer-section {
