@@ -23,11 +23,3 @@
   }
 }
 
-/* Features carousel */
-.features-carousel .card-carousel {
-  display: flex;
-  flex-wrap: nowrap;
-}
-.features-carousel .card-carousel-item {
-  flex: 0 0 280px;
-}

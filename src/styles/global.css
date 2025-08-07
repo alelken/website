@@ -553,7 +553,6 @@ body {
     .about-grid,
     .vision-grid,
     .team-grid,
-    .features-grid,
     .philosophy-grid {
     overflow: visible; 
         overflow: visible !important;
@@ -1227,266 +1226,7 @@ body.dark .mobile-nav {
   margin: 0 auto;
 }
 
-/* Card Carousel */
-.card-carousel-container {
-  max-width: 1280px;
-  margin: 0 auto 4rem;
-  padding: 2rem 1rem;
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  background: #ffffff;
-  overflow: hidden;
-}
 
-/* Base card carousel styles */
-.card-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  padding: 1rem 1rem 2rem;
-  margin: 0 auto;
-  scroll-padding: 0 1rem;
-  gap: 1.5rem;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
-  background: transparent;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-}
-
-.card-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.card-carousel-item {
-  flex: 0 0 280px;
-  scroll-snap-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 1;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  background: #ffffff;
-  overflow: hidden;
-  margin: 0 0.5rem;
-  height: auto;
-  box-sizing: border-box;
-  transform-origin: center center;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-.card-carousel-item[data-snap-active="true"] {
-  opacity: 1;
-  transform: scale(1.03) translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  z-index: 2;
-  border-color: var(--gray-200);
-  box-sizing: border-box;
-}
-
-.card-carousel-item:hover {
-  opacity: 1;
-  transform: scale(1.02) translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-/* Ensure first and last items are fully visible */
-.card-carousel-item:first-child {
-  margin-left: calc(50% - 150px);
-  scroll-margin-left: calc(50% - 150px);
-}
-
-.card-carousel-item:last-child {
-  margin-right: calc(50% - 150px);
-  scroll-margin-right: calc(50% - 150px);
-}
-
-/* Improve touch feedback */
-.card-carousel-item:active {
-  transform: scale(0.98) !important;
-  transition: transform 0.1s ease !important;
-}
-
-/* Fix for icons inside carousel */
-.card-carousel-item svg,
-.card-carousel-item img {
-  filter: none !important;
-  -webkit-filter: none !important;
-  fill: currentColor !important;
-  color: inherit !important; /* Inheriting from parent */
-}
-
-/* Fix for sections */
-section, .section {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* Fix for any dark overlays */
-[class*="dark"], 
-[data-theme*="dark"], 
-[class*="Dark"], 
-[class*="black"] {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* Fix for text colors */
-h1, h2, h3, h4, h5, h6, p, span, a, div {
-  color: inherit !important; /* Inheriting from parent */
-}
-
-/* Fix for SVG icons */
-.icon svg {
-  fill: var(--primary-gold) !important;
-  color: var(--primary-gold) !important;
-  stroke: var(--primary-gold) !important;
-}
-
-.card-carousel-item > * {
-  height: 100%;
-  width: 100%;
-}
-
-/* Dots navigation */
-.card-carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 1.5rem 0 0;
-  padding: 0.5rem 0;
-  position: relative;
-  z-index: 2;
-}
-
-.card-carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #e5e7eb; /* Light gray for dots */
-  border: 2px solid transparent;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  outline: none;
-  opacity: 0.6;
-}
-
-.card-carousel-dot:hover,
-.card-carousel-dot:focus-visible,
-.card-carousel-dot.active {
-  transform: scale(1.3);
-  background-color: #e6c200; /* Gold color */
-  opacity: 1;
-}
-
-.card-carousel-dot.active {
-  background-color: var(--primary-gold);
-  transform: scale(1.2);
-  border-color: var(--primary-gold);
-}
-
-/* Hide dots on desktop */
-@media (min-width: 768px) {
-  .card-carousel-dots {
-    display: none;
-  }
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem 0;
-  width: 100%;
-  justify-content: center;
-}
-
-/* Mobile styles (horizontal scroll) */
-@media (max-width: 1024px) {
-  .card-carousel-container {
-    padding: 0 1rem;
-    overflow: hidden;
-  }
-
-  .features-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    padding: 2rem 0;
-    gap: 1.5rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .features-grid::before {
-    content: '';
-    padding-left: calc(50% - 150px);
-    flex: 0 0 1px;
-  }
-
-  .features-grid::after {
-    content: '';
-    padding-right: calc(50% - 150px);
-    flex: 0 0 1px;
-  }
-  
-  .features-grid > * {
-    scroll-snap-align: center;
-    flex: 0 0 280px;
-    margin: 0 0.25rem;
-    box-sizing: border-box;
-  }
-
-  .features-grid::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Ensure first and last cards are fully visible */
-  .features-grid > :first-child {
-    margin-left: calc(50% - 140px);
-  }
-  
-  .features-grid > :last-child {
-    margin-right: calc(50% - 140px);
-  }
-}
-
-/* ======================
-  /* ======================
-   Feature Cards (Using Philosophy Card Style)
-   ====================== */
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  width: 100%;
-  padding: 1rem 0;
-}
 
 .feature-card {
   background: transparent;
@@ -1544,11 +1284,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
-  .features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  
   .feature-card {
     padding: 2rem 1.5rem;
   }
@@ -1565,17 +1300,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 @media (max-width: 768px) {
-  .features-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 1rem 0;
-    margin: 0 -1rem;
-    scroll-padding: 0 1rem;
-  }
-  
   .feature-card {
     flex: 0 0 85%;
     max-width: 85%;
@@ -1691,24 +1415,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 @media (max-width: 768px) {
-  .card-carousel-container {
-    padding: 0 1rem;
-  }
-  
-  .features-grid {
-    gap: 1rem;
-    padding: 1.5rem 0;
-    scroll-padding: 0 calc(50% - 150px);
-  }
-  
-  .features-grid::before {
-    padding-left: calc(50% - 150px);
-  }
-  
-  .features-grid::after {
-    padding-right: calc(50% - 150px);
-  }
-  
   .feature-card {
     flex: 0 0 280px;
     padding: 2rem 1.25rem;
@@ -3541,12 +3247,6 @@ body.dark .footer {
 
     .container {
         padding: 0 1rem;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 2rem 1rem;
     }
 
     .feature-card {

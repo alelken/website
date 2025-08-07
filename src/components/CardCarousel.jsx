@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import '../styles/carousel.css';
 
 const CardCarousel = ({ items, cardComponent, className = '' }) => {
   const CardComponent = cardComponent;
