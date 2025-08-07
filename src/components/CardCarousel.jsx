@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) => {
+const CardCarousel = ({ items, cardComponent, className = '' }) => {
+  const CardComponent = cardComponent;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
@@ -108,13 +109,13 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
       const containerRect = container.getBoundingClientRect();
       const containerCenter = containerRect.left + (containerRect.width / 2);
       
-      itemRefs.current.forEach((card, index) => {
+      itemRefs.current.forEach(card => {
         if (!card) return;
-        
+
         const cardRect = card.getBoundingClientRect();
         const cardCenter = cardRect.left + (cardRect.width / 2);
         const distance = Math.abs(cardCenter - containerCenter);
-        
+
         card.setAttribute('data-snap-active', distance < 100 ? 'true' : 'false');
       });
     };
@@ -271,7 +272,8 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
           scrollbarWidth: 'none',
           scrollSnapType: isMobile ? 'x mandatory' : 'none',
           scrollBehavior: 'smooth',
-          overscrollBehaviorX: 'contain'
+          overscrollBehaviorX: 'contain',
+          flexWrap: 'nowrap'
         }}
       >
         {items.map((item, index) => (

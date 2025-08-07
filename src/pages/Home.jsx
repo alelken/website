@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faHandHoldingHeart, 
@@ -10,14 +10,9 @@ import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import Card from "../components/Card.jsx";
 import CardCarousel from "../components/CardCarousel.jsx";
+import "../styles/home.css";
 
 const Home = () => {
-  const featureCardsRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [showDots, setShowDots] = useState(window.innerWidth < 768);
-  const [totalCards, setTotalCards] = useState(4);
-  const [cardsPerView, setCardsPerView] = useState(window.innerWidth < 768 ? 1 : 4);
-  
   const featureItems = [
     { 
       title: "Stress Management", 
@@ -54,20 +49,7 @@ const Home = () => {
     </Card>
   );
 
-  // Handle window resize for responsive design
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 768;
-      setShowDots(isMobile);
-      setCardsPerView(isMobile ? 1 : 4);
-      
-      // Reset active index on desktop
-      if (!isMobile) {
-        setActiveIndex(0);
-      }
-    };
-
-    // Smooth scroll for anchor links
     document.querySelectorAll("a[href^='#']").forEach(anchor => {
       anchor.addEventListener('click', e => {
         e.preventDefault();
@@ -75,85 +57,17 @@ const Home = () => {
       });
     });
 
-    // Add animation on scroll
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('animate');
       });
     }, observerOptions);
-    
+
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-    // Initialize and add event listener for window resize
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => observer.disconnect();
   }, []);
-
-  // Handle scroll dot click
-  const handleDotClick = (index) => {
-    if (featureCardsRef.current) {
-      const container = featureCardsRef.current;
-      const cards = Array.from(container.children).filter(
-        child => child.classList && child.classList.contains('feature-card')
-      );
-      
-      if (cards[index]) {
-        const containerWidth = container.offsetWidth;
-        const card = cards[index];
-        const cardRect = card.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const scrollLeft = container.scrollLeft;
-        const cardLeft = cardRect.left - containerRect.left + scrollLeft;
-        const cardWidth = cardRect.width;
-        
-        // Calculate scroll position to center the card
-        const scrollPosition = cardLeft - (containerWidth / 2) + (cardWidth / 2);
-        
-        container.scrollTo({
-          left: scrollPosition,
-          behavior: 'smooth'
-        });
-        setActiveIndex(index);
-      }
-    }
-  };
-
-  // Handle scroll events to update active dot with debounce
-  const handleScroll = () => {
-    if (featureCardsRef.current && showDots) {
-      const container = featureCardsRef.current;
-      const cards = Array.from(container.children).filter(
-        child => child.classList && child.classList.contains('feature-card')
-      );
-      
-      // Find the card closest to the center
-      let closestCard = null;
-      let minDistance = Infinity;
-      const containerRect = container.getBoundingClientRect();
-      const containerCenter = containerRect.left + (containerRect.width / 2);
-      
-      cards.forEach((card, index) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.left + (cardRect.width / 2);
-        const distance = Math.abs(cardCenter - containerCenter);
-        
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = index;
-        }
-      });
-      
-      if (closestCard !== null && closestCard !== activeIndex) {
-        setActiveIndex(closestCard);
-      }
-    }
-  };
 
   return (
     <div>
