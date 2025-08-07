@@ -1361,80 +1361,9 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   stroke: var(--primary-gold) !important;
 }
 
-/* Desktop styles */
-@media (min-width: 1024px) {
-  .card-carousel {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem 0;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 100%;
-    overflow: visible;
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-  }
-  
-  .card-carousel-item {
-    width: 100%;
-    margin: 0 !important;
-    opacity: 1;
-    transform: none !important;
-  }
-  
-  .card-carousel-item:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
-  }
-}
-
 .card-carousel-item > * {
   height: 100%;
   width: 100%;
-}
-
-/* Responsive grid adjustments */
-@media (max-width: 1023px) {
-  .card-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    padding: 2rem 1rem;
-    margin: 0 -1rem;
-    scroll-padding: 0 calc(50% - 150px);
-    gap: 1.5rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-
-  .card-carousel::-webkit-scrollbar {
-    display: none;
-  }
-
-  .card-carousel-item {
-    flex: 0 0 300px;
-    scroll-snap-align: center;
-    padding: 0 0.5rem;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.9;
-  }
-
-  .card-carousel-item:first-child {
-    margin-left: calc(50% - 150px);
-  }
-
-  .card-carousel-item:last-child {
-    margin-right: calc(50% - 150px);
-  }
-
-  .card-carousel-item[data-snap-active] {
-    opacity: 1;
-    transform: scale(1.02);
-  }
 }
 
 /* Dots navigation */
@@ -2748,86 +2677,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
     }
-}
-
-/* Hide scroll dots by default on all pages */
-.scroll-dots {
-    display: none;
-}
-
-/* Show scroll dots on mobile for all pages */
-/* Card Carousel Dots */
-.card-carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  padding: 0.5rem 0;
-  width: 100%;
-}
-
-.card-carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--gray-300);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.card-carousel-dot.active {
-  background-color: var(--primary-gold);
-  transform: scale(1.2);
-}
-
-.card-carousel-dot:focus {
-  outline: 2px solid var(--primary-gold);
-  outline-offset: 2px;
-}
-
-/* Ensure scroll dots are always visible on mobile */
-@media (max-width: 1024px) {
-  .card-carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    margin: 1.5rem 0 0;
-    padding: 0.5rem 0 1.5rem;
-  }
-  
-  .card-carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--gray-300);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .card-carousel-dot.active {
-    background-color: var(--primary-gold);
-    transform: scale(1.2);
-  }
-  
-  .scroll-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--gray-300);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .scroll-dot.active {
-    background-color: var(--primary-gold);
-    transform: scale(1.2);
-  }
 }
 
 /* Feature Card Specific Styles */
