@@ -24,7 +24,8 @@
 }
 
 .card-carousel-item {
-  flex: 0 0 280px;
+  flex: 0 0 300px;
+  height: 360px;
   scroll-snap-align: center;
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

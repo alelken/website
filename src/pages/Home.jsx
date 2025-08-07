@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faHandHoldingHeart, 
-  faBrain, 
-  faUsers, 
-  faChartLine
-} from '@fortawesome/free-solid-svg-icons';
+import {
+    faHandHoldingHeart,
+    faBrain,
+    faUsers,
+    faChartLine,
+    faHammer,
+    faArrowUp
+  } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import Card from "../components/Card.jsx";
@@ -38,35 +40,51 @@ const Home = () => {
 
   // Feature card component
   const FeatureCard = ({ title, content, icon }) => (
-    <Card 
+    <Card
       className={`feature-card ${title.toLowerCase().replace(/\s+/g, '-')}`}
       title={title}
+      icon={<FontAwesomeIcon icon={icon} />}
     >
-      <div className="feature-icon">
-        <FontAwesomeIcon icon={icon} />
-      </div>
+      <p className="card-description">{content}</p>
+    </Card>
+  );
+
+  const philosophyItems = [
+    {
+      title: "Restoration",
+      content: "Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.",
+      icon: faHammer
+    },
+    {
+      title: "Elevation",
+      content: "Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.",
+      icon: faArrowUp
+    },
+    {
+      title: "Multiplication",
+      content: "Building platforms that enable others to create, lead, and generate positive impact that extends far beyond our direct reach.",
+      icon: faUsers
+    }
+  ];
+
+  const PhilosophyCard = ({ title, content, icon }) => (
+    <Card
+      className="philosophy-card"
+      title={title}
+      icon={<FontAwesomeIcon icon={icon} />}
+    >
       <p className="card-description">{content}</p>
     </Card>
   );
 
   useEffect(() => {
-    document.querySelectorAll("a[href^='#']").forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(anchor.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('animate');
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-    return () => observer.disconnect();
+    const anchors = document.querySelectorAll("a[href^='#']");
+    const handleClick = e => {
+      e.preventDefault();
+      document.querySelector(e.currentTarget.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    };
+    anchors.forEach(anchor => anchor.addEventListener('click', handleClick));
+    return () => anchors.forEach(anchor => anchor.removeEventListener('click', handleClick));
   }, []);
 
   return (
@@ -98,23 +116,11 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title center-title">Our Philosophy</h2>
           <p className="section-subtitle">We believe technology should enhance human potential without overwhelming it. Our approach is grounded in three core principles that guide everything we build:</p>
-          <div className="philosophy-grid">
-            <div className="principle animate-on-scroll">
-              <i className="fas fa-hammer principle-icon" aria-hidden="true" />
-              <h3>Restoration</h3>
-              <p>Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.</p>
-            </div>
-            <div className="principle animate-on-scroll">
-              <i className="fas fa-arrow-up principle-icon" aria-hidden="true" />
-              <h3>Elevation</h3>
-              <p>Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.</p>
-            </div>
-            <div className="principle animate-on-scroll">
-              <i className="fas fa-users principle-icon" aria-hidden="true" />
-              <h3>Multiplication</h3>
-              <p>Building platforms that enable others to create, lead, and generate positive impact that extends far beyond our direct reach.</p>
-            </div>
-          </div>
+          <CardCarousel
+            items={philosophyItems}
+            cardComponent={PhilosophyCard}
+            className="philosophy-carousel"
+          />
         </div>
       </section>
       <Footer />
