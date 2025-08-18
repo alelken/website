@@ -3,7 +3,8 @@ import Footer from "../components/Footer.jsx";
 import JobModal from "../components/JobModal.jsx";
 import JobDetailsModal from "../components/JobDetailsModal.jsx";
 import Header from "../components/Header.jsx";
-import Card from "../components/Card.jsx";
+import ModernCard from "../components/ModernCard.jsx";
+import "../styles/modern-card.css";
 
 const Careers = ({ initialJobs = [] }) => {
   const [jobs, setJobs] = useState(initialJobs);
@@ -186,24 +187,24 @@ const Careers = ({ initialJobs = [] }) => {
           <h2 className="section-title center-title">Why Choose Alelken</h2>
           <p className="section-subtitle">We offer more than just a career—we provide a platform for professional growth, meaningful work, and the opportunity to shape the future of wellness technology.</p>
           <div className="benefits-grid">
-            <Card className="benefit-card" title="Impactful Work">
+            <ModernCard className="benefit-card" title="Impactful Work" variant="elevated" hoverEffect="lift">
               Contribute to solutions that directly improve lives and address real-world challenges in human wellness and personal development.
-            </Card>
-            <Card className="benefit-card" title="Professional Development">
+            </ModernCard>
+            <ModernCard className="benefit-card" title="Professional Development" variant="elevated" hoverEffect="lift">
               Access to cutting-edge training, conferences, certifications, and mentorship programs to accelerate your career growth.
-            </Card>
-            <Card className="benefit-card" title="Flexible Environment">
+            </ModernCard>
+            <ModernCard className="benefit-card" title="Flexible Environment" variant="elevated" hoverEffect="lift">
               Hybrid work models, flexible scheduling, and a results-oriented culture that prioritizes productivity and work-life integration.
-            </Card>
-            <Card className="benefit-card" title="Competitive Package">
+            </ModernCard>
+            <ModernCard className="benefit-card" title="Competitive Package" variant="elevated" hoverEffect="lift">
               Comprehensive benefits including health coverage, equity participation, performance bonuses, and wellness programs.
-            </Card>
-            <Card className="benefit-card" title="Innovation Freedom">
+            </ModernCard>
+            <ModernCard className="benefit-card" title="Innovation Freedom" variant="elevated" hoverEffect="lift">
               Autonomy to explore new ideas, experiment with emerging technologies, and contribute to product strategy and development.
-            </Card>
-            <Card className="benefit-card" title="Diverse Community">
+            </ModernCard>
+            <ModernCard className="benefit-card" title="Diverse Community" variant="elevated" hoverEffect="lift">
               Work alongside talented professionals from varied backgrounds, fostering an inclusive environment that celebrates different perspectives.
-            </Card>
+            </ModernCard>
           </div>
         </div>
       </section>

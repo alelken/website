@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
-import Card from '../components/Card.jsx';
+import ModernCard from '../components/ModernCard.jsx';
 import CardCarousel from '../components/CardCarousel.jsx';
+import "../styles/modern-card.css";
 
 const Product = () => {
   const featuresGridRef = useRef(null);
@@ -36,12 +37,14 @@ const Product = () => {
   
   // Feature card component
   const FeatureCard = ({ title, content }) => (
-    <Card 
+    <ModernCard 
       className="feature-card"
       title={title}
+      variant="elevated"
+      hoverEffect="lift"
     >
       <p className="card-description">{content}</p>
-    </Card>
+    </ModernCard>
   );
 
   return (
@@ -60,11 +63,32 @@ const Product = () => {
         <div className="container">
           <h2 className="section-title center-title">Core Features</h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
-          <CardCarousel 
-            items={featureItems}
-            cardComponent={FeatureCard}
-            className="features-carousel"
-          />
+
+          {/* Desktop/tablet: keep carousel */}
+          <div className="product-features-desktop">
+            <CardCarousel 
+              items={featureItems}
+              cardComponent={FeatureCard}
+              className="features-carousel"
+            />
+          </div>
+
+          {/* Mobile: simplified accordion list */}
+          <div className="product-features-mobile">
+            <div className="product-accordion">
+              {featureItems.map((item, idx) => (
+                <details key={idx} className="product-accordion-item">
+                  <summary className="product-accordion-summary">
+                    <span>{item.title}</span>
+                    <span className="chevron" aria-hidden>›</span>
+                  </summary>
+                  <div className="product-accordion-content">
+                    <p>{item.content}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

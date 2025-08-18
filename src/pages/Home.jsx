@@ -4,12 +4,14 @@ import {
   faHandHoldingHeart, 
   faBrain, 
   faUsers, 
-  faChartLine
+  faChartLine,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
-import Card from "../components/Card.jsx";
+import ModernCard from "../components/ModernCard.jsx";
 import CardCarousel from "../components/CardCarousel.jsx";
+import "../styles/modern-card.css";
 
 const Home = () => {
   const featureCardsRef = useRef(null);
@@ -21,37 +23,37 @@ const Home = () => {
   const featureItems = [
     { 
       title: "Stress Management", 
-      content: "Evidence-based techniques and personalized guidance to help users effectively manage stress and maintain emotional balance in daily life.",
+      content: "Practical, evidence‑based tools to reduce stress, build calm, and stay emotionally balanced each day.",
       icon: faHandHoldingHeart
     },
     { 
       title: "Mindfulness Development", 
-      content: "Structured meditation programs and mindfulness exercises designed to build sustained focus, clarity, and mental resilience.",
+      content: "Guided meditation and mindfulness exercises that grow focus, clarity, and lasting mental resilience.",
       icon: faBrain
     },
     { 
       title: "Community Connection", 
-      content: "Thoughtfully designed social features that foster genuine connections and provide meaningful support networks for personal development.",
+      content: "Supportive spaces and features that spark genuine connection and meaningful, growth‑oriented community.",
       icon: faUsers
     },
     { 
       title: "Progress Tracking", 
-      content: "Comprehensive analytics and insights that help users understand their growth patterns and identify opportunities for continued development.",
+      content: "Clear insights and trends that show progress, highlight habits, and reveal opportunities to grow.",
       icon: faChartLine
     }
   ];
 
   // Feature card component
   const FeatureCard = ({ title, content, icon }) => (
-    <Card 
+    <ModernCard 
+      variant="elevated"
+      hoverEffect="lift"
       className={`feature-card ${title.toLowerCase().replace(/\s+/g, '-')}`}
       title={title}
+      icon={<FontAwesomeIcon icon={icon} size="lg" />}
     >
-      <div className="feature-icon">
-        <FontAwesomeIcon icon={icon} />
-      </div>
-      <p className="card-description">{content}</p>
-    </Card>
+      {content}
+    </ModernCard>
   );
 
   // Handle window resize for responsive design

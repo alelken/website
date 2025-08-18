@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
-import Card from '../components/Card.jsx';
+import ModernCard from '../components/ModernCard.jsx';
 import ScrollDots from '../components/ScrollDots';
 import { useScrollDots } from '../hooks/useScrollDots';
+import "../styles/modern-card.css";
 
 const About = () => {
   const aboutGridRef = useRef(null);
@@ -43,9 +44,9 @@ const About = () => {
           </div>
           <div className="about-grid" ref={aboutGridRef}>
             {aboutItems.map((item, i) => (
-              <Card key={i} className="value-card" title={item.title}>
+              <ModernCard key={i} className="value-card" title={item.title} variant="elevated" hoverEffect="lift">
                 {item.content}
-              </Card>
+              </ModernCard>
             ))}
           </div>
           <ScrollDots count={aboutItems.length} activeIndex={activeAboutIndex} />
@@ -59,15 +60,17 @@ const About = () => {
           </div>
           <div className="team-grid" ref={teamGridRef}>
             {teamMembers.map((member, i) => (
-              <Card 
+              <ModernCard 
                 key={i} 
                 className="team-card" 
                 image={{ src: member.image, alt: member.name }}
                 title={member.name}
+                variant="elevated"
+                hoverEffect="lift"
               >
                 <div className="role">{member.role}</div>
                 {member.bio}
-              </Card>
+              </ModernCard>
             ))}
           </div>
           <ScrollDots count={teamMembers.length} activeIndex={activeTeamIndex} />

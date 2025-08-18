@@ -1376,10 +1376,10 @@ body.dark .mobile-nav {
   scroll-snap-align: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  background: #ffffff;
-  overflow: hidden;
+  border-radius: 0; /* Avoid double rounding */
+  box-shadow: none; /* Let inner card handle elevation */
+  background: transparent; /* Avoid double-layer look */
+  overflow: visible; /* Don't clip inner card shadow */
   margin: 0 0.5rem;
   height: auto;
   box-sizing: border-box;
@@ -1390,17 +1390,16 @@ body.dark .mobile-nav {
   transform: translateZ(0);
   display: flex !important;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  align-items: stretch; /* Let child card size itself */
+  text-align: initial;
+  padding: 0; /* Remove extra padding wrapper */
+  border: none;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .card-carousel-item[data-snap-active="true"] {
   opacity: 1;
   transform: scale(1.03) translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   z-index: 2;
   border-color: var(--gray-200);
   box-sizing: border-box;
@@ -1409,7 +1408,6 @@ body.dark .mobile-nav {
 .card-carousel-item:hover {
   opacity: 1;
   transform: scale(1.02) translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
@@ -1490,7 +1488,18 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   
   .card-carousel-item:hover {
     transform: translateY(-4px) !important;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+  }
+  
+  /* Ensure consistent card height on desktop carousel */
+  .features-carousel .modern-card {
+    min-height: 300px;
+  }
+  .features-carousel .modern-card__title {
+    font-size: 1.35rem;
+  }
+  .features-carousel .modern-card__body {
+    font-size: 1.05rem;
+    line-height: 1.55;
   }
 }
 
@@ -1539,6 +1548,27 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
   .card-carousel-item[data-snap-active] {
     opacity: 1;
     transform: scale(1.02);
+  }
+
+  /* Consistent height and typography on mobile/tablet */
+  .features-carousel .modern-card {
+    min-height: auto; /* Content-driven height up to clamp */
+  }
+  .features-carousel .modern-card__title {
+    font-size: 1.2rem; /* balanced mobile size */
+    margin-bottom: 0.4rem;
+  }
+  .features-carousel .modern-card__body {
+    font-size: 1rem; /* balanced mobile size */
+    line-height: 1.5;
+  }
+  /* Tighten vertical padding to free space for text */
+  .features-carousel .modern-card__content {
+    padding-top: 0.75rem;
+    padding-bottom: calc(0.75rem + 20px); /* +20px total height bump */
+  }
+  .features-carousel .modern-card__body > p {
+    margin: 0;
   }
 }
 
@@ -1680,8 +1710,8 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transform: none; /* ModernCard handles lift */
+  box-shadow: none; /* Prevent double shadow */
   border-color: var(--primary-gold);
 }
 
@@ -3637,32 +3667,25 @@ body.dark .footer {
     padding: 1.5rem;
     position: relative;
     box-shadow: var(--shadow-md);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    overflow: visible;
+    display: block;
 }
 
 .blog-card h2 {
     margin-bottom: 1rem;
     font-size: 1.25rem;
     text-align: center;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    overflow: visible;
+    text-overflow: initial;
 }
 
 .blog-card p {
     color: var(--gray-600);
     margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    overflow: visible;
+    text-overflow: initial;
 }
 
 .blog-card .btn {
@@ -4270,4 +4293,60 @@ body.dark .back-btn:hover {
 /* Mobile menu header */
 .mobile-nav-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Product page: desktop carousel vs mobile accordion */
+.product-features-desktop { display: none; }
+.product-features-mobile { display: block; }
+
+@media (min-width: 768px) {
+  .product-features-desktop { display: block; }
+  .product-features-mobile { display: none; }
+}
+
+/* Mobile accordion styles */
+.product-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.product-accordion-item {
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.product-accordion-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--primary-navy);
+}
+
+.product-accordion-summary::-webkit-details-marker { display: none; }
+
+.product-accordion-item .chevron {
+  transition: transform 0.2s ease;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--gray-500);
+}
+
+.product-accordion-item[open] .product-accordion-summary {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.product-accordion-item[open] .chevron { transform: rotate(90deg); }
+
+.product-accordion-content {
+  padding: 0.75rem 1rem 1rem;
+  color: var(--gray-700);
 }

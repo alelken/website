@@ -1,0 +1,190 @@
+/* Modern Card Component */
+:root {
+  --modern-card-bg: #ffffff;
+  --modern-card-text: #1a1a1a;
+  --modern-card-border: #e2e8f0;
+  --modern-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --modern-card-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --modern-card-radius: 12px;
+  --modern-card-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --modern-card-padding: 1.5rem;
+}
+
+/* Base Card Styles */
+.modern-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--modern-card-bg);
+  border-radius: var(--modern-card-radius);
+  overflow: hidden;
+  transition: var(--modern-card-transition);
+  height: 100%;
+  color: var(--modern-card-text);
+  box-shadow: var(--modern-card-shadow);
+  border: 1px solid var(--modern-card-border);
+}
+
+/* Card Media */
+.modern-card__media {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background: #f8fafc;
+}
+
+.modern-card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Card Content */
+.modern-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--modern-card-padding);
+  overflow: visible; /* allow full content now that clamping is removed */
+}
+
+.modern-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 0.75rem;
+  color: var(--primary-gold);
+  font-size: 24px; /* Normalize FA icon size */
+}
+
+.modern-card__icon svg,
+.modern-card__icon i {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.modern-card__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: inherit;
+}
+
+.modern-card__body {
+  margin: 0;
+  color: inherit;
+  overflow: visible; /* allow full text without clipping */
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+/* Hide any descendant scrollbars just in case */
+.modern-card *::-webkit-scrollbar { display: none; }
+.modern-card * { scrollbar-width: none; }
+
+/* Feature cards: center content for consistency */
+.modern-card.feature-card .modern-card__content {
+  align-items: center;
+  text-align: center;
+}
+
+/* Card Actions */
+.modern-card__actions {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Defer button visuals to global .btn styles; only adjust icon spacing */
+.modern-card__button-icon {
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Card Variants */
+.modern-card--outlined {
+  background: transparent;
+  border: 1px solid var(--modern-card-border);
+  box-shadow: none;
+}
+
+.modern-card--elevated {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: none;
+}
+
+.modern-card--filled {
+  background-color: #f8fafc;
+  border: none;
+}
+
+/* Hover Effects */
+.modern-card--hover-scale:hover {
+  transform: scale(1.02);
+  box-shadow: var(--modern-card-shadow-hover);
+}
+
+.modern-card--hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--modern-card-shadow-hover);
+}
+
+.modern-card--hover-fade:hover {
+  opacity: 0.9;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .modern-card {
+    --modern-card-bg: #1e293b;
+    --modern-card-text: #f1f5f9;
+    --modern-card-border: #334155;
+    --modern-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modern-card--outlined {
+    background: transparent;
+    border-color: #334155;
+  }
+  
+  .modern-card--filled {
+    background-color: #1e293b;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modern-card {
+    --modern-card-padding: 1.25rem;
+    height: 100%;
+  }
+  .modern-card__icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+  }
+  .modern-card__icon svg,
+  .modern-card__icon i {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .modern-card__title {
+    font-size: 1.125rem;
+  }
+  
+  .modern-card__body {
+    font-size: 0.875rem;
+  }
+}
