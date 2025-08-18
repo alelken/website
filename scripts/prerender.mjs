@@ -49,6 +49,67 @@ for (const url of routes) {
     }
     const appHtml = await render(url, initialData)
     let html = template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+
+    // Route-specific SEO metadata
+    const siteName = 'Alelken'
+    const origin = 'https://www.alelken.com'
+    const metaByRoute = {
+      '/': {
+        title: 'Alelken',
+        description: 'Innovative Technology. Human-Centered Solutions.',
+        image: '/assets/images/og-image.png',
+      },
+      '/product': {
+        title: 'Product – Alelken',
+        description: 'Explore Alelken’s human-centered technology solutions.',
+        image: '/assets/images/og-image.png',
+      },
+      '/about': {
+        title: 'About – Alelken',
+        description: 'Learn about Alelken’s mission and team.',
+        image: '/assets/images/og-image.png',
+      },
+      '/careers': {
+        title: 'Careers – Alelken',
+        description: 'Join Alelken and help build thoughtful technology.',
+        image: '/assets/images/og-image.png',
+      },
+      '/blog': {
+        title: 'Blog – Alelken',
+        description: 'Insights and updates from the Alelken team.',
+        image: '/assets/images/og-image.png',
+      },
+    }
+
+    const meta = metaByRoute[url] || metaByRoute['/']
+    const absoluteUrl = origin + (url === '/' ? '/' : url + '/')
+
+    const replaceTag = (h, selector, attr, value) => {
+      // selector: e.g., { type: 'meta', key: 'property', id: 'og:title' } or { type: 'meta', key: 'name', id: 'twitter:title' }
+      if (selector.type === 'title') {
+        return h.replace(/<title>[^<]*<\/title>/i, `<title>${value}<\/title>`)
+      }
+      const re = new RegExp(`<meta\\s+${selector.key}=["']${selector.id}["'][^>]*>`, 'i')
+      if (re.test(h)) {
+        return h.replace(re, (m) => m.replace(/content=["'][^"']*["']/, `content=\"${value}\"`))
+      }
+      return h
+    }
+
+    // Apply replacements
+    html = replaceTag(html, { type: 'title' }, null, meta.title)
+    html = replaceTag(html, { type: 'meta', key: 'property', id: 'og:title' }, 'content', meta.title)
+    html = replaceTag(html, { type: 'meta', key: 'name', id: 'twitter:title' }, 'content', meta.title)
+    html = replaceTag(html, { type: 'meta', key: 'property', id: 'og:site_name' }, 'content', siteName)
+    html = replaceTag(html, { type: 'meta', key: 'property', id: 'og:description' }, 'content', meta.description)
+    html = replaceTag(html, { type: 'meta', key: 'name', id: 'twitter:description' }, 'content', meta.description)
+    html = replaceTag(html, { type: 'meta', key: 'property', id: 'og:image' }, 'content', meta.image)
+    html = replaceTag(html, { type: 'meta', key: 'name', id: 'twitter:image' }, 'content', meta.image)
+    // Ensure og:url exists if present in template; otherwise we skip insertion for simplicity
+    const ogUrlRe = /<meta\s+property=["']og:url["'][^>]*>/i
+    if (ogUrlRe.test(html)) {
+      html = html.replace(ogUrlRe, (m) => m.replace(/content=["'][^"']*["']/, `content=\"${absoluteUrl}\"`))
+    }
     if (Object.keys(initialData).length) {
       html = html.replace('</body>', `<script>window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};<\/script></body>`)
     }
