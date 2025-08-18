@@ -138,13 +138,15 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
     isDragging.current = true;
     startX.current = e.touches[0].pageX - containerRef.current.offsetLeft;
     scrollLeft.current = containerRef.current.scrollLeft;
-    containerRef.style.scrollSnapType = 'none';
-    containerRef.style.scrollBehavior = 'auto';
+    // Use the actual DOM node via .current
+    if (containerRef.current) {
+      containerRef.current.style.scrollSnapType = 'none';
+      containerRef.current.style.scrollBehavior = 'auto';
+    }
   };
 
   const handleTouchMove = (e) => {
     if (!isMobile || !isDragging.current) return;
-    e.preventDefault();
     const x = e.touches[0].pageX - containerRef.current.offsetLeft;
     const walk = x - startX.current;
     containerRef.current.scrollLeft = scrollLeft.current - walk;
@@ -153,8 +155,10 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
   const handleTouchEnd = () => {
     if (!isMobile) return;
     isDragging.current = false;
-    containerRef.style.scrollSnapType = 'x mandatory';
-    containerRef.style.scrollBehavior = 'smooth';
+    if (containerRef.current) {
+      containerRef.current.style.scrollSnapType = 'x mandatory';
+      containerRef.current.style.scrollBehavior = 'smooth';
+    }
     
     // Snap to nearest card after drag ends
     const container = containerRef.current;
@@ -271,7 +275,8 @@ const CardCarousel = ({ items, cardComponent: CardComponent, className = '' }) =
           scrollbarWidth: 'none',
           scrollSnapType: isMobile ? 'x mandatory' : 'none',
           scrollBehavior: 'smooth',
-          overscrollBehaviorX: 'contain'
+          overscrollBehaviorX: 'contain',
+          touchAction: 'pan-y'
         }}
       >
         {items.map((item, index) => (
