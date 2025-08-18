@@ -16,9 +16,10 @@ import "../styles/modern-card.css";
 const Home = () => {
   const featureCardsRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showDots, setShowDots] = useState(window.innerWidth < 768);
+  // Avoid accessing window during SSR; initialize safely and compute on client in useEffect
+  const [showDots, setShowDots] = useState(false);
   const [totalCards, setTotalCards] = useState(4);
-  const [cardsPerView, setCardsPerView] = useState(window.innerWidth < 768 ? 1 : 4);
+  const [cardsPerView, setCardsPerView] = useState(1);
   
   const featureItems = [
     { 
@@ -59,7 +60,7 @@ const Home = () => {
   // Handle window resize for responsive design
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 768;
+      const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
       setShowDots(isMobile);
       setCardsPerView(isMobile ? 1 : 4);
       
@@ -79,21 +80,27 @@ const Home = () => {
 
     // Add animation on scroll
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver(entries => {
+    const observer = typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('animate');
       });
-    }, observerOptions);
+    }, observerOptions) : null;
     
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    if (observer && typeof document !== 'undefined') {
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    }
 
     // Initialize and add event listener for window resize
     handleResize();
-    window.addEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+    }
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', handleResize);
+      if (observer) observer.disconnect();
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
     };
   }, []);
 

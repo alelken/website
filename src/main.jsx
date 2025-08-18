@@ -1,8 +1,8 @@
-import { StrictMode, useEffect } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import './styles/main.css';
-import { router } from './routes';
+import { routes } from './routes';
 
 // Initialize any client-side data
 const initialData = window.__INITIAL_DATA__ || {};
@@ -10,6 +10,9 @@ const initialData = window.__INITIAL_DATA__ || {};
 // Clear the initial data from the window object
 delete window.__INITIAL_DATA__;
 
+
+// Create the router on client from route elements
+const router = createBrowserRouter(createRoutesFromElements(routes));
 
 // Create the root and render the app
 createRoot(document.getElementById('root')).render(

@@ -5,7 +5,7 @@ import path from 'path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(({ ssrBuild }) => ({
   plugins: [
     react({
       jsxImportSource: 'react',
@@ -19,14 +19,10 @@ export default defineConfig({
   build: {
     target: 'esnext',
     minify: 'esbuild',
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       input: 'index.html',
-      output: {
-        format: 'esm',
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom']
-        }
-      }
+      output: ssrBuild ? { format: 'esm' } : { format: 'esm' }
     }
   },
   resolve: {
@@ -34,4 +30,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   }
-});
+}));

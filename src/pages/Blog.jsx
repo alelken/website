@@ -5,7 +5,7 @@ import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 
 const posts = Object.entries(
-  import.meta.glob('../posts/*.md', { as: 'raw', eager: true })
+  import.meta.glob('../posts/*.md', { query: '?raw', import: 'default', eager: true })
 ).map(([path, content]) => {
   const lines = content.trim().split('\n')
   const title = lines[0].replace(/^#\s+/, '')
@@ -37,14 +37,24 @@ const Blog = () => {
 
   const post = posts.find(p => p.slug === active)
 
+  // Sync URL with selected post on client only
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (active && slug !== active) {
+      navigate(`/blog/${active}`, { replace: true });
+    }
+    if (!active && slug) {
+      // If slug exists but active cleared (back), go to /blog
+      navigate('/blog', { replace: true });
+    }
+  }, [active, slug, navigate]);
+
   return (
     <div>
       <Header />
       <div className="container" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
         <h1>Blog</h1>
         {active && (
-          // sync url for direct access via share
-          slug !== active && navigate(`/blog/${active}`, { replace: true }),
           <div className="blog-post" style={{marginBottom: '2rem'}}>
             <button className="btn back-btn" onClick={() => {
               setActive(null)
