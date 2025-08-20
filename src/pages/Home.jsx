@@ -10,7 +10,7 @@ import {
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import ModernCard from "../components/ModernCard.jsx";
-import CardCarousel from "../components/CardCarousel.jsx";
+// CardCarousel removed in favor of icon-rail list layout
 import "../styles/modern-card.css";
 
 const Home = () => {
@@ -49,7 +49,7 @@ const Home = () => {
     <ModernCard 
       variant="elevated"
       hoverEffect="lift"
-      className={`feature-card ${title.toLowerCase().replace(/\s+/g, '-')}`}
+      className={`feature-card hover-float glass soft-border ${title.toLowerCase().replace(/\s+/g, '-')}`}
       title={title}
       icon={<FontAwesomeIcon icon={icon} size="lg" />}
     >
@@ -167,51 +167,72 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <section className="hero">
-        <div className="hero-content container">
-          <h1>Innovative Technology.<br />Human-Centered Solutions.</h1>
-          <p className="subtitle">Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.</p>
-          <div className="cta-group">
-            <a href="/product" className="cta-button">Discover Our Solutions</a>
+      <section className="hero hero-brand">
+        <div className="hero-shell container">
+          <div className="hero-text">
+            <h1>Innovative Technology.<br />Human-Centered Solutions.</h1>
+            <p className="subtitle">Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.</p>
+            <div className="cta-group">
+              <a href="/product" className="cta-button btn-primary hover-float">Discover Our Solutions</a>
+            </div>
+          </div>
+          <div className="hero-media-card glass soft-border">
+            {/* Static hero illustration (no floating) */}
+            <img src="/assets/images/connected_world.svg" alt="Connected world" loading="eager" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
         </div>
       </section>
-      <section id="vision" className="section vision">
+
+      <section id="vision" className="section vision brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Our Current Focus</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Current Focus</span></h2>
           <p className="section-subtitle">We're building comprehensive wellness solutions that address real human needs. Our flagship platform focuses on four core areas that drive meaningful personal growth:</p>
-          
-          <CardCarousel 
-            items={featureItems}
-            cardComponent={FeatureCard}
-            className="features-carousel"
-          />
-          
+
+          <ul className="focus-list">
+            {featureItems.map((item, i) => (
+              <li key={i} className="focus-item split">
+                <div className="focus-left">
+                  <span className="icon-chip" aria-hidden="true">
+                    <FontAwesomeIcon icon={item.icon} />
+                  </span>
+                  <h3 className="focus-title">{item.title}</h3>
+                </div>
+                <p className="focus-text">{item.content}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
-      <section id="philosophy" className="section philosophy">
+      <section id="philosophy" className="section philosophy brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Our Philosophy</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Philosophy</span></h2>
           <p className="section-subtitle">We believe technology should enhance human potential without overwhelming it. Our approach is grounded in three core principles that guide everything we build:</p>
-          <div className="philosophy-grid">
-            <div className="principle animate-on-scroll">
-              <i className="fas fa-hammer principle-icon" aria-hidden="true" />
-              <h3>Restoration</h3>
-              <p>Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.</p>
+          <div className="philosophy-list">
+            <div className="principle-row">
+              <span className="icon-chip" aria-hidden="true"><i className="fas fa-hammer" /></span>
+              <div>
+                <h3 className="principle-title">Restoration</h3>
+                <p className="principle-text">Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.</p>
+              </div>
             </div>
-            <div className="principle animate-on-scroll">
-              <i className="fas fa-arrow-up principle-icon" aria-hidden="true" />
-              <h3>Elevation</h3>
-              <p>Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.</p>
+            <div className="principle-row">
+              <span className="icon-chip" aria-hidden="true"><i className="fas fa-arrow-up" /></span>
+              <div>
+                <h3 className="principle-title">Elevation</h3>
+                <p className="principle-text">Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.</p>
+              </div>
             </div>
-            <div className="principle animate-on-scroll">
-              <i className="fas fa-users principle-icon" aria-hidden="true" />
-              <h3>Multiplication</h3>
-              <p>Building platforms that enable others to create, lead, and generate positive impact that extends far beyond our direct reach.</p>
+            <div className="principle-row">
+              <span className="icon-chip" aria-hidden="true"><i className="fas fa-users" /></span>
+              <div>
+                <h3 className="principle-title">Multiplication</h3>
+                <p className="principle-text">Building platforms that enable others to create, lead, and generate positive impact that extends far beyond our direct reach.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       <Footer />
     </div>
   );

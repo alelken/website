@@ -1325,6 +1325,9 @@ body.dark .mobile-nav {
   border-radius: 2px;
 }
 
+/* Disable straight bar underline when using doodle underline */
+.section-title.no-bar::after { display: none !important; }
+
 .section-subtitle {
   font-size: 1.25rem;
   line-height: 1.6;
@@ -4349,4 +4352,385 @@ body.dark .back-btn:hover {
 .product-accordion-content {
   padding: 0.75rem 1rem 1rem;
   color: var(--gray-700);
+}
+
+/* -------------------------------------------------------------
+   Design Utilities: Gradients, Glassmorphism, Floating Effects
+   ------------------------------------------------------------- */
+
+/* Brand gradient tokens if not already used elsewhere */
+:root {
+  --brand-yellow: #FFD700;
+  --brand-amber: #FFC107;
+  --gradient-brand: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-amber) 100%);
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+  border-radius: 16px;
+}
+
+/* Solid panel (no transparency) for mobile nav and any strict surfaces */
+.solid-panel {
+  background: #ffffff;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+  border-radius: 16px;
+}
+
+/* Apply a subtle glossy film site-wide at the SECTION level (edge-to-edge, not card-like) */
+.section::before,
+.brand-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  z-index: 0; /* sit beneath actual content */
+}
+
+/* Avoid glossy film on explicitly transparent sections */
+.section.transparent::before { display: none; }
+
+/* Ensure all section content renders above the glossy film */
+.section > *,
+.brand-section > * { position: relative; z-index: 1; }
+
+/* Subtle header gradient accent */
+.header-gradient {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 215, 0, 0.06) 0%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 215, 0, 0.06) 100%
+  );
+}
+
+/* Brand gradient helpers */
+.bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+.text-gradient {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-border { position: relative; }
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 0.75px;
+  border-radius: inherit;
+  background: var(--gradient-brand);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.7;
+}
+
+/* Subtle border alternative to gradient border */
+.soft-border {
+  position: relative;
+  border-radius: inherit;
+}
+.soft-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.22);
+}
+
+/* Floating and interactive hover effects */
+.hover-float {
+  transition: transform 300ms var(--transition-easing), box-shadow 300ms var(--transition-easing);
+}
+.hover-float:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-md);
+}
+
+.float { animation: float 6s ease-in-out infinite; }
+.float-slow { animation: float 9s ease-in-out infinite; }
+
+/* =====================
+   Home Hero Brand Layout
+   ===================== */
+.hero.hero-brand {
+  background:
+    linear-gradient(90deg, rgba(255, 215, 0, 0.06) 0%, rgba(255, 215, 0, 0) 50%),
+    var(--background);
+  padding-top: 9rem; /* account for fixed header */
+  padding-bottom: 5rem;
+}
+
+.hero-shell {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-text {
+  text-align: left;
+}
+
+.hero-text .subtitle {
+  max-width: 46ch;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  background: var(--primary-gold);
+  color: var(--primary-navy);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 200ms var(--transition-easing), box-shadow 200ms var(--transition-easing);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.hero-media-card {
+  width: min(520px, 100%);
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.hero-media-card .media-shape {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(180px 180px at 78% 22%, rgba(255,215,0,0.9) 0%, rgba(255,193,7,0.85) 60%, rgba(255,215,0,0.0) 61%),
+    radial-gradient(120px 120px at 32% 72%, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.95) 60%, rgba(17,17,17,0) 61%),
+    linear-gradient(135deg, rgba(0,0,0,0.05), rgba(255,255,255,0));
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
+}
+
+/* Brand section subtle background separation */
+.brand-section {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(255,215,0,0.04) 100%);
+}
+
+@media (max-width: 1024px) {
+  .hero-shell {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hero-text { text-align: center; }
+  .hero-text .subtitle { margin-left: auto; margin-right: auto; }
+  .cta-group { justify-content: center; }
+  .hero-media-card { margin: 0 auto; }
+}
+
+/* =====================
+   Performance Fallbacks
+   ===================== */
+/* =====================
+   Unique Section Layouts (Home Focus + Philosophy)
+   ===================== */
+/* Playful icon chip */
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(255,215,0,0.2), rgba(255,215,0,0) 70%), rgba(255,255,255,0.04);
+  box-shadow: inset 0 0 0 1px rgba(255,215,0,0.22), 0 6px 16px rgba(0,0,0,0.16);
+  color: var(--primary-gold);
+  margin-top: 2px; /* align with title baseline */
+}
+.icon-chip i, .icon-chip svg { font-size: 24px; }
+
+/* Focus list with vertical rail and dots */
+.focus-list {
+  position: relative;
+  list-style: none;
+  margin: 1.5rem auto 0;
+  padding-left: 0; /* no rail */
+  display: grid;
+  gap: 1.15rem 1.5rem;
+  max-width: 860px;
+  text-align: left;
+}
+/* Remove decorative rail to reduce clutter */
+.focus-list.rail::before { display: none; }
+.focus-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem 1rem;
+  align-items: start;
+  padding: 0.5rem 0 0.9rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.focus-item:last-child { border-bottom: none; padding-bottom: 0; }
+/* Remove dot markers to reduce clutter */
+.focus-item::before { display: none; }
+.focus-item .focus-title {
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+.focus-item .focus-text {
+  margin: 0.4rem 0 0 0;
+  opacity: 0.9;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Focus split layout: left (icon+title) / right (description) */
+.focus-item.split {
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  column-gap: 1.25rem;
+  row-gap: 0.25rem;
+}
+.focus-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 56px; /* match chip height for baseline alignment */
+}
+.focus-left .focus-title { margin: 0; }
+
+/* Philosophy grid without cards */
+.philosophy-list {
+  margin: 1.5rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 1.5rem;
+  max-width: 1000px;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .philosophy-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Responsive stacking for Focus split layout */
+@media (max-width: 768px) {
+  .focus-item.split { grid-template-columns: 1fr; }
+  .focus-left { margin-bottom: 0.25rem; }
+}
+.principle-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 0.85rem;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.principle-row:last-child { border-bottom: none; }
+.principle-title {
+  margin: 0 0 0.2rem 0;
+  font-weight: 700;
+  text-align: left;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+.principle-text {
+  margin: 0;
+  opacity: 0.9;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Doodle underline utility for section titles */
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 14px;
+}
+.doodle-underline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 88%;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16'><path d='M2 10 Q 20 2 38 10 T 74 10 T 110 10' stroke='%23FFD700' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  opacity: 0.9;
+}
+
+/* Mobile adjustments: remove rail, widen spacing */
+@media (max-width: 640px) {
+  .focus-list { padding-left: 0; }
+  .focus-list.rail::before { display: none; }
+}
+@media (max-width: 640px) {
+  /* Soften heavy effects on small devices */
+  .glass,
+  .glass-panel,
+  .hero-media-card {
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+  }
+  .gradient-border::before { padding: 0.5px; }
+}
+
+/* Mobile typography and icon scaling */
+@media (max-width: 640px) {
+  .icon-chip { width: 44px; height: 44px; }
+  .icon-chip i, .icon-chip svg { font-size: 20px; }
+  .focus-item .focus-title { font-size: 1.2rem; }
+  .focus-item .focus-text { font-size: 1rem; line-height: 1.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -128,11 +128,11 @@ const Header = () => {
   
   return (
     <>
-      <header className={scrolled ? 'scrolled' : ''}>
+      <header className={`header-gradient glass ${scrolled ? 'scrolled' : ''}`}>
         <nav>
           <div className="logo">
             <a href="/" aria-label="Home">
-              <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo" />
+              <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo hover-float" />
             </a>
           </div>
           
@@ -142,7 +142,7 @@ const Header = () => {
               <div key={item.path} className="relative group">
                 <a 
                   href={item.path} 
-                  className="nav-link"
+                  className="nav-link hover-float"
                   onMouseEnter={() => !isMobile && item.submenu && setActiveSubmenu(item.path)}
                   onMouseLeave={() => !isMobile && setActiveSubmenu(null)}
                 >
@@ -194,7 +194,7 @@ const Header = () => {
         {isOpen && isMobile && (
           <>
             <motion.div 
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              className="mobile-nav-overlay visible"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -203,7 +203,7 @@ const Header = () => {
             />
             <motion.div 
               ref={menuRef}
-              className={`mobile-nav ${isOpen ? 'visible' : ''}`}
+              className={`mobile-nav solid-panel gradient-border ${isOpen ? 'visible' : ''}`}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -231,7 +231,7 @@ const Header = () => {
                   <a 
                     key={item.path}
                     href={item.path}
-                    className="mobile-nav-link"
+                    className="mobile-nav-link hover-float"
                     onClick={toggleMenu}
                   >
                     {item.name}

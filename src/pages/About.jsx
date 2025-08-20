@@ -28,15 +28,15 @@ const About = () => {
   return (
     <div>
       <Header />
-      <section className="about-hero">
-        <div className="container">
-          <div className="about-hero-content">
+      <section className="about-hero hero hero-brand">
+        <div className="container hero-shell">
+          <div className="about-hero-content hero-text">
             <h1>About Alelken</h1>
             <p>We're a team of passionate individuals dedicated to creating technology that positively impacts lives.</p>
           </div>
         </div>
       </section>
-      <section className="about-values">
+      <section className="about-values brand-section">
         <div className="container">
           <div className="about-content">
             <h2 className="section-title center-title">Who We Are</h2>
@@ -44,7 +44,7 @@ const About = () => {
           </div>
           <div className="about-grid" ref={aboutGridRef}>
             {aboutItems.map((item, i) => (
-              <ModernCard key={i} className="value-card" title={item.title} variant="elevated" hoverEffect="lift">
+              <ModernCard key={i} className="value-card glass soft-border hover-float" title={item.title} variant="elevated" hoverEffect="lift">
                 {item.content}
               </ModernCard>
             ))}
@@ -52,7 +52,7 @@ const About = () => {
           <ScrollDots count={aboutItems.length} activeIndex={activeAboutIndex} />
         </div>
       </section>
-      <section className="team-section">
+      <section className="team-section brand-section">
         <div className="container">
           <div className="section-title center-title">
             <h2>Meet Our Team</h2>
@@ -62,7 +62,7 @@ const About = () => {
             {teamMembers.map((member, i) => (
               <ModernCard 
                 key={i} 
-                className="team-card" 
+                className="team-card glass soft-border hover-float" 
                 image={{ src: member.image, alt: member.name }}
                 title={member.name}
                 variant="elevated"

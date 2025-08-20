@@ -38,7 +38,7 @@ const Product = () => {
   // Feature card component
   const FeatureCard = ({ title, content }) => (
     <ModernCard 
-      className="feature-card"
+      className="feature-card glass soft-border hover-float"
       title={title}
       variant="elevated"
       hoverEffect="lift"
@@ -50,16 +50,16 @@ const Product = () => {
   return (
     <div>
       <Header />
-      <section className="product-hero page-section">
-        <div className="container">
-          <div className="product-hero-content">
+      <section className="product-hero page-section hero hero-brand">
+        <div className="container hero-shell">
+          <div className="product-hero-content hero-text">
             <h1>Alayn: India's Comprehensive Life Guide</h1>
             <p>A holistic wellness platform that bridges traditional Indian wisdom with modern therapeutic approaches, designed specifically for the diverse needs of Indian communities.</p>
           </div>
         </div>
       </section>
 
-      <section className="features">
+      <section className="features brand-section">
         <div className="container">
           <h2 className="section-title center-title">Core Features</h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
@@ -92,7 +92,7 @@ const Product = () => {
         </div>
       </section>
 
-      <section className="accessibility">
+      <section className="accessibility brand-section">
         <div className="container">
           <h2 className="section-title center-title">Built for Every Indian</h2>
           <p className="section-subtitle">Designed with India's diverse landscape in mind, ensuring mental wellness support reaches every corner of the country.</p>
@@ -117,7 +117,7 @@ const Product = () => {
         </div>
       </section>
 
-      <section className="mission">
+      <section className="mission brand-section">
         <div className="container">
           <h2 className="section-title center-title">Addressing India's Mental Health Challenge</h2>
           <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
