@@ -3,8 +3,6 @@ import Footer from "../components/Footer.jsx";
 import JobModal from "../components/JobModal.jsx";
 import JobDetailsModal from "../components/JobDetailsModal.jsx";
 import Header from "../components/Header.jsx";
-import ModernCard from "../components/ModernCard.jsx";
-import "../styles/modern-card.css";
 
 const Careers = ({ initialJobs = [] }) => {
   const [jobs, setJobs] = useState(initialJobs);
@@ -15,13 +13,16 @@ const Careers = ({ initialJobs = [] }) => {
   const jobsGridRef = useRef(null);
   const scrollTimeoutRef = useRef(null);
 
+  const enableJobs = String(import.meta.env.VITE_ENABLE_JOBS || '').toLowerCase() === 'true';
+
   useEffect(() => {
+    if (!enableJobs) return;
     if (initialJobs.length) return;
     fetch('/data/jobs.json')
       .then(res => res.json())
       .then(data => setJobs(data.jobs))
       .catch(err => console.error('Failed to load jobs', err));
-  }, [initialJobs]);
+  }, [initialJobs, enableJobs]);
 
   // Calculate number of dots based on visible cards
   const updateDots = useCallback(() => {
@@ -103,7 +104,7 @@ const Careers = ({ initialJobs = [] }) => {
   // Setup event listeners and initial state
   useEffect(() => {
     const container = jobsGridRef.current;
-    if (!container) return;
+    if (!enableJobs || !container) return;
     
     const handleResize = () => {
       updateDots();
@@ -142,7 +143,7 @@ const Careers = ({ initialJobs = [] }) => {
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [updateDots, handleScroll, handleScrollEnd]);
+  }, [updateDots, handleScroll, handleScrollEnd, enableJobs]);
 
   return (
     <div className="careers-page">
@@ -154,108 +155,119 @@ const Careers = ({ initialJobs = [] }) => {
               <h1>Shape the Future of Human Wellness</h1>
               <p>Join Alelken in building transformative technology solutions that enhance human potential and create meaningful impact across diverse communities. We're seeking exceptional talent to help us redefine how technology serves humanity.</p>
             </div>
+            <div className="hero-media-card" aria-hidden="true">
+              <img src="/assets/images/mental_wellness.jpg" alt="Mental Wellness" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
           </div>
         </section>
 
         <section className="company-culture brand-section">
-        <div className="container">
-          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Culture & Values</span></h2>
-          <p className="section-subtitle">At Alelken, we foster an environment where innovation meets purpose, and every team member contributes to our mission of human-centered technology development.</p>
-          <div className="culture-grid">
-            <div className="culture-item">
-              <i className="fas fa-lightbulb culture-icon" aria-hidden="true" />
-              <h3>Innovation-Driven</h3>
-              <p>We encourage creative problem-solving and cutting-edge approaches to complex challenges in wellness technology.</p>
-            </div>
-            <div className="culture-item gradient-border">
-              <i className="fas fa-heart culture-icon" aria-hidden="true" />
-              <h3>Purpose-Oriented</h3>
-              <p>Every project and decision is guided by our commitment to improving human wellbeing and creating positive societal impact.</p>
-            </div>
-            <div className="culture-item gradient-border">
-              <i className="fas fa-users culture-icon" aria-hidden="true" />
-              <h3>Collaborative Excellence</h3>
-              <p>We believe in the power of diverse perspectives and cross-functional collaboration to achieve extraordinary results.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section brand-section">
-        <div className="container">
-          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Why Choose Alelken</span></h2>
-          <p className="section-subtitle">We offer more than just a career—we provide a platform for professional growth, meaningful work, and the opportunity to shape the future of wellness technology.</p>
-            <div className="benefits-grid">
-              <ModernCard className="benefit-card" title="Impactful Work" variant="elevated" hoverEffect="lift">
-                Contribute to solutions that directly improve lives and address real-world challenges in human wellness and personal development.
-              </ModernCard>
-              <ModernCard className="benefit-card" title="Professional Development" variant="elevated" hoverEffect="lift">
-                Access to cutting-edge training, conferences, certifications, and mentorship programs to accelerate your career growth.
-              </ModernCard>
-              <ModernCard className="benefit-card" title="Flexible Environment" variant="elevated" hoverEffect="lift">
-                Hybrid work models, flexible scheduling, and a results-oriented culture that prioritizes productivity and work-life integration.
-              </ModernCard>
-              <ModernCard className="benefit-card" title="Competitive Package" variant="elevated" hoverEffect="lift">
-                Comprehensive benefits including health coverage, equity participation, performance bonuses, and wellness programs.
-              </ModernCard>
-              <ModernCard className="benefit-card" title="Innovation Freedom" variant="elevated" hoverEffect="lift">
-                Autonomy to explore new ideas, experiment with emerging technologies, and contribute to product strategy and development.
-              </ModernCard>
-              <ModernCard className="benefit-card" title="Diverse Community" variant="elevated" hoverEffect="lift">
-                Work alongside talented professionals from varied backgrounds, fostering an inclusive environment that celebrates different perspectives.
-              </ModernCard>
-          </div>
-        </div>
-      </section>
-
-      <section className="jobs-section brand-section">
-        <div className="container">
-          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Current Opportunities</span></h2>
-          <p className="section-subtitle">Explore our open positions across engineering, design, business development, and operations. Find the role that aligns with your expertise and career aspirations.</p>
-          <div className="jobs-container">
-            <div className="jobs-grid" ref={jobsGridRef}>
-                {jobs.map(job => (
-                  <div key={job.id} className="job-card">
-                    <h3>{job.title}</h3>
-                  <div className="job-meta">
-                    <span><i className="fas fa-map-marker-alt" />{job.location}</span>
-                    <span><i className="fas fa-clock" />{job.type}</span>
-                  </div>
-                  <p>{job.description}</p>
-                  <button className="btn cta-button hover-float" onClick={() => setSelectedJob(job)}>
-                    View Details
-                  </button>
-                </div>
-              ))}
-            </div>
-            
-            {/* Scroll dots navigation - only visible on mobile */}
-            {dotCount > 1 && (
-              <div className="scroll-dots" style={{ display: 'none' }}>
-                {Array.from({ length: dotCount }).map((_, index) => (
-                  <button
-                    key={index}
-                    className={`scroll-dot ${index === activeDot ? 'active' : ''}`}
-                    onClick={() => scrollToDot(index)}
-                    aria-label={`Go to job card ${index + 1} of ${dotCount}`}
-                  />
-                ))}
+          <div className="container">
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Culture & Values</span></h2>
+            <p className="section-subtitle">At Alelken, we foster an environment where innovation meets purpose, and every team member contributes to our mission of human-centered technology development.</p>
+            <div className="culture-grid">
+              <div className="culture-item">
+                <i className="fas fa-lightbulb culture-icon" aria-hidden="true" />
+                <h3>Innovation-Driven</h3>
+                <p>We encourage creative problem-solving and cutting-edge approaches to complex challenges in wellness technology.</p>
               </div>
-            )}
+              <div className="culture-item gradient-border">
+                <i className="fas fa-heart culture-icon" aria-hidden="true" />
+                <h3>Purpose-Oriented</h3>
+                <p>Every project and decision is guided by our commitment to improving human wellbeing and creating positive societal impact.</p>
+              </div>
+              <div className="culture-item gradient-border">
+                <i className="fas fa-users culture-icon" aria-hidden="true" />
+                <h3>Collaborative Excellence</h3>
+                <p>We believe in the power of diverse perspectives and cross-functional collaboration to achieve extraordinary results.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="join-mission brand-section">
-        <div className="container">
-          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Ready to Make an Impact?</span></h2>
-          <p className="section-subtitle">If you're passionate about using technology to solve meaningful problems and want to be part of a team that's building the future of human wellness, we'd love to hear from you.</p>
-          <div className="mission-cta">
-            <p>Don't see the perfect role? We're always interested in connecting with exceptional talent who share our vision.</p>
-            <a href="mailto:support@alelken.com" className="cta-button hover-float">Get in Touch</a>
+        <section className="benefits-section brand-section">
+          <div className="container">
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Why Choose Alelken</span></h2>
+            <p className="section-subtitle">We offer more than just a career—we provide a platform for professional growth, meaningful work, and the opportunity to shape the future of wellness technology.</p>
+            <div className="benefits-grid">
+              <div className="benefit-card">
+                <h3>Impactful Work</h3>
+                <p>Contribute to solutions that directly improve lives and address real-world challenges in human wellness and personal development.</p>
+              </div>
+              <div className="benefit-card">
+                <h3>Professional Development</h3>
+                <p>Access to cutting-edge training, conferences, certifications, and mentorship programs to accelerate your career growth.</p>
+              </div>
+              <div className="benefit-card">
+                <h3>Flexible Environment</h3>
+                <p>Hybrid work models, flexible scheduling, and a results-oriented culture that prioritizes productivity and work-life integration.</p>
+              </div>
+              <div className="benefit-card">
+                <h3>Competitive Package</h3>
+                <p>Comprehensive benefits including health coverage, equity participation, performance bonuses, and wellness programs.</p>
+              </div>
+              <div className="benefit-card">
+                <h3>Innovation Freedom</h3>
+                <p>Autonomy to explore new ideas, experiment with emerging technologies, and contribute to product strategy and development.</p>
+              </div>
+              <div className="benefit-card">
+                <h3>Diverse Community</h3>
+                <p>Work alongside talented professionals from varied backgrounds, fostering an inclusive environment that celebrates different perspectives.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {enableJobs && (
+          <section className="jobs-section brand-section">
+            <div className="container">
+              <h2 className="section-title center-title no-bar"><span className="doodle-underline">Current Opportunities</span></h2>
+              <p className="section-subtitle">Explore our open positions across engineering, design, business development, and operations. Find the role that aligns with your expertise and career aspirations.</p>
+              <div className="jobs-container">
+                <div className="jobs-grid" ref={jobsGridRef}>
+                  {jobs.map(job => (
+                    <div key={job.id} className="job-card">
+                      <h3>{job.title}</h3>
+                      <div className="job-meta">
+                        <span><i className="fas fa-map-marker-alt" />{job.location}</span>
+                        <span><i className="fas fa-clock" />{job.type}</span>
+                      </div>
+                      <p>{job.description}</p>
+                      <button className="btn cta-button hover-float" onClick={() => setSelectedJob(job)}>
+                        View Details
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Scroll dots navigation - only visible on mobile */}
+                {dotCount > 1 && (
+                  <div className="scroll-dots" style={{ display: 'none' }}>
+                    {Array.from({ length: dotCount }).map((_, index) => (
+                      <button
+                        key={index}
+                        className={`scroll-dot ${index === activeDot ? 'active' : ''}`}
+                        onClick={() => scrollToDot(index)}
+                        aria-label={`Go to job card ${index + 1} of ${dotCount}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section className="join-mission brand-section">
+          <div className="container">
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Ready to Make an Impact?</span></h2>
+            <p className="section-subtitle">If you're passionate about using technology to solve meaningful problems and want to be part of a team that's building the future of human wellness, we'd love to hear from you.</p>
+            <div className="mission-cta">
+              <p>Don't see the perfect role? We're always interested in connecting with exceptional talent who share our vision.</p>
+              <a href="mailto:support@alelken.com" className="cta-button hover-float">Get in Touch</a>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

@@ -120,7 +120,7 @@ const Home = () => {
       </section>
       <section id="philosophy" className="section philosophy brand-section">
         <div className="container">
-          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Philosophy</span></h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Vision</span></h2>
           <p className="section-subtitle">We believe technology should enhance human potential without overwhelming it. Our approach is grounded in three core principles that guide everything we build:</p>
           <div className="philosophy-list">
             <div className="principle-row">

@@ -666,7 +666,7 @@ header nav {
 }
 
 .logo img, .nav-logo {
-  height: 40px;
+  height: 48px;
   width: auto;
   transition: all 0.3s ease;
 }
@@ -676,17 +676,17 @@ header nav {
 }
 
 .nav-logo {
-  height: 40px;
+  height: 48px;
   width: auto;
   transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
   .nav-logo {
-    height: 36px;
+    height: 40px;
   }
   .mobile-nav .nav-logo {
-    height: 32px;
+    height: 34px;
     margin: 0.5rem 0;
   }
 }
@@ -3769,7 +3769,7 @@ body.dark .footer {
     }
     
     .nav-logo {
-        height: 40px;
+        height: 48px;
         width: auto;
         transition: height 0.3s ease;
     }
@@ -4737,4 +4737,287 @@ body.dark .back-btn:hover {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ==============================
+   Product page unique styling
+   Scoped: .product-page
+   ============================== */
+.product-page .features .container { max-width: 1100px; }
+
+/* Desktop/tablet grid */
+.product-page .product-features-desktop { display: block; }
+.product-page .product-features-mobile { display: none; }
+
+.product-page .features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 36px;
+  counter-reset: feat;
+}
+
+.product-page .feature-block {
+  position: relative;
+  padding-left: 28px;
+  border-left: none;
+}
+
+.product-page .feature-block::before {
+  counter-increment: feat;
+  content: counter(feat, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--brand-accent, #FFD700);
+  transform: none;
+}
+
+.product-page .feature-block-title {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  letter-spacing: 0.2px;
+}
+
+.product-page .feature-block-desc {
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+/* Subtle separators only between rows */
+.product-page .features-grid .feature-block {
+  background: none;
+  box-shadow: none;
+}
+
+/* Mobile: accordion list */
+@media (max-width: 820px) {
+  .product-page .product-features-desktop { display: none; }
+  .product-page .product-features-mobile { display: block; }
+
+  .product-page .product-accordion {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .product-page .product-accordion-item {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 10px 0;
+  }
+  .product-page .product-accordion-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+  }
+  .product-page .product-accordion-summary::-webkit-details-marker { display: none; }
+  .product-page .product-accordion-item[open] .chevron { transform: rotate(90deg); }
+  .product-page .product-accordion .chevron {
+    transition: transform 220ms ease;
+    opacity: 0.8;
+    font-size: 1.2rem;
+  }
+  .product-page .product-accordion-content { padding: 6px 0 12px; opacity: 0.95; line-height: 1.7; }
+}
+
+/* ==============================
+   Careers page minimalist benefits
+   Scoped: .careers-page
+   ============================== */
+.careers-page .benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px 32px;
+}
+
+.careers-page .benefit-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+.careers-page .benefit-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  background: linear-gradient(180deg, var(--brand-accent, #FFD700), rgba(255,215,0,0.2));
+  border-radius: 2px;
+}
+
+.careers-page .benefit-card h3 { margin: 0 0 6px 0; font-size: 1.1rem; }
+.careers-page .benefit-card p { margin: 0; opacity: 0.92; line-height: 1.65; }
+
+@media (max-width: 1024px) {
+  .careers-page .benefits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .careers-page .benefits-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ==============================
+   Product page: Accessibility section (no cards)
+   Scoped: .product-page
+   ============================== */
+.product-page .accessibility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 30px;
+}
+.product-page .accessibility-feature {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  position: relative;
+  padding-left: 18px;
+}
+.product-page .accessibility-feature::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--brand-accent, #FFD700), rgba(255,215,0,0.2));
+  opacity: 0.9;
+  border-radius: 2px;
+}
+.product-page .accessibility-feature h3 { margin: 0 0 6px 0; font-size: 1.1rem; }
+.product-page .accessibility-feature p { margin: 0; opacity: 0.92; line-height: 1.65; }
+
+@media (max-width: 1024px) {
+  .product-page .accessibility-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .product-page .accessibility-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ==============================
+   Careers page: Culture section (remove boxy borders)
+   Scoped: .careers-page
+   ============================== */
+.careers-page .culture-item {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.careers-page .culture-item.gradient-border::before {
+  display: none !important;
+}
+.careers-page .culture-grid { gap: 2.5rem; }
+
+/* ==============================
+   Product page: Mission section (unique connected timeline)
+   Scoped: .product-page
+   ============================== */
+.product-page .mission .mission-stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 36px;
+  counter-reset: missionStep;
+  padding-top: 44px; /* more space for larger badges */
+}
+
+/* Horizontal connector line */
+.product-page .mission .mission-stats::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 4px; /* thicker connector */
+  background: linear-gradient(90deg, rgba(255,215,0,0.45), rgba(255,215,0,0.18));
+  z-index: 0; /* behind badges */
+}
+
+/* Individual stat item */
+.product-page .mission .stat {
+  position: relative;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 2px 8px 0 8px;
+  text-align: center;
+}
+
+/* Decorative numbered badge above each stat */
+.product-page .mission .stat::before {
+  counter-increment: missionStep;
+  content: counter(missionStep, decimal-leading-zero);
+  position: absolute;
+  top: 20px; /* align math with connector position */
+  left: 50%;
+  transform: translate(-50%, -185%);
+  font-weight: 800;
+  font-size: 0.95rem; /* larger badge text */
+  color: var(--brand-accent, #FFD700);
+  letter-spacing: 0.6px;
+  padding: 5px 16px; /* larger pill */
+  border-radius: 999px;
+  background: var(--page-bg, #ffffff); /* opaque to mask connector */
+  box-shadow: 0 0 0 1px rgba(255,215,0,0.45) inset, 0 1px 2px rgba(0,0,0,0.04);
+  z-index: 2; /* above cover and connector */
+}
+
+/* Dark mode badge surface */
+body.dark .product-page .mission .stat::before {
+  background: var(--surface-800, #0b0d12);
+  box-shadow: 0 0 0 1px rgba(255,215,0,0.55) inset, 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Dot markers aligned to the connector */
+/* Cover to mask the connector under the badge so the line appears behind */
+.product-page .mission .stat::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px; /* calibrated to exceed badge by ~10px */
+  height: 18px; /* comfortably covers 4px connector */
+  border-radius: 999px;
+  /* Match brand-section background to seamlessly cover the connector */
+  background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(255,215,0,0.04) 100%);
+  z-index: 1; /* between connector and badge */
+  pointer-events: none;
+}
+
+/* Dark mode: match darker brand section background for seamless masking */
+body.dark .product-page .mission .stat::after {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,215,0,0.08) 100%);
+}
+
+.product-page .mission .stat h3 {
+  margin: 16px 0 6px 0; /* extra room under larger badges */
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.product-page .mission .stat p {
+  margin: 0 auto;
+  max-width: 38ch;
+  opacity: 0.92;
+  line-height: 1.65;
+}
+
+/* Responsive: stack and hide connector */
+@media (max-width: 900px) {
+  .product-page .mission .mission-stats {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-top: 0;
+  }
+  .product-page .mission .mission-stats::before { display: none; }
+  .product-page .mission .stat::before { top: 0; left: 0; transform: none; }
+  .product-page .mission .stat::after { display: none; }
 }
