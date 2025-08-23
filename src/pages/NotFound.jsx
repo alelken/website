@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; // eslint-disable-line no-unused-vars
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
 
 const NotFound = () => {
   return (
@@ -114,10 +116,11 @@ const NotFound = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 2rem 1rem;
+          /* Add extra top padding to account for fixed header height */
+          padding: 6rem 1rem 2rem 1rem;
           
           @media (min-width: 768px) {
-            padding: 3rem 1rem;
+            padding: 7rem 1rem 3rem 1rem;
           }
         }
         .not-found-content {
@@ -206,6 +209,7 @@ const NotFound = () => {
           border-radius: 0.5rem;
         }
       `}</style>
+      <Header />
       <div className="not-found-container">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -242,7 +246,6 @@ const NotFound = () => {
             </Link>
           </motion.div>
         </motion.div>
-        
         <div className="not-found-decor">
           {[...Array(4)].map((_, i) => (
             <motion.div
@@ -255,6 +258,7 @@ const NotFound = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

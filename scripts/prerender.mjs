@@ -119,7 +119,7 @@ for (const url of routes) {
       '/careers': ['/assets/images/mental_wellness.jpg'],
     }
     const links = (imagePreloads[url] || [])
-      .map(src => `<link rel="preload" as="image" href="${src}" imagesrcset="${src}" fetchpriority="high">`)
+      .map(src => `<link rel="preload" as="image" href="${src}" imagesrcset="${src}" fetchPriority="high">`)
       .join('')
     if (links) {
       html = html.replace('</head>', `${links}</head>`)

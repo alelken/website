@@ -93,7 +93,7 @@ const Home = () => {
           </div>
           <div className="hero-media-card glass soft-border">
             {/* Static hero illustration (no floating) */}
-            <img src="/assets/images/connected_world.svg" alt="Connected world" loading="eager" decoding="async" fetchpriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
+            <img src="/assets/images/connected_world.svg" alt="Connected world" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
         </div>
       </section>

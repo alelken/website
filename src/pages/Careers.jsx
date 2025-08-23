@@ -156,7 +156,7 @@ const Careers = ({ initialJobs = [] }) => {
               <p>Join Alelken in building transformative technology solutions that enhance human potential and create meaningful impact across diverse communities. We're seeking exceptional talent to help us redefine how technology serves humanity.</p>
             </div>
             <div className="hero-media-card glass soft-border" aria-hidden="true">
-              <img src="/assets/images/mental_wellness.jpg" alt="Mental Wellness" loading="eager" decoding="async" fetchpriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/assets/images/mental_wellness.jpg" alt="Mental Wellness" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
         </section>
