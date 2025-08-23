@@ -49,7 +49,7 @@ const Product = () => {
             <p>Personalized tools that combine time-tested practices and proven therapy to help you thrive.</p>
           </div>
           <div className="hero-media-card glass soft-border" aria-hidden="true">
-            <img src="/assets/images/life_guide.jpg" alt="Alayn Life Guide" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/assets/images/life_guide.svg" alt="Alayn Life Guide" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
