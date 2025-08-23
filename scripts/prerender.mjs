@@ -21,19 +21,7 @@ if (typeof globalThis.Request === 'undefined') {
 const { render } = await import('../dist-ssr/entry-server.js')
 
 // Base routes to prerender
-const routes = new Set(['/', '/product', '/about', '/careers', '/blog'])
-
-// Discover blog slugs from source (so SSG includes every post)
-try {
-  const postsDir = path.resolve(__dirname, '../src/posts')
-  const files = await fs.readdir(postsDir)
-  files
-    .filter(f => f.endsWith('.md'))
-    .map(f => f.replace(/\.md$/, ''))
-    .forEach(slug => routes.add(`/blog/${slug}`))
-} catch (e) {
-  console.warn('No posts directory found or unable to read posts:', e?.message)
-}
+const routes = new Set(['/', '/product', '/about', '/careers'])
 
 let hadErrors = false
 for (const url of routes) {
@@ -72,11 +60,6 @@ for (const url of routes) {
       '/careers': {
         title: 'Careers – Alelken',
         description: 'Join Alelken and help build thoughtful technology.',
-        image: '/assets/images/og-image.png',
-      },
-      '/blog': {
-        title: 'Blog – Alelken',
-        description: 'Insights and updates from the Alelken team.',
         image: '/assets/images/og-image.png',
       },
     }

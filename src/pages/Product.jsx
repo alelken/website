@@ -45,10 +45,10 @@ const Product = () => {
       <section className="product-hero page-section hero hero-brand">
         <div className="container hero-shell">
           <div className="product-hero-content hero-text">
-            <h1>Alayn: India's Comprehensive Life Guide</h1>
-            <p>A holistic wellness platform that bridges traditional Indian wisdom with modern therapeutic approaches, designed specifically for the diverse needs of Indian communities.</p>
+            <h1>Meet <span className="brand-highlight">Alayn</span>, Your Companion for Better Living</h1>
+            <p>Personalized tools that combine time-tested practices and proven therapy to help you thrive.</p>
           </div>
-          <div className="hero-media-card" aria-hidden="true">
+          <div className="hero-media-card glass soft-border" aria-hidden="true">
             <img src="/assets/images/life_guide.jpg" alt="Alayn Life Guide" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>

@@ -5,7 +5,6 @@ import About from './pages/About';
 import Product from './pages/Product';
 import Careers from './pages/Careers';
 import NotFound from './pages/NotFound';
-import Blog from './pages/Blog';
 
 // Export route elements for SSR
 const routeElements = (
@@ -14,8 +13,6 @@ const routeElements = (
     <Route path="about" element={<About />} />
     <Route path="product" element={<Product />} />
     <Route path="careers" element={<Careers />} />
-    <Route path="blog" element={<Blog />} />
-    <Route path="blog/:slug" element={<Blog />} />
     <Route path="*" element={<NotFound />} />
   </Route>
 );

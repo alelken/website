@@ -1031,6 +1031,17 @@ header nav {
   .logo img {
     height: 36px; /* Slightly smaller logo on mobile */
   }
+
+  /* Mobile nav should be fully opaque (no transparency or blur) */
+  .mobile-nav {
+    background: #ffffff !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 1 !important;
+  }
+  .mobile-nav-overlay {
+    background: #ffffff !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -4568,6 +4579,82 @@ body.dark .back-btn:hover {
   .hero-media-card { margin: 0 auto; }
 }
 
+/* Extra-small mobile: ensure full centering and spacing */
+@media (max-width: 640px) {
+  .hero.hero-brand { padding-top: 8rem; padding-bottom: 3.5rem; }
+  .hero-shell { gap: 1.5rem; }
+  .hero-text, .hero .subtitle { text-align: center; }
+  .cta-group { justify-content: center; }
+  .hero-media-card { margin-left: auto; margin-right: auto; }
+}
+
+/* Stronger hero centering for Home (hero-brand) on mobile */
+@media (max-width: 1024px) {
+  .hero.hero-brand .hero-shell { justify-items: center; }
+  .hero.hero-brand .hero-text { text-align: center !important; margin-left: auto; margin-right: auto; }
+  .hero.hero-brand .hero-text .subtitle { text-align: center !important; }
+  .hero.hero-brand .cta-group { justify-content: center !important; }
+  .hero.hero-brand .hero-text h1 { text-align: center !important; }
+  .hero.hero-brand .hero-media-card { justify-self: center; }
+  .hero.hero-brand .hero-text, .hero.hero-brand .cta-group { justify-self: center; }
+  /* Ensure all inner hero text and buttons center on mobile */
+  .hero.hero-brand .hero-text > *,
+  .hero.hero-brand .cta-group > * {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero.hero-brand .hero-shell { justify-items: center; }
+  .hero.hero-brand .hero-text { text-align: center !important; }
+  .hero.hero-brand .cta-group { justify-content: center !important; }
+  .hero.hero-brand .hero-text h1 { text-align: center !important; }
+  .hero.hero-brand .hero-text .subtitle { margin-left: auto; margin-right: auto; }
+}
+
+/* Consolidate hamburger visibility to prevent flicker */
+.menu-button { display: none; }
+@media (max-width: 1023px) {
+  .menu-button { display: block !important; }
+  .nav-links { display: none !important; }
+}
+@media (min-width: 1024px) {
+  .menu-button { display: none !important; }
+  .nav-links { display: flex !important; }
+}
+
+/* Center all section headings on mobile */
+@media (max-width: 768px) {
+  .section-title,
+  .center-title,
+  h2.section-title,
+  .brand-section .section-title {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .section-subtitle,
+  .brand-section .section-subtitle {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 40ch;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+}
+
+/* Remove stray decorative elements that may flicker in mobile drawer */
+@media (max-width: 1023px) {
+  .mobile-nav .menu-button { display: none !important; }
+  .mobile-nav-underline { display: none !important; }
+  .close-nav span { display: none !important; }
+  /* Hide any stray buttons inside the drawer except the explicit close button */
+  .mobile-nav button:not(.close-nav) { display: none !important; }
+}
+
 /* =====================
    Performance Fallbacks
    ===================== */
@@ -4659,8 +4746,47 @@ body.dark .back-btn:hover {
 /* Responsive stacking for Focus split layout */
 @media (max-width: 768px) {
   .focus-item.split { grid-template-columns: 1fr; }
-  .focus-left { margin-bottom: 0.25rem; }
+  .focus-left {
+    margin-bottom: 0.25rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .focus-item .focus-title { text-align: center; }
+  .focus-item .focus-text { text-align: center; }
+  .icon-chip { margin: 0 auto; }
+
+  /* Our Vision (philosophy) mobile centering */
+  .philosophy-list .principle-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .principle-title, .principle-text { text-align: center; }
+  .philosophy-list .principle-title { margin: 0.25rem auto 0.5rem; }
+  .philosophy-list .principle-text { margin: 0 auto !important; max-width: 38ch; font-size: 0.95rem; line-height: 1.6; text-align: center !important; }
+  .philosophy-list .principle-row > .icon-chip { margin: 0 auto 8px; }
+  .philosophy-list .principle-row > div { width: 100%; }
+
+  /* Current Focus readability tweaks */
+  .focus-item .focus-text { max-width: 38ch; margin-left: auto !important; margin-right: auto !important; font-size: 0.95rem; line-height: 1.6; text-align: center !important; }
+
+  /* Title sizing tweaks for mobile */
+  .focus-item .focus-title,
+  .philosophy-list .principle-title {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  /* Section subtitle spacing */
+  .section-subtitle,
+  .brand-section .section-subtitle {
+    margin-bottom: 1.25rem;
+  }
 }
+
 .principle-row {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -4695,15 +4821,21 @@ body.dark .back-btn:hover {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: 0;
   transform: translateX(-50%);
-  width: 88%;
+  bottom: 0;
+  width: 120px;
   height: 12px;
+  background: url('/assets/images/doodle_underline.svg') no-repeat center/contain;
+}
+
+/* Brand text highlight utilities */
+.brand-highlight { color: var(--brand-accent, #FFD700); }
+.brand-underline {
+  background-image: linear-gradient(180deg, rgba(255,215,0,0) 65%, rgba(255,215,0,0.32) 0);
+  background-size: 100% 1.05em;
+  background-position: 0 100%;
   background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: contain;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16'><path d='M2 10 Q 20 2 38 10 T 74 10 T 110 10' stroke='%23FFD700' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  opacity: 0.9;
+  border-radius: 4px;
 }
 
 /* Mobile adjustments: remove rail, widen spacing */
@@ -4902,18 +5034,71 @@ body.dark .back-btn:hover {
 }
 
 /* ==============================
-   Careers page: Culture section (remove boxy borders)
+   Careers page: Culture section refresh
    Scoped: .careers-page
    ============================== */
+.careers-page .culture-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 2.5rem;
+}
+
 .careers-page .culture-item {
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
+  text-align: center;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.22);
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
-.careers-page .culture-item.gradient-border::before {
-  display: none !important;
+
+.careers-page .culture-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.09);
+  border-color: rgba(255, 215, 0, 0.35);
 }
-.careers-page .culture-grid { gap: 2.5rem; }
+
+.careers-page .culture-item.gradient-border::before { display: none !important; }
+
+.careers-page .culture-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: rgba(255, 215, 0, 0.12);
+  color: #FFD700;
+  font-size: 24px;
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.08) inset;
+  margin-bottom: 14px;
+}
+
+.careers-page .culture-item h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 6px 0 8px 0;
+}
+
+.careers-page .culture-item p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 44ch;
+  margin: 0 auto;
+}
+
+/* Dark mode adjustments */
+body.dark .careers-page .culture-item {
+  background: linear-gradient(180deg, #0b0d12 0%, #0e1118 100%);
+  border-color: rgba(255, 215, 0, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+body.dark .careers-page .culture-icon {
+  background: rgba(255, 215, 0, 0.14);
+  color: #ffd700;
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.06) inset;
+}
 
 /* ==============================
    Product page: Mission section (unique connected timeline)
@@ -4978,23 +5163,12 @@ body.dark .product-page .mission .stat::before {
 /* Dot markers aligned to the connector */
 /* Cover to mask the connector under the badge so the line appears behind */
 .product-page .mission .stat::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110px; /* calibrated to exceed badge by ~10px */
-  height: 18px; /* comfortably covers 4px connector */
-  border-radius: 999px;
-  /* Match brand-section background to seamlessly cover the connector */
-  background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(255,215,0,0.04) 100%);
-  z-index: 1; /* between connector and badge */
-  pointer-events: none;
+  display: none; /* remove faint pill below numbers */
 }
 
 /* Dark mode: match darker brand section background for seamless masking */
 body.dark .product-page .mission .stat::after {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,215,0,0.08) 100%);
+  display: none; /* ensure removed in dark mode too */
 }
 
 .product-page .mission .stat h3 {
@@ -5018,6 +5192,21 @@ body.dark .product-page .mission .stat::after {
     padding-top: 0;
   }
   .product-page .mission .mission-stats::before { display: none; }
-  .product-page .mission .stat::before { top: 0; left: 0; transform: none; }
+  /* Center the numbered badge above the title */
+  .product-page .mission .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-page .mission .stat::before {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+  }
   .product-page .mission .stat::after { display: none; }
 }

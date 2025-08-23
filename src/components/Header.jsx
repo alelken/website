@@ -184,24 +184,17 @@ const Header = () => {
         </nav>
       </header>
       
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Drawer (no overlay, solid background) */}
       <AnimatePresence>
         {isOpen && isMobile && (
           <>
             <motion.div 
-              className="mobile-nav-overlay visible"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={toggleMenu}
-            />
-            <motion.div 
               ref={menuRef}
-              className={`mobile-nav solid-panel gradient-border ${isOpen ? 'visible' : ''}`}
+              className={`mobile-nav ${isOpen ? 'visible' : ''}`}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 380, damping: 34 }}
               style={{ opacity }}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}

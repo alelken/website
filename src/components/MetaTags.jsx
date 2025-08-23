@@ -19,11 +19,6 @@ const pageSpecificMeta = {
     description: 'Join our team and help build technology solutions that enhance human wellbeing and personal development.',
     image: '/assets/images/android-chrome-512x512.png',
   },
-  '/blog': {
-    title: 'Blog | Alelken',
-    description: 'Insights and updates about wellness technology, personal development, and our journey in building human-centered solutions.',
-    image: '/assets/images/android-chrome-512x512.png',
-  },
 };
 
 export default function MetaTags() {
