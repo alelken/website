@@ -8,7 +8,6 @@ import "../styles/modern-card.css";
 
 const Careers = ({ initialJobs = [] }) => {
   const [jobs, setJobs] = useState(initialJobs);
-  const [expanded, setExpanded] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [applyingJob, setApplyingJob] = useState(null);
   const [activeDot, setActiveDot] = useState(0);
@@ -160,20 +159,20 @@ const Careers = ({ initialJobs = [] }) => {
 
         <section className="company-culture brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Our Culture & Values</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Culture & Values</span></h2>
           <p className="section-subtitle">At Alelken, we foster an environment where innovation meets purpose, and every team member contributes to our mission of human-centered technology development.</p>
           <div className="culture-grid">
-            <div className="culture-item glass soft-border hover-float">
+            <div className="culture-item">
               <i className="fas fa-lightbulb culture-icon" aria-hidden="true" />
               <h3>Innovation-Driven</h3>
               <p>We encourage creative problem-solving and cutting-edge approaches to complex challenges in wellness technology.</p>
             </div>
-            <div className="culture-item glass gradient-border hover-float">
+            <div className="culture-item gradient-border">
               <i className="fas fa-heart culture-icon" aria-hidden="true" />
               <h3>Purpose-Oriented</h3>
               <p>Every project and decision is guided by our commitment to improving human wellbeing and creating positive societal impact.</p>
             </div>
-            <div className="culture-item glass gradient-border hover-float">
+            <div className="culture-item gradient-border">
               <i className="fas fa-users culture-icon" aria-hidden="true" />
               <h3>Collaborative Excellence</h3>
               <p>We believe in the power of diverse perspectives and cross-functional collaboration to achieve extraordinary results.</p>
@@ -184,40 +183,40 @@ const Careers = ({ initialJobs = [] }) => {
 
       <section className="benefits-section brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Why Choose Alelken</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Why Choose Alelken</span></h2>
           <p className="section-subtitle">We offer more than just a career—we provide a platform for professional growth, meaningful work, and the opportunity to shape the future of wellness technology.</p>
-          <div className="benefits-grid">
-            <ModernCard className="benefit-card glass soft-border hover-float" title="Impactful Work" variant="elevated" hoverEffect="lift">
-              Contribute to solutions that directly improve lives and address real-world challenges in human wellness and personal development.
-            </ModernCard>
-            <ModernCard className="benefit-card glass soft-border hover-float" title="Professional Development" variant="elevated" hoverEffect="lift">
-              Access to cutting-edge training, conferences, certifications, and mentorship programs to accelerate your career growth.
-            </ModernCard>
-            <ModernCard className="benefit-card glass soft-border hover-float" title="Flexible Environment" variant="elevated" hoverEffect="lift">
-              Hybrid work models, flexible scheduling, and a results-oriented culture that prioritizes productivity and work-life integration.
-            </ModernCard>
-            <ModernCard className="benefit-card glass soft-border hover-float" title="Competitive Package" variant="elevated" hoverEffect="lift">
-              Comprehensive benefits including health coverage, equity participation, performance bonuses, and wellness programs.
-            </ModernCard>
-            <ModernCard className="benefit-card glass soft-border hover-float" title="Innovation Freedom" variant="elevated" hoverEffect="lift">
-              Autonomy to explore new ideas, experiment with emerging technologies, and contribute to product strategy and development.
-            </ModernCard>
-            <ModernCard className="benefit-card glass soft-border hover-float" title="Diverse Community" variant="elevated" hoverEffect="lift">
-              Work alongside talented professionals from varied backgrounds, fostering an inclusive environment that celebrates different perspectives.
-            </ModernCard>
+            <div className="benefits-grid">
+              <ModernCard className="benefit-card" title="Impactful Work" variant="elevated" hoverEffect="lift">
+                Contribute to solutions that directly improve lives and address real-world challenges in human wellness and personal development.
+              </ModernCard>
+              <ModernCard className="benefit-card" title="Professional Development" variant="elevated" hoverEffect="lift">
+                Access to cutting-edge training, conferences, certifications, and mentorship programs to accelerate your career growth.
+              </ModernCard>
+              <ModernCard className="benefit-card" title="Flexible Environment" variant="elevated" hoverEffect="lift">
+                Hybrid work models, flexible scheduling, and a results-oriented culture that prioritizes productivity and work-life integration.
+              </ModernCard>
+              <ModernCard className="benefit-card" title="Competitive Package" variant="elevated" hoverEffect="lift">
+                Comprehensive benefits including health coverage, equity participation, performance bonuses, and wellness programs.
+              </ModernCard>
+              <ModernCard className="benefit-card" title="Innovation Freedom" variant="elevated" hoverEffect="lift">
+                Autonomy to explore new ideas, experiment with emerging technologies, and contribute to product strategy and development.
+              </ModernCard>
+              <ModernCard className="benefit-card" title="Diverse Community" variant="elevated" hoverEffect="lift">
+                Work alongside talented professionals from varied backgrounds, fostering an inclusive environment that celebrates different perspectives.
+              </ModernCard>
           </div>
         </div>
       </section>
 
       <section className="jobs-section brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Current Opportunities</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Current Opportunities</span></h2>
           <p className="section-subtitle">Explore our open positions across engineering, design, business development, and operations. Find the role that aligns with your expertise and career aspirations.</p>
           <div className="jobs-container">
             <div className="jobs-grid" ref={jobsGridRef}>
-              {jobs.map(job => (
-                <div key={job.id} className="job-card glass soft-border hover-float">
-                  <h3>{job.title}</h3>
+                {jobs.map(job => (
+                  <div key={job.id} className="job-card">
+                    <h3>{job.title}</h3>
                   <div className="job-meta">
                     <span><i className="fas fa-map-marker-alt" />{job.location}</span>
                     <span><i className="fas fa-clock" />{job.type}</span>
@@ -249,7 +248,7 @@ const Careers = ({ initialJobs = [] }) => {
 
       <section className="join-mission brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Ready to Make an Impact?</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Ready to Make an Impact?</span></h2>
           <p className="section-subtitle">If you're passionate about using technology to solve meaningful problems and want to be part of a team that's building the future of human wellness, we'd love to hear from you.</p>
           <div className="mission-cta">
             <p>Don't see the perfect role? We're always interested in connecting with exceptional talent who share our vision.</p>

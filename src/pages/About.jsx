@@ -39,12 +39,12 @@ const About = () => {
       <section className="about-values brand-section">
         <div className="container">
           <div className="about-content">
-            <h2 className="section-title center-title">Who We Are</h2>
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Who We Are</span></h2>
             <p className="section-subtitle">Alelken is founded on the belief that technology should serve humanity's highest potential. We're a team of builders, thinkers, and problem-solvers committed to creating solutions that prioritize human dignity, ethical innovation, and sustainable impact.</p>
           </div>
           <div className="about-grid" ref={aboutGridRef}>
             {aboutItems.map((item, i) => (
-              <ModernCard key={i} className="value-card glass soft-border hover-float" title={item.title} variant="elevated" hoverEffect="lift">
+              <ModernCard key={i} className="value-card" title={item.title} variant="elevated" hoverEffect="lift">
                 {item.content}
               </ModernCard>
             ))}
@@ -55,14 +55,14 @@ const About = () => {
       <section className="team-section brand-section">
         <div className="container">
           <div className="section-title center-title">
-            <h2>Meet Our Team</h2>
+            <h2 className="no-bar"><span className="doodle-underline">Meet Our Team</span></h2>
             <p>The passionate individuals behind Alelken, each bringing unique expertise to advance mental wellness through technology.</p>
           </div>
           <div className="team-grid" ref={teamGridRef}>
             {teamMembers.map((member, i) => (
-              <ModernCard 
-                key={i} 
-                className="team-card glass soft-border hover-float" 
+              <ModernCard
+                key={i}
+                className="team-card"
                 image={{ src: member.image, alt: member.name }}
                 title={member.name}
                 variant="elevated"

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
 import ModernCard from '../components/ModernCard.jsx';
@@ -6,7 +6,6 @@ import CardCarousel from '../components/CardCarousel.jsx';
 import "../styles/modern-card.css";
 
 const Product = () => {
-  const featuresGridRef = useRef(null);
   
   const featureItems = [
     {
@@ -37,8 +36,8 @@ const Product = () => {
   
   // Feature card component
   const FeatureCard = ({ title, content }) => (
-    <ModernCard 
-      className="feature-card glass soft-border hover-float"
+    <ModernCard
+      className="feature-card"
       title={title}
       variant="elevated"
       hoverEffect="lift"
@@ -61,7 +60,7 @@ const Product = () => {
 
       <section className="features brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Core Features</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Core Features</span></h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
 
           {/* Desktop/tablet: keep carousel */}
@@ -94,7 +93,7 @@ const Product = () => {
 
       <section className="accessibility brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Built for Every Indian</h2>
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Built for Every Indian</span></h2>
           <p className="section-subtitle">Designed with India's diverse landscape in mind, ensuring mental wellness support reaches every corner of the country.</p>
           <div className="accessibility-grid">
             <div className="accessibility-feature">
@@ -119,7 +118,7 @@ const Product = () => {
 
       <section className="mission brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Addressing India's Mental Health Challenge</h2>
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Addressing India's Mental Health Challenge</span></h2>
           <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
           <div className="mission-content">
             <div className="mission-stats">

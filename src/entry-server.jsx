@@ -4,7 +4,7 @@ import { createStaticHandler, createStaticRouter, StaticRouterProvider } from 'r
 import { createRoutesFromElements } from 'react-router-dom';
 import { routes } from './routes.jsx';
 
-export async function render(url, initialData = {}) {
+export async function render(url) {
   // Convert JSX route elements to route objects once
   const routeObjects = createRoutesFromElements(routes);
   const { query } = createStaticHandler(routeObjects);
