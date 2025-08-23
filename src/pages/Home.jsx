@@ -1,11 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faHandHoldingHeart, 
-  faBrain, 
-  faUsers, 
-  faChartLine,
-  faArrowRight
+import {
+  faHandHoldingHeart,
+  faBrain,
+  faUsers,
+  faChartLine
 } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
@@ -14,12 +13,7 @@ import ModernCard from "../components/ModernCard.jsx";
 import "../styles/modern-card.css";
 
 const Home = () => {
-  const featureCardsRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
   // Avoid accessing window during SSR; initialize safely and compute on client in useEffect
-  const [showDots, setShowDots] = useState(false);
-  const [totalCards, setTotalCards] = useState(4);
-  const [cardsPerView, setCardsPerView] = useState(1);
   
   const featureItems = [
     { 
@@ -57,19 +51,8 @@ const Home = () => {
     </ModernCard>
   );
 
-  // Handle window resize for responsive design
+  // Handle animations and smooth scrolling
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
-      setShowDots(isMobile);
-      setCardsPerView(isMobile ? 1 : 4);
-      
-      // Reset active index on desktop
-      if (!isMobile) {
-        setActiveIndex(0);
-      }
-    };
-
     // Smooth scroll for anchor links
     document.querySelectorAll("a[href^='#']").forEach(anchor => {
       anchor.addEventListener('click', e => {
@@ -85,84 +68,16 @@ const Home = () => {
         if (entry.isIntersecting) entry.target.classList.add('animate');
       });
     }, observerOptions) : null;
-    
+
     if (observer && typeof document !== 'undefined') {
       document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     }
 
-    // Initialize and add event listener for window resize
-    handleResize();
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-    }
-
     return () => {
       if (observer) observer.disconnect();
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', handleResize);
-      }
     };
   }, []);
 
-  // Handle scroll dot click
-  const handleDotClick = (index) => {
-    if (featureCardsRef.current) {
-      const container = featureCardsRef.current;
-      const cards = Array.from(container.children).filter(
-        child => child.classList && child.classList.contains('feature-card')
-      );
-      
-      if (cards[index]) {
-        const containerWidth = container.offsetWidth;
-        const card = cards[index];
-        const cardRect = card.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const scrollLeft = container.scrollLeft;
-        const cardLeft = cardRect.left - containerRect.left + scrollLeft;
-        const cardWidth = cardRect.width;
-        
-        // Calculate scroll position to center the card
-        const scrollPosition = cardLeft - (containerWidth / 2) + (cardWidth / 2);
-        
-        container.scrollTo({
-          left: scrollPosition,
-          behavior: 'smooth'
-        });
-        setActiveIndex(index);
-      }
-    }
-  };
-
-  // Handle scroll events to update active dot with debounce
-  const handleScroll = () => {
-    if (featureCardsRef.current && showDots) {
-      const container = featureCardsRef.current;
-      const cards = Array.from(container.children).filter(
-        child => child.classList && child.classList.contains('feature-card')
-      );
-      
-      // Find the card closest to the center
-      let closestCard = null;
-      let minDistance = Infinity;
-      const containerRect = container.getBoundingClientRect();
-      const containerCenter = containerRect.left + (containerRect.width / 2);
-      
-      cards.forEach((card, index) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.left + (cardRect.width / 2);
-        const distance = Math.abs(cardCenter - containerCenter);
-        
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = index;
-        }
-      });
-      
-      if (closestCard !== null && closestCard !== activeIndex) {
-        setActiveIndex(closestCard);
-      }
-    }
-  };
 
   return (
     <div>

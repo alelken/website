@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion'; // eslint-disable-line no-unused-vars
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 
 // Breakpoint for mobile/desktop view
@@ -15,7 +15,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
   const menuRef = useRef(null);
   const controls = useAnimation();
   const y = useMotionValue(0);
@@ -52,8 +51,6 @@ const Header = () => {
     
     if (newState) {
       controls.start('visible');
-    } else {
-      setActiveSubmenu(null);
     }
   }, [isMobile, isOpen, controls]);
   
@@ -143,8 +140,7 @@ const Header = () => {
                 <a 
                   href={item.path} 
                   className="nav-link hover-float"
-                  onMouseEnter={() => !isMobile && item.submenu && setActiveSubmenu(item.path)}
-                  onMouseLeave={() => !isMobile && setActiveSubmenu(null)}
+                  
                 >
                   {item.name}
                   {item.submenu && (
@@ -157,8 +153,7 @@ const Header = () => {
                 {item.submenu && !isMobile && (
                   <div 
                     className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-1 z-50 hidden group-hover:block"
-                    onMouseEnter={() => setActiveSubmenu(item.path)}
-                    onMouseLeave={() => setActiveSubmenu(null)}
+                    
                   >
                     {item.submenu.map((subItem) => (
                       <a

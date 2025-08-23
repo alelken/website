@@ -4,13 +4,6 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements } from 'r
 import './styles/main.css';
 import { routes } from './routes';
 
-// Initialize any client-side data
-const initialData = window.__INITIAL_DATA__ || {};
-
-// Clear the initial data from the window object
-delete window.__INITIAL_DATA__;
-
-
 // Create the router on client from route elements
 const router = createBrowserRouter(createRoutesFromElements(routes));
 

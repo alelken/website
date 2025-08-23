@@ -53,7 +53,7 @@ const Blog = () => {
     <div>
       <Header />
       <div className="container" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
-        <h1>Blog</h1>
+        <h1 className="section-title center-title no-bar"><span className="doodle-underline">Blog</span></h1>
         {active && (
           <div className="blog-post" style={{marginBottom: '2rem'}}>
             <button className="btn back-btn" onClick={() => {

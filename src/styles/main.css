@@ -2618,38 +2618,64 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 .value-card,
 .team-card,
 .benefit-card,
-.feature-card,
 .blog-card,
-.vision-item {
-    background: var(--gray-50) !important;
-    color: var(--gray-900) !important;
-    border-radius: 16px;
-    box-shadow: var(--shadow-md);
-    padding: 2.5rem;
-    min-width: 280px;
-    max-width: 400px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    text-align: left;
-    border: 1px solid var(--gray-200);
-    overflow-y: visible !important;
-    max-height: none !important;
+.vision-item,
+.value-card,
+.team-card,
+.job-card {
+    border-radius: 12px;
     transition: all 0.3s ease;
 }
 
-.team-card,
-.benefit-card {
-    scroll-snap-align: center;
-    background: var(--gray-50);
+/* About value cards */
+.value-card {
+    background: var(--neutral-white);
+    border-left: 4px solid var(--primary-gold);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
 }
 
-.feature-card {
-    padding: 2.5rem;
+/* About team cards */
+.team-card {
+    background: var(--primary-navy);
+    color: var(--neutral-white);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    scroll-snap-align: center;
+}
+
+/* Careers benefit cards */
+.benefit-card {
+    background: var(--neutral-white);
+    border: 2px dashed var(--primary-gold);
+    padding: 2rem;
+    scroll-snap-align: center;
+}
+
+/* Blog cards */
+.blog-card {
+    background: var(--neutral-white);
+    border: 1px solid var(--gray-200);
+    border-left: 4px solid var(--primary-gold);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Product feature cards */
+.features .feature-card {
     background: var(--gray-50);
-    border-radius: 20px;
+    border-top: 4px solid var(--primary-gold);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+/* Careers job cards */
+.job-card {
+    background: var(--gray-50);
+    border: 1px solid var(--primary-gold);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
 }
 
 /* Benefits Grid Layout */
@@ -2662,14 +2688,10 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 }
 
 .benefit-card {
-    background: var(--gray-50);
-    border-radius: 16px;
-    padding: 2rem;
     height: 100%;
-    transition: all 0.3s ease;
-    border: 1px solid var(--gray-200);
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-sm);
 }
 
 .benefit-card h3 {
@@ -2715,10 +2737,10 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
 .value-card:hover,
 .team-card:hover,
 .benefit-card:hover,
-.blog-card:hover {
+.blog-card:hover,
+.job-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
-    border-color: var(--primary-gold);
 }
 
 .value-card:hover::before,
@@ -2837,24 +2859,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div {
     flex-direction: column;
     height: 100%;
     min-height: 280px;
-    background: var(--primary-white);
-    border: 1px solid var(--gray-200);
-    border-radius: 12px;
-    padding: 1.75rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.job-card {
-    background: var(--primary-white);
-    border: 1px solid var(--gray-200);
-    border-radius: 12px;
-    padding: 1.75rem;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .job-card h3 {
