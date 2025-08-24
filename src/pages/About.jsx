@@ -28,18 +28,18 @@ const About = () => {
   return (
     <div>
       <Header />
-      <section className="about-hero">
-        <div className="container">
-          <div className="about-hero-content">
+      <section className="about-hero hero hero-brand">
+        <div className="container hero-shell">
+          <div className="about-hero-content hero-text">
             <h1>About Alelken</h1>
             <p>We're a team of passionate individuals dedicated to creating technology that positively impacts lives.</p>
           </div>
         </div>
       </section>
-      <section className="about-values">
+      <section className="about-values brand-section">
         <div className="container">
           <div className="about-content">
-            <h2 className="section-title center-title">Who We Are</h2>
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Who We Are</span></h2>
             <p className="section-subtitle">Alelken is founded on the belief that technology should serve humanity's highest potential. We're a team of builders, thinkers, and problem-solvers committed to creating solutions that prioritize human dignity, ethical innovation, and sustainable impact.</p>
           </div>
           <div className="about-grid" ref={aboutGridRef}>
@@ -52,17 +52,17 @@ const About = () => {
           <ScrollDots count={aboutItems.length} activeIndex={activeAboutIndex} />
         </div>
       </section>
-      <section className="team-section">
+      <section className="team-section brand-section">
         <div className="container">
           <div className="section-title center-title">
-            <h2>Meet Our Team</h2>
+            <h2 className="no-bar"><span className="doodle-underline">Meet Our Team</span></h2>
             <p>The passionate individuals behind Alelken, each bringing unique expertise to advance mental wellness through technology.</p>
           </div>
           <div className="team-grid" ref={teamGridRef}>
             {teamMembers.map((member, i) => (
-              <ModernCard 
-                key={i} 
-                className="team-card" 
+              <ModernCard
+                key={i}
+                className="team-card"
                 image={{ src: member.image, alt: member.name }}
                 title={member.name}
                 variant="elevated"

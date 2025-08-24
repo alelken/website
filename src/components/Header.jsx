@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion'; // eslint-disable-line no-unused-vars
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 
 // Breakpoint for mobile/desktop view
@@ -15,7 +15,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
   const menuRef = useRef(null);
   const controls = useAnimation();
   const y = useMotionValue(0);
@@ -52,8 +51,6 @@ const Header = () => {
     
     if (newState) {
       controls.start('visible');
-    } else {
-      setActiveSubmenu(null);
     }
   }, [isMobile, isOpen, controls]);
   
@@ -128,11 +125,11 @@ const Header = () => {
   
   return (
     <>
-      <header className={scrolled ? 'scrolled' : ''}>
+      <header className={`header-gradient glass ${scrolled ? 'scrolled' : ''}`}>
         <nav>
           <div className="logo">
             <a href="/" aria-label="Home">
-              <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo" />
+              <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo hover-float" />
             </a>
           </div>
           
@@ -142,9 +139,8 @@ const Header = () => {
               <div key={item.path} className="relative group">
                 <a 
                   href={item.path} 
-                  className="nav-link"
-                  onMouseEnter={() => !isMobile && item.submenu && setActiveSubmenu(item.path)}
-                  onMouseLeave={() => !isMobile && setActiveSubmenu(null)}
+                  className="nav-link hover-float"
+                  
                 >
                   {item.name}
                   {item.submenu && (
@@ -157,8 +153,7 @@ const Header = () => {
                 {item.submenu && !isMobile && (
                   <div 
                     className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-1 z-50 hidden group-hover:block"
-                    onMouseEnter={() => setActiveSubmenu(item.path)}
-                    onMouseLeave={() => setActiveSubmenu(null)}
+                    
                   >
                     {item.submenu.map((subItem) => (
                       <a
@@ -189,24 +184,17 @@ const Header = () => {
         </nav>
       </header>
       
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Drawer (no overlay, solid background) */}
       <AnimatePresence>
         {isOpen && isMobile && (
           <>
-            <motion.div 
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={toggleMenu}
-            />
             <motion.div 
               ref={menuRef}
               className={`mobile-nav ${isOpen ? 'visible' : ''}`}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 380, damping: 34 }}
               style={{ opacity }}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -231,7 +219,7 @@ const Header = () => {
                   <a 
                     key={item.path}
                     href={item.path}
-                    className="mobile-nav-link"
+                    className="mobile-nav-link hover-float"
                     onClick={toggleMenu}
                   >
                     {item.name}

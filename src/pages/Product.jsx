@@ -1,12 +1,8 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
-import ModernCard from '../components/ModernCard.jsx';
-import CardCarousel from '../components/CardCarousel.jsx';
-import "../styles/modern-card.css";
 
 const Product = () => {
-  const featuresGridRef = useRef(null);
   
   const featureItems = [
     {
@@ -35,42 +31,41 @@ const Product = () => {
     }
   ];
   
-  // Feature card component
-  const FeatureCard = ({ title, content }) => (
-    <ModernCard 
-      className="feature-card"
-      title={title}
-      variant="elevated"
-      hoverEffect="lift"
-    >
-      <p className="card-description">{content}</p>
-    </ModernCard>
+  // Render features in unique blocks (no card component)
+  const FeatureBlock = ({ title, content }) => (
+    <div className="feature-block">
+      <h3 className="feature-block-title">{title}</h3>
+      <p className="feature-block-desc">{content}</p>
+    </div>
   );
 
   return (
-    <div>
+    <div className="product-page">
       <Header />
-      <section className="product-hero page-section">
-        <div className="container">
-          <div className="product-hero-content">
-            <h1>Alayn: India's Comprehensive Life Guide</h1>
-            <p>A holistic wellness platform that bridges traditional Indian wisdom with modern therapeutic approaches, designed specifically for the diverse needs of Indian communities.</p>
+      <section className="product-hero page-section hero hero-brand">
+        <div className="container hero-shell">
+          <div className="product-hero-content hero-text">
+            <h1>Meet <span className="brand-highlight">Alayn</span>, Your Companion for Better Living</h1>
+            <p>Personalized tools that combine time-tested practices and proven therapy to help you thrive.</p>
+          </div>
+          <div className="hero-media-card glass soft-border" aria-hidden="true">
+            <img src="/assets/images/life_guide.svg" alt="Alayn Life Guide" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
 
-      <section className="features">
+      <section className="features brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Core Features</h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Core Features</span></h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
 
-          {/* Desktop/tablet: keep carousel */}
+          {/* Desktop/tablet: unique feature blocks grid */}
           <div className="product-features-desktop">
-            <CardCarousel 
-              items={featureItems}
-              cardComponent={FeatureCard}
-              className="features-carousel"
-            />
+            <div className="features-grid">
+              {featureItems.map((item, idx) => (
+                <FeatureBlock key={idx} title={item.title} content={item.content} />
+              ))}
+            </div>
           </div>
 
           {/* Mobile: simplified accordion list */}
@@ -92,9 +87,32 @@ const Product = () => {
         </div>
       </section>
 
-      <section className="accessibility">
+      <section className="mission brand-section">
         <div className="container">
-          <h2 className="section-title center-title">Built for Every Indian</h2>
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Addressing India's Mental Health Challenge</span></h2>
+          <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
+          <div className="mission-content">
+            <div className="mission-stats">
+              <div className="stat">
+                <h3>Cultural Relevance</h3>
+                <p>Integrating traditional Indian philosophical teachings and practices with modern evidence-based therapies for holistic wellness.</p>
+              </div>
+              <div className="stat">
+                <h3>Comprehensive Coverage</h3>
+                <p>Addressing stress, anxiety, depression, and social stigma through preventive care and sustained engagement programs.</p>
+              </div>
+              <div className="stat">
+                <h3>Measurable Impact</h3>
+                <p>Designed for meaningful outcomes with structured pathways that promote long-term behavioral change and personal growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="accessibility brand-section">
+        <div className="container">
+            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Built for Every Indian</span></h2>
           <p className="section-subtitle">Designed with India's diverse landscape in mind, ensuring mental wellness support reaches every corner of the country.</p>
           <div className="accessibility-grid">
             <div className="accessibility-feature">
@@ -112,29 +130,6 @@ const Product = () => {
             <div className="accessibility-feature">
               <h3>Privacy-First Approach</h3>
               <p>Complete data protection and anonymized insights in full compliance with India's Digital Personal Data Protection Act 2023, ensuring your personal journey remains confidential.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mission">
-        <div className="container">
-          <h2 className="section-title center-title">Addressing India's Mental Health Challenge</h2>
-          <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
-          <div className="mission-content">
-            <div className="mission-stats">
-              <div className="stat">
-                <h3>Cultural Relevance</h3>
-                <p>Integrating traditional Indian philosophical teachings and practices with modern evidence-based therapies for holistic wellness.</p>
-              </div>
-              <div className="stat">
-                <h3>Comprehensive Coverage</h3>
-                <p>Addressing stress, anxiety, depression, and social stigma through preventive care and sustained engagement programs.</p>
-              </div>
-              <div className="stat">
-                <h3>Measurable Impact</h3>
-                <p>Designed for meaningful outcomes with structured pathways that promote long-term behavioral change and personal growth.</p>
-              </div>
             </div>
           </div>
         </div>
