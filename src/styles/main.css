@@ -76,14 +76,7 @@ header.scrolled {
 }
 
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-gold);
-  transition: width var(--transition-speed) var(--transition-easing);
+  content: none;
 }
 
 .nav-link:hover,
@@ -93,9 +86,9 @@ header.scrolled {
   outline: none;
 }
 
-.nav-link:hover::after,
-.nav-link:focus::after {
-  width: 100%;
+.nav-link.active {
+  color: var(--primary-gold);
+  background-color: rgba(0, 31, 63, 0.05);
 }
 
 /* Mobile Navigation Toggle */
@@ -175,6 +168,11 @@ header.scrolled {
   color: var(--primary-gold) !important;
   background-color: rgba(0, 31, 63, 0.05);
   outline: none;
+}
+
+.mobile-nav-link.active {
+  color: var(--primary-gold) !important;
+  background-color: rgba(0, 31, 63, 0.05);
 }
 
 /* Overlay */
@@ -736,6 +734,15 @@ transform: scale(1.05);
 
 .nav-link:hover .nav-link-underline,
 .nav-link:focus .nav-link-underline {
+  transform: scaleX(1);
+}
+
+/* Active state for current route */
+.nav-link.active {
+  color: var(--primary-gold);
+  background-color: rgba(0, 31, 63, 0.05);
+}
+.nav-link.active .nav-link-underline {
   transform: scaleX(1);
 }
 

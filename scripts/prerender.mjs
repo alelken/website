@@ -44,22 +44,22 @@ for (const url of routes) {
     const origin = process.env.PRERENDER_ORIGIN || 'https://www.alelken.in'
     const metaByRoute = {
       '/': {
-        title: 'Alelken',
+        title: 'Home | Alelken',
         description: 'Innovative Technology. Human-Centered Solutions.',
         image: '/assets/images/mental_wellness.jpg',
       },
       '/product': {
-        title: 'Product – Alelken',
+        title: 'Product | Alelken',
         description: 'Explore Alelken’s human-centered technology solutions.',
         image: '/assets/images/mental_wellness.jpg',
       },
       '/about': {
-        title: 'About – Alelken',
+        title: 'About | Alelken',
         description: 'Learn about Alelken’s mission and team.',
         image: '/assets/images/mental_wellness.jpg',
       },
       '/careers': {
-        title: 'Careers – Alelken',
+        title: 'Careers | Alelken',
         description: 'Join Alelken and help build thoughtful technology.',
         image: '/assets/images/mental_wellness.jpg',
       },

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion'; // eslint-disable-line no-unused-vars
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 
@@ -137,32 +138,31 @@ const Header = () => {
           <div className="nav-links">
             {navItems.map((item) => (
               <div key={item.path} className="relative group">
-                <a 
-                  href={item.path} 
-                  className="nav-link hover-float"
-                  
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) => `nav-link hover-float${isActive ? ' active' : ''}`}
+                  end
                 >
                   {item.name}
                   {item.submenu && (
                     <FiChevronDown className="ml-1 transition-transform" />
                   )}
                   <span className="nav-link-underline" />
-                </a>
+                </NavLink>
                 
                 {/* Desktop Dropdown */}
                 {item.submenu && !isMobile && (
                   <div 
                     className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-1 z-50 hidden group-hover:block"
-                    
                   >
                     {item.submenu.map((subItem) => (
-                      <a
+                      <NavLink
                         key={subItem.path}
-                        href={subItem.path}
+                        to={subItem.path}
                         className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         {subItem.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 )}
@@ -216,14 +216,15 @@ const Header = () => {
               </div>
               <div className="mobile-nav-links">
                 {navItems.map((item) => (
-                  <a 
+                  <NavLink
                     key={item.path}
-                    href={item.path}
-                    className="mobile-nav-link hover-float"
+                    to={item.path}
+                    className={({ isActive }) => `mobile-nav-link hover-float${isActive ? ' active' : ''}`}
                     onClick={toggleMenu}
+                    end
                   >
                     {item.name}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
             <div className="mobile-nav-footer">
