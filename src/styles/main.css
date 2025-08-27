@@ -1,9 +1,40 @@
+    /* Core Features visibility and layout */
+    /* Default (desktop/tablet): show legacy grid, hide mobile accordion */
+    .product-page .product-features-desktop {
+        display: block;
+    }
+    .product-page .product-features-mobile {
+        display: none;
+    }
+
+    /* Mobile: show accordion, hide desktop grid, and tweak spacing */
+    @media (max-width: 768px) {
+        .product-page .product-features-desktop {
+            display: none !important;
+        }
+        .product-page .product-features-mobile {
+            display: block !important;
+        }
+        .product-page .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            padding: 1.25rem 0;
+        }
+        .product-page .feature-block {
+            padding-left: 0;
+        }
+        .product-page .feature-block::before {
+            left: 0;
+            top: 0;
+        }
+    }
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
-    --primary-gold: #FFD700;
-    --primary-gold-dark: #D4AC0D;
-    --primary-gold-light: #FFE87C;
+    --primary-gold: #3B82F6; /* use brand blue */
+    --primary-gold-dark: #2563EB; /* darker blue */
+    --primary-gold-light: #93C5FD; /* lighter blue */
     --brand-blue: #3B82F6;
     --brand-pink: #EC4899;
     --brand-accent: var(--brand-blue);
@@ -17,7 +48,7 @@
     --text-secondary: #4B5563;
     --border-color: rgba(0, 0, 0, 0.1);
     --border-radius: 8px;
-    --card-radius: 12px;
+    --card-radius: 16px;
     --shadow-sm: 0 1px 2px 0 var(--shadow-color);
     --shadow-md: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
     --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
@@ -40,7 +71,7 @@
     :root {
         --neutral-white: #1E1E1E;
         --text-dark: #F9F9F9;
-        --primary-gold: #E6C200;
+        --primary-gold: #60A5FA; /* lighter blue for dark mode */
         --shadow-color: rgba(0, 0, 0, 0.3);
         --footer-text: var(--gray-300);
         --footer-heading: var(--primary-white);
@@ -2863,13 +2894,7 @@ div {
     text-align: center;
 }
 
-.product-page .product-features-desktop {
-    display: block;
-}
-
-.product-page .product-features-mobile {
-    display: none;
-}
+/* Desktop/mobile visibility is controlled in media queries; do not override globally here */
 
 .product-page .features-grid {
     display: grid;
@@ -2997,14 +3022,14 @@ div {
 
 body.dark .careers-page .culture-item {
     background: linear-gradient(180deg, #0b0d12 0%, #0e1118 100%);
-    border-color: rgba(255, 215, 0, 0.25);
+    border-color: rgba(59, 130, 246, 0.25);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
 body.dark .careers-page .culture-icon {
-    background: rgba(255, 215, 0, 0.14);
-    color: #ffd700;
-    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.06) inset;
+    background: rgba(59, 130, 246, 0.14);
+    color: var(--brand-accent);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.06) inset;
 }
 
 .product-page .mission .mission-stats {
@@ -3056,7 +3081,7 @@ body.dark .careers-page .culture-icon {
 
 body.dark .product-page .mission .stat::before {
     background: var(--surface-800, #0b0d12);
-    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.55) inset, 0 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.55) inset, 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .product-page .mission .stat::after {
@@ -3954,3 +3979,6 @@ body.dark .product-page .mission .stat::after {
         display: none;
     }
 }
+/* Button text color override */
+.btn,.cta-button,.cta-button-secondary,.job-card .btn,.apply-form button,.back-btn,button{color:#fff!important}
+.btn:hover,.cta-button:hover,.cta-button-secondary:hover,.job-card .btn:hover,.apply-form button:hover,.back-btn:hover,button:hover{color:#fff!important}
