@@ -5,6 +5,33 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+<!-- Logo Assets -->
+<url>
+  <loc>https://alelken.in/assets/images/logo_dark.png</loc>
+  <lastmod>2025-08-27T17:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
+
+<url>
+  <loc>https://alelken.in/assets/images/logo_dark_with_text.png</loc>
+  <lastmod>2025-08-27T17:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://alelken.in/assets/images/logo_light.png</loc>
+  <lastmod>2025-08-27T17:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
+
+<url>
+  <loc>https://alelken.in/assets/images/logo_light_with_text.png</loc>
+  <lastmod>2025-08-27T17:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
 <url>
   <loc>https://alelken.in/</loc>
   <lastmod>2025-08-24T05:01:15+00:00</lastmod>
