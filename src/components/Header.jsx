@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion'; // eslint-disable-line no-unused-vars
-import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiMenu, FiX, FiChevronDown, FiSun, FiMoon } from 'react-icons/fi';
+import useDarkMode from '../hooks/useDarkMode'
 
 // Breakpoint for mobile/desktop view
 const MOBILE_BREAKPOINT = 1024;
+const ENABLE_THEME_TOGGLE = (import.meta.env.VITE_ENABLE_THEME_TOGGLE ?? 'true') === 'true'
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -20,6 +22,8 @@ const Header = () => {
   const controls = useAnimation();
   const y = useMotionValue(0);
   const opacity = useTransform(y, [0, 100], [1, 0.7]);
+  const [darkEnabled, setDarkEnabled] = useDarkMode();
+  const toggleTheme = useCallback(() => setDarkEnabled((v) => !v), [setDarkEnabled]);
   
   // Check if mobile view
   const checkIfMobile = useCallback(() => {
@@ -130,7 +134,11 @@ const Header = () => {
         <nav>
           <div className="logo">
             <a href="/" aria-label="Home">
-              <img src="/assets/images/logo.svg" alt="Alelken" className="nav-logo hover-float" />
+              <img
+                src={darkEnabled ? '/assets/images/logo_dark.png' : '/assets/images/logo_light.png'}
+                alt="Alelken"
+                className="nav-logo hover-float"
+              />
             </a>
           </div>
           
@@ -171,6 +179,16 @@ const Header = () => {
           </div>
           
           <div className="nav-actions">
+            {/* Theme Toggle - switch style, visible on all viewports */}
+            {ENABLE_THEME_TOGGLE && (
+              <label className="theme-switch mr-1" aria-label={darkEnabled ? 'Switch to light mode' : 'Switch to dark mode'}>
+                <input type="checkbox" checked={darkEnabled} onChange={toggleTheme} />
+                <span className="slider">
+                  <span className="icon sun"><FiSun size={14} /></span>
+                  <span className="icon moon"><FiMoon size={14} /></span>
+                </span>
+              </label>
+            )}
             {/* Mobile Menu Button - Only visible on mobile */}
             <button 
               className="menu-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors lg:hidden" 
@@ -201,7 +219,7 @@ const Header = () => {
             >
               <div className="mobile-nav-header">
                 <img 
-                  src="/assets/images/logo.svg" 
+                  src={darkEnabled ? '/assets/images/logo_dark.png' : '/assets/images/logo_light.png'} 
                   alt="Alelken" 
                   className="h-5 w-auto" 
                   style={{ maxWidth: '120px' }}

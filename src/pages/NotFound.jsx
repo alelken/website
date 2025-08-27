@@ -13,7 +13,7 @@ const NotFound = () => {
         /* Root Variables - Light Theme (Default) */
         :root {
           /* Colors */
-          --primary-gold: #FFD700;
+          --primary-gold: #3B82F6; /* use brand blue instead of gold */
           --primary-navy: #001F3F;
           --neutral-white: #FFFFFF;
           --text-color: #000000;
@@ -41,9 +41,9 @@ const NotFound = () => {
           --shadow-xl: 0 20px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
          
           /* Gradients */
-          --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, #FFC107 100%);
+          --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, #60A5FA 100%);
           --gradient-secondary: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
-          --gradient-accent: linear-gradient(135deg, var(--primary-gold) 0%, #FFC107 100%);
+          --gradient-accent: linear-gradient(135deg, var(--primary-gold) 0%, #60A5FA 100%);
          
           /* Text colors */
           --text-dark: #212529;
@@ -91,7 +91,7 @@ const NotFound = () => {
           :root {
             --neutral-white: #1E1E1E;
             --text-dark: #F9F9F9;
-            --primary-gold: #E6C200;
+            --primary-gold: #60A5FA; /* blue in dark mode */
             --shadow-color: rgba(0, 0, 0, 0.3);
             --footer-text: var(--gray-300);
             --footer-heading: var(--primary-white);
@@ -186,7 +186,7 @@ const NotFound = () => {
           }
         }
         .not-found-button:hover {
-          background-color: #E6C200;
+          background-color: #2563EB;
           transform: translateY(-2px);
           box-shadow: var(--shadow-lg);
         }
