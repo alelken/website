@@ -8,8 +8,7 @@ const NotFound = () => {
   return (
     <>
       <style>{`
-        /* Google Fonts Import */
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        /* Fonts are imported globally in src/styles/main.css */
         /* Root Variables - Light Theme (Default) */
         :root {
           /* Colors */
@@ -56,7 +55,7 @@ const NotFound = () => {
           box-sizing: border-box;
         }
         body {
-          font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          /* inherit font-family from global CSS */
           background: var(--background);
           color: var(--text-color);
           line-height: 1.6;
@@ -65,7 +64,7 @@ const NotFound = () => {
           transition: background-color 0.3s ease, color 0.3s ease;
         }
         h1, h2, h3, h4, h5, h6 {
-          font-family: 'Space Grotesk', sans-serif;
+          /* inherit heading font-family from global CSS */
           color: var(--text-color);
           margin: 0 0 1.5rem;
           text-align: center;
