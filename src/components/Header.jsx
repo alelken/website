@@ -135,7 +135,7 @@ const Header = () => {
           <div className="logo">
             <a href="/" aria-label="Home">
               <img
-                src={darkEnabled ? '/assets/images/logo_dark.png' : '/assets/images/logo_light.png'}
+                src={'/assets/images/logo_light.png'}
                 alt="Alelken"
                 className="nav-logo hover-float"
               />
@@ -219,7 +219,7 @@ const Header = () => {
             >
               <div className="mobile-nav-header">
                 <img 
-                  src={darkEnabled ? '/assets/images/logo_dark.png' : '/assets/images/logo_light.png'} 
+                  src={'/assets/images/logo_light.png'} 
                   alt="Alelken" 
                   className="h-5 w-auto" 
                   style={{ maxWidth: '120px' }}
