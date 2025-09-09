@@ -9,7 +9,6 @@ import {
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import ModernCard from "../components/ModernCard.jsx";
-// CardCarousel removed in favor of icon-rail list layout
 import "../styles/modern-card.css";
 
 const Home = () => {
