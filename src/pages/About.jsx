@@ -78,7 +78,7 @@ const About = () => {
       </section>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default About
+export default About;
