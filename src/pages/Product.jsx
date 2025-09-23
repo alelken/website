@@ -42,19 +42,19 @@ const Product = () => {
   return (
     <div className="product-page">
       <Header />
-      <section className="product-hero page-section hero hero-brand">
+      <section className="product-hero page-section hero hero-brand animated-fade-in">
         <div className="container hero-shell">
-          <div className="product-hero-content hero-text">
+          <div className="product-hero-content hero-text animated-slide-up">
             <h1>Meet <span className="brand-highlight">Alayn</span>, Your Companion for Better Living</h1>
             <p>Personalized tools that combine time-tested practices and proven therapy to help you thrive.</p>
           </div>
-          <div className="hero-media-card glass soft-border" aria-hidden="true">
+          <div className="hero-media-card glass soft-border animated-scale-in" aria-hidden="true">
             <img src="/assets/images/life_guide.svg" alt="Alayn Life Guide" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
 
-      <section className="features brand-section">
+      <section className="features brand-section animated-fade-in">
         <div className="container">
           <h2 className="section-title center-title no-bar"><span className="doodle-underline">Core Features</span></h2>
           <p className="section-subtitle">Alayn combines centuries-old Indian practices with evidence-based modern therapies to create personalized pathways for mental wellness and personal growth.</p>
@@ -72,10 +72,10 @@ const Product = () => {
           <div className="product-features-mobile">
             <div className="product-accordion">
               {featureItems.map((item, idx) => (
-                <details key={idx} className="product-accordion-item">
+                <details key={idx} className="product-accordion-item animated-scale-in">
                   <summary className="product-accordion-summary">
                     <span>{item.title}</span>
-                    <span className="chevron" aria-hidden>›</span>
+                    <span className="chevron" aria-hidden></span>
                   </summary>
                   <div className="product-accordion-content">
                     <p>{item.content}</p>
@@ -87,9 +87,9 @@ const Product = () => {
         </div>
       </section>
 
-      <section className="mission brand-section">
+      <section className="mission brand-section animated-fade-in">
         <div className="container">
-            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Addressing India's Mental Health Challenge</span></h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Addressing India's Mental Health Challenge</span></h2>
           <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
           <div className="mission-content">
             <div className="mission-stats">
@@ -110,9 +110,9 @@ const Product = () => {
         </div>
       </section>
 
-      <section className="accessibility brand-section">
+      <section className="accessibility brand-section animated-fade-in">
         <div className="container">
-            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Built for Every Indian</span></h2>
+          <h2 className="section-title center-title no-bar"><span className="doodle-underline">Built for Every Indian</span></h2>
           <p className="section-subtitle">Designed with India's diverse landscape in mind, ensuring mental wellness support reaches every corner of the country.</p>
           <div className="accessibility-grid">
             <div className="accessibility-feature">

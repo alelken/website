@@ -226,62 +226,27 @@ const Careers = ({ initialJobs = [] }) => {
               <div className="jobs-container">
                 <div className="jobs-grid" ref={jobsGridRef}>
                   {jobs.map(job => (
-                    <div key={job.id} className="job-card">
+                    <div key={job.id} className="job-card animated-scale-in">
                       <h3>{job.title}</h3>
                       <div className="job-meta">
                         <span><i className="fas fa-map-marker-alt" />{job.location}</span>
                         <span><i className="fas fa-clock" />{job.type}</span>
                       </div>
                       <p>{job.description}</p>
-                      <button className="btn cta-button hover-float" onClick={() => setSelectedJob(job)}>
+                      <button className="btn cta-button hover-float animated-pop" onClick={() => setSelectedJob(job)}>
                         View Details
                       </button>
                     </div>
                   ))}
                 </div>
-                
-                {/* Scroll dots navigation - only visible on mobile */}
-                {dotCount > 1 && (
-                  <div className="scroll-dots" style={{ display: 'none' }}>
-                    {Array.from({ length: dotCount }).map((_, index) => (
-                      <button
-                        key={index}
-                        className={`scroll-dot ${index === activeDot ? 'active' : ''}`}
-                        onClick={() => scrollToDot(index)}
-                        aria-label={`Go to job card ${index + 1} of ${dotCount}`}
-                      />
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
           </section>
         )}
-
-        <section className="join-mission brand-section">
-          <div className="container">
-            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Ready to Make an Impact?</span></h2>
-            <p className="section-subtitle">If you're passionate about using technology to solve meaningful problems and want to be part of a team that's building the future of human wellness, we'd love to hear from you.</p>
-            <div className="mission-cta">
-              <p>Don't see the perfect role? We're always interested in connecting with exceptional talent who share our vision.</p>
-              <a href="mailto:support@alelken.com" className="cta-button hover-float">Get in Touch</a>
-            </div>
-          </div>
-        </section>
       </main>
-
       <Footer />
-      <JobDetailsModal
-        job={selectedJob}
-        onClose={() => setSelectedJob(null)}
-        onApply={job => {
-          setSelectedJob(null);
-          setApplyingJob(job);
-        }}
-      />
-      <JobModal job={applyingJob} onClose={() => setApplyingJob(null)} />
     </div>
   );
 }
 
-export default Careers
+export default Careers;

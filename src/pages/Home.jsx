@@ -42,7 +42,7 @@ const Home = () => {
     <ModernCard 
       variant="elevated"
       hoverEffect="lift"
-      className={`feature-card hover-float glass soft-border ${title.toLowerCase().replace(/\s+/g, '-')}`}
+      className={`feature-card hover-float glass soft-border animated-scale-in ${title.toLowerCase().replace(/\s+/g, '-')}`}
       title={title}
       icon={<FontAwesomeIcon icon={icon} size="lg" />}
     >
@@ -81,30 +81,30 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <section className="hero hero-brand">
+      <section className="hero hero-brand animated-fade-in">
         <div className="hero-shell container">
-          <div className="hero-text">
+          <div className="hero-text animated-slide-up">
             <h1>Innovative Technology.<br />Human-Centered Solutions.</h1>
             <p className="subtitle">Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.</p>
             <div className="cta-group">
-              <a href="/product" className="cta-button btn-primary hover-float">Discover Our Solutions</a>
+              <a href="/product" className="cta-button btn-primary hover-float animated-pop">Discover Our Solutions</a>
             </div>
           </div>
-          <div className="hero-media-card glass soft-border">
+          <div className="hero-media-card glass soft-border animated-scale-in">
             {/* Static hero illustration (no floating) */}
             <img src="/assets/images/connected_world.svg" alt="Connected world" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
         </div>
       </section>
 
-      <section id="vision" className="section vision brand-section">
+      <section id="vision" className="section vision brand-section animated-fade-in">
         <div className="container">
           <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Current Focus</span></h2>
           <p className="section-subtitle">We're building comprehensive wellness solutions that address real human needs. Our flagship platform focuses on four core areas that drive meaningful personal growth:</p>
 
           <ul className="focus-list">
             {featureItems.map((item, i) => (
-              <li key={i} className="focus-item split">
+              <li key={i} className="focus-item split animated-slide-up">
                 <div className="focus-left">
                   <span className="icon-chip" aria-hidden="true">
                     <FontAwesomeIcon icon={item.icon} />
@@ -117,26 +117,26 @@ const Home = () => {
           </ul>
         </div>
       </section>
-      <section id="philosophy" className="section philosophy brand-section">
+      <section id="philosophy" className="section philosophy brand-section animated-fade-in">
         <div className="container">
           <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Vision</span></h2>
           <p className="section-subtitle">We believe technology should enhance human potential without overwhelming it. Our approach is grounded in three core principles that guide everything we build:</p>
           <div className="philosophy-list">
-            <div className="principle-row">
+            <div className="principle-row animated-scale-in">
               <span className="icon-chip" aria-hidden="true"><i className="fas fa-hammer" /></span>
               <div>
                 <h3 className="principle-title">Restoration</h3>
                 <p className="principle-text">Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.</p>
               </div>
             </div>
-            <div className="principle-row">
+            <div className="principle-row animated-scale-in">
               <span className="icon-chip" aria-hidden="true"><i className="fas fa-arrow-up" /></span>
               <div>
                 <h3 className="principle-title">Elevation</h3>
                 <p className="principle-text">Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.</p>
               </div>
             </div>
-            <div className="principle-row">
+            <div className="principle-row animated-scale-in">
               <span className="icon-chip" aria-hidden="true"><i className="fas fa-users" /></span>
               <div>
                 <h3 className="principle-title">Multiplication</h3>
