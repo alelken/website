@@ -28,12 +28,10 @@ const About = () => {
   return (
     <div>
       <Header />
-      <section className="about-hero hero hero-brand animated-fade-in">
-        <div className="container hero-shell">
-          <div className="about-hero-content hero-text animated-slide-up">
-            <h1>About Alelken</h1>
-            <p>We're a team of passionate individuals dedicated to creating technology that positively impacts lives.</p>
-          </div>
+      <section className="page-header">
+        <div className="container">
+          <h1>About Alelken</h1>
+          <p>We're a team of passionate individuals dedicated to creating technology that positively impacts lives.</p>
         </div>
       </section>
       <section className="about-values brand-section animated-fade-in">

@@ -12,6 +12,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@prismicio/client": "^7.20.1",
+    "@prismicio/helpers": "^2.3.9",
+    "@prismicio/react": "^3.2.1",
     "framer-motion": "^12.23.19",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",

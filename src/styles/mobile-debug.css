@@ -1,0 +1,81 @@
+/* Mobile Debug Utilities - Remove in production */
+
+/* Uncomment to enable mobile debugging */
+/*
+@media (max-width: 768px) {
+  * {
+    outline: 1px solid rgba(255, 0, 0, 0.1) !important;
+  }
+  
+  .container {
+    outline: 2px solid rgba(0, 255, 0, 0.3) !important;
+  }
+  
+  .card,
+  .blog-card {
+    outline: 2px solid rgba(0, 0, 255, 0.3) !important;
+  }
+  
+  button,
+  .btn,
+  .cta-button {
+    outline: 2px solid rgba(255, 165, 0, 0.5) !important;
+  }
+}
+
+/* Screen size indicator */
+/*
+body::before {
+  content: 'Mobile: ' attr(data-screen-width);
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@media (min-width: 769px) {
+  body::before {
+    content: 'Desktop: ' attr(data-screen-width);
+    background: rgba(0, 128, 0, 0.8);
+  }
+}
+*/
+
+/* Touch target visualization */
+/*
+@media (max-width: 768px) {
+  button,
+  .btn,
+  .cta-button,
+  .filter-btn,
+  .nav-link,
+  .mobile-nav-link,
+  a {
+    position: relative;
+  }
+  
+  button::after,
+  .btn::after,
+  .cta-button::after,
+  .filter-btn::after,
+  .nav-link::after,
+  .mobile-nav-link::after,
+  a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(255, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 1000;
+  }
+}
+*/

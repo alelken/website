@@ -11,6 +11,7 @@ const ENABLE_THEME_TOGGLE = (import.meta.env.VITE_ENABLE_THEME_TOGGLE ?? 'true')
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'Product', path: '/product' },
+  { name: 'Press', path: '/press' },
   { name: 'Careers', path: '/careers' }
 ];
 

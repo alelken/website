@@ -55,15 +55,10 @@ const Product = () => {
   return (
     <div className="product-page">
       <Header />
-      <section className="product-hero page-section hero hero-brand animated-fade-in">
-        <div className="container hero-shell">
-          <div className="product-hero-content hero-text animated-slide-up">
-            <h1>Meet <span className="brand-highlight">Alayn</span>, Your Companion for Better Living</h1>
-            <p>Personalized tools that combine time-tested practices and proven therapy to help you thrive.</p>
-          </div>
-          <div className="hero-media-card glass soft-border animated-scale-in" aria-hidden="true">
-            <img src="/assets/images/life_guide.svg" alt="Alayn Life Guide" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
+      <section className="page-header">
+        <div className="container">
+          <h1>Meet <span className="brand-highlight">Alayn</span>, Your Companion for Better Living</h1>
+          <p>Personalized tools that combine time-tested practices and proven therapy to help you thrive.</p>
         </div>
       </section>
 
