@@ -1,40 +1,53 @@
 import React from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
+import '../styles/product.css';
+import { FaBrain, FaBook, FaPrayingHands, FaUsers, FaUserCog, FaChevronDown } from 'react-icons/fa';
 
 const Product = () => {
   
   const featureItems = [
     {
       title: "Advanced Personality Analysis",
-      content: "Comprehensive assessment tools that evaluate emotional intelligence, self-awareness, motivation, and social skills to create personalized wellness pathways with daily exercises tailored to your unique profile."
+      content: "Comprehensive assessment tools that evaluate emotional intelligence, self-awareness, motivation, and social skills to create personalized wellness pathways with daily exercises tailored to your unique profile.",
+      icon: <FaBrain />
     },
     {
       title: "Curated Media Library",
-      content: "Inspirational stories, expert podcasts, and articles featuring diverse narratives from Indian philosophers, unsung heroes, and thought leaders. Content available in multiple formats to promote resilience and cultural connection."
+      content: "Inspirational stories, expert podcasts, and articles featuring diverse narratives from Indian philosophers, unsung heroes, and thought leaders. Content available in multiple formats to promote resilience and cultural connection.",
+      icon: <FaBook />
     },
     {
       title: "Guided Mindful Exercises",
-      content: "Comprehensive practices across eight wellness domains including stress management, social skills, career guidance, relationships, parenting, spiritual exploration, and specialized women's health programs incorporating yoga, pranayama, and meditation."
+      content: "Comprehensive practices across eight wellness domains including stress management, social skills, career guidance, relationships, parenting, spiritual exploration, and specialized women's health programs incorporating yoga, pranayama, and meditation.",
+      icon: <FaPrayingHands />
     },
     {
       title: "Professional Therapy & Workshops",
-      content: "Access to certified therapists for individual sessions and group workshops covering specialized areas including addiction recovery, career development, relationship building, and holistic wellness practices."
+      content: "Access to certified therapists for individual sessions and group workshops covering specialized areas including addiction recovery, career development, relationship building, and holistic wellness practices.",
+      icon: <FaUsers />
     },
     {
       title: "Cultural Integration",
-      content: "Traditional Indian practices seamlessly woven with modern therapeutic methods, ensuring culturally relevant content that resonates with Indian values and lifestyle patterns."
+      content: "Traditional Indian practices seamlessly woven with modern therapeutic methods, ensuring culturally relevant content that resonates with Indian values and lifestyle patterns.",
+      icon: <FaPrayingHands />
     },
     {
       title: "Adaptive Personalization",
-      content: "Dynamic recommendation system that evolves based on your progress, mood patterns, and preferences, offering structured wellness plans designed for sustained engagement and measurable improvement."
+      content: "Dynamic recommendation system that evolves based on your progress, mood patterns, and preferences, offering structured wellness plans designed for sustained engagement and measurable improvement.",
+      icon: <FaUserCog />
     }
   ];
   
   // Render features in unique blocks (no card component)
-  const FeatureBlock = ({ title, content }) => (
+  const FeatureBlock = ({ title, content, icon }) => (
     <div className="feature-block">
-      <h3 className="feature-block-title">{title}</h3>
+      <div className="feature-block-header">
+        <span className="feature-icon" aria-hidden="true">
+          {icon}
+        </span>
+        <h3 className="feature-block-title">{title}</h3>
+      </div>
       <p className="feature-block-desc">{content}</p>
     </div>
   );
@@ -63,7 +76,7 @@ const Product = () => {
           <div className="product-features-desktop">
             <div className="features-grid">
               {featureItems.map((item, idx) => (
-                <FeatureBlock key={idx} title={item.title} content={item.content} />
+                <FeatureBlock key={idx} title={item.title} content={item.content} icon={item.icon} />
               ))}
             </div>
           </div>
@@ -75,7 +88,7 @@ const Product = () => {
                 <details key={idx} className="product-accordion-item animated-scale-in">
                   <summary className="product-accordion-summary">
                     <span>{item.title}</span>
-                    <span className="chevron" aria-hidden></span>
+                    <FaChevronDown className="chevron" aria-hidden />
                   </summary>
                   <div className="product-accordion-content">
                     <p>{item.content}</p>

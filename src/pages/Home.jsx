@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faHandHoldingHeart,
-  faBrain,
-  faUsers,
-  faChartLine
-} from '@fortawesome/free-solid-svg-icons';
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import ModernCard from "../components/ModernCard.jsx";
+import { FaYinYang, FaBrain, FaUsers, FaChartLine, FaHammer, FaArrowUp } from 'react-icons/fa';
 import "../styles/modern-card.css";
 
 const Home = () => {
@@ -18,22 +12,22 @@ const Home = () => {
     { 
       title: "Stress Management", 
       content: "Practical, evidence‑based tools to reduce stress, build calm, and stay emotionally balanced each day.",
-      icon: faHandHoldingHeart
+      icon: <FaYinYang />
     },
     { 
       title: "Mindfulness Development", 
       content: "Guided meditation and mindfulness exercises that grow focus, clarity, and lasting mental resilience.",
-      icon: faBrain
+      icon: <FaBrain />
     },
     { 
       title: "Community Connection", 
       content: "Supportive spaces and features that spark genuine connection and meaningful, growth‑oriented community.",
-      icon: faUsers
+      icon: <FaUsers />
     },
     { 
       title: "Progress Tracking", 
       content: "Clear insights and trends that show progress, highlight habits, and reveal opportunities to grow.",
-      icon: faChartLine
+      icon: <FaChartLine />
     }
   ];
 
@@ -44,7 +38,7 @@ const Home = () => {
       hoverEffect="lift"
       className={`feature-card hover-float glass soft-border animated-scale-in ${title.toLowerCase().replace(/\s+/g, '-')}`}
       title={title}
-      icon={<FontAwesomeIcon icon={icon} size="lg" />}
+      icon={<span style={{ fontSize: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{icon}</span>}
     >
       {content}
     </ModernCard>
@@ -107,7 +101,7 @@ const Home = () => {
               <li key={i} className="focus-item split animated-slide-up">
                 <div className="focus-left">
                   <span className="icon-chip" aria-hidden="true">
-                    <FontAwesomeIcon icon={item.icon} />
+                    {item.icon}
                   </span>
                   <h3 className="focus-title">{item.title}</h3>
                 </div>
@@ -123,21 +117,27 @@ const Home = () => {
           <p className="section-subtitle">We believe technology should enhance human potential without overwhelming it. Our approach is grounded in three core principles that guide everything we build:</p>
           <div className="philosophy-list">
             <div className="principle-row animated-scale-in">
-              <span className="icon-chip" aria-hidden="true"><i className="fas fa-hammer" /></span>
+              <span className="icon-chip" aria-hidden="true">
+                <FaHammer style={{ fontSize: '1.25rem' }} />
+              </span>
               <div>
                 <h3 className="principle-title">Restoration</h3>
                 <p className="principle-text">Addressing fundamental gaps in existing systems by creating solutions that heal rather than simply digitize broken processes.</p>
               </div>
             </div>
             <div className="principle-row animated-scale-in">
-              <span className="icon-chip" aria-hidden="true"><i className="fas fa-arrow-up" /></span>
+              <span className="icon-chip" aria-hidden="true">
+                <FaArrowUp style={{ fontSize: '1.25rem' }} />
+              </span>
               <div>
                 <h3 className="principle-title">Elevation</h3>
                 <p className="principle-text">Empowering individuals to reach their highest potential through tools that strengthen character, capability, and personal growth.</p>
               </div>
             </div>
             <div className="principle-row animated-scale-in">
-              <span className="icon-chip" aria-hidden="true"><i className="fas fa-users" /></span>
+              <span className="icon-chip" aria-hidden="true">
+                <FaUsers style={{ fontSize: '1.25rem' }} />
+              </span>
               <div>
                 <h3 className="principle-title">Multiplication</h3>
                 <p className="principle-text">Building platforms that enable others to create, lead, and generate positive impact that extends far beyond our direct reach.</p>

@@ -1,17 +1,13 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Footer from "../components/Footer.jsx";
-import JobModal from "../components/JobModal.jsx";
-import JobDetailsModal from "../components/JobDetailsModal.jsx";
 import Header from "../components/Header.jsx";
+import CultureSection from "../components/careers/CultureSection";
+import BenefitsSection from "../components/careers/BenefitsSection";
+import JobsSection from "../components/careers/JobsSection";
 
 const Careers = ({ initialJobs = [] }) => {
   const [jobs, setJobs] = useState(initialJobs);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [applyingJob, setApplyingJob] = useState(null);
-  const [activeDot, setActiveDot] = useState(0);
-  const [dotCount, setDotCount] = useState(0);
   const jobsGridRef = useRef(null);
-  const scrollTimeoutRef = useRef(null);
 
   const enableJobs = String(import.meta.env.VITE_ENABLE_JOBS || '').toLowerCase() === 'true';
 
@@ -24,126 +20,16 @@ const Careers = ({ initialJobs = [] }) => {
       .catch(err => console.error('Failed to load jobs', err));
   }, [initialJobs, enableJobs]);
 
-  // Calculate number of dots based on visible cards
-  const updateDots = useCallback(() => {
-    if (typeof window === 'undefined' || !jobsGridRef.current) return 0;
-    
-    const container = jobsGridRef.current;
-    const containerWidth = container.offsetWidth;
-    const cardWidth = 300; // Approximate card width including gap
-    const visibleCards = Math.floor(containerWidth / cardWidth);
-    const totalCards = jobs.length;
-    
-    const dots = Math.max(1, Math.ceil(totalCards / Math.max(1, visibleCards)));
-    setDotCount(dots);
-    return dots;
-  }, [jobs.length]);
-
-  // Handle scroll events to update active dot
-  const handleScroll = useCallback(() => {
-    if (!jobsGridRef.current) return;
-    
-    const container = jobsGridRef.current;
-    const scrollPosition = container.scrollLeft;
-    const scrollWidth = container.scrollWidth - container.clientWidth;
-    
-    if (scrollWidth > 0) {
-      const newActiveDot = Math.round((scrollPosition / scrollWidth) * (dotCount - 1));
-      setActiveDot(newActiveDot);
-    }
-  }, [dotCount]);
-
-  // Handle dot click to scroll to corresponding card
-  const scrollToDot = useCallback((dotIndex) => {
-    if (!jobsGridRef.current) return;
-    
-    const container = jobsGridRef.current;
-    const scrollWidth = container.scrollWidth - container.clientWidth;
-    const scrollPosition = (scrollWidth / (dotCount - 1 || 1)) * dotIndex;
-    
-    container.scrollTo({
-      left: scrollPosition,
-      behavior: 'smooth'
-    });
-  }, [dotCount]);
-
-  // Handle auto-scroll to center the active card
-  const handleScrollEnd = useCallback(() => {
-    if (!jobsGridRef.current) return;
-    
-    const container = jobsGridRef.current;
-    const cards = container.querySelectorAll('.job-card');
-    if (!cards.length) return;
-    
-    const containerCenter = container.scrollLeft + (container.offsetWidth / 2);
-    let closestCard = null;
-    let minDistance = Infinity;
-    
-    cards.forEach(card => {
-      const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-      const distance = Math.abs(containerCenter - cardCenter);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestCard = card;
-      }
-    });
-    
-    if (closestCard) {
-      const cardCenter = closestCard.offsetLeft + (closestCard.offsetWidth / 2);
-      const containerCenter = container.offsetWidth / 2;
-      const scrollPosition = cardCenter - containerCenter;
-      
-      container.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-      });
-    }
-  }, []);
-
-  // Setup event listeners and initial state
+  // Load jobs data
   useEffect(() => {
-    const container = jobsGridRef.current;
-    if (!enableJobs || !container) return;
+    if (!enableJobs) return;
+    if (initialJobs.length) return;
     
-    const handleResize = () => {
-      updateDots();
-      handleScroll();
-    };
-    
-    let isScrolling = false;
-    
-    const handleScrollEvent = () => {
-      if (!isScrolling) {
-        isScrolling = true;
-        handleScroll();
-      }
-      
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      
-      scrollTimeoutRef.current = setTimeout(() => {
-        isScrolling = false;
-        handleScrollEnd();
-      }, 100);
-    };
-    
-    // Initial setup
-    updateDots();
-    
-    // Add event listeners
-    container.addEventListener('scroll', handleScrollEvent);
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      container.removeEventListener('scroll', handleScrollEvent);
-      window.removeEventListener('resize', handleResize);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, [updateDots, handleScroll, handleScrollEnd, enableJobs]);
+    fetch('/data/jobs.json')
+      .then(res => res.json())
+      .then(data => setJobs(data.jobs))
+      .catch(err => console.error('Failed to load jobs', err));
+  }, [initialJobs, enableJobs]);
 
   return (
     <div className="careers-page">
@@ -156,93 +42,23 @@ const Careers = ({ initialJobs = [] }) => {
               <p>Join Alelken in building transformative technology solutions that enhance human potential and create meaningful impact across diverse communities. We're seeking exceptional talent to help us redefine how technology serves humanity.</p>
             </div>
             <div className="hero-media-card glass soft-border" aria-hidden="true">
-              <img src="/assets/images/mental_wellness.jpg" alt="Mental Wellness" loading="eager" decoding="async" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img 
+                src="/assets/images/mental_wellness.jpg" 
+                alt="Mental Wellness" 
+                loading="lazy" 
+                decoding="async" 
+                width="800"
+                height="600"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              />
             </div>
           </div>
         </section>
 
-        <section className="company-culture brand-section">
-          <div className="container">
-            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Culture & Values</span></h2>
-            <p className="section-subtitle">At Alelken, we foster an environment where innovation meets purpose, and every team member contributes to our mission of human-centered technology development.</p>
-            <div className="culture-grid">
-              <div className="culture-item">
-                <i className="fas fa-lightbulb culture-icon" aria-hidden="true" />
-                <h3>Innovation-Driven</h3>
-                <p>We encourage creative problem-solving and cutting-edge approaches to complex challenges in wellness technology.</p>
-              </div>
-              <div className="culture-item gradient-border">
-                <i className="fas fa-heart culture-icon" aria-hidden="true" />
-                <h3>Purpose-Oriented</h3>
-                <p>Every project and decision is guided by our commitment to improving human wellbeing and creating positive societal impact.</p>
-              </div>
-              <div className="culture-item gradient-border">
-                <i className="fas fa-users culture-icon" aria-hidden="true" />
-                <h3>Collaborative Excellence</h3>
-                <p>We believe in the power of diverse perspectives and cross-functional collaboration to achieve extraordinary results.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CultureSection />
+        <BenefitsSection />
 
-        <section className="benefits-section brand-section">
-          <div className="container">
-            <h2 className="section-title center-title no-bar"><span className="doodle-underline">Why Choose Alelken</span></h2>
-            <p className="section-subtitle">We offer more than just a career—we provide a platform for professional growth, meaningful work, and the opportunity to shape the future of wellness technology.</p>
-            <div className="benefits-grid">
-              <div className="benefit-card">
-                <h3>Impactful Work</h3>
-                <p>Contribute to solutions that directly improve lives and address real-world challenges in human wellness and personal development.</p>
-              </div>
-              <div className="benefit-card">
-                <h3>Professional Development</h3>
-                <p>Access to cutting-edge training, conferences, certifications, and mentorship programs to accelerate your career growth.</p>
-              </div>
-              <div className="benefit-card">
-                <h3>Flexible Environment</h3>
-                <p>Hybrid work models, flexible scheduling, and a results-oriented culture that prioritizes productivity and work-life integration.</p>
-              </div>
-              <div className="benefit-card">
-                <h3>Competitive Package</h3>
-                <p>Comprehensive benefits including health coverage, equity participation, performance bonuses, and wellness programs.</p>
-              </div>
-              <div className="benefit-card">
-                <h3>Innovation Freedom</h3>
-                <p>Autonomy to explore new ideas, experiment with emerging technologies, and contribute to product strategy and development.</p>
-              </div>
-              <div className="benefit-card">
-                <h3>Diverse Community</h3>
-                <p>Work alongside talented professionals from varied backgrounds, fostering an inclusive environment that celebrates different perspectives.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {enableJobs && (
-          <section className="jobs-section brand-section">
-            <div className="container">
-              <h2 className="section-title center-title no-bar"><span className="doodle-underline">Current Opportunities</span></h2>
-              <p className="section-subtitle">Explore our open positions across engineering, design, business development, and operations. Find the role that aligns with your expertise and career aspirations.</p>
-              <div className="jobs-container">
-                <div className="jobs-grid" ref={jobsGridRef}>
-                  {jobs.map(job => (
-                    <div key={job.id} className="job-card animated-scale-in">
-                      <h3>{job.title}</h3>
-                      <div className="job-meta">
-                        <span><i className="fas fa-map-marker-alt" />{job.location}</span>
-                        <span><i className="fas fa-clock" />{job.type}</span>
-                      </div>
-                      <p>{job.description}</p>
-                      <button className="btn cta-button hover-float animated-pop" onClick={() => setSelectedJob(job)}>
-                        View Details
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+        {enableJobs && <JobsSection jobs={jobs} jobsGridRef={jobsGridRef} />}
       </main>
       <Footer />
     </div>

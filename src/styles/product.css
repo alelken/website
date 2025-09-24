@@ -1,0 +1,71 @@
+.feature-block {
+  padding: 2rem;
+  background: var(--surface-glass);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+}
+
+.feature-block-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--brand-primary);
+  font-size: 1.25rem;
+}
+
+
+.product-accordion-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem 0.75rem 1rem;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.product-accordion-item {
+  margin-bottom: 0.5rem;
+  border-radius: 0.75rem;
+  background: var(--surface-glass, #fff);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.product-accordion-content {
+  padding: 0.5rem 1.25rem 1rem 1.25rem;
+  margin-top: 0;
+}
+
+.product-accordion-summary span {
+  margin: 0;
+}
+
+.summary-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.chevron {
+  display: inline-block;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+  color: var(--brand-primary);
+}
+
+details[open] .chevron {
+  transform: rotate(180deg);
+}
