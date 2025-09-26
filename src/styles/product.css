@@ -189,6 +189,7 @@ roduct Page Enhancements */
   }
   
   /* Second connecting line: Circle 2 to Circle 3 */
+        /* Swap heading sizes for mobile */
   .timeline-item:nth-child(2)::after {
     content: '';
     position: absolute;
@@ -251,16 +252,7 @@ roduct Page Enhancements */
   }
   
   .timeline-container::before {
-    content: '';
-    position: absolute;
-    left: 27px;
-    top: 30px;
-    height: calc(100% - 120px);
-    width: 4px;
-    background: var(--primary-cyan);
-    border-radius: 2px;
-    z-index: 1;
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+    content: none;
   }
   
   .timeline-item {
@@ -277,6 +269,7 @@ roduct Page Enhancements */
     position: absolute;
     left: -2.5rem;
     top: 0;
+      /* Swap heading sizes for smaller mobile */
     width: 60px;
     height: 60px;
     z-index: 2;
@@ -434,6 +427,16 @@ body.dark .product-accordion-summary:hover {
     gap: 1.5rem;
     margin-top: 2rem;
   }
+    /* Swap heading sizes for mobile */
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
   
   .feature-block {
     padding: 1.5rem;
@@ -512,6 +515,16 @@ body.dark .product-accordion-summary:hover {
   .accessibility-feature {
     padding: 1.25rem;
   }
+    /* Swap heading sizes for smaller mobile */
+    .page-header h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
   
   .timeline-container {
     padding-left: 2.5rem;

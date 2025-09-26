@@ -1218,7 +1218,7 @@ select:focus {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 0 auto 1.5rem;
     color: var(--gray-900);
     text-align: center;
@@ -1229,23 +1229,26 @@ select:focus {
     right: 0;
     padding: 0 1rem;
     box-sizing: border-box;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
+    font-weight: 700;
 }
 
 .center-title {
     text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    float: none !important;
+    margin: 0 auto 1.5rem !important;
+    color: var(--gray-900) !important;
+    width: 100% !important;
     display: block !important;
     position: relative !important;
-    transform: none !important;
-    left: auto !important;
-    right: auto !important;
+    left: 0 !important;
+    right: 0 !important;
     padding: 0 1rem !important;
-    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: clamp(2.1rem, 5vw, 3.1rem) !important;
+    letter-spacing: -0.02em !important;
+    font-weight: 700 !important;
 }
 
 .section-title:after {
