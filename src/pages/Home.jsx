@@ -96,19 +96,19 @@ const Home = () => {
           <h2 className="section-title center-title no-bar"><span className="doodle-underline">Our Current Focus</span></h2>
           <p className="section-subtitle">We're building comprehensive wellness solutions that address real human needs. Our flagship platform focuses on four core areas that drive meaningful personal growth:</p>
 
-          <ul className="focus-list">
+          <div className="philosophy-list">
             {featureItems.map((item, i) => (
-              <li key={i} className="focus-item split animated-slide-up">
-                <div className="focus-left">
-                  <span className="icon-chip" aria-hidden="true">
-                    {item.icon}
-                  </span>
-                  <h3 className="focus-title">{item.title}</h3>
+              <div key={i} className="principle-row animated-scale-in">
+                <span className="icon-chip" aria-hidden="true">
+                  {item.icon}
+                </span>
+                <div>
+                  <h3 className="principle-title">{item.title}</h3>
+                  <p className="principle-text">{item.content}</p>
                 </div>
-                <p className="focus-text">{item.content}</p>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
       <section id="philosophy" className="section philosophy brand-section animated-fade-in">

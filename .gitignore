@@ -26,3 +26,6 @@ bun.lockb
 *.sln
 *.sw?
 .env
+.firebase/
+.kiro/
+.vscode/

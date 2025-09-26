@@ -1,8 +1,10 @@
 import React from 'react';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
+import ModernCard from '../components/ModernCard.jsx';
 import '../styles/product.css';
-import { FaBrain, FaBook, FaPrayingHands, FaUsers, FaUserCog, FaChevronDown } from 'react-icons/fa';
+import '../styles/modern-card.css';
+import { FaBrain, FaBook, FaPrayingHands, FaUsers, FaUserCog, FaChevronDown, FaLanguage, FaWifi, FaUniversalAccess, FaShieldAlt } from 'react-icons/fa';
 
 const Product = () => {
   
@@ -100,18 +102,39 @@ const Product = () => {
           <h2 className="section-title center-title no-bar"><span className="doodle-underline">Addressing India's Mental Health Challenge</span></h2>
           <p className="section-subtitle">With treatment gaps ranging from 70-95% across urban and rural India, Alayn is positioned to bridge the critical gap in accessible, culturally-sensitive mental health support.</p>
           <div className="mission-content">
-            <div className="mission-stats">
-              <div className="stat">
-                <h3>Cultural Relevance</h3>
-                <p>Integrating traditional Indian philosophical teachings and practices with modern evidence-based therapies for holistic wellness.</p>
+            <div className="timeline-container">
+              <div className="timeline-item">
+                <div className="timeline-marker">
+                  <div className="timeline-dot">
+                    <span className="timeline-number">01</span>
+                  </div>
+                </div>
+                <div className="timeline-content">
+                  <h3>Cultural Relevance</h3>
+                  <p>Integrating traditional Indian philosophical teachings and practices with modern evidence-based therapies for holistic wellness.</p>
+                </div>
               </div>
-              <div className="stat">
-                <h3>Comprehensive Coverage</h3>
-                <p>Addressing stress, anxiety, depression, and social stigma through preventive care and sustained engagement programs.</p>
+              <div className="timeline-item">
+                <div className="timeline-marker">
+                  <div className="timeline-dot">
+                    <span className="timeline-number">02</span>
+                  </div>
+                </div>
+                <div className="timeline-content">
+                  <h3>Comprehensive Coverage</h3>
+                  <p>Addressing stress, anxiety, depression, and social stigma through preventive care and sustained engagement programs.</p>
+                </div>
               </div>
-              <div className="stat">
-                <h3>Measurable Impact</h3>
-                <p>Designed for meaningful outcomes with structured pathways that promote long-term behavioral change and personal growth.</p>
+              <div className="timeline-item">
+                <div className="timeline-marker">
+                  <div className="timeline-dot">
+                    <span className="timeline-number">03</span>
+                  </div>
+                </div>
+                <div className="timeline-content">
+                  <h3>Measurable Impact</h3>
+                  <p>Designed for meaningful outcomes with structured pathways that promote long-term behavioral change and personal growth.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -122,23 +145,46 @@ const Product = () => {
         <div className="container">
           <h2 className="section-title center-title no-bar"><span className="doodle-underline">Built for Every Indian</span></h2>
           <p className="section-subtitle">Designed with India's diverse landscape in mind, ensuring mental wellness support reaches every corner of the country.</p>
-          <div className="accessibility-grid">
-            <div className="accessibility-feature">
-              <h3>Multilingual Support</h3>
-              <p>Available in English, Hindi, Tamil, Kannada, Telugu, and other regional languages to ensure comfortable access for users across India.</p>
-            </div>
-            <div className="accessibility-feature">
-              <h3>Optimized for All Connections</h3>
-              <p>Bandwidth-efficient design with offline download capabilities and adaptive streaming, specifically engineered for rural and Tier 2-3 city connectivity.</p>
-            </div>
-            <div className="accessibility-feature">
-              <h3>Inclusive Design</h3>
-              <p>Voice input options, intuitive interfaces, and accessibility features that accommodate diverse user needs and technological comfort levels.</p>
-            </div>
-            <div className="accessibility-feature">
-              <h3>Privacy-First Approach</h3>
-              <p>Complete data protection and anonymized insights in full compliance with India's Digital Personal Data Protection Act 2023, ensuring your personal journey remains confidential.</p>
-            </div>
+          <div className="features-grid">
+            <ModernCard 
+              variant="elevated"
+              hoverEffect="lift"
+              className="accessibility-card animated-scale-in"
+              title="Multilingual Support"
+              icon={<FaLanguage style={{ fontSize: '1.5rem' }} />}
+            >
+              Available in English, Hindi, Tamil, Kannada, Telugu, and other regional languages to ensure comfortable access for users across India.
+            </ModernCard>
+            
+            <ModernCard 
+              variant="elevated"
+              hoverEffect="lift"
+              className="accessibility-card animated-scale-in"
+              title="Optimized for All Connections"
+              icon={<FaWifi style={{ fontSize: '1.5rem' }} />}
+            >
+              Bandwidth-efficient design with offline download capabilities and adaptive streaming, specifically engineered for rural and Tier 2-3 city connectivity.
+            </ModernCard>
+            
+            <ModernCard 
+              variant="elevated"
+              hoverEffect="lift"
+              className="accessibility-card animated-scale-in"
+              title="Inclusive Design"
+              icon={<FaUniversalAccess style={{ fontSize: '1.5rem' }} />}
+            >
+              Voice input options, intuitive interfaces, and accessibility features that accommodate diverse user needs and technological comfort levels.
+            </ModernCard>
+            
+            <ModernCard 
+              variant="elevated"
+              hoverEffect="lift"
+              className="accessibility-card animated-scale-in"
+              title="Privacy-First Approach"
+              icon={<FaShieldAlt style={{ fontSize: '1.5rem' }} />}
+            >
+              Complete data protection and anonymized insights in full compliance with India's Digital Personal Data Protection Act 2023, ensuring your personal journey remains confidential.
+            </ModernCard>
           </div>
         </div>
       </section>

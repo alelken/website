@@ -17,13 +17,15 @@
 
 
 :root {
-    --primary-cyan: #06B6D4;
+    --primary-cyan: #00D4FF;
+    --primary-blue: #4F46E5;
+    --primary-purple: #9333EA;
     --primary-cyan-dark: #0891B2;
     --primary-cyan-light: #67E8F9;
     --secondary-cyan: #22D3EE;
     --accent-teal: #14B8A6;
     --accent-emerald: #10B981;
-    --brand-accent: var(--primary-cyan);
+    --brand-accent: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
     --primary-navy: #0F172A;
     --primary-navy-rgb: 15, 23, 42;
     --neutral-white: #FAFBFC;
@@ -34,19 +36,19 @@
     --text-color: var(--neutral-black);
     --text-secondary: #475569;
     --text-muted: #64748B;
-    --border-color: rgba(6, 182, 212, 0.08);
-    --gradient-primary: linear-gradient(135deg, var(--primary-cyan) 0%, var(--secondary-cyan) 50%, var(--accent-teal) 100%);
-    --gradient-text: linear-gradient(135deg, var(--primary-cyan) 0%, var(--accent-teal) 100%);
-    --gradient-card: linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
-    --gradient-border: linear-gradient(135deg, var(--primary-cyan) 0%, var(--accent-teal) 100%);
+    --border-color: rgba(0, 212, 255, 0.08);
+    --gradient-primary: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
+    --gradient-text: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
+    --gradient-card: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(79, 70, 229, 0.05) 50%, rgba(147, 51, 234, 0.05) 100%);
+    --gradient-border: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
     --border-radius: 10px;
     --card-radius: 18px;
-    --shadow-color: rgba(6, 182, 212, 0.15);
-    --shadow-sm: 0 1px 3px 0 rgba(6, 182, 212, 0.1), 0 1px 2px 0 rgba(6, 182, 212, 0.06);
-    --shadow-md: 0 4px 6px -1px rgba(6, 182, 212, 0.1), 0 2px 4px -1px rgba(6, 182, 212, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(6, 182, 212, 0.1), 0 4px 6px -2px rgba(6, 182, 212, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(6, 182, 212, 0.1), 0 10px 10px -5px rgba(6, 182, 212, 0.04);
-    --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.3);
+    --shadow-color: rgba(0, 212, 255, 0.15);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 212, 255, 0.1), 0 1px 2px 0 rgba(0, 212, 255, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 212, 255, 0.1), 0 2px 4px -1px rgba(0, 212, 255, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 212, 255, 0.1), 0 4px 6px -2px rgba(0, 212, 255, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 212, 255, 0.1), 0 10px 10px -5px rgba(0, 212, 255, 0.04);
+    --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
     --gradient-secondary: linear-gradient(135deg, var(--neutral-white) 0%, rgba(250, 251, 252, 0.8) 100%);
     --text-dark: #212529;
     --text-color: #000000;
@@ -455,13 +457,13 @@ header nav {
 .nav-link:hover,
 .nav-link:focus {
     color: var(--primary-cyan);
-    background-color: rgba(6, 182, 212, 0.05);
+    background-color: rgba(0, 212, 255, 0.05);
     outline: none;
 }
 
 .nav-link.active {
     color: var(--primary-cyan);
-    background-color: rgba(6, 182, 212, 0.05);
+    background-color: rgba(0, 212, 255, 0.05);
 }
 
 .nav-link.active .nav-link-underline {
@@ -660,7 +662,7 @@ header nav {
 .mobile-nav-footer {
     margin-top: auto;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(59, 130, 246, 0.1);
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
     text-align: center;
 }
 
@@ -814,7 +816,7 @@ html:not(.dark) .mobile-nav-links.mobile-nav-links {
     transition: all 0.3s ease;
     color: var(--text-color);
     border: 2px solid transparent;
-    border-color: var(--brand-accent);
+    border-color: var(--primary-cyan);
     display: inline-block;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
@@ -876,8 +878,8 @@ input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-    border-color: var(--brand-accent);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.25);
 }
 
 /* Theme Switch */
@@ -1376,14 +1378,14 @@ select:focus {
 
 .culture-icon {
     font-size: 3rem;
-    color: var(--brand-accent);
+    color: var(--primary-cyan);
     margin-bottom: 1rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .culture-item:hover .culture-icon {
     transform: scale(1.1) rotate(5deg);
-    color: var(--brand-accent);
+    color: var(--primary-blue);
 }
 
 .culture-item h3 {
@@ -1548,10 +1550,10 @@ select:focus {
 }
 
 .benefit-card {
-    background: #ffffff;
-    /* Force white for readability in light mode */
-    border: 2px dashed rgba(59, 130, 246, 0.6);
-    /* Softer dashed border */
+    background: linear-gradient(135deg, #FFF9E5 0%, #FFFBEA 100%);
+    /* Gold faint background */
+    border: 2px dashed #FFD70033;
+    /* Soft gold dashed border */
     padding: 2rem;
     scroll-snap-align: center;
     height: 100%;
@@ -1669,10 +1671,14 @@ select:focus {
 }
 
 .feature-card p {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin: 0;
-    max-width: 85%;
+    font-size: 3rem;
+    background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
+    color: var(--pure-white);
+    border-radius: 50%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px 0 var(--primary-blue)22;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0 auto;
 }
 
@@ -2948,7 +2954,7 @@ div {
 .doodle-underline {
     position: relative;
     display: inline-block;
-    padding-bottom: 14px;
+    padding-bottom: 16px;
 }
 
 .doodle-underline::after {
@@ -2956,10 +2962,11 @@ div {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0;
-    width: 120px;
-    height: 12px;
+    bottom: -2px;
+    width: 140px;
+    height: 16px;
     background: url('/assets/images/doodle_underline.svg') no-repeat center/contain;
+    opacity: 0.9;
 }
 
 .brand-highlight {
@@ -2986,27 +2993,11 @@ div {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px 36px;
-    counter-reset: feat;
 }
 
 .product-page .feature-block {
     position: relative;
-    padding-left: 28px;
     border-left: none;
-}
-
-.product-page .feature-block::before {
-    counter-increment: feat;
-    content: counter(feat, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: 700;
-    font-size: 0.9rem;
-    /* clear, compact numeric marker */
-    color: var(--brand-accent);
-    /* on-brand number color */
-    letter-spacing: 0.05em;
 }
 
 /* Center the Core Features subtitle on desktop */
@@ -3088,10 +3079,10 @@ div {
     width: 56px;
     height: 56px;
     border-radius: 999px;
-    background: rgba(59, 130, 246, 0.12);
-    color: var(--brand-accent);
+    background: rgba(0, 212, 255, 0.12);
+    color: var(--primary-cyan);
     font-size: 24px;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08) inset;
+    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.08) inset;
     margin-bottom: 14px;
 }
 
@@ -3115,9 +3106,9 @@ body.dark .careers-page .culture-item {
 }
 
 body.dark .careers-page .culture-icon {
-    background: rgba(59, 130, 246, 0.14);
-    color: var(--brand-accent);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.06) inset;
+    background: rgba(0, 212, 255, 0.14);
+    color: var(--primary-cyan-light);
+    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.06) inset;
 }
 
 .product-page .mission .mission-stats {
@@ -3125,7 +3116,6 @@ body.dark .careers-page .culture-icon {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px 36px;
-    counter-reset: missionStep;
     padding-top: 44px;
 }
 
@@ -3147,24 +3137,6 @@ body.dark .careers-page .culture-icon {
     border: none !important;
     padding: 2px 8px 0 8px;
     text-align: center;
-}
-
-.product-page .mission .stat::before {
-    counter-increment: missionStep;
-    content: counter(missionStep, decimal-leading-zero);
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translate(-50%, -185%);
-    font-weight: 800;
-    font-size: 0.95rem;
-    color: var(--brand-accent, #3B82F6);
-    letter-spacing: 0.6px;
-    padding: 5px 16px;
-    border-radius: 999px;
-    background: var(--page-bg, #ffffff);
-    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.45) inset, 0 1px 2px rgba(0, 0, 0, 0.04);
-    z-index: 2;
 }
 
 body.dark .product-page .mission .stat::before {
@@ -4730,3 +4702,276 @@ Cyan Theme Utilities */
     background: linear-gradient(135deg, var(--neutral-white) 0%, rgba(6, 182, 212, 0.02) 100%);
 }/* 
 Mobile styles have been moved to mobile.css and are imported at the top of this file */
+/
+* Focus and Philosophy Sections */
+.vision, .philosophy {
+  background: var(--gradient-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.vision::before, .philosophy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-card);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.vision .container, .philosophy .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Focus List Styles */
+.focus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.focus-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--pure-white);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: var(--primary-cyan);
+  background: linear-gradient(135deg, var(--pure-white) 0%, rgba(0, 212, 255, 0.02) 100%);
+}
+
+.focus-item:hover::before {
+  transform: scaleY(1);
+}
+
+.focus-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 120px;
+  gap: 1rem;
+}
+
+.focus-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.focus-text {
+  flex: 1;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+  padding-top: 0.5rem;
+}
+
+/* Philosophy List Styles */
+.philosophy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.principle-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2.5rem;
+  background: var(--pure-white);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.principle-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.1;
+}
+
+.principle-row:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  border-color: var(--primary-cyan);
+  background: linear-gradient(135deg, var(--pure-white) 0%, rgba(0, 212, 255, 0.03) 100%);
+}
+
+.principle-row:hover::after {
+  width: 100%;
+}
+
+.principle-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 1rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.3;
+}
+
+.principle-text {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Icon Chip Styles */
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: var(--pure-white) !important;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-chip * {
+  color: var(--pure-white) !important;
+}
+
+.icon-chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.focus-item:hover .icon-chip,
+.principle-row:hover .icon-chip {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.focus-item:hover .icon-chip::before,
+.principle-row:hover .icon-chip::before {
+  opacity: 1;
+}
+
+/* Doodle Underline Effect - Using SVG file */
+
+/* Hide default section title bar when using doodle underline */
+.section-title:has(.doodle-underline)::after {
+  display: none !important;
+}
+
+/* Dark Mode Support */
+body.dark .focus-item,
+body.dark .principle-row {
+  background: var(--gray-800) !important;
+  border-color: var(--gray-700) !important;
+}
+
+body.dark .focus-title,
+body.dark .principle-title {
+  color: var(--primary-white) !important;
+}
+
+body.dark .focus-text,
+body.dark .principle-text {
+  color: var(--gray-300) !important;
+}
+
+body.dark .focus-item:hover,
+body.dark .principle-row:hover {
+  background: var(--gray-700) !important;
+  border-color: var(--primary-cyan) !important;
+}/*
+ Global Icon Color Rules */
+/* Ensure all icons are white when on gradient backgrounds */
+[style*="background: var(--gradient-primary)"] *,
+[style*="background: linear-gradient"] *,
+.gradient-bg *,
+.gradient-background * {
+  color: var(--pure-white) !important;
+}
+
+/* Specific icon containers with gradient backgrounds */
+.icon-container,
+.icon-wrapper,
+.feature-icon-container,
+.culture-icon-container {
+  color: var(--pure-white) !important;
+}
+
+.icon-container *,
+.icon-wrapper *,
+.feature-icon-container *,
+.culture-icon-container * {
+  color: var(--pure-white) !important;
+}
+
+/* Dark mode icon fixes */
+body.dark .icon-chip,
+body.dark .feature-icon,
+body.dark .culture-icon {
+  color: var(--pure-white) !important;
+}
+
+body.dark .icon-chip *,
+body.dark .feature-icon *,
+body.dark .culture-icon * {
+  color: var(--pure-white) !important;
+}
