@@ -26,7 +26,7 @@ const NotFound = () => {
           --gray-200: #e9ecef;
           --gray-300: #dee2e6;
           --gray-400: #ced4da;
-          --gray-500: #adb5bd;
+                <h1 className="not-found-404 animated-fade-in">404</h1>
           --gray-600: #6c757d;
           --gray-700: #495057;
           --gray-800: #343a40;

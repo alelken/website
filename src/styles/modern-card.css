@@ -163,28 +163,4 @@
   }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .modern-card {
-    --modern-card-padding: 1.25rem;
-    height: 100%;
-  }
-  .modern-card__icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0.5rem;
-  }
-  .modern-card__icon svg,
-  .modern-card__icon i {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .modern-card__title {
-    font-size: 1.125rem;
-  }
-  
-  .modern-card__body {
-    font-size: 0.875rem;
-  }
-}
+/* Mobile styles moved to mobile.css */

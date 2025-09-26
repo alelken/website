@@ -1,0 +1,613 @@
+/* Desktop Layout Styles */
+
+/* Container */
+.container {
+    width: 100%;
+    padding: 0 2rem;
+}
+
+/* Sections */
+.home-page {
+    --section-spacing: 6rem;
+    --card-radius: 16px;
+    --transition-speed: 0.3s;
+}
+
+.hero {
+    position: relative;
+    padding: 8rem 0;
+    background: var(--primary-white);
+    color: var(--gray-900);
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-secondary);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+    padding: 120px 2rem 60px;
+    min-height: 100vh;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.hero-text {
+    text-align: center;
+    max-width: 800px;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    color: var(--gray-900);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.hero .subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin: 0 auto 2.5rem;
+    color: var(--gray-700);
+    max-width: 80%;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--gray-600);
+    max-width: 800px;
+    margin-bottom: 2rem;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-illustration {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    transition: transform 0.5s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-illustration path[stroke="#8e7206"] {
+    stroke: #8e7206;
+    transition: all 0.3s ease;
+}
+
+.hero-illustration:hover path[stroke="#8e7206"] {
+    stroke: #a8860e;
+    filter: drop-shadow(0 0 8px rgba(142, 114, 6, 0.5));
+}
+
+.hero,
+.about-hero,
+.careers-hero,
+.product-hero {
+    padding: 6rem 0 4rem;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    background: var(--gradient-secondary);
+    width: 100%;
+}
+
+.about-hero,
+.careers-hero,
+.product-hero {
+    background: var(--gradient-secondary);
+}
+
+.hero-content,
+.about-hero-content,
+.careers-hero-content,
+.product-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-logo-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.hero h1,
+.about-hero h1,
+.careers-hero h1,
+.product-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.hero .subtitle,
+.about-hero p,
+.careers-hero p,
+.product-hero p {
+    font-size: clamp(1.125rem, 1.8vw, 1.35rem);
+    color: var(--gray-600);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.section,
+.team-section,
+.benefits-section,
+.jobs-section,
+.features,
+.values-section,
+.company-culture,
+.accessibility,
+.mission,
+.join-mission {
+    padding: 80px 0;
+    position: relative;
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: 0 2px 0 0 rgba(59, 130, 246, 0.12);
+}
+
+.section {
+    padding: var(--section-spacing) 0;
+    position: relative;
+    padding: 8rem 0;
+}
+
+.section:last-child,
+.team-section:last-child,
+.benefits-section:last-child,
+.jobs-section:last-child,
+.features:last-child,
+.values-section:last-child,
+.company-culture:last-child,
+.accessibility:last-child,
+.mission:last-child,
+.join-mission:last-child {
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.section-header {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    width: 100%;
+}
+
+.section-title,
+.team-section h2,
+.benefits-section h2,
+.jobs-section h2,
+.features h2,
+.values-section h2,
+.company-culture h2,
+.accessibility h2,
+.mission h2,
+.join-mission h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin: 0 auto 1.5rem;
+    color: var(--gray-900);
+    text-align: center;
+    width: 100%;
+    display: block;
+    position: relative;
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.center-title {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+    display: block !important;
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    padding: 0 1rem !important;
+    max-width: 100% !important;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--brand-accent);
+    border-radius: 2px;
+}
+
+.section-title.no-bar::after {
+    display: none !important;
+}
+
+.section-subtitle,
+.team-section .section-subtitle,
+.benefits-section .section-subtitle,
+.jobs-section .section-subtitle,
+.features .section-subtitle,
+.values-section .section-subtitle,
+.company-culture .section-subtitle,
+.accessibility .section-subtitle,
+.mission .section-subtitle,
+.join-mission .section-subtitle,
+.cta-section p {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--gray-600);
+    margin: 0 auto;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin-bottom: 5rem;
+}
+
+.benefits-section .section-subtitle,
+.jobs-section .section-subtitle,
+.features .section-subtitle,
+.values-section .section-subtitle,
+.company-culture .section-subtitle,
+.accessibility .section-subtitle,
+.mission .section-subtitle,
+.join-mission .section-subtitle {
+    margin-bottom: 3rem;
+}
+
+.features .section-subtitle {
+    margin-bottom: 4rem;
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.cta-section h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-white);
+}
+
+.cta-section p {
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    color: var(--gray-300);
+}
+
+.cta-section .btn {
+    background: var(--brand-accent);
+    color: var(--neutral-white);
+    border: 2px solid var(--brand-accent);
+    font-size: 1.1rem;
+    padding: 1.25rem 3rem;
+    min-width: 220px;
+    margin-top: 2rem;
+}
+
+.cta-section .btn:hover {
+    background: transparent;
+    color: var(--brand-accent);
+    border-color: var(--brand-accent);
+    transform: translateY(-2px);
+}
+
+/* Grids and Layouts */
+.about-grid,
+.vision-grid,
+.team-grid,
+.features-grid,
+.philosophy-grid {
+    overflow: visible;
+    overflow: visible !important;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    grid-auto-rows: auto;
+    align-items: stretch;
+    justify-content: center;
+    margin: 2rem auto;
+    max-width: 1280px;
+    padding: 0 2rem;
+}
+
+.culture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.culture-item {
+    text-align: center;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.culture-icon {
+    font-size: 3rem;
+    color: var(--primary-cyan);
+    margin-bottom: 1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.culture-item:hover .culture-icon {
+    transform: scale(1.1) rotate(5deg);
+    color: var(--primary-blue);
+}
+
+.culture-item h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.culture-item p {
+    color: var(--gray-600);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.accessibility {
+    background: var(--gray-100);
+}
+
+.accessibility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.accessibility-feature {
+    background: var(--gray-50);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-200);
+}
+
+.accessibility-feature:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.accessibility-feature h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+}
+
+.accessibility-feature p {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.mission {
+    background: var(--gradient-secondary);
+}
+
+.mission-content {
+    margin-top: 3rem;
+}
+
+.mission-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+.stat {
+    text-align: center;
+    padding: 2rem;
+    background: var(--gray-50);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.stat h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+}
+
+.stat p {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.join-mission {
+    background: var(--gray-100);
+}
+
+.mission-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.mission-cta p {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+    width: 100%;
+}
+
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.jobs-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Page Header Styles (for non-home pages) */
+.page-header {
+    padding: 8rem 0 4rem;
+    background: var(--background);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.page-header .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.page-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 10;
+}
+
+.page-header p {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+    position: relative;
+    z-index: 10;
+}
+
+.page-header .brand-highlight {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* Dark mode styles for page header */
+body.dark .page-header {
+    background: var(--primary-black);
+}
+
+body.dark .page-header h1 {
+    color: var(--primary-white);
+}
+
+body.dark .page-header p {
+    color: var(--gray-300);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 6rem 0 3rem;
+    }
+
+    .page-header .container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 5rem 0 2.5rem;
+    }
+}
