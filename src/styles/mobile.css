@@ -1874,14 +1874,14 @@ d Product and Careers Mobile Optimizations */
     justify-content: center !important;
     border-radius: 50% !important;
     background: var(--gradient-primary) !important;
-    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4) !important;
+    box-shadow: 0 6px 20px transparent !important;
     transition: all 0.3s ease !important;
     margin: 0 auto !important;
   }
 
   .careers-page .culture-item:hover .culture-icon>div {
     transform: scale(1.1);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.5);
+    box-shadow: 0 8px 24px transparent;
   }
 
   .careers-page .job-meta {
