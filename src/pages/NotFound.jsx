@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion'; // eslint-disable-line no-unused-vars
+import { motion } from 'framer-motion';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
@@ -8,45 +8,26 @@ const NotFound = () => {
   return (
     <>
       <style>{`
-        /* Fonts are imported globally in src/styles/main.css */
-        /* Root Variables - Light Theme (Default) */
+        /* Global variables are now in main.css */
+        
+        /* Root Variables - Enhanced for 404 page */
         :root {
-          /* Colors */
-          --primary-gold: #3B82F6; /* use brand blue instead of gold */
-          --primary-navy: #001F3F;
-          --neutral-white: #FFFFFF;
+          --primary-cyan: #00D4FF;
+          --primary-blue: #4F46E5;
+          --primary-purple: #9333EA;
+          --gradient-primary: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%);
+          --neutral-white: #FAFBFC;
+          --pure-white: #ffffff;
           --text-color: #000000;
-          --background: #FFFFFF;
-          --card-bg: #FFFFFF;
-          --card-border: #E0E0E0;
-         
-          /* Grayscale */
-          --gray-50: #f8f9fa;
-          --gray-100: #f1f3f5;
-          --gray-200: #e9ecef;
-          --gray-300: #dee2e6;
-          --gray-400: #ced4da;
-          --gray-500: #adb5bd;
+          --background: var(--neutral-white);
           --gray-600: #6c757d;
           --gray-700: #495057;
           --gray-800: #343a40;
           --gray-900: #212529;
-         
-          /* Shadows */
-          --shadow-color: rgba(0, 0, 0, 0.1);
-          --shadow-sm: 0 1px 2px 0 var(--shadow-color);
-          --shadow-md: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-          --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
-          --shadow-xl: 0 20px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
-         
-          /* Gradients */
-          --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, #60A5FA 100%);
-          --gradient-secondary: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
-          --gradient-accent: linear-gradient(135deg, var(--primary-gold) 0%, #60A5FA 100%);
-         
-          /* Text colors */
-          --text-dark: #212529;
-          --text-color: #000000;
+          --shadow-sm: 0 1px 3px 0 rgba(0, 212, 255, 0.1), 0 1px 2px 0 rgba(0, 212, 255, 0.06);
+          --shadow-md: 0 4px 6px -1px rgba(0, 212, 255, 0.1), 0 2px 4px -1px rgba(0, 212, 255, 0.06);
+          --shadow-lg: 0 10px 15px -3px rgba(0, 212, 255, 0.1), 0 4px 6px -2px rgba(0, 212, 255, 0.05);
+          --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
         /* Base Styles */
         * {
@@ -54,8 +35,9 @@ const NotFound = () => {
           padding: 0;
           box-sizing: border-box;
         }
+        
         body {
-          /* inherit font-family from global CSS */
+          font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           background: var(--background);
           color: var(--text-color);
           line-height: 1.6;
@@ -63,48 +45,31 @@ const NotFound = () => {
           font-size: 16px;
           transition: background-color 0.3s ease, color 0.3s ease;
         }
+        
         h1, h2, h3, h4, h5, h6 {
-          /* inherit heading font-family from global CSS */
+          font-family: 'Space Grotesk', sans-serif;
           color: var(--text-color);
           margin: 0 0 1.5rem;
           text-align: center;
           transition: color 0.3s ease;
         }
-        /* Button styles */
-        .btn {
-          transition: all 0.3s ease;
-          color: var(--text-color);
-          border: 2px solid transparent;
-        }
-        .btn-primary {
-          background-color: var(--primary-gold);
-          color: var(--primary-navy);
-        }
-        .btn-primary:hover {
-          background-color: #E6C200;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 6px var(--shadow-color);
-        }
+        
         /* Dark mode styles */
         @media (prefers-color-scheme: dark) {
           :root {
             --neutral-white: #1E1E1E;
-            --text-dark: #F9F9F9;
-            --primary-gold: #60A5FA; /* blue in dark mode */
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --footer-text: var(--gray-300);
-            --footer-heading: var(--primary-white);
-            --text-color: #F9F9F9; /* Ensure text is light in dark mode */
-            --background: #1E1E1E; /* Dark background */
-          }
-         
-          body {
-            background: var(--background);
-            color: var(--text-color);
+            --background: #1E1E1E;
+            --text-color: #F9F9F9;
+            --gray-600: #9ca3af;
+            --gray-700: #6b7280;
           }
           
           .not-found-text {
-            color: var(--gray-300) !important;
+            color: var(--gray-600) !important;
+          }
+          
+          .not-found-image {
+            filter: brightness(0.9) contrast(1.1);
           }
         }
         /* Not Found Specific Styles */
@@ -115,114 +80,206 @@ const NotFound = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          /* Add extra top padding to account for fixed header height */
-          padding: 6rem 1rem 2rem 1rem;
-          
-          @media (min-width: 768px) {
-            padding: 7rem 1rem 3rem 1rem;
-          }
+          padding: 6rem 2rem 2rem 2rem;
+          position: relative;
+          overflow: hidden;
         }
+        
         .not-found-content {
           text-align: center;
-          max-width: 42rem;
+          max-width: 48rem;
           margin: 0 auto;
+          position: relative;
+          z-index: 2;
         }
+        
+        .not-found-image-container {
+          margin-bottom: 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .not-found-image {
+          max-width: 300px;
+          width: 100%;
+          height: auto;
+          border-radius: 16px;
+          box-shadow: var(--shadow-lg);
+          transition: all 0.3s ease;
+        }
+        
+        .not-found-image:hover {
+          transform: scale(1.02);
+          box-shadow: var(--shadow-glow);
+        }
+        
         .not-found-404 {
-          font-size: 6rem;
-          font-weight: 700;
-          color: var(--primary-gold);
-          margin-bottom: 0.5rem;
+          font-size: clamp(4rem, 12vw, 8rem);
+          font-weight: 800;
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 1rem;
           line-height: 1;
-          
-          @media (min-width: 768px) {
-            font-size: 9rem;
-            margin-bottom: 1rem;
-          }
+          letter-spacing: -0.02em;
         }
+        
         .not-found-title {
-          font-size: 1.75rem;
-          font-weight: 600;
-          color: var(--text-color);
+          font-size: clamp(1.5rem, 4vw, 2.5rem);
+          font-weight: 700;
+          color: var(--gray-900);
           margin-bottom: 1rem;
           line-height: 1.2;
-          
-          @media (min-width: 768px) {
-            font-size: 2.25rem;
-            margin-bottom: 1.5rem;
-          }
+          letter-spacing: -0.01em;
         }
+        
         .not-found-text {
-          font-size: 1.1rem;
+          font-size: clamp(1rem, 2.5vw, 1.25rem);
           color: var(--gray-600);
-          margin-bottom: 2rem;
-          padding: 0 1rem;
+          margin-bottom: 2.5rem;
           line-height: 1.6;
-          
-          @media (min-width: 768px) {
-            font-size: 1.25rem;
-          }
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
         }
+        
         .not-found-button {
           display: inline-flex;
           align-items: center;
-          padding: 0.5rem 1.25rem;
-          background-color: var(--primary-gold);
-          color: var(--primary-navy) !important;
+          gap: 0.5rem;
+          padding: 1rem 2rem;
+          background: var(--gradient-primary);
+          color: var(--pure-white) !important;
           font-weight: 600;
-          font-size: 0.875rem;
-          border-radius: 0.375rem;
+          font-size: 1rem;
+          border-radius: 12px;
           text-decoration: none;
-          transition: all 0.2s ease;
-          box-shadow: var(--shadow-sm);
+          transition: all 0.3s ease;
+          box-shadow: var(--shadow-md);
           border: none;
           cursor: pointer;
           line-height: 1.25;
-          
-          @media (max-width: 480px) {
-            width: auto;
-            min-width: 120px;
-            padding: 0.5rem 1rem;
-          }
+          position: relative;
+          overflow: hidden;
         }
+        
+        .not-found-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .not-found-button:hover::before {
+          left: 100%;
+        }
+        
         .not-found-button:hover {
-          background-color: #2563EB;
-          transform: translateY(-2px);
-          box-shadow: var(--shadow-lg);
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-lg), var(--shadow-glow);
+          filter: brightness(1.1);
         }
-        .not-found-decor {
-          margin-top: 4rem;
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 2rem;
-          opacity: 0.3;
+        
+        .not-found-button:active {
+          transform: translateY(-1px);
         }
-        @media (min-width: 768px) {
-          .not-found-decor {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+        
+        .not-found-background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 90% 10%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+          z-index: 1;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+          .not-found-container {
+            padding: 5rem 1rem 2rem 1rem;
+          }
+          
+          .not-found-image {
+            max-width: 250px;
+          }
+          
+          .not-found-button {
+            padding: 0.875rem 1.5rem;
+            font-size: 0.9375rem;
           }
         }
-        .not-found-box {
-          height: 5rem;
-          width: 5rem;
-          background-color: var(--gray-100);
-          border-radius: 0.5rem;
+        
+        @media (max-width: 480px) {
+          .not-found-container {
+            padding: 4rem 1rem 2rem 1rem;
+          }
+          
+          .not-found-image {
+            max-width: 200px;
+          }
+          
+          .not-found-button {
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+          }
         }
       `}</style>
       <Header />
       <div className="not-found-container">
+        <div className="not-found-background"></div>
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="not-found-content"
         >
-          <h1 className="not-found-404">404</h1>
-          <h2 className="not-found-title">Page Not Found</h2>
-          <p className="not-found-text">
-            Oops! The page you're looking for doesn't exist or has been moved.
-          </p>
           <motion.div
-            whileHover={{ scale: 1.03 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="not-found-image-container"
+          >
+            <img
+              src="/assets/images/404/image.png"
+              alt="Page Not Found"
+              className="not-found-image"
+            />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="not-found-title"
+          >
+            Oops! Page Not Found
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="not-found-text"
+          >
+            The page you're looking for seems to have wandered off into the digital wilderness.
+            Don't worry though – let's get you back on track to discover amazing wellness tools and insights.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <Link
@@ -231,7 +288,8 @@ const NotFound = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2"
+                width="20"
+                height="20"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -241,21 +299,10 @@ const NotFound = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              Back to Home
+              Return Home
             </Link>
           </motion.div>
         </motion.div>
-        <div className="not-found-decor">
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 0.3, y: 0 }}
-              transition={{ delay: 0.1 * i, duration: 0.5 }}
-              className="not-found-box"
-            />
-          ))}
-        </div>
       </div>
       <Footer />
     </>

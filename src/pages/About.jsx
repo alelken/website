@@ -28,15 +28,13 @@ const About = () => {
   return (
     <div>
       <Header />
-      <section className="about-hero hero hero-brand">
-        <div className="container hero-shell">
-          <div className="about-hero-content hero-text">
-            <h1>About Alelken</h1>
-            <p>We're a team of passionate individuals dedicated to creating technology that positively impacts lives.</p>
-          </div>
+      <section className="page-header">
+        <div className="container">
+          <h1>About Alelken</h1>
+          <p>We're a team of passionate individuals dedicated to creating technology that positively impacts lives.</p>
         </div>
       </section>
-      <section className="about-values brand-section">
+      <section className="about-values brand-section animated-fade-in">
         <div className="container">
           <div className="about-content">
             <h2 className="section-title center-title no-bar"><span className="doodle-underline">Who We Are</span></h2>
@@ -44,7 +42,7 @@ const About = () => {
           </div>
           <div className="about-grid" ref={aboutGridRef}>
             {aboutItems.map((item, i) => (
-              <ModernCard key={i} className="value-card" title={item.title} variant="elevated" hoverEffect="lift">
+              <ModernCard key={i} className="value-card animated-scale-in" title={item.title} variant="elevated" hoverEffect="lift">
                 {item.content}
               </ModernCard>
             ))}
@@ -52,7 +50,7 @@ const About = () => {
           <ScrollDots count={aboutItems.length} activeIndex={activeAboutIndex} />
         </div>
       </section>
-      <section className="team-section brand-section">
+      <section className="team-section brand-section animated-fade-in">
         <div className="container">
           <div className="section-title center-title">
             <h2 className="no-bar"><span className="doodle-underline">Meet Our Team</span></h2>
@@ -62,7 +60,7 @@ const About = () => {
             {teamMembers.map((member, i) => (
               <ModernCard
                 key={i}
-                className="team-card"
+                className="team-card animated-scale-in"
                 image={{ src: member.image, alt: member.name }}
                 title={member.name}
                 variant="elevated"
@@ -78,7 +76,7 @@ const About = () => {
       </section>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

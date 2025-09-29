@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const defaultMeta = {
-  title: 'Alelken',
+  title: 'Home | Alelken',
   description: 'Alelken develops cutting-edge digital platforms that enhance human wellbeing and personal development through thoughtful technology integration.',
   image: '/assets/images/android-chrome-512x512.png',
 };
@@ -10,17 +10,17 @@ const defaultMeta = {
 const pageSpecificMeta = {
   '/': defaultMeta,
   '/product': {
-    title: 'Product – Alelken',
+    title: 'Product | Alelken',
     description: 'Discover our comprehensive wellness solutions focused on stress management, mindfulness development, community connection, and progress tracking.',
     image: '/assets/images/android-chrome-512x512.png',
   },
   '/about': {
-    title: 'About – Alelken',
+    title: 'About | Alelken',
     description: 'Learn about Alelken’s mission, values, and the team building human-centered technology.',
     image: '/assets/images/android-chrome-512x512.png',
   },
   '/careers': {
-    title: 'Careers – Alelken',
+    title: 'Careers | Alelken',
     description: 'Join our team and help build technology solutions that enhance human wellbeing and personal development.',
     image: '/assets/images/android-chrome-512x512.png',
   },
