@@ -13,8 +13,8 @@ const routeElements = (
     <Route index element={<Home />} />
     <Route path="about" element={<About />} />
     <Route path="product" element={<Product />} />
-  <Route path="careers" element={<Careers />} />
-    <Route path="press" element={<Press />} />
+    <Route path="careers" element={<Careers />} />
+    {/*<Route path="press" element={<Press />} />*/}
     <Route path="*" element={<NotFound />} />
   </Route>
 );

@@ -850,16 +850,7 @@ html:not(.dark) .mobile-nav-links.mobile-nav-links {
     color: var(--pure-white);
 }
 
-.btn-alayn {
-    background-color: var(--alayn-blue);
-    color: var(--secondary-navy);
-}
 
-.btn-alayn:hover {
-    background-color: var(--alayn-green);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px var(--shadow-color);
-}
 
 input,
 textarea,
@@ -975,14 +966,7 @@ select:focus {
     background: linear-gradient(135deg, var(--pure-white) 0%, rgba(6, 182, 212, 0.02) 100%);
 }
 
-.card.gold-border {
-    border-color: var(--brand-accent);
-    box-shadow: 0 0 0 1px var(--brand-accent);
-}
 
-.card.gold-border:hover {
-    box-shadow: 0 0 0 2px var(--brand-accent), 0 8px 12px var(--shadow-color);
-}
 
 .container {
     width: 100%;
@@ -1371,6 +1355,7 @@ select:focus {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
     margin-top: 4rem;
+    align-items: center;
 }
 
 .culture-item {
@@ -1654,7 +1639,7 @@ select:focus {
     letter-spacing: -0.01em;
     font-size: 1.75rem;
     margin: 0 0 1.25rem;
-    color: var(--secondary-navy);
+    color: var(--text-color);
     font-weight: 600;
 }
 

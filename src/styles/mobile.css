@@ -3,20 +3,37 @@
 /* Base Mobile Styles */
 @media (max-width: 768px) {
 
-  /* Typography - Adjusted heading sizes for mobile */
+  /* Typography - Optimized heading sizes for mobile readability */
   h1 {
-    font-size: 2.4rem;
-    line-height: 1.2;
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    font-size: 2.1rem;
+    font-size: clamp(1.5rem, 4.5vw, 1.875rem);
     line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   h3 {
-    font-size: 1.8rem;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    line-height: 1.35;
+  }
+
+  h4 {
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
     line-height: 1.4;
+  }
+
+  h5 {
+    font-size: clamp(1rem, 3vw, 1.125rem);
+    line-height: 1.4;
+  }
+
+  h6 {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+    line-height: 1.5;
   }
 
   /* Container */
@@ -48,27 +65,32 @@
     padding: 8rem 0 3rem;
     text-align: center;
   }
-    /* Add extra space between navbar and page header text for all pages except home */
-    body:not(.home-page) .page-header {
-      padding-top: 11rem;
-    }
+
+  /* Add extra space between navbar and page header text for all pages except home */
+  body:not(.home-page) .page-header {
+    padding-top: 11rem;
+  }
 
   .page-header h1 {
-    font-size: clamp(1.75rem, 6vw, 2rem);
+    font-size: clamp(1.5rem, 5.5vw, 1.875rem);
     margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .page-header h1 .brand-highlight,
   .page-header .brand-highlight,
   .hero .brand-highlight {
-    font-size: clamp(2.05rem, 6.3vw, 2.3rem);
+    font-size: clamp(1.75rem, 6vw, 2.125rem);
     display: inline-block;
+    line-height: 1.15;
   }
 
   .page-header p {
-    font-size: 1.125rem;
-    line-height: 1.6;
+    font-size: clamp(1rem, 3.5vw, 1.125rem);
+    line-height: 1.65;
     margin: 0 auto;
+    max-width: 90%;
   }
 
   /* Cards Mobile */
@@ -140,16 +162,17 @@
   }
 
   .hero h1 {
-    font-size: clamp(2.5rem, 8vw, 3rem);
-    line-height: 1.1;
+    font-size: clamp(2rem, 7vw, 2.5rem);
+    line-height: 1.15;
     margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
   }
 
   .hero .subtitle {
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
+    line-height: 1.6;
     margin-bottom: 2rem;
-    max-width: 100%;
+    max-width: 95%;
   }
 
   .hero-shell {
@@ -186,16 +209,22 @@
     padding: 4rem 0;
   }
 
-  .section-title, .center-title {
-    font-size: clamp(1.6rem, 5.4vw, 2.2rem);
+  .section-title,
+  .center-title {
+    font-size: clamp(2rem, 7vw, 2.5rem);
     margin-bottom: 1rem;
     font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
   }
 
   .section-subtitle {
-    font-size: 1.125rem;
-    line-height: 1.6;
+    font-size: clamp(1rem, 3.5vw, 1.125rem);
+    line-height: 1.65;
     margin-bottom: 2rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Focus list mobile */
@@ -215,13 +244,14 @@
   }
 
   .focus-title {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
     margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
 
   .focus-text {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    line-height: 1.65;
   }
 
   /* Philosophy section mobile */
@@ -236,13 +266,14 @@
   }
 
   .principle-title {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
     margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
 
   .principle-text {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    line-height: 1.65;
   }
 }
 
@@ -269,13 +300,14 @@
   }
 
   .team-card h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
     margin-bottom: 0.75rem;
+    line-height: 1.3;
   }
 
   .team-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: clamp(0.875rem, 3vw, 0.95rem);
+    line-height: 1.6;
   }
 }
 
@@ -292,13 +324,14 @@
   }
 
   .feature-card h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
     margin-bottom: 1rem;
+    line-height: 1.3;
   }
 
   .feature-card p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    line-height: 1.65;
   }
 
   .feature-card .icon-chip {
@@ -340,26 +373,57 @@
 
   .benefits-grid,
   .culture-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 0.5rem;
+    align-items: center;
   }
 
   .benefit-card,
   .culture-item {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     text-align: center;
+    border-radius: 16px;
+    background: var(--pure-white);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
   }
+
+  .culture-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-cyan);
+  }
+
+  .culture-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 1.5rem;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+
 
   .benefit-card h3,
   .culture-item h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
     margin-bottom: 1rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--gray-900);
   }
 
   .benefit-card p,
   .culture-item p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--gray-600);
+    margin: 0;
   }
 
   .jobs-grid {
@@ -372,8 +436,9 @@
   }
 
   .job-card h3 {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
     margin-bottom: 0.75rem;
+    line-height: 1.3;
   }
 
   .job-card .job-meta {
@@ -417,14 +482,14 @@
   }
 
   .blog-title {
-    font-size: 1.125rem;
-    line-height: 1.4;
+    font-size: clamp(1.0625rem, 3.25vw, 1.125rem);
+    line-height: 1.45;
     margin-bottom: 0.75rem;
   }
 
   .blog-excerpt {
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: clamp(0.875rem, 3vw, 0.95rem);
+    line-height: 1.6;
     margin-bottom: 1rem;
   }
 
@@ -479,11 +544,13 @@
   }
 
   .page-header h1 {
-    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    line-height: 1.2;
   }
 
   .page-header p {
-    font-size: 1rem;
+    font-size: clamp(0.9375rem, 3.25vw, 1rem);
+    line-height: 1.65;
   }
 
   .hero {
@@ -495,11 +562,13 @@
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 7vw, 2.5rem);
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    line-height: 1.15;
   }
 
   .hero .subtitle {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 3.75vw, 1.125rem);
+    line-height: 1.6;
   }
 
   .section {
@@ -507,7 +576,14 @@
   }
 
   .section-title {
-    font-size: clamp(1.75rem, 5vw, 2rem);
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: clamp(0.9375rem, 3.25vw, 1rem);
+    line-height: 1.65;
   }
 
   .card {
@@ -560,8 +636,22 @@
 
   /* Better readability */
   body {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: clamp(15px, 4vw, 16px);
+    line-height: 1.65;
+  }
+
+  /* Optimized paragraph text */
+  p {
+    font-size: clamp(0.9375rem, 3.25vw, 1rem);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  /* Better list readability */
+  li {
+    font-size: clamp(0.9375rem, 3.25vw, 1rem);
+    line-height: 1.65;
+    margin-bottom: 0.5rem;
   }
 
   /* Prevent horizontal scroll */
@@ -752,31 +842,63 @@ itional Mobile Optimizations */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1;
   }
 
-  /* Improved readability */
+  /* Improved readability for all text elements */
   p,
   li {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: clamp(0.9375rem, 3.25vw, 1rem);
+    line-height: 1.65;
     margin-bottom: 1rem;
   }
 
-  /* Better heading hierarchy */
+  /* Better heading hierarchy with improved scaling */
   h1 {
-    font-size: clamp(2rem, 6vw, 2.5rem);
+    font-size: clamp(1.75rem, 5.5vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.5rem, 4.75vw, 1.875rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   h3 {
     font-size: clamp(1.25rem, 4vw, 1.5rem);
+    line-height: 1.3;
   }
 
   h4 {
-    font-size: clamp(1.125rem, 3vw, 1.25rem);
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem);
+    line-height: 1.35;
+  }
+
+  h5 {
+    font-size: clamp(1rem, 3vw, 1.125rem);
+    line-height: 1.4;
+  }
+
+  h6 {
+    font-size: clamp(0.9375rem, 2.75vw, 1rem);
+    line-height: 1.45;
+  }
+
+  /* Improved button text sizing */
+  .btn,
+  .cta-button {
+    font-size: clamp(0.9375rem, 3.25vw, 1rem);
+    line-height: 1.4;
+  }
+
+  /* Better form input text */
+  input,
+  textarea,
+  select {
+    font-size: clamp(15px, 4vw, 16px) !important;
+    line-height: 1.5;
   }
 }
 
@@ -899,63 +1021,405 @@ itional Mobile Optimizations */
     border-color: var(--gray-700) !important;
   }
 }
+
 /* Fina
 l Mobile Enhancements */
 
-/* Mobile-Specific Utility Classes */
+/* NUCLEAR OPTION: Remove ALL borders and lines from culture cards */
 @media (max-width: 768px) {
-  .mobile-hidden {
+
+  /* Remove all pseudo-elements that could create borders */
+  .culture-item::before,
+  .culture-item::after,
+  .culture-item.gradient-border::before,
+  .culture-item.gradient-border::after,
+  .gradient-border::before,
+  .gradient-border::after {
     display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
-  
-  .mobile-visible {
-    display: block !important;
+
+  /* Remove all borders, outlines, and box-shadows */
+  .culture-item,
+  .culture-item.gradient-border,
+  .gradient-border {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: var(--pure-white) !important;
+    position: static !important;
   }
-  
-  .mobile-center {
+
+  /* Remove all mask effects */
+  .culture-item,
+  .culture-item.gradient-border,
+  .gradient-border {
+    -webkit-mask: none !important;
+    mask: none !important;
+    -webkit-mask-composite: none !important;
+    mask-composite: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
+  /* Remove any background images that might create lines */
+  .culture-item,
+  .culture-item.gradient-border {
+    background-image: none !important;
+  }
+
+  /* Force clean styling */
+  .culture-item {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 16px !important;
+    background-color: #ffffff !important;
+  }
+}
+
+/* Modern Mobile Menu Styles */
+@media (max-width: 1024px) {
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+  }
+
+  .modern-mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    background: var(--pure-white);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+
+  /* Prevent any button transitions that might cause flashing */
+  .nav-actions button,
+  .nav-actions label,
+  .theme-switch,
+  .menu-button {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Ensure theme toggle doesn't interfere with menu */
+  .theme-switch {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.02) 0%, rgba(79, 70, 229, 0.02) 100%);
+  }
+
+  .mobile-nav-logo {
+    height: 32px;
+    width: auto;
+  }
+
+  .mobile-nav-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    color: var(--pure-white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+  }
+
+  .mobile-nav-close:hover {
+    background: var(--gradient-primary);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4);
+    filter: brightness(1.1);
+  }
+
+  .mobile-nav-content {
+    flex: 1;
+    padding: 2rem 0;
+  }
+
+  .modern-mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: var(--gray-800);
+    font-size: 1.125rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .modern-mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .modern-mobile-nav-link:hover::before,
+  .modern-mobile-nav-link.active::before {
+    transform: scaleY(1);
+  }
+
+  .modern-mobile-nav-link:hover {
+    background: rgba(0, 212, 255, 0.05);
+    color: var(--primary-cyan);
+    padding-left: 2rem;
+  }
+
+  .modern-mobile-nav-link.active {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--primary-cyan);
+    font-weight: 600;
+  }
+
+  .nav-link-text {
+    flex: 1;
+  }
+
+  .nav-link-arrow {
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .modern-mobile-nav-link:hover .nav-link-arrow,
+  .modern-mobile-nav-link.active .nav-link-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mobile-nav-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    background: rgba(0, 212, 255, 0.02);
+  }
+
+  .mobile-nav-tagline {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .mobile-nav-copyright {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    margin: 0;
+  }
+
+  /* Dark mode support */
+  body.dark .modern-mobile-nav {
+    background: var(--gray-900);
+    color: var(--gray-100);
+  }
+
+  body.dark .mobile-nav-header {
+    border-bottom-color: var(--gray-700);
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  body.dark .mobile-nav-close {
+    background: var(--gradient-primary);
+    color: var(--pure-white);
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+  }
+
+  body.dark .mobile-nav-close:hover {
+    background: var(--gradient-primary);
+    box-shadow: 0 6px 16px rgba(147, 51, 234, 0.5);
+    filter: brightness(1.1);
+  }
+
+  body.dark .modern-mobile-nav-link {
+    color: var(--gray-200);
+    border-bottom-color: var(--gray-700);
+  }
+
+  body.dark .modern-mobile-nav-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--primary-cyan);
+  }
+
+  body.dark .mobile-nav-footer {
+    border-top-color: var(--gray-700);
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  body.dark .mobile-nav-tagline {
+    color: var(--gray-400);
+  }
+
+  body.dark .mobile-nav-copyright {
+    color: var(--gray-500);
+  }
+}
+
+
+
+/* Mobile Culture Section Enhancements */
+@media (max-width: 768px) {
+  .company-culture {
+    padding: 4rem 0;
+  }
+
+  .company-culture .section-subtitle {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  /* Enhanced culture item animations */
+  .culture-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpFade 0.6s ease forwards;
+  }
+
+  .culture-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .culture-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .culture-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes slideUpFade {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Improved touch interactions */
+  .culture-item {
+    -webkit-tap-highlight-color: rgba(0, 212, 255, 0.1);
+    tap-highlight-color: rgba(0, 212, 255, 0.1);
+  }
+
+  .culture-item:active {
+    transform: translateY(-2px) scale(0.98);
+  }
+
+  /* Force icon centering for all culture icons */
+  .culture-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
     text-align: center !important;
   }
-  
-  .mobile-full-width {
+
+  .careers-page .culture-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     width: 100% !important;
+    text-align: center !important;
   }
-  
-  .mobile-no-padding {
-    padding: 0 !important;
+
+  .culture-icon>div,
+  .careers-page .culture-icon>div {
+    margin: 0 auto !important;
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
   }
-  
-  .mobile-small-padding {
-    padding: 0.5rem !important;
+
+  .culture-item:hover .culture-icon>div,
+  .careers-page .culture-item:hover .culture-icon>div {
+    transform: scale(1.1) !important;
   }
-  
-  .mobile-medium-padding {
-    padding: 1rem !important;
+
+  /* Disable animations for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .culture-item {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .culture-icon>div,
+    .careers-page .culture-icon>div {
+      transform: translateX(-50%) !important;
+    }
   }
+}
+
+/* Mobile-Specific Utility Classes */
+@media (max-width: 768px) {
+
+
+
 }
 
 /* Mobile Scroll Optimizations */
 @media (max-width: 768px) {
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Prevent horizontal scroll */
   body {
     overflow-x: hidden;
     width: 100%;
   }
-  
+
   /* Better scroll indicators */
   ::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background: var(--primary-cyan);
     border-radius: 2px;
@@ -964,6 +1428,7 @@ l Mobile Enhancements */
 
 /* Mobile Form Optimizations */
 @media (max-width: 768px) {
+
   /* Prevent zoom on input focus (iOS) */
   input[type="text"],
   input[type="email"],
@@ -981,7 +1446,7 @@ l Mobile Enhancements */
     background: var(--pure-white);
     transition: border-color 0.2s ease;
   }
-  
+
   input:focus,
   textarea:focus,
   select:focus {
@@ -989,7 +1454,7 @@ l Mobile Enhancements */
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
   }
-  
+
   /* Better button styling */
   button,
   .btn,
@@ -999,7 +1464,7 @@ l Mobile Enhancements */
     transition: all 0.2s ease;
     cursor: pointer;
   }
-  
+
   button:active,
   .btn:active,
   .cta-button:active {
@@ -1007,91 +1472,13 @@ l Mobile Enhancements */
   }
 }
 
-/* Mobile Loading States */
-@media (max-width: 768px) {
-  .loading {
-    opacity: 0.6;
-    pointer-events: none;
-  }
-  
-  .loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid var(--primary-cyan);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-}
 
-/* Mobile Error States */
-@media (max-width: 768px) {
-  .error-message {
-    background: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
-    padding: 0.75rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    margin: 0.5rem 0;
-  }
-  
-  .success-message {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #16a34a;
-    padding: 0.75rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    margin: 0.5rem 0;
-  }
-}
 
-/* Mobile Animation Preferences */
-@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
-  /* Subtle entrance animations */
-  .fade-in-mobile {
-    animation: fadeInMobile 0.3s ease-out;
-  }
-  
-  .slide-up-mobile {
-    animation: slideUpMobile 0.3s ease-out;
-  }
-  
-  @keyframes fadeInMobile {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUpMobile {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
+
 
 /* Mobile Print Styles */
 @media print {
+
   .mobile-nav,
   .menu-button,
   .nav-actions,
@@ -1099,16 +1486,16 @@ l Mobile Enhancements */
   .btn {
     display: none !important;
   }
-  
+
   .container {
     padding: 0 !important;
   }
-  
+
   .page-header,
   .section {
     padding: 1rem 0 !important;
   }
-  
+
   .card,
   .blog-card {
     break-inside: avoid;
@@ -1122,7 +1509,7 @@ l Mobile Enhancements */
   .hero-content {
     padding: 100px 1rem 40px;
   }
-  
+
   .hero h1 {
     font-size: clamp(2rem, 7vw, 2.5rem);
   }
@@ -1132,17 +1519,94 @@ l Mobile Enhancements */
   .hero {
     padding: 3rem 0 2rem;
   }
-  
+
   .hero-content {
     padding: 80px 1rem 30px;
   }
-  
+
   .page-header {
     padding: 3rem 0 2rem;
   }
-  
+
   .section {
     padding: 2rem 0;
+  }
+}
+
+/* Extra Small Mobile (375px and below) */
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .hero .subtitle {
+    font-size: clamp(0.9375rem, 3.5vw, 1.0625rem);
+    line-height: 1.6;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.25rem, 5.5vw, 1.625rem);
+    line-height: 1.2;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: clamp(0.875rem, 3vw, 0.9375rem);
+    line-height: 1.65;
+  }
+
+  /* Card content optimization for very small screens */
+  .card,
+  .feature-card,
+  .benefit-card,
+  .job-card,
+  .culture-item {
+    padding: 1.5rem 1rem;
+  }
+
+  .card h3,
+  .feature-card h3,
+  .benefit-card h3,
+  .job-card h3,
+  .culture-item h3 {
+    font-size: clamp(1.25rem, 4.5vw, 1.375rem);
+    line-height: 1.3;
+  }
+
+  .card p,
+  .feature-card p,
+  .benefit-card p,
+  .culture-item p {
+    font-size: clamp(1.0625rem, 4vw, 1.125rem);
+    line-height: 1.65;
+  }
+
+  .culture-icon>div,
+  .careers-page .culture-icon>div {
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  .culture-grid {
+    gap: 1.5rem;
+    padding: 0 0.25rem;
+  }
+
+  /* Button text optimization */
+  .btn,
+  .cta-button {
+    font-size: clamp(0.875rem, 3vw, 0.9375rem);
+    padding: 0.625rem 1rem;
   }
 }
 
@@ -1153,12 +1617,12 @@ l Mobile Enhancements */
       padding-left: max(1rem, env(safe-area-inset-left));
       padding-right: max(1rem, env(safe-area-inset-right));
     }
-    
+
     .container {
       padding-left: max(1rem, env(safe-area-inset-left));
       padding-right: max(1rem, env(safe-area-inset-right));
     }
-    
+
     .mobile-nav {
       padding-left: max(1rem, env(safe-area-inset-left));
       padding-right: max(1rem, env(safe-area-inset-right));
@@ -1170,19 +1634,20 @@ l Mobile Enhancements */
 @media (max-width: 768px) {
   /* Optimize for slower connections */
   @media (prefers-reduced-data: reduce) {
+
     .hero-media-card,
     .modern-card__image,
     .blog-card .modern-card__image {
       display: none;
     }
-    
+
     .glass,
     .glass-panel {
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
       background: var(--pure-white);
     }
-    
+
     .animated-fade-in,
     .animated-slide-up,
     .animated-scale-in,
@@ -1194,34 +1659,35 @@ l Mobile Enhancements */
 
 /* Final Mobile Polish */
 @media (max-width: 768px) {
+
   /* Better visual hierarchy */
   .section-title {
     margin-bottom: 1.5rem;
   }
-  
+
   .section-subtitle {
     margin-bottom: 2rem;
   }
-  
+
   /* Improved spacing consistency */
-  .card + .card,
-  .blog-card + .blog-card {
+  .card+.card,
+  .blog-card+.blog-card {
     margin-top: 1.5rem;
   }
-  
+
   /* Better button groups */
   .cta-group {
     gap: 1rem;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .cta-group .btn,
   .cta-group .cta-button {
     width: 100%;
     max-width: 280px;
   }
-  
+
   /* Enhanced focus states */
   .filter-btn:focus,
   .nav-link:focus,
@@ -1229,7 +1695,9 @@ l Mobile Enhancements */
     outline: 2px solid var(--primary-cyan);
     outline-offset: 2px;
   }
-}/* Enhance
+}
+
+/* Enhance
 d Product and Careers Mobile Optimizations */
 
 /* Product Page Mobile Enhancements */
@@ -1237,63 +1705,69 @@ d Product and Careers Mobile Optimizations */
   .product-page .features-grid {
     display: none;
   }
-  
+
   .product-page .product-features-mobile {
     display: block;
   }
-  
+
   .product-page .product-accordion-item {
     margin-bottom: 1rem;
   }
-  
+
   .product-page .product-accordion-summary {
     padding: 1rem;
     font-size: 1rem;
     font-weight: 600;
   }
-  
+
   .product-page .product-accordion-content {
     padding: 0 1rem 1rem;
     font-size: 0.95rem;
     line-height: 1.6;
   }
-  
+
   .product-page .mission-stats {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .product-page .accessibility-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-    /* Product page heading hierarchy improvements */
-    .product-page .page-header h1 {
-      font-size: 2.4rem;
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.5px;
-    }
-    .product-page .section-title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      margin-top: 1.5rem;
-      letter-spacing: -0.02em;
-      opacity: 1;
-      color: var(--gray-900);
-    }
-    .product-page .page-header {
-      margin-bottom: 2.5rem;
-    }
-    .product-page .section-subtitle {
-      margin-bottom: 1.5rem;
-    }
+
+  /* Product page heading hierarchy improvements */
+  .product-page .page-header h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+  }
+
+  .product-page .section-title {
+    font-size: clamp(2rem, 7vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    opacity: 1;
+    color: var(--gray-900);
+  }
+
+  .product-page .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .product-page .section-subtitle {
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* Careers Page Mobile Enhancements */
 @media (max-width: 768px) {
+
   /* Careers page heading hierarchy improvements */
   .careers-page .page-header h1 {
     font-size: 2.4rem;
@@ -1302,18 +1776,22 @@ d Product and Careers Mobile Optimizations */
     margin-bottom: 1.25rem;
     letter-spacing: -0.5px;
   }
+
   .careers-page .section-title {
-    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    font-size: clamp(2rem, 7vw, 2.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
     opacity: 1;
     color: var(--gray-900);
   }
+
   .careers-page .page-header {
     margin-bottom: 2.5rem;
   }
+
   .careers-page .section-subtitle {
     margin-bottom: 1.5rem;
   }
@@ -1324,26 +1802,79 @@ d Product and Careers Mobile Optimizations */
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .careers-page .culture-item,
   .careers-page .benefit-card,
   .careers-page .job-card {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--pure-white) 0%, rgba(0, 212, 255, 0.02) 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  .careers-page .culture-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: var(--gradient-primary);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .careers-page .culture-item:hover::before {
+    opacity: 1;
+  }
+
+  .careers-page .culture-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 212, 255, 0.15);
+  }
+
   .careers-page .culture-icon {
-    width: 3rem;
-    height: 3rem;
-    margin-bottom: 1rem;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 1.5rem;
+    width: 100% !important;
+    text-align: center !important;
   }
-  
+
+  .careers-page .culture-icon>div {
+    width: 64px !important;
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: var(--gradient-primary) !important;
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4) !important;
+    transition: all 0.3s ease !important;
+    margin: 0 auto !important;
+  }
+
+  .careers-page .culture-item:hover .culture-icon>div {
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.5);
+  }
+
   .careers-page .job-meta {
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
   }
-  
+
   .careers-page .job-card .btn {
     width: 100%;
     margin-top: 1.5rem;
@@ -1356,12 +1887,12 @@ d Product and Careers Mobile Optimizations */
     padding: 0.875rem;
     font-size: 0.95rem;
   }
-  
+
   .product-page .product-accordion-content {
     padding: 0 0.875rem 0.875rem;
     font-size: 0.9rem;
   }
-  
+
   /* Careers page heading hierarchy improvements for small mobile */
   .careers-page .page-header h1 {
     font-size: 1.7rem;
@@ -1370,17 +1901,21 @@ d Product and Careers Mobile Optimizations */
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
   }
+
   .careers-page .section-title {
-    font-size: clamp(1.8rem, 4vw, 2.1rem);
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
     font-weight: 700;
     margin-bottom: 0.5rem;
     margin-top: 1.5rem;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
     opacity: 1;
   }
+
   .careers-page .page-header {
     margin-bottom: 2rem;
   }
+
   .careers-page .section-subtitle {
     margin-bottom: 1rem;
   }
@@ -1388,39 +1923,63 @@ d Product and Careers Mobile Optimizations */
   .careers-page .culture-item,
   .careers-page .benefit-card,
   .careers-page .job-card {
-    padding: 1.25rem;
+    padding: 1.75rem 1.25rem;
+    border-radius: 16px;
   }
-  
-  .careers-page .culture-icon {
-    width: 2.5rem;
-    height: 2.5rem;
+
+  .careers-page .culture-icon>div {
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
   }
-    /* Product page heading hierarchy improvements for small mobile */
-    .product-page .page-header h1 {
-      font-size: 1.7rem;
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-      letter-spacing: -0.5px;
-    }
-    .product-page .section-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      margin-top: 1.5rem;
-      letter-spacing: 0;
-      opacity: 1;
-    }
-    .product-page .page-header {
-      margin-bottom: 2rem;
-    }
-    .product-page .section-subtitle {
-      margin-bottom: 1rem;
-    }
+
+  .culture-item {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .culture-icon>div {
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  /* Product page heading hierarchy improvements for small mobile */
+  .product-page .page-header h1 {
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .product-page .section-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    opacity: 1;
+  }
+
+  .product-page .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .product-page .section-subtitle {
+    margin-bottom: 1rem;
+  }
 }
 
 /* Touch Interaction Improvements */
 @media (max-width: 768px) {
+
   .product-accordion-summary,
   .job-card .btn,
   .culture-item,
@@ -1428,11 +1987,11 @@ d Product and Careers Mobile Optimizations */
     -webkit-tap-highlight-color: rgba(0, 212, 255, 0.1);
     tap-highlight-color: rgba(0, 212, 255, 0.1);
   }
-  
+
   .product-accordion-summary:active {
     background: rgba(0, 212, 255, 0.1);
   }
-  
+
   .job-card .btn:active {
     transform: scale(0.98);
   }
@@ -1446,14 +2005,14 @@ d Product and Careers Mobile Optimizations */
     align-items: center;
     justify-content: space-between;
   }
-  
+
   .job-card .btn {
     min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .culture-item,
   .benefit-card {
     min-height: 200px;
@@ -1465,14 +2024,16 @@ d Product and Careers Mobile Optimizations */
 
 /* Performance Optimizations for Product and Careers */
 @media (max-width: 768px) {
+
   .product-page .feature-block,
   .careers-page .culture-item,
   .careers-page .benefit-card,
   .careers-page .job-card {
     will-change: transform;
   }
-  
+
   @media (prefers-reduced-motion: reduce) {
+
     .product-page .animated-scale-in,
     .careers-page .culture-item,
     .careers-page .benefit-card,
@@ -1482,7 +2043,9 @@ d Product and Careers Mobile Optimizations */
       transform: none;
     }
   }
-}/* 
+}
+
+/* 
 Focus and Philosophy Mobile Styles */
 @media (max-width: 768px) {
   .focus-list {
@@ -1540,6 +2103,7 @@ Focus and Philosophy Mobile Styles */
 }
 
 @media (max-width: 480px) {
+
   .focus-item,
   .principle-row {
     padding: 1.25rem;
