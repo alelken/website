@@ -13,24 +13,29 @@ const CultureSection = () => {
         </p>
         <div className="culture-grid">
           <div className="culture-item">
+            <span className="culture-icon" aria-hidden="true">
               <div style={{ background: 'linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%)', borderRadius: '50%', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FaLightbulb size="1.5rem" color="#fff" />
               </div>
+            </span>
             <h3>Innovation-Driven</h3>
             <p>We encourage creative problem-solving and cutting-edge approaches to complex challenges in wellness technology.</p>
           </div>
           <div className="culture-item">
-           
+            <span className="culture-icon" aria-hidden="true">
               <div style={{ background: 'linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%)', borderRadius: '50%', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FaHeart size="1.5rem" color="#fff" />
               </div>
+            </span>
             <h3>Purpose-Oriented</h3>
             <p>Every project and decision is guided by our commitment to improving human wellbeing and creating positive societal impact.</p>
           </div>
-          <div className="culture-item ">
+          <div className="culture-item">
+            <span className="culture-icon" aria-hidden="true">
               <div style={{ background: 'linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 50%, var(--primary-purple) 100%)', borderRadius: '50%', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FaUsers size="1.5rem" color="#fff" />
               </div>
+            </span>
             <h3>Collaborative Excellence</h3>
             <p>We believe in the power of diverse perspectives and cross-functional collaboration to achieve extraordinary results.</p>
           </div>

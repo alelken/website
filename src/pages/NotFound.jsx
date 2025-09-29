@@ -8,8 +8,7 @@ const NotFound = () => {
   return (
     <>
       <style>{`
-        /* Import global variables */
-        @import url('../styles/global/variables.css');
+        /* Global variables are now in main.css */
         
         /* Root Variables - Enhanced for 404 page */
         :root {

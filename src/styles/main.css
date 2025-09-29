@@ -1358,23 +1358,19 @@ select:focus {
     align-items: center;
 }
 
-.culture-item {
-    text-align: center;
-    padding: 2rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 
 .culture-icon {
     font-size: 3rem;
     color: var(--primary-cyan);
     margin-bottom: 1rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-.culture-item:hover .culture-icon {
-    transform: scale(1.1) rotate(5deg);
-    color: var(--primary-blue);
-}
 
 .culture-item h3 {
     font-size: 1.4rem;
@@ -1538,10 +1534,8 @@ select:focus {
 }
 
 .benefit-card {
-    background: linear-gradient(135deg, #FFF9E5 0%, #FFFBEA 100%);
-    /* Gold faint background */
-    border: 2px dashed #FFD70033;
-    /* Soft gold dashed border */
+    background: var(--pure-white);
+    border: 1px solid var(--border-color);
     padding: 2rem;
     scroll-snap-align: center;
     height: 100%;
@@ -3061,7 +3055,7 @@ div {
 }
 
 .careers-page .culture-icon {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 56px;
@@ -3070,8 +3064,7 @@ div {
     background: rgba(0, 212, 255, 0.12);
     color: var(--primary-cyan);
     font-size: 24px;
-    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.08) inset;
-    margin-bottom: 14px;
+    margin: 0 auto 14px auto;
 }
 
 .careers-page .culture-item h3 {
