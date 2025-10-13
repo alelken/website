@@ -160,7 +160,7 @@
           </p>
         </div>
         <div class="impact__sdg">
-          <img src="public/assets/site/home/UN_emblem.svg" alt="UN Sustainable Development Goals" class="sdg-icon" />
+          <img src="assets/site/home/UN_emblem.svg" alt="UN Sustainable Development Goals" class="sdg-icon" />
         </div>
       </div>
     </div>
