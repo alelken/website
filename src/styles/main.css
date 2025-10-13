@@ -1,0 +1,37 @@
+/* Main CSS File - Import All Styles in Correct Order */
+
+/* 0. Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* 1. Design Tokens - CSS Custom Properties */
+@import './tokens/index.css';
+
+/* 2. Base Styles - Reset, Typography, etc. */
+@import './base/index.css';
+
+/* 3. Layout Styles - Container, Grid, Section */
+@import './layouts/index.css';
+
+/* 4. Component Styles - Reusable Components */
+@import './components/index.css';
+
+/* 5. Utility Classes - Helper Classes */
+@import './utilities/index.css';
+
+/*
+  CSS Architecture Guidelines:
+  
+  1. Follow the ITCSS (Inverted Triangle CSS) methodology
+  2. Use BEM naming convention for components
+  3. Leverage CSS custom properties for theming
+  4. Keep specificity low and avoid !important
+  5. Use mobile-first responsive design
+  6. Prioritize accessibility in all styles
+  
+  File Organization:
+  - tokens/: Design system tokens (colors, typography, spacing)
+  - base/: Reset, typography, and base element styles
+  - layouts/: Layout-specific styles (grid, container, section)
+  - components/: Component-specific styles following BEM
+  - utilities/: Single-purpose utility classes
+*/

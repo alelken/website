@@ -1,0 +1,19 @@
+/* Component Styles - Import All Component Files */
+
+/* This file will be populated as components are created in future tasks */
+/* Components will follow BEM methodology for consistent naming */
+
+/*
+  BEM Naming Convention Examples:
+  
+  .component-name { }                    // Block
+  .component-name__element { }           // Element
+  .component-name--modifier { }          // Modifier
+  .component-name__element--modifier { } // Element with modifier
+  
+  Example:
+  .button { }                    // Block
+  .button__icon { }              // Element
+  .button--primary { }           // Modifier
+  .button__icon--large { }       // Element with modifier
+*/

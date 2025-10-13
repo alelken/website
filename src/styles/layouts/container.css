@@ -1,0 +1,29 @@
+/* Container Layout Styles */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.container--narrow {
+  max-width: var(--narrow-max-width);
+}
+
+.container--content {
+  max-width: var(--content-max-width);
+}
+
+/* Responsive container adjustments */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--space-8);
+  }
+}
