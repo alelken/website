@@ -20,27 +20,27 @@
       <div class="hero__visual">
         <div class="hero__illustration">
           <!-- Abstract tech illustration -->
-          <svg class="hero__svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="200" cy="150" r="80" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-            <circle cx="200" cy="150" r="60" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-            <circle cx="200" cy="150" r="40" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-            <circle cx="200" cy="150" r="20" fill="currentColor" opacity="0.8"/>
+          <svg class="hero__svg" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="250" cy="200" r="100" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+            <circle cx="250" cy="200" r="75" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            <circle cx="250" cy="200" r="50" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+            <circle cx="250" cy="200" r="25" fill="currentColor" opacity="0.8"/>
             
             <!-- Connection lines -->
-            <line x1="120" y1="150" x2="280" y2="150" stroke="currentColor" stroke-width="2" opacity="0.4"/>
-            <line x1="200" y1="70" x2="200" y2="230" stroke="currentColor" stroke-width="2" opacity="0.4"/>
-            <line x1="141" y1="91" x2="259" y2="209" stroke="currentColor" stroke-width="2" opacity="0.4"/>
-            <line x1="259" y1="91" x2="141" y2="209" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            <line x1="150" y1="200" x2="350" y2="200" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            <line x1="250" y1="100" x2="250" y2="300" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            <line x1="179" y1="129" x2="321" y2="271" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+            <line x1="321" y1="129" x2="179" y2="271" stroke="currentColor" stroke-width="2" opacity="0.4"/>
             
             <!-- Nodes -->
-            <circle cx="120" cy="150" r="8" fill="currentColor"/>
-            <circle cx="280" cy="150" r="8" fill="currentColor"/>
-            <circle cx="200" cy="70" r="8" fill="currentColor"/>
-            <circle cx="200" cy="230" r="8" fill="currentColor"/>
-            <circle cx="141" cy="91" r="6" fill="currentColor" opacity="0.8"/>
-            <circle cx="259" cy="209" r="6" fill="currentColor" opacity="0.8"/>
-            <circle cx="259" cy="91" r="6" fill="currentColor" opacity="0.8"/>
-            <circle cx="141" cy="209" r="6" fill="currentColor" opacity="0.8"/>
+            <circle cx="150" cy="200" r="10" fill="currentColor"/>
+            <circle cx="350" cy="200" r="10" fill="currentColor"/>
+            <circle cx="250" cy="100" r="10" fill="currentColor"/>
+            <circle cx="250" cy="300" r="10" fill="currentColor"/>
+            <circle cx="179" cy="129" r="8" fill="currentColor" opacity="0.8"/>
+            <circle cx="321" cy="271" r="8" fill="currentColor" opacity="0.8"/>
+            <circle cx="321" cy="129" r="8" fill="currentColor" opacity="0.8"/>
+            <circle cx="179" cy="271" r="8" fill="currentColor" opacity="0.8"/>
           </svg>
         </div>
       </div>
@@ -93,24 +93,51 @@
       <div class="approach__right">
         <div class="approach__principles">
           <div class="principle">
-            <h3 class="principle__title">First Principles Over Features</h3>
-            <p class="principle__description">
-              We start by asking what people actually need, not what competitors are building. Every solution begins with fundamental human truths.
-            </p>
+            <div class="principle__icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M8 21L8.5 19L10 18.5L8.5 18L8 16L7.5 18L6 18.5L7.5 19L8 21Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M19 10L19.5 8.5L21 8L19.5 7.5L19 6L18.5 7.5L17 8L18.5 8.5L19 10Z" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="principle__content">
+              <h3 class="principle__title">First Principles Over Features</h3>
+              <p class="principle__description">
+                We start by asking what people actually need, not what competitors are building. Every solution begins with fundamental human truths.
+              </p>
+            </div>
           </div>
           
           <div class="principle">
-            <h3 class="principle__title">Built for the Underserved</h3>
-            <p class="principle__description">
-              The real measure of impact isn't who can afford premium services—it's reaching the people existing systems ignore.
-            </p>
+            <div class="principle__icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21" stroke="currentColor" stroke-width="2"/>
+                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M23 21V19C23 17.1362 21.7252 15.5701 20 15.126" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 3.13C17.7252 3.57006 19 5.13616 19 7C19 8.86384 17.7252 10.4299 16 10.87" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="principle__content">
+              <h3 class="principle__title">Built for the Underserved</h3>
+              <p class="principle__description">
+                The real measure of impact isn't who can afford premium services—it's reaching the people existing systems ignore.
+              </p>
+            </div>
           </div>
           
           <div class="principle">
-            <h3 class="principle__title">Sustainable by Design</h3>
-            <p class="principle__description">
-              Solutions that require constant fundraising or user exploitation aren't solutions. We build for long-term viability.
-            </p>
+            <div class="principle__icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="principle__content">
+              <h3 class="principle__title">Sustainable by Design</h3>
+              <p class="principle__description">
+                Solutions that require constant fundraising or user exploitation aren't solutions. We build for long-term viability.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -278,7 +305,7 @@
   
   .hero__illustration {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
   }
   
   .hero__svg {
@@ -366,11 +393,32 @@
   .approach__principles {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: var(--space-8);
   }
-  
+
   .principle {
-    /* Individual principle styles */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  .principle__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-olive-light), var(--color-olive));
+    border-radius: 10px;
+    color: var(--color-white-warm);
+    flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(139, 126, 83, 0.3);
+  }
+
+  .principle__icon svg {
+    width: 20px;
+    height: 20px;
   }
   
   .principle__title {
@@ -601,6 +649,24 @@
     .approach__accent-line {
       margin: 0 auto;
     }
+
+    .approach__principles {
+      gap: var(--space-6);
+    }
+
+    .principle {
+      gap: var(--space-4);
+    }
+
+    .principle__icon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .principle__icon svg {
+      width: 18px;
+      height: 18px;
+    }
     
     .impact__content {
       grid-template-columns: 1fr;
@@ -658,6 +724,14 @@
     
     .approach__title {
       font-size: var(--text-2xl);
+    }
+
+    .principle__title {
+      font-size: var(--text-base);
+    }
+
+    .principle__description {
+      font-size: var(--text-lg);
     }
     
     .stand-for {

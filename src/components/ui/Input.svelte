@@ -36,7 +36,7 @@
       {required}
       {disabled}
       {name}
-      {autocomplete}
+      autocomplete={autocomplete}
       id={inputId}
       class="input"
       class:input--error={hasError}
@@ -84,16 +84,18 @@
 
   .input {
     width: 100%;
-    padding: var(--space-3) var(--space-4);
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
+    padding: var(--space-4) var(--space-4); /* Increased padding for better touch */
+    border: 2px solid #d1d5db; /* Thicker border for better visibility */
+    border-radius: 0.5rem; /* Larger radius for modern look */
     font-family: var(--font-body);
     font-size: var(--text-base);
     line-height: var(--leading-normal);
     color: var(--color-text-primary);
     background-color: var(--color-white-warm);
-    transition: all 150ms ease;
-    min-height: 44px; /* Accessibility requirement */
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
+    min-height: 48px; /* Increased for better touch targets */
+    -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+    touch-action: manipulation; /* Optimize for touch */
   }
 
   .input::placeholder {
@@ -103,7 +105,8 @@
   .input:focus {
     outline: none;
     border-color: var(--color-olive);
-    box-shadow: 0 0 0 3px rgba(139, 126, 83, 0.1);
+    box-shadow: 0 0 0 4px rgba(139, 126, 83, 0.15); /* Larger focus ring */
+    transform: translateY(-1px); /* Subtle lift on focus */
   }
 
   .input:disabled {
@@ -137,10 +140,29 @@
     line-height: var(--leading-normal);
   }
 
-  /* Responsive adjustments */
+  /* Mobile-specific input adjustments */
   @media (max-width: 767px) {
     .input {
       font-size: 16px; /* Prevents zoom on iOS */
+      min-height: 52px; /* Larger touch targets on mobile */
+      padding: var(--space-5) var(--space-4); /* More padding on mobile */
+      border-radius: 0.75rem; /* Larger radius on mobile */
+    }
+    
+    .input-label {
+      font-size: var(--text-base); /* Larger labels on mobile */
+    }
+    
+    .input-error {
+      font-size: var(--text-base); /* Larger error text on mobile */
+    }
+  }
+
+  /* Tablet adjustments */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .input {
+      min-height: 50px;
+      padding: var(--space-4) var(--space-5);
     }
   }
 </style>

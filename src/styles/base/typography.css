@@ -168,31 +168,125 @@ li:last-child {
   margin-bottom: 0;
 }
 
-/* Responsive Typography */
+/* Responsive Typography Classes */
+.text-hero {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-heading-1 {
+  font-size: var(--text-heading-1);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+
+.text-heading-2 {
+  font-size: var(--text-heading-2);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+
+.text-heading-3 {
+  font-size: var(--text-heading-3);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.text-body-responsive {
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+}
+
+.text-lead-responsive {
+  font-size: var(--text-lead);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive Typography Adjustments */
 @media (max-width: 767px) {
   h1 {
-    font-size: var(--text-4xl);
+    font-size: var(--text-heading-1-mobile);
   }
   
   h2 {
-    font-size: var(--text-3xl);
+    font-size: var(--text-heading-2-mobile);
   }
   
   h3 {
-    font-size: var(--text-2xl);
+    font-size: var(--text-heading-3-mobile);
   }
   
   .text-hero {
-    font-size: var(--text-4xl);
+    font-size: var(--text-hero-mobile);
   }
   
   .text-lead {
+    font-size: var(--text-lead-mobile);
+  }
+  
+  /* Mobile-specific typography utilities */
+  .mobile\:text-sm {
+    font-size: var(--text-sm);
+  }
+  
+  .mobile\:text-base {
+    font-size: var(--text-base);
+  }
+  
+  .mobile\:text-lg {
     font-size: var(--text-lg);
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: var(--text-heading-1-tablet);
+  }
+  
+  h2 {
+    font-size: var(--text-heading-2-tablet);
+  }
+  
+  h3 {
+    font-size: var(--text-heading-3-tablet);
+  }
+  
   .text-hero {
-    font-size: var(--text-7xl);
+    font-size: var(--text-hero-tablet);
+  }
+  
+  .text-lead {
+    font-size: var(--text-lead-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: var(--text-heading-1-desktop);
+  }
+  
+  h2 {
+    font-size: var(--text-heading-2-desktop);
+  }
+  
+  h3 {
+    font-size: var(--text-heading-3-desktop);
+  }
+  
+  .text-hero {
+    font-size: var(--text-hero-desktop);
+  }
+  
+  .text-lead {
+    font-size: var(--text-lead-desktop);
+  }
+}
+
+@media (min-width: 1280px) {
+  .text-hero {
+    font-size: var(--text-hero-large);
   }
 }

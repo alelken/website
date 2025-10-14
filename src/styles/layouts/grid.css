@@ -49,7 +49,9 @@
   gap: var(--grid-gap-xl);
 }
 
-/* Responsive grid adjustments */
+/* Responsive grid adjustments - Mobile First */
+
+/* Mobile (up to 767px) - Stack everything */
 @media (max-width: 767px) {
   .grid--2-cols,
   .grid--3-cols,
@@ -60,12 +62,78 @@
   .grid {
     gap: var(--grid-gap-sm);
   }
+  
+  /* Mobile-specific grid utilities */
+  .grid--mobile-stack {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid--mobile-2-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+/* Tablet (768px to 1023px) - Responsive columns */
 @media (min-width: 768px) and (max-width: 1023px) {
   .grid--3-cols,
   .grid--4-cols {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Tablet-specific grid utilities */
+  .grid--tablet-1-col {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid--tablet-2-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid--tablet-3-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop (1024px and up) - Full grid capabilities */
+@media (min-width: 1024px) {
+  /* Desktop-specific grid utilities */
+  .grid--desktop-1-col {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid--desktop-2-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid--desktop-3-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid--desktop-4-cols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .grid--desktop-5-cols {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Responsive gap adjustments */
+@media (max-width: 767px) {
+  .grid--gap-responsive {
+    gap: var(--grid-gap-sm);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid--gap-responsive {
+    gap: var(--grid-gap-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--gap-responsive {
+    gap: var(--grid-gap-lg);
   }
 }
 

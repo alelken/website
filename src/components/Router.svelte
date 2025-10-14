@@ -1,11 +1,12 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  import { currentPage, navigationState, initializeRouter } from '../lib/stores/router.js';
+  import { currentPage, navigationState, routeParams, initializeRouter } from '../lib/stores/router.js';
   
-  // Import page components (we'll create placeholder components for now)
+  // Import page components
   import Home from '../pages/Home.svelte';
   import Product from '../pages/Product.svelte';
   import Press from '../pages/Press.svelte';
+  import PressDetail from '../pages/PressDetail.svelte';
   import About from '../pages/About.svelte';
   
   let cleanupRouter;
@@ -15,6 +16,7 @@
     home: Home,
     product: Product,
     press: Press,
+    'press-detail': PressDetail,
     about: About
   };
   
@@ -44,7 +46,7 @@
     <!-- Render the current page component -->
     {#if pageComponents[$currentPage]}
       <div class="router__page" data-page={$currentPage}>
-        <svelte:component this={pageComponents[$currentPage]} />
+        <svelte:component this={pageComponents[$currentPage]} {...$routeParams} />
       </div>
     {:else}
       <!-- Fallback for unknown pages -->

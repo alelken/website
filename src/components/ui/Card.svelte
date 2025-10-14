@@ -7,21 +7,17 @@
 </script>
 
 <div class={classes} class:card--hover={hover}>
-  {#if $$slots.header}
-    <div class="card__header">
-      <slot name="header" />
-    </div>
-  {/if}
+  <div class="card__header">
+    <slot name="header" />
+  </div>
   
   <div class="card__content">
     <slot />
   </div>
   
-  {#if $$slots.footer}
-    <div class="card__footer">
-      <slot name="footer" />
-    </div>
-  {/if}
+  <div class="card__footer">
+    <slot name="footer" />
+  </div>
 </div>
 
 <style>
@@ -48,24 +44,46 @@
     box-shadow: none;
   }
 
-  /* Hover animations */
+  /* Hover and touch animations */
+  .card--hover {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
   .card--hover:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+  }
+
+  .card--hover:active {
+    transform: translateY(-1px);
   }
 
   .card--elevated.card--hover:hover {
-    box-shadow: 0 8px 24px rgba(47, 62, 59, 0.15);
+    box-shadow: 0 12px 32px rgba(47, 62, 59, 0.18);
     border-left: 4px solid var(--color-olive);
+  }
+
+  .card--elevated.card--hover:active {
+    box-shadow: 0 4px 16px rgba(47, 62, 59, 0.12);
   }
 
   .card--outlined.card--hover:hover {
     border-color: var(--color-olive-lighter);
-    box-shadow: 0 4px 16px rgba(139, 126, 83, 0.1);
+    box-shadow: 0 6px 20px rgba(139, 126, 83, 0.15);
+  }
+
+  .card--outlined.card--hover:active {
+    box-shadow: 0 2px 8px rgba(139, 126, 83, 0.1);
   }
 
   .card--default.card--hover:hover {
     border-color: var(--color-olive);
-    box-shadow: 0 4px 16px rgba(47, 62, 59, 0.1);
+    box-shadow: 0 6px 20px rgba(47, 62, 59, 0.12);
+  }
+
+  .card--default.card--hover:active {
+    box-shadow: 0 2px 8px rgba(47, 62, 59, 0.08);
   }
 
   /* Header styles */
@@ -118,8 +136,18 @@
     padding-top: var(--space-6);
   }
 
-  /* Responsive behavior */
+  /* Focus styles for interactive cards */
+  .card--hover:focus-within {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+  }
+
+  /* Mobile-specific card adjustments */
   @media (max-width: 767px) {
+    .card {
+      border-radius: 0.75rem;
+    }
+    
     .card__content,
     .card__header,
     .card__footer {
@@ -133,11 +161,24 @@
       padding-left: var(--space-6);
       padding-right: var(--space-6);
     }
+    
+    .card--hover:hover {
+      transform: translateY(-2px);
+    }
+    
+    .card--hover:active {
+      transform: scale(0.99);
+    }
   }
 
-  /* Focus styles for interactive cards */
-  .card--hover:focus-within {
-    outline: 2px solid var(--color-olive);
-    outline-offset: 2px;
+  /* Tablet adjustments */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .card {
+      border-radius: 0.625rem;
+    }
+    
+    .card--hover:hover {
+      transform: translateY(-3px);
+    }
   }
 </style>

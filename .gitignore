@@ -12,6 +12,13 @@ node_modules
 dist
 dist-ssr
 *.local
+prismic-types/
+alelken/
+
+package-lock.json
+PRISMIC_SETUP.MD
+# Environment variables
+.env
 
 # Editor directories and files
 .vscode/*

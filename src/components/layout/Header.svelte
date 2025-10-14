@@ -245,27 +245,35 @@
     border-radius: 1px;
   }
   
-  /* Mobile Menu Toggle Styles */
+  /* Mobile Menu Toggle Styles - Touch Optimized */
   .header__menu-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 48px;  /* Increased for better touch target */
+    height: 48px; /* Increased for better touch target */
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    border-radius: 4px;
-    transition: background-color 200ms ease;
+    border-radius: 8px;
+    transition: all 200ms ease;
+    -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+    touch-action: manipulation; /* Optimize for touch */
   }
   
   .header__menu-toggle:hover {
-    background-color: var(--color-background-secondary);
+    background-color: rgba(139, 126, 83, 0.1);
+    transform: scale(1.05);
+  }
+  
+  .header__menu-toggle:active {
+    background-color: rgba(139, 126, 83, 0.2);
+    transform: scale(0.95);
   }
   
   .header__menu-toggle:focus {
-    outline: 2px solid var(--color-border-accent);
+    outline: 2px solid var(--color-olive);
     outline-offset: 2px;
   }
   
@@ -279,23 +287,27 @@
   
   .header__menu-line {
     width: 100%;
-    height: 2px;
+    height: 3px; /* Slightly thicker for better visibility */
     background-color: var(--color-text-on-dark);
-    border-radius: 1px;
-    transition: all 300ms ease;
+    border-radius: 2px;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
     transform-origin: center;
   }
   
+  /* Enhanced hamburger animation */
   .header__menu-toggle--active .header__menu-line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
+    background-color: var(--color-olive-light);
   }
   
   .header__menu-toggle--active .header__menu-line:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
   }
   
   .header__menu-toggle--active .header__menu-line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: var(--color-olive-light);
   }
   
   /* Mobile Menu Styles */
@@ -341,22 +353,34 @@
   
   .header__mobile-nav-link {
     display: block;
-    padding: var(--space-4) 0;
+    padding: var(--space-5) 0; /* Increased padding for better touch targets */
     font-family: var(--font-body);
-    font-size: var(--text-lg);
+    font-size: var(--text-xl); /* Larger text for mobile */
     font-weight: var(--weight-medium);
     color: rgba(254, 253, 251, 0.8);
     text-decoration: none;
-    transition: color 200ms ease;
+    transition: all 200ms ease;
+    -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+    touch-action: manipulation; /* Optimize for touch */
+    min-height: 48px; /* Ensure minimum touch target size */
+    display: flex;
+    align-items: center;
   }
   
   .header__mobile-nav-link:hover,
   .header__mobile-nav-link:focus {
     color: var(--color-olive-light);
+    background-color: rgba(139, 126, 83, 0.1);
+    padding-left: var(--space-4);
+  }
+  
+  .header__mobile-nav-link:active {
+    background-color: rgba(139, 126, 83, 0.2);
+    transform: translateX(4px);
   }
   
   .header__mobile-nav-link:focus {
-    outline: 2px solid var(--color-border-accent);
+    outline: 2px solid var(--color-olive);
     outline-offset: 2px;
     border-radius: 4px;
   }
