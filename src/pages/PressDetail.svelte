@@ -2,6 +2,8 @@
   import { onMount } from 'svelte';
   import { getPressReleaseByUid } from '../lib/prismic.js';
   import Button from '../components/ui/Button.svelte';
+  import { navigateToPressList, routeParams } from '../lib/stores/router.js';
+  import { contentToHtml } from '../lib/markdown.js';
   
   export let uid;
   
@@ -35,11 +37,18 @@
       post = await getPressReleaseByUid(uid);
       
       if (!post) {
-        error = 'Blog post not found';
+        error = 'Press release not found';
+      } else {
+        // Update route params with post metadata for SEO
+        routeParams.update(params => ({
+          ...params,
+          title: post.title,
+          excerpt: post.excerpt
+        }));
       }
     } catch (err) {
-      console.error('Error loading blog post:', err);
-      error = 'Failed to load blog post. Please try again later.';
+      console.error('Error loading press release:', err);
+      error = 'Failed to load press release. Please try again later.';
     } finally {
       loading = false;
     }
@@ -65,23 +74,36 @@
     <section class="loading">
       <div class="loading__container">
         <div class="loading__spinner"></div>
-        <p class="loading__text">Loading blog post...</p>
+        <p class="loading__text">Loading press release...</p>
       </div>
     </section>
   {:else if error}
     <!-- Error State -->
     <section class="error">
       <div class="error__container">
-        <h1 class="error__title">Blog Post Not Found</h1>
+        <h1 class="error__title">Press Release Not Found</h1>
         <p class="error__message">{error}</p>
-        <Button variant="primary" href="/press">
-          Back to Blog
+        <Button variant="primary" on:click={navigateToPressList}>
+          Back to Press Releases
         </Button>
       </div>
     </section>
   {:else if post}
     <!-- Blog Post Content -->
     <article class="blog-post">
+      <!-- Back Link -->
+      <nav class="back-nav">
+        <button 
+          class="back-link" 
+          on:click={navigateToPressList}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Press Releases</span>
+        </button>
+      </nav>
+      
       <div class="blog-post__container">
         <!-- Header -->
         <header class="blog-post__header">
@@ -89,12 +111,12 @@
             <time class="blog-post__date" datetime={post.date}>
               {formatDate(post.date)}
             </time>
-            {#if post.author}
-              <span class="blog-post__author">by {post.author}</span>
-            {/if}
           </div>
           <h1 class="blog-post__title">{post.title}</h1>
-          {#if post.excerpt}
+          {#if post.author}
+            <div class="blog-post__author">by {post.author}</div>
+          {/if}
+          {#if post.excerpt && typeof post.excerpt === 'string'}
             <p class="blog-post__excerpt">{post.excerpt}</p>
           {/if}
         </header>
@@ -112,7 +134,11 @@
         
         <!-- Content -->
         <div class="blog-post__content">
-          {@html post.content}
+          {#if typeof post.content === 'string'}
+            {@html contentToHtml(post.content)}
+          {:else}
+            <p>Content not available</p>
+          {/if}
         </div>
         
         <!-- Footer -->
@@ -126,11 +152,7 @@
             </div>
           {/if}
           
-          <div class="blog-post__actions">
-            <Button variant="outline" href="/press">
-              ← Back to Blog
-            </Button>
-          </div>
+
         </footer>
       </div>
     </article>
@@ -211,12 +233,59 @@
   /* Blog Post */
   .blog-post {
     padding: var(--space-16) 0 var(--space-20) 0;
+    position: relative;
+  }
+  
+  /* Back Navigation */
+  .back-nav {
+    margin-bottom: var(--space-8);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--container-padding);
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: none;
+    border: none;
+    color: var(--color-olive-light);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    transition: all 200ms ease;
+    padding: var(--space-2) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .back-link:hover {
+    color: var(--color-white-warm);
+    transform: translateX(-2px);
+  }
+  
+  .back-link:focus {
+    outline: 2px solid var(--color-olive-light);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  .back-link svg {
+    transition: transform 200ms ease;
+  }
+  
+  .back-link:hover svg {
+    transform: translateX(-2px);
   }
   
   .blog-post__container {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 var(--container-padding);
+    position: relative;
   }
   
   /* Header */
@@ -248,6 +317,8 @@
     font-size: var(--text-sm);
     color: var(--color-white-warm);
     opacity: 0.8;
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
   }
   
   .blog-post__title {
@@ -380,6 +451,15 @@
       padding: var(--space-12) 0 var(--space-16) 0;
     }
     
+    .back-nav {
+      margin-bottom: var(--space-6);
+      padding: 0 var(--space-4);
+    }
+    
+    .back-link {
+      font-size: var(--text-xs);
+    }
+    
     .blog-post__title {
       font-size: var(--text-3xl);
     }
@@ -396,6 +476,16 @@
     .blog-post__meta {
       flex-direction: column;
       gap: var(--space-2);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .back-nav {
+      margin-bottom: var(--space-10);
+    }
+    
+    .back-link {
+      font-size: var(--text-sm);
     }
   }
 </style>

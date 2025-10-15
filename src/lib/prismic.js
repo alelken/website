@@ -1,5 +1,34 @@
 import { createClient } from '@prismicio/client';
 import * as prismic from '@prismicio/client';
+import { asHTML } from '@prismicio/helpers';
+import { contentToHtml } from './markdown.js';
+
+/**
+ * Convert content to HTML string
+ * Handles Prismic rich text objects, markdown, and plain strings
+ * @param {any} content - Content to convert
+ * @returns {string} HTML string
+ */
+function contentToHTMLWithMarkdown(content) {
+  if (!content) return '';
+  
+  // If it's already a string, process it through markdown converter
+  if (typeof content === 'string') {
+    return contentToHtml(content);
+  }
+  
+  // If it's a Prismic rich text object, convert to HTML
+  try {
+    // Check if it's a valid Prismic rich text structure
+    if (Array.isArray(content) || (content && typeof content === 'object')) {
+      return asHTML(content);
+    }
+    return String(content);
+  } catch (error) {
+    console.warn('Error converting content to HTML:', error, content);
+    return '';
+  }
+}
 
 // Prismic repository configuration
 const endpoint = import.meta.env.VITE_PRISMIC_ENDPOINT;
@@ -44,8 +73,8 @@ export async function getPressReleases(options = {}) {
       slug: doc.uid, // Use UID as slug
       title: doc.data.title,
       date: doc.data.date,
-      excerpt: doc.data.excerpt,
-      content: doc.data.content,
+      excerpt: doc.data.excerpt || '',
+      content: contentToHTMLWithMarkdown(doc.data.content),
       author: doc.data.author,
       featuredImage: doc.data.featured_image,
       tags: doc.tags || [],
@@ -75,8 +104,8 @@ export async function getPressReleaseByUid(uid) {
       slug: response.uid,
       title: response.data.title,
       date: response.data.date,
-      excerpt: response.data.excerpt,
-      content: response.data.content,
+      excerpt: response.data.excerpt || '',
+      content: contentToHTMLWithMarkdown(response.data.content),
       author: response.data.author,
       featuredImage: response.data.featured_image,
       tags: response.tags || [],
@@ -183,6 +212,22 @@ export async function getMediaContacts() {
     const { getMediaContacts: getLocalMediaContacts } = await import('./cms/content.js');
     return getLocalMediaContacts();
   }
+}
+
+// Test the content conversion function
+if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+  // Test with sample Prismic rich text structure
+  const testRichText = [
+    {
+      type: 'paragraph',
+      text: 'This is a test paragraph.',
+      spans: []
+    }
+  ];
+  
+  console.log('Content conversion test:', contentToHTMLWithMarkdown(testRichText));
+  console.log('String content test:', contentToHTMLWithMarkdown('This is a plain string'));
+  console.log('Null content test:', contentToHTMLWithMarkdown(null));
 }
 
 // Preview mode helpers

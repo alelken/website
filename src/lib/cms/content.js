@@ -13,16 +13,31 @@ export const pressReleases = [
     date: "2024-10-01",
     excerpt: "Startup focuses on building technology solutions that address India's unique mental health challenges with cultural sensitivity and local context.",
     author: "Alelken PR Team",
-    featuredImage: null,
-    content: `
-      <p>Alelken, a technology startup focused on human potential amplification, today announced the development of Alayn, India's first culturally-aware mental wellness platform designed specifically for the Indian context.</p>
-      
-      <p>The platform addresses the unique challenges faced by Indians in accessing mental health support, including cultural stigma, language barriers, and the need for culturally sensitive approaches to wellness.</p>
-      
-      <p>"We're not just digitizing Western mental health models," said G Harikrishna, CEO of Alelken. "We're building something that understands the Indian context, respects our cultural values, and provides support in ways that feel natural and accessible to our people."</p>
-      
-      <p>Alayn is currently in development and is expected to launch in early 2025. The platform will offer multi-language support, connectivity optimization for various network conditions, and strict privacy compliance with Indian regulations.</p>
-    `,
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=450&fit=crop&crop=center",
+      alt: "Mental wellness and technology concept"
+    },
+    content: `# Alelken Announces Development of Alayn
+
+Alelken, a technology startup focused on human potential amplification, today announced the development of Alayn, India's first culturally-aware mental wellness platform designed specifically for the Indian context.
+
+## Addressing Unique Challenges
+
+The platform addresses the unique challenges faced by Indians in accessing mental health support, including:
+
+- Cultural stigma around mental health
+- Language barriers in existing solutions  
+- Need for culturally sensitive approaches to wellness
+
+> "We're not just digitizing Western mental health models," said **G Harikrishna**, CEO of Alelken. "We're building something that understands the Indian context, respects our cultural values, and provides support in ways that feel natural and accessible to our people."
+
+## Launch Timeline
+
+Alayn is currently in development and is expected to launch in **early 2025**. The platform will offer:
+
+1. Multi-language support
+2. Connectivity optimization for various network conditions
+3. Strict privacy compliance with Indian regulations`,
     tags: ["product-launch", "mental-health", "india", "technology"],
     featured: true
   },
@@ -33,18 +48,70 @@ export const pressReleases = [
     date: "2024-08-15",
     excerpt: "Company aims to create technology that amplifies human potential across wellness, education, and sustainability sectors.",
     author: "Alelken PR Team",
-    featuredImage: null,
-    content: `
-      <p>Alelken has successfully secured initial funding to advance its mission of building technology solutions that amplify human potential across three key areas: inner wellness, education evolution, and planetary stewardship.</p>
-      
-      <p>The funding will support the development of the company's flagship product, Alayn, as well as research into culturally-aware technology solutions that address real human needs.</p>
-      
-      <p>"This funding validates our approach of putting human needs first and building technology that serves people, not the other way around," said Karthick Balraj, COO of Alelken.</p>
-      
-      <p>The company plans to use the funding to expand its team, accelerate product development, and conduct extensive user research to ensure their solutions truly meet the needs of their target communities.</p>
-    `,
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop&crop=center",
+      alt: "Technology and innovation concept"
+    },
+    content: `# Alelken Secures Initial Funding
+
+Alelken has successfully secured initial funding to advance its mission of building technology solutions that amplify human potential across three key areas:
+
+- **Inner wellness**
+- **Education evolution** 
+- **Planetary stewardship**
+
+## Funding Allocation
+
+The funding will support:
+
+1. Development of the company's flagship product, **Alayn**
+2. Research into culturally-aware technology solutions
+3. Building solutions that address real human needs
+
+> "This funding validates our approach of putting human needs first and building technology that serves people, not the other way around," said **Karthick Balraj**, COO of Alelken.
+
+The company plans to use the funding to expand its team, accelerate product development, and conduct extensive user research to ensure their solutions truly meet the needs of their target communities.`,
     tags: ["funding", "company-news", "technology"],
     featured: false
+  },
+  {
+    id: "building-culturally-aware-technology-2024-09",
+    slug: "building-culturally-aware-technology",
+    title: "Building Culturally-Aware Technology: Lessons from India's Mental Health Landscape",
+    date: "2024-09-20",
+    excerpt: "Exploring how cultural context shapes technology design and why one-size-fits-all solutions don't work in mental health.",
+    author: "G Harikrishna",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=450&fit=crop&crop=center",
+      alt: "Cultural diversity and technology"
+    },
+    content: `# Building Culturally-Aware Technology
+
+When we started building Alayn, we quickly realized that simply translating Western mental health approaches wouldn't work for the Indian context. **Culture isn't just about language**—it's about how people think, feel, and relate to their inner world.
+
+## The Indian Context
+
+In India, mental wellness is deeply intertwined with:
+
+- Family structures
+- Spiritual practices  
+- Community relationships
+
+A platform that ignores these realities will fail to connect with users on a meaningful level.
+
+## Our Approach
+
+This is why we're taking a different approach. Instead of imposing external frameworks, we're building from the ground up with Indian cultural values at the core. 
+
+This means understanding concepts like:
+
+1. **Dharma** - life purpose and duty
+2. **Family decision-making** - collective vs individual choices
+3. **Spiritual well-being** - holistic health approaches
+
+> The result is technology that feels natural and accessible to Indian users—not like a foreign import, but like something built specifically for them.`,
+    tags: ["culture", "technology", "mental-health", "india"],
+    featured: true
   }
 ];
 
