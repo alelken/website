@@ -3,6 +3,7 @@ import { writable, derived } from 'svelte/store';
 // Valid pages for the application
 const VALID_PAGES = ['home', 'product', 'press', 'about'];
 const DEFAULT_PAGE = 'home';
+const NOT_FOUND_PAGE = 'not-found';
 
 // Core stores - declared first to avoid initialization issues
 export const currentPage = writable(DEFAULT_PAGE);
@@ -40,6 +41,11 @@ export const pageMetadata = derived([currentPage, routeParams], ([$currentPage, 
       title: ($routeParams && typeof $routeParams === 'object' && 'title' in $routeParams && $routeParams.title) ? `${$routeParams.title} | Alelken` : 'Press Release | Alelken',
       description: ($routeParams && typeof $routeParams === 'object' && 'excerpt' in $routeParams && $routeParams.excerpt) || 'Read our latest press release.',
       path: `/press/${($routeParams && typeof $routeParams === 'object' && 'uid' in $routeParams && $routeParams.uid) || ''}`
+    },
+    'not-found': {
+      title: '404 - Page Not Found | Alelken',
+      description: 'The page you\'re looking for doesn\'t exist. Explore our technology solutions for human potential.',
+      path: '/404'
     }
   };
 
@@ -113,7 +119,7 @@ export function getCurrentPageFromHash() {
   }
 
   return {
-    page: VALID_PAGES.includes(page) ? page : DEFAULT_PAGE,
+    page: VALID_PAGES.includes(page) ? page : NOT_FOUND_PAGE,
     params: {}
   };
 }
@@ -127,12 +133,12 @@ export function getCurrentPageFromHash() {
 export function navigateTo(page, params = {}, updateHistory = true) {
   try {
     // Handle dynamic routes
-    const allValidPages = [...VALID_PAGES, 'press-detail'];
+    const allValidPages = [...VALID_PAGES, 'press-detail', NOT_FOUND_PAGE];
 
     // Validate the page
     if (!allValidPages.includes(page)) {
-      console.warn(`Invalid page: ${page}. Redirecting to ${DEFAULT_PAGE}`);
-      page = DEFAULT_PAGE;
+      console.warn(`Invalid page: ${page}. Showing 404 page`);
+      page = NOT_FOUND_PAGE;
       params = {};
     }
 
@@ -282,12 +288,19 @@ export function navigateToPressList() {
 }
 
 /**
+ * Navigate to the home page
+ */
+export function navigateToHome() {
+  navigateTo('home');
+}
+
+/**
  * Check if the current route is valid
  * @returns {boolean} Whether the current route is valid
  */
 export function isValidRoute() {
   const { page } = getCurrentPageFromHash();
-  const allValidPages = [...VALID_PAGES, 'press-detail'];
+  const allValidPages = [...VALID_PAGES, 'press-detail', NOT_FOUND_PAGE];
   return allValidPages.includes(page);
 }
 
