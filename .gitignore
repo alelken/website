@@ -6,15 +6,22 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.kiro/ 
+*.lock
+*.lockb
 
 node_modules
 dist
 dist-ssr
 *.local
+prismic-types/
+alelken/
+
 package-lock.json
-bun.lock
-bun.lockb
-.pnp.*  
+PRISMIC_SETUP.MD
+# Environment variables
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -25,7 +32,3 @@ bun.lockb
 *.njsproj
 *.sln
 *.sw?
-.env
-.firebase/
-.kiro/
-.vscode/

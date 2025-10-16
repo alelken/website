@@ -1,7 +1,0 @@
-<svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="200" fill="#EC4899"/>
-  <path d="M150 60 L200 40 L250 60 L250 140 L200 160 L150 140 Z" fill="rgba(255,255,255,0.2)"/>
-  <path d="M170 80 L200 70 L230 80 L230 120 L200 130 L170 120 Z" fill="rgba(255,255,255,0.3)"/>
-  <circle cx="200" cy="100" r="15" fill="rgba(255,255,255,0.6)"/>
-  <text x="200" y="160" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="600">INSIGHTS</text>
-</svg>

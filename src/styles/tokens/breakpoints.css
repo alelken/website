@@ -1,0 +1,63 @@
+/* Responsive Breakpoint Design Tokens */
+:root {
+  /* Breakpoint Values */
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* Container Max Widths at Each Breakpoint */
+  --container-xs: 100%;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+}
+
+/* Media Query Mixins as CSS Custom Properties */
+/* These can be used with @media (min-width: var(--breakpoint-md)) */
+
+/* Mobile First Approach */
+/* xs: 0px and up (default) */
+/* sm: 640px and up */
+/* md: 768px and up */
+/* lg: 1024px and up */
+/* xl: 1280px and up */
+/* 2xl: 1536px and up */
+
+/* Max-width breakpoints for mobile-first overrides */
+:root {
+  --breakpoint-max-xs: 474px;
+  --breakpoint-max-sm: 639px;
+  --breakpoint-max-md: 767px;
+  --breakpoint-max-lg: 1023px;
+  --breakpoint-max-xl: 1279px;
+}
+
+/* Common responsive patterns */
+@media (max-width: 767px) {
+  :root {
+    /* Mobile-specific adjustments already defined in other token files */
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* Tablet and up adjustments */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    /* Desktop and up adjustments */
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    /* Large desktop adjustments */
+  }
+}

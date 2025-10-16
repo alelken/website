@@ -1,8 +1,0 @@
-<svg width="400" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="200" fill="#22C55E"/>
-  <circle cx="160" cy="80" r="25" fill="rgba(255,255,255,0.3)"/>
-  <circle cx="200" cy="60" r="25" fill="rgba(255,255,255,0.4)"/>
-  <circle cx="240" cy="80" r="25" fill="rgba(255,255,255,0.3)"/>
-  <path d="M140 120 Q200 100 260 120 L260 140 Q200 120 140 140 Z" fill="rgba(255,255,255,0.2)"/>
-  <text x="200" y="160" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="600">COMMUNITY</text>
-</svg>
