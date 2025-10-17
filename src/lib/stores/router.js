@@ -18,22 +18,22 @@ export const navigationState = writable({
 export const pageMetadata = derived([currentPage, routeParams], ([$currentPage, $routeParams]) => {
   const metadata = {
     home: {
-      title: 'Alelken - Technology for Human Potential',
+      title: 'Home | Alelken',
       description: 'Building systems that heal, educate, and sustain through innovative technology solutions.',
       path: '/'
     },
     product: {
-      title: 'Alayn - India\'s Life Guide | Alelken',
+      title: 'Product | Alelken',
       description: 'Discover Alayn, our mental wellness platform designed specifically for India\'s unique cultural context.',
       path: '/product'
     },
     press: {
-      title: 'Press Releases | Alelken',
+      title: 'Press | Alelken',
       description: 'Latest news and announcements from Alelken.',
       path: '/press'
     },
     about: {
-      title: 'About Us | Alelken',
+      title: 'About | Alelken',
       description: 'Meet the team behind Alelken and learn about our mission to build technology for human potential.',
       path: '/about'
     },

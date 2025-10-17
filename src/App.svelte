@@ -1,5 +1,5 @@
 <script>
-  import { currentPage, navigateTo } from "./lib/stores/router.js";
+  import { currentPage, navigateTo, pageMetadata } from "./lib/stores/router.js";
   import Header from "./components/layout/Header.svelte";
   import Footer from "./components/layout/Footer.svelte";
   import Router from "./components/Router.svelte";
@@ -7,6 +7,16 @@
   // Handle navigation events from Header component
   function handleNavigate(event) {
     navigateTo(event.detail.page);
+  }
+
+  // Update document title and meta description when page changes
+  $: if ($pageMetadata) {
+    document.title = $pageMetadata.title;
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', $pageMetadata.description);
+    }
   }
 </script>
 
