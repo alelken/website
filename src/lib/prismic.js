@@ -170,7 +170,7 @@ export async function getCompanyInfo() {
         name: response.data.company_name,
         founded: response.data.founded,
         headquarters: response.data.headquarters,
-        website: response.data.website?.url || 'https://alelken.com',
+        website: response.data.website?.url || 'https://alelken.in',
         employees: response.data.employees,
         stage: response.data.stage
       },

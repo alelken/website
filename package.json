@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build-ssg.js",
+    "build:spa": "vite build",
+    "build:ssg": "node scripts/build-ssg.js",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "dotenv": "^16.4.5",
     "svelte": "^5.39.6",
     "vite": "^7.1.7"
   },

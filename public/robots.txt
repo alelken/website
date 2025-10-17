@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://alelken.com/sitemap.xml
+Sitemap: https://alelken.in/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

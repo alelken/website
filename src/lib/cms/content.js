@@ -177,7 +177,7 @@ export const companyInfo = {
     name: "Alelken",
     founded: "2024",
     headquarters: "India",
-    website: "https://alelken.com",
+    website: "https://alelken.in",
     employees: "3-10",
     stage: "Early Stage Startup"
   },
@@ -207,7 +207,7 @@ export const companyInfo = {
 export const mediaContacts = {
   primary: {
     title: "Press Inquiries",
-    email: "press@alelken.com",
+    email: "press@alelken.in",
     responseTime: "Within 24 hours",
     description: "For press inquiries, interview requests, or additional information"
   },
@@ -215,21 +215,21 @@ export const mediaContacts = {
     {
       name: "G Harikrishna",
       role: "CEO & Co-founder",
-      email: "harikrishna@alelken.com",
+      email: "harikrishna@alelken.in",
       linkedin: "https://linkedin.com/in/g-harikrishna",
       availableFor: ["Strategic interviews", "Product vision discussions", "Company direction"]
     },
     {
       name: "Karthick Balraj", 
       role: "COO & Co-founder",
-      email: "karthick.balraj@alelken.com",
+      email: "karthick.balraj@alelken.in",
       linkedin: "https://linkedin.com/in/karthick-balraj",
       availableFor: ["Operations interviews", "Business model discussions", "Market strategy"]
     },
     {
       name: "Karthick Selvaraj",
       role: "Media Lead & Co-founder", 
-      email: "karthick.selvaraj@alelken.com",
+      email: "karthick.selvaraj@alelken.in",
       linkedin: "https://linkedin.com/in/karthick-selvaraj",
       availableFor: ["Media coordination", "Content strategy", "Brand messaging"]
     }

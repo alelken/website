@@ -77,11 +77,12 @@
             <h3 class="founder__name">G Harikrishna</h3>
             <p class="founder__role">CEO & Co-Founder</p>
             <p class="founder__bio">
-              Systems thinker with experience in technology development and
-              social impact. Harikrishna leads Alelken's vision and strategic
-              direction, ensuring our products solve real problems at scale. His
-              approach combines technical rigor with deep empathy for user needs
-              across India's diverse landscape.
+              Technology architect with deep expertise in scalable systems and
+              AI-driven solutions. Harikrishna leads technical innovation and
+              product engineering, building robust platforms that can serve
+              millions while maintaining performance and reliability. His focus
+              is on creating technology that works seamlessly across India's
+              diverse digital infrastructure.
             </p>
           </div>
         </div>
@@ -125,11 +126,12 @@
             <h3 class="founder__name">Karthick Selvaraj</h3>
             <p class="founder__role">Media Lead & Co-Founder</p>
             <p class="founder__bio">
-              Content strategy and cultural understanding expert. Karthick leads
-              content strategy and cultural integration, ensuring our platforms
-              speak authentically to diverse Indian communities. He bridges
-              traditional wisdom with contemporary needs through storytelling
-              and media.
+              Media strategist and brand storyteller with expertise in digital
+              content creation and audience engagement. Karthick oversees all
+              media operations, from content production to social media strategy,
+              ensuring Alelken's message reaches and resonates with diverse
+              audiences. He crafts compelling narratives that translate complex
+              technology into accessible, meaningful stories.
             </p>
           </div>
         </div>
@@ -216,7 +218,7 @@
           expertise to share, we'd love to hear from you.
         </p>
         <div class="contact__links">
-          <Button href="mailto:contact@alelken.com" variant="primary">
+          <Button href="mailto:contact@alelken.in" variant="primary">
             Contact Email
           </Button>
           <Button

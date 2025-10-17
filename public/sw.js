@@ -7,9 +7,16 @@ const DYNAMIC_CACHE = 'alelken-dynamic-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/product/',
+  '/press/',
+  '/about/',
+  '/404/',
+  '/404.html',
   '/assets/logo/5.png',
   '/vite.svg',
-  // Add other critical assets here
+  '/favicon.ico',
+  '/robots.txt',
+  '/sitemap.xml'
 ];
 
 // Install event - cache static assets

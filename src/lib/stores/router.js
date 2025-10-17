@@ -203,15 +203,23 @@ export function navigateTo(page, params = {}, updateHistory = true) {
  * Initialize the router
  */
 export function initializeRouter() {
-  // Ensure stores are properly initialized
-  if (typeof window !== 'undefined') {
-    console.log('Router initializing with current page:', getCurrentPageFromHash());
+  // Check for SSG initial state
+  if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
+    const { currentPage: initialPage, routeParams: initialParams } = window.__INITIAL_STATE__;
+    currentPage.set(initialPage);
+    routeParams.set(initialParams);
+    console.log('Router initialized with SSG state:', { initialPage, initialParams });
+  } else {
+    // Ensure stores are properly initialized
+    if (typeof window !== 'undefined') {
+      console.log('Router initializing with current page:', getCurrentPageFromHash());
+    }
+    
+    // Set initial page based on URL hash
+    const { page: initialPage, params: initialParams } = getCurrentPageFromHash();
+    currentPage.set(initialPage);
+    routeParams.set(initialParams);
   }
-  
-  // Set initial page based on URL hash
-  const { page: initialPage, params: initialParams } = getCurrentPageFromHash();
-  currentPage.set(initialPage);
-  routeParams.set(initialParams);
 
   // Listen for hash changes
   const handleHashChange = () => {
