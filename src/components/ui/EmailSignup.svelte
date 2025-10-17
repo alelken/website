@@ -90,7 +90,7 @@
           {placeholder}
           {error}
           required
-          autocomplete="email"
+
           name="email"
           on:input={handleInput}
         />

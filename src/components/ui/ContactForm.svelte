@@ -141,7 +141,7 @@
           placeholder="Enter your full name"
           error={errors.name}
           required
-          autocomplete="name"
+
           name="name"
           on:input={() => handleInput('name')}
         />
@@ -153,7 +153,7 @@
           placeholder="Enter your email address"
           error={errors.email}
           required
-          autocomplete="email"
+
           name="email"
           on:input={() => handleInput('email')}
         />

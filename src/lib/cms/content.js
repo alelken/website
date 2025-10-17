@@ -87,7 +87,7 @@ The company plans to use the funding to expand its team, accelerate product deve
     },
     content: `# Building Culturally-Aware Technology
 
-When we started building Alayn, we quickly realized that simply translating Western mental health approaches wouldn't work for the Indian context. **Culture isn't just about language**—it's about how people think, feel, and relate to their inner world.
+When we started building Alayn, we quickly realized that simply translating Western mental health approaches wouldn't work for the Indian context. **Culture isn't just about language**. It's about how people think, feel, and relate to their inner world.
 
 ## The Indian Context
 
@@ -109,7 +109,7 @@ This means understanding concepts like:
 2. **Family decision-making** - collective vs individual choices
 3. **Spiritual well-being** - holistic health approaches
 
-> The result is technology that feels natural and accessible to Indian users—not like a foreign import, but like something built specifically for them.`,
+> The result is technology that feels natural and accessible to Indian users. It doesn't feel like a foreign import, but like something built specifically for them.`,
     tags: ["culture", "technology", "mental-health", "india"],
     featured: true
   }

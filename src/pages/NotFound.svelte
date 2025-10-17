@@ -70,7 +70,7 @@
           </h1>
           <p class="not-found-hero__subtitle">
             The page you're looking for seems to have wandered off into the digital void. 
-            Don't worry—even the best explorers sometimes take a wrong turn.
+            Don't worry, even the best explorers sometimes take a wrong turn.
           </p>
         </div>
       </div>

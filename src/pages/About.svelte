@@ -17,7 +17,7 @@
       <h1 class="hero__title">Built by People Who Believe in Better</h1>
       <p class="hero__subtitle">
         Alelken started with a simple observation: the systems meant to serve
-        people—healthcare, education, infrastructure—often fail those who need
+        people (healthcare, education, infrastructure) often fail those who need
         them most. We're not a typical tech company. We're problem-solvers who
         happen to use technology as our tool of choice.
       </p>
@@ -149,7 +149,7 @@
           <h3 class="approach__item-title">Evidence-Based Development</h3>
           <p class="approach__item-description">
             Every solution is built on research, tested with real users, and
-            refined based on outcomes—not assumptions.
+            refined based on outcomes, not assumptions.
           </p>
         </div>
 
@@ -196,7 +196,7 @@
         </blockquote>
         <p class="motivation__vision">
           This work is generational. The systems we're building today are
-          investments in an India that works better for everyone—especially
+          investments in an India that works better for everyone, especially
           those the current system fails.
         </p>
       </div>
