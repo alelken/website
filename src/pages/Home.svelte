@@ -1,43 +1,7 @@
 <script>
   import { navigateTo } from '../lib/stores/router.js';
   
-  // Email signup state
-  let email = '';
-  let isSubmitting = false;
-  let signupMessage = '';
-  let signupSuccess = false;
-  
 
-  
-  async function handleEmailSignup(event) {
-    event.preventDefault();
-    
-    if (!email) return;
-    
-    isSubmitting = true;
-    signupMessage = '';
-    
-    try {
-      // Simulate API call - replace with actual implementation
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      signupSuccess = true;
-      signupMessage = 'Thank you for signing up! We\'ll keep you updated on our progress.';
-      email = '';
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        signupMessage = '';
-        signupSuccess = false;
-      }, 5000);
-      
-    } catch (error) {
-      signupSuccess = false;
-      signupMessage = 'Something went wrong. Please try again.';
-    } finally {
-      isSubmitting = false;
-    }
-  }
 </script>
 
 <div class="page page--home">
@@ -378,41 +342,7 @@
     </div>
   </section>
 
-  <!-- Email Signup Section -->
-  <section class="signup">
-    <div class="signup__container">
-      <div class="signup__content">
-        <h2 class="signup__title">Stay Connected</h2>
-        <div class="signup__accent-line"></div>
-        <p class="signup__description">
-          Get updates on our progress building technology for human potential. No spam, just meaningful updates.
-        </p>
-        <form class="signup__form" on:submit={handleEmailSignup}>
-          <input
-            type="email"
-            class="signup__input"
-            placeholder="Enter your email address"
-            bind:value={email}
-            required
-            aria-label="Email address for updates"
-          />
-          <button type="submit" class="signup__button" disabled={isSubmitting}>
-            {#if isSubmitting}
-              Signing up...
-            {:else}
-              Stay Updated
-            {/if}
-          </button>
-        </form>
-        {#if signupMessage}
-          <p class="signup__message" class:signup__message--success={signupSuccess}>
-            {signupMessage}
-          </p>
-        {/if}
-        <p class="signup__count">Join 500+ people already on our journey</p>
-      </div>
-    </div>
-  </section>
+
 </div>
 
 <style>
@@ -805,130 +735,7 @@
     transform: scale(1.05);
   }
 
-  /* Email Signup Section */
-  .signup {
-    padding: var(--space-20) 0;
-    background-color: rgba(47, 62, 59, 0.95);
-  }
 
-  .signup__container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-    text-align: center;
-  }
-
-  .signup__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-6);
-  }
-
-  .signup__title {
-    font-family: var(--font-heading);
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-bold);
-    color: var(--color-text-on-dark);
-    margin: 0;
-    line-height: var(--leading-tight);
-  }
-
-  .signup__accent-line {
-    width: 60px;
-    height: 3px;
-    background-color: var(--color-olive-light);
-  }
-
-  .signup__description {
-    font-family: var(--font-body);
-    font-size: var(--text-lg);
-    color: rgba(254, 253, 251, 0.9);
-    line-height: var(--leading-relaxed);
-    margin: 0;
-    max-width: 600px;
-  }
-
-  .signup__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-4);
-    width: 100%;
-  }
-
-
-
-  .signup__input {
-    flex: 1;
-    padding: var(--space-4) var(--space-6);
-    border: 2px solid rgba(139, 126, 83, 0.3);
-    border-radius: 12px;
-    background-color: rgba(47, 62, 59, 0.8);
-    color: var(--color-text-on-dark);
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    transition: all 200ms ease;
-    height: 56px;
-  }
-
-  .signup__input::placeholder {
-    color: rgba(254, 253, 251, 0.6);
-  }
-
-  .signup__input:focus {
-    outline: none;
-    border-color: var(--color-olive-light);
-    background-color: rgba(47, 62, 59, 0.9);
-  }
-
-  .signup__button {
-    padding: var(--space-4) var(--space-8);
-    background-color: var(--color-olive);
-    color: var(--color-text-on-dark);
-    border: none;
-    border-radius: 12px;
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    cursor: pointer;
-    transition: all 200ms ease;
-    white-space: nowrap;
-    height: 56px;
-  }
-
-  .signup__button:hover {
-    background-color: var(--color-olive-lighter);
-    transform: translateY(-2px);
-  }
-
-  .signup__button:active {
-    transform: translateY(0);
-  }
-
-  .signup__message {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: #ff8a8a;
-    margin: var(--space-3) 0 0 0;
-    text-align: center;
-    padding: var(--space-2) var(--space-4);
-    border-radius: 0.5rem;
-    background-color: rgba(255, 138, 138, 0.1);
-  }
-
-  .signup__message--success {
-    color: #4ade80;
-    background-color: rgba(74, 222, 128, 0.1);
-  }
-
-  .signup__count {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: rgba(254, 253, 251, 0.7);
-    margin: 0;
-    font-style: italic;
-  }
 
   /* Responsive Design */
   @media (max-width: 1023px) {
@@ -1075,27 +882,6 @@
       height: 80px;
     }
 
-    .signup {
-      padding: var(--space-16) 0;
-    }
 
-    .signup__title {
-      font-size: var(--text-2xl);
-    }
-
-    .signup__description {
-      font-size: var(--text-base);
-    }
-
-
-
-    .signup__input {
-      width: 100%;
-    }
-
-    .signup__button {
-      width: 100%;
-      padding: var(--space-4) var(--space-6);
-    }
   }
 </style>

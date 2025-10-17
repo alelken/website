@@ -1,6 +1,5 @@
 <script>
   import Card from "../components/ui/Card.svelte";
-  import EmailSignup from "../components/ui/EmailSignup.svelte";
 
   function handleImageError(event) {
     const img = event.target;
@@ -482,35 +481,7 @@
     </div>
   </section>
 
-  <!-- Waitlist CTA Section -->
-  <section class="waitlist-cta">
-    <div class="waitlist-cta__container">
-      <div class="waitlist-cta__content">
-        <div class="waitlist-cta__header">
-          <h2 class="waitlist-cta__title">Want to be part of the journey?</h2>
-          <div class="waitlist-cta__accent-line"></div>
-        </div>
-        <p class="waitlist-cta__description">
-          We're carefully developing Alayn with input from mental health experts, therapists, 
-          and people like you. Be among the first to know when we launch.
-        </p>
 
-        <div class="waitlist-form">
-          <EmailSignup
-            title=""
-            description=""
-            buttonText="Join the Waitlist"
-            placeholder="Enter your email address"
-            compact={true}
-          />
-        </div>
-
-        <div class="waitlist-cta__note">
-          <p>Join 500+ people already on the waitlist</p>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 <style>
@@ -1131,74 +1102,7 @@
     opacity: 0.9;
   }
 
-  /* Waitlist CTA Section */
-  .waitlist-cta {
-    background-color: var(--color-night);
-    color: var(--color-white-warm);
-    padding: var(--space-20) 0;
-  }
 
-  .waitlist-cta__container {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-  }
-
-  .waitlist-cta__content {
-    text-align: center;
-  }
-
-  .waitlist-cta__header {
-    margin-bottom: var(--space-8);
-  }
-
-  .waitlist-cta__title {
-    font-family: var(--font-heading);
-    font-size: var(--text-3xl);
-    font-weight: var(--weight-bold);
-    margin: 0 0 var(--space-4) 0;
-    line-height: var(--leading-tight);
-    color: var(--color-white-warm);
-  }
-
-  .waitlist-cta__accent-line {
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-olive-light) 0%, var(--color-olive) 100%);
-    margin: 0 auto;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(139, 126, 83, 0.4);
-  }
-
-  .waitlist-cta__description {
-    font-family: var(--font-body);
-    font-size: var(--text-xl);
-    line-height: var(--leading-relaxed);
-    margin: 0 0 var(--space-12) 0;
-    color: var(--color-white-warm);
-    opacity: 0.95;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .waitlist-form {
-    max-width: 600px;
-    margin: 0 auto var(--space-8) auto;
-  }
-
-  .waitlist-cta__note {
-    margin-top: var(--space-6);
-  }
-
-  .waitlist-cta__note p {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--color-white-warm);
-    opacity: 0.7;
-    margin: 0;
-    font-style: italic;
-  }
 
   /* Override EmailSignup styles for enhanced design */
   .waitlist-cta :global(.email-signup) {
