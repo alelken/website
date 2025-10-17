@@ -1,9 +1,9 @@
 <script>
-  import { currentPage, navigateTo } from './lib/stores/router.js';
-  import Header from './components/layout/Header.svelte';
-  import Footer from './components/layout/Footer.svelte';
-  import Router from './components/Router.svelte';
-  
+  import { currentPage, navigateTo } from "./lib/stores/router.js";
+  import Header from "./components/layout/Header.svelte";
+  import Footer from "./components/layout/Footer.svelte";
+  import Router from "./components/Router.svelte";
+
   // Handle navigation events from Header component
   function handleNavigate(event) {
     navigateTo(event.detail.page);
@@ -11,13 +11,10 @@
 </script>
 
 <div class="app">
-  <Header 
-    currentPage={$currentPage} 
-    on:navigate={handleNavigate}
-  />
-  
+  <Header currentPage={$currentPage} on:navigate={handleNavigate} />
+
   <Router />
-  
+
   <Footer />
 </div>
 

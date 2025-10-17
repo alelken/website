@@ -211,7 +211,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: 100%;
   }
   
   .header__nav-link {
@@ -226,7 +225,7 @@
     transition: color 200ms ease;
     position: relative;
     white-space: nowrap;
-    height: 100%;
+    min-height: 44px;
   }
   
   .header__nav-link:hover {

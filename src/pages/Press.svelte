@@ -131,58 +131,69 @@
       <div class="press-releases__grid">
         {#each pressReleases as release}
           <div 
-            class="press-release-card" 
+            class="press-card" 
             on:click={() => navigateToPress(release.slug || release.uid)}
             on:keydown={(e) => e.key === 'Enter' && navigateToPress(release.slug || release.uid)}
             role="button"
             tabindex="0"
+            aria-label={`Read press release: ${release.title}`}
           >
-            <Card variant="outlined" hover={true} padding="small">
-              <div class="press-release__header">
-                <time class="press-release__date" datetime={release.date}>
+            <div class="press-card__image-container">
+              {#if release.featuredImage && (release.featuredImage.url || release.featuredImage)}
+                <!-- Loading placeholder -->
+                <div class="press-card__image-loading">
+                  <div class="image-loading-spinner"></div>
+                </div>
+                
+                <img 
+                  src={release.featuredImage.url || release.featuredImage} 
+                  alt={release.featuredImage.alt || release.title}
+                  loading="lazy"
+                  class="press-card__image"
+                  on:load={handleImageLoad}
+                  on:error={handleImageError}
+                  style="opacity: 0;"
+                />
+                
+                <div class="press-card__image-placeholder" style="display: none;">
+                  <div class="press-card__logo">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+              {:else}
+                <div class="press-card__image-placeholder">
+                  <div class="press-card__logo">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+              {/if}
+              
+              <div class="press-card__overlay">
+                <time class="press-card__date" datetime={release.date}>
                   {formatDate(release.date)}
                 </time>
               </div>
-              
-              <div class="press-release__image">
-                {#if release.featuredImage && (release.featuredImage.url || release.featuredImage)}
-                  <!-- Loading placeholder -->
-                  <div class="press-release__image-loading">
-                    <div class="image-loading-spinner"></div>
-                  </div>
-                  
-                  <img 
-                    src={release.featuredImage.url || release.featuredImage} 
-                    alt={release.featuredImage.alt || release.title}
-                    loading="lazy"
-                    on:load={handleImageLoad}
-                    on:error={handleImageError}
-                    style="opacity: 0;"
-                  />
-                  
-                  <div class="press-release__image-placeholder" style="display: none;">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span class="placeholder-text">Image Unavailable</span>
-                  </div>
-                {:else}
-                  <div class="press-release__image-placeholder">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14.25 9.75L16.5 12L14.25 14.25M9.75 14.25L7.5 12L9.75 9.75M6 20.25H18C19.2426 20.25 20.25 19.2426 20.25 18V6C20.25 4.75736 19.2426 3.75 18 3.75H6C4.75736 3.75 3.75 4.75736 3.75 6V18C3.75 19.2426 4.75736 20.25 6 20.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span class="placeholder-text">Press Release</span>
-                  </div>
-                {/if}
-              </div>
-              
-              <h3 class="press-release__title">{release.title}</h3>
-              <p class="press-release__excerpt">
-                {typeof release.excerpt === 'string' ? release.excerpt : 'No excerpt available'}
+            </div>
+            
+            <div class="press-card__content">
+              <h3 class="press-card__title">{release.title}</h3>
+              <p class="press-card__excerpt">
+                {typeof release.excerpt === 'string' ? release.excerpt : 'A introductory test'}
               </p>
-            </Card>
+              
+              <div class="press-card__footer">
+                <span class="press-card__read-more">
+                  Read More
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
           </div>
         {:else}
           <div class="empty-state">
@@ -283,122 +294,46 @@
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
   
-  .press-release-card {
+  .press-card {
+    background: linear-gradient(135deg, rgba(47, 62, 59, 0.8) 0%, rgba(47, 62, 59, 0.6) 100%);
+    border: 1px solid rgba(139, 126, 83, 0.2);
+    border-radius: 1.5rem;
+    overflow: hidden;
     cursor: pointer;
-    transition: transform 200ms ease;
+    transition: all 400ms ease;
+    position: relative;
   }
   
-  .press-release-card:focus {
+  .press-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(47, 62, 59, 0.4);
+    border-color: var(--color-olive-light);
+  }
+  
+  .press-card:focus {
     outline: 2px solid var(--color-olive-light);
     outline-offset: 2px;
-    border-radius: 0.75rem;
   }
-  
-  .press-releases__grid :global(.card) {
-    height: 100%;
-    background-color: rgba(47, 62, 59, 0.6) !important;
-    border-color: rgba(139, 126, 83, 0.3) !important;
-  }
-  
-  .press-releases__grid :global(.card:hover) {
-    background-color: rgba(47, 62, 59, 0.8) !important;
-    border-left: 4px solid var(--color-olive-light) !important;
-    box-shadow: 0 8px 24px rgba(47, 62, 59, 0.4) !important;
-  }
-  
-  .press-release__header {
-    margin-bottom: var(--space-4);
-  }
-  
-  .press-release__date {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--color-olive-light);
-    font-weight: var(--weight-medium);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  .press-release__image {
-    margin: var(--space-3) 0 var(--space-4) 0;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
-    background: linear-gradient(135deg, rgba(47, 62, 59, 0.4), rgba(139, 126, 83, 0.1));
+
+  .press-card__image-container {
     position: relative;
-    border: 1px solid rgba(139, 126, 83, 0.2);
-    box-shadow: 0 2px 8px rgba(47, 62, 59, 0.2);
-    transition: box-shadow 300ms ease;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(47, 62, 59, 0.4), rgba(139, 126, 83, 0.1));
   }
-  
-  .press-release-card:hover .press-release__image {
-    box-shadow: 0 4px 16px rgba(47, 62, 59, 0.3);
-  }
-  
-  .press-release__image img {
+
+  .press-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 400ms ease, opacity 300ms ease;
-    background-color: rgba(47, 62, 59, 0.2);
+    transition: all 400ms ease;
   }
-  
-  .press-release__image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(47, 62, 59, 0.8) 100%);
-    opacity: 0;
-    transition: opacity 300ms ease;
-    pointer-events: none;
+
+  .press-card:hover .press-card__image {
+    transform: scale(1.1);
   }
-  
-  .press-release-card:hover .press-release__image::after {
-    opacity: 1;
-  }
-  
-  .press-release__image img[loading] {
-    opacity: 0;
-  }
-  
-  .press-release__image img:not([loading]) {
-    opacity: 1;
-  }
-  
-  .press-release-card:hover .press-release__image img {
-    transform: scale(1.08);
-  }
-  
-  .press-release__image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    background: linear-gradient(135deg, rgba(47, 62, 59, 0.4), rgba(139, 126, 83, 0.15));
-    color: var(--color-olive-light);
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .placeholder-text {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: var(--weight-medium);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-olive-light);
-    opacity: 0.8;
-  }
-  
-  .press-release__image-loading {
+
+  .press-card__image-loading {
     position: absolute;
     top: 0;
     left: 0;
@@ -410,20 +345,65 @@
     background: linear-gradient(135deg, rgba(47, 62, 59, 0.3), rgba(139, 126, 83, 0.1));
     z-index: 1;
   }
-  
-  .image-loading-spinner {
-    width: 24px;
-    height: 24px;
-    border: 2px solid rgba(139, 126, 83, 0.3);
-    border-top: 2px solid var(--color-olive-light);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+
+  .press-card__image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(47, 62, 59, 0.6), rgba(139, 126, 83, 0.2));
   }
-  
-  .press-release__title {
+
+  .press-card__logo {
+    color: var(--color-olive-light);
+    opacity: 0.6;
+  }
+
+  .press-card__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(47, 62, 59, 0.8) 0%, transparent 40%, transparent 60%, rgba(47, 62, 59, 0.9) 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--space-4);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .press-card:hover .press-card__overlay {
+    opacity: 1;
+  }
+
+  .press-card__date {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    color: var(--color-olive-light);
+    background: rgba(139, 126, 83, 0.2);
+    padding: var(--space-1) var(--space-3);
+    border-radius: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(139, 126, 83, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .press-card__content {
+    padding: var(--space-6);
+  }
+
+  .press-card__title {
     font-family: var(--font-heading);
     font-size: var(--text-lg);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-bold);
     color: var(--color-white-warm);
     margin: 0 0 var(--space-3) 0;
     line-height: var(--leading-tight);
@@ -433,20 +413,58 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  .press-release__excerpt {
+
+  .press-card__excerpt {
     font-family: var(--font-body);
     font-size: var(--text-sm);
-    color: var(--color-white-warm);
-    margin: 0;
+    color: rgba(254, 253, 251, 0.85);
     line-height: var(--leading-normal);
-    opacity: 0.9;
+    margin: 0 0 var(--space-4) 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .press-card__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .press-card__read-more {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-olive-light);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    transition: all 200ms ease;
+  }
+
+  .press-card:hover .press-card__read-more {
+    transform: translateX(4px);
+  }
+
+  .press-card__read-more svg {
+    transition: transform 200ms ease;
+  }
+
+  .press-card:hover .press-card__read-more svg {
+    transform: rotate(45deg);
+  }
+
+  .image-loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(139, 126, 83, 0.3);
+    border-top: 2px solid var(--color-olive-light);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+
   
   /* Empty State */
   .empty-state {
@@ -567,20 +585,18 @@
       grid-template-columns: 1fr;
     }
     
-    .press-release__image {
-      margin: var(--space-2) 0 var(--space-3) 0;
-      aspect-ratio: 16 / 9;
+    .press-card__content {
+      padding: var(--space-4);
     }
     
-    .press-release__title {
+    .press-card__title {
       font-size: var(--text-base);
       margin-bottom: var(--space-2);
     }
     
-    .press-release__excerpt {
+    .press-card__excerpt {
       font-size: var(--text-xs);
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
+      margin-bottom: var(--space-3);
     }
   }
   

@@ -1,5 +1,51 @@
 <script>
-  // Placeholder Home page component
+  import { navigateTo } from '../lib/stores/router.js';
+  
+  // Email signup state
+  let email = '';
+  let isSubmitting = false;
+  let signupMessage = '';
+  let signupSuccess = false;
+  
+  function handleGetStarted() {
+    // Navigate to Product page to learn about Alayn
+    navigateTo('product');
+  }
+  
+  function handleLearnMore() {
+    // Navigate to About page to learn about the company
+    navigateTo('about');
+  }
+  
+  async function handleEmailSignup(event) {
+    event.preventDefault();
+    
+    if (!email) return;
+    
+    isSubmitting = true;
+    signupMessage = '';
+    
+    try {
+      // Simulate API call - replace with actual implementation
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      signupSuccess = true;
+      signupMessage = 'Thank you for signing up! We\'ll keep you updated on our progress.';
+      email = '';
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        signupMessage = '';
+        signupSuccess = false;
+      }, 5000);
+      
+    } catch (error) {
+      signupSuccess = false;
+      signupMessage = 'Something went wrong. Please try again.';
+    } finally {
+      isSubmitting = false;
+    }
+  }
 </script>
 
 <div class="page page--home">
@@ -16,11 +62,20 @@
           solutions
         </p>
         <div class="hero__cta">
-          <button class="hero__button hero__button--primary">Get Started</button
+          <button 
+            class="hero__button hero__button--primary"
+            on:click={handleGetStarted}
+            aria-label="Get started with Alayn, our mental wellness platform"
           >
-          <button class="hero__button hero__button--secondary"
-            >Learn More</button
+            Explore Alayn
+          </button>
+          <button 
+            class="hero__button hero__button--secondary"
+            on:click={handleLearnMore}
+            aria-label="Learn more about Alelken and our mission"
           >
+            About Us
+          </button>
         </div>
       </div>
       <div class="hero__visual">
@@ -125,7 +180,7 @@
     <div class="vision__container">
       <div class="vision__content">
         <p class="vision__text">
-          Most systems we interact with daily—the ones meant to serve us—weren't
+          Most systems we interact with daily (the ones meant to serve us) weren't
           designed with actual human needs in mind. They were designed for
           efficiency, for scale, for control.
         </p>
@@ -246,7 +301,7 @@
               <h3 class="principle__title">Built for the Underserved</h3>
               <p class="principle__description">
                 The real measure of impact isn't who can afford premium
-                services—it's reaching the people existing systems ignore.
+                services. It's reaching the people existing systems ignore.
               </p>
             </div>
           </div>
@@ -327,7 +382,7 @@
       <div class="impact__content">
         <div class="impact__text-content">
           <p class="impact__text">
-            We align our work with the UN Sustainable Development Goals—not as
+            We align our work with the UN Sustainable Development Goals, not as
             marketing, but as a framework for accountability.
           </p>
           <p class="impact__text">
@@ -342,6 +397,42 @@
             class="sdg-icon"
           />
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email Signup Section -->
+  <section class="signup">
+    <div class="signup__container">
+      <div class="signup__content">
+        <h2 class="signup__title">Stay Connected</h2>
+        <div class="signup__accent-line"></div>
+        <p class="signup__description">
+          Get updates on our progress building technology for human potential. No spam, just meaningful updates.
+        </p>
+        <form class="signup__form" on:submit={handleEmailSignup}>
+          <input
+            type="email"
+            class="signup__input"
+            placeholder="Enter your email address"
+            bind:value={email}
+            required
+            aria-label="Email address for updates"
+          />
+          <button type="submit" class="signup__button" disabled={isSubmitting}>
+            {#if isSubmitting}
+              Signing up...
+            {:else}
+              Stay Updated
+            {/if}
+          </button>
+        </form>
+        {#if signupMessage}
+          <p class="signup__message" class:signup__message--success={signupSuccess}>
+            {signupMessage}
+          </p>
+        {/if}
+        <p class="signup__count">Join 500+ people already on our journey</p>
       </div>
     </div>
   </section>
@@ -829,13 +920,7 @@
     width: 100%;
   }
 
-  .form-container {
-    display: flex;
-    gap: var(--space-4);
-    width: 100%;
-    max-width: 500px;
-    align-items: flex-end;
-  }
+
 
   .signup__input {
     flex: 1;
@@ -882,6 +967,22 @@
 
   .signup__button:active {
     transform: translateY(0);
+  }
+
+  .signup__message {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: #ff8a8a;
+    margin: var(--space-3) 0 0 0;
+    text-align: center;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 0.5rem;
+    background-color: rgba(255, 138, 138, 0.1);
+  }
+
+  .signup__message--success {
+    color: #4ade80;
+    background-color: rgba(74, 222, 128, 0.1);
   }
 
   .signup__count {
@@ -1056,10 +1157,7 @@
       font-size: var(--text-base);
     }
 
-    .form-container {
-      flex-direction: column;
-      gap: var(--space-3);
-    }
+
 
     .signup__input {
       width: 100%;
