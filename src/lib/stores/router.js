@@ -1,4 +1,11 @@
 import { writable, derived } from 'svelte/store';
+import { 
+  getCanonicalUrl, 
+  updatePageMeta, 
+  generateStructuredData, 
+  injectStructuredData,
+  initializeCrawlbotRedirects 
+} from '../seo/redirects.js';
 
 // Valid pages for the application
 const VALID_PAGES = ['home', 'product', 'press', 'about'];
@@ -171,15 +178,16 @@ export function navigateTo(page, params = {}, updateHistory = true) {
       }
     }
 
-    // Update page title and meta description
+    // Update page title, meta description, and SEO tags
     pageMetadata.subscribe(metadata => {
-      document.title = metadata.title;
-
-      // Update meta description
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', metadata.description);
-      }
+      const canonicalUrl = getCanonicalUrl(window.location.hash);
+      
+      // Update all meta tags for SEO
+      updatePageMeta(metadata, canonicalUrl);
+      
+      // Generate and inject structured data
+      const structuredData = generateStructuredData(metadata, canonicalUrl);
+      injectStructuredData(structuredData);
     })();
 
     // Reset navigation state after a brief delay
@@ -203,6 +211,11 @@ export function navigateTo(page, params = {}, updateHistory = true) {
  * Initialize the router
  */
 export function initializeRouter() {
+  // Initialize crawlbot redirects first
+  if (typeof window !== 'undefined') {
+    initializeCrawlbotRedirects();
+  }
+
   // Check for SSG initial state
   if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
     const { currentPage: initialPage, routeParams: initialParams } = window.__INITIAL_STATE__;

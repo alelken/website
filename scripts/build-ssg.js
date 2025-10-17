@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { config } from 'dotenv';
+import { generateHashRedirectPages, generateHtaccess, updateNetlifyRedirects } from '../src/lib/seo/server-redirects.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, '..');
@@ -231,7 +232,14 @@ async function buildSSG() {
             console.log('  ✅ Generated: /404.html');
         }
 
-        // Step 7: Copy robots.txt if it doesn't exist
+        // Step 7: Generate hash-based redirect pages for crawlbots
+        generateHashRedirectPages(distDir, dynamicRoutes);
+
+        // Step 8: Generate server configuration files
+        generateHtaccess(distDir);
+        updateNetlifyRedirects(distDir, dynamicRoutes);
+
+        // Step 9: Copy robots.txt if it doesn't exist
         const robotsPath = join(distDir, 'robots.txt');
         if (!existsSync(robotsPath)) {
             const robotsContent = `User-agent: *
@@ -243,6 +251,7 @@ Sitemap: https://alelken.in/sitemap.xml`;
 
         console.log('✨ SSG build completed successfully!');
         console.log(`📊 Generated ${allRoutes.length} static pages`);
+        console.log('🔄 Generated hash-based redirect pages for crawlbots');
 
     } catch (error) {
         console.error('❌ SSG build failed:', error);
