@@ -15,6 +15,9 @@ if (existsSync(envPath)) {
   config({ path: envPath });
 }
 
+// Also try loading from current directory
+config();
+
 const endpoint = process.env.VITE_PRISMIC_ENDPOINT;
 const accessToken = process.env.VITE_PRISMIC_ACCESS_TOKEN;
 

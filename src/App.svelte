@@ -8,6 +8,14 @@
   if (import.meta.env.DEV) {
     import("./lib/seo/test-redirects.js");
   }
+  
+  // Import cache utilities for automatic refresh
+  import { setupAutoRefresh } from "./lib/utils/cache.js";
+  
+  // Set up automatic cache refresh every minute
+  if (typeof window !== 'undefined') {
+    setupAutoRefresh();
+  }
 
   // Handle navigation events from Header component
   function handleNavigate(event) {

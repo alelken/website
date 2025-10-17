@@ -208,9 +208,22 @@ export function navigateTo(page, params = {}, updateHistory = true) {
 }
 
 /**
+ * Get cache-busting timestamp (rounded to nearest minute)
+ */
+function getCacheTimestamp() {
+  const now = new Date();
+  return Math.floor(now.getTime() / (60 * 1000)) * (60 * 1000);
+}
+
+/**
  * Initialize the router
  */
 export function initializeRouter() {
+  // Initialize crawlbot redirects first
+  if (typeof window !== 'undefined') {
+    initializeCrawlbotRedirects();
+  }
+
   // Check for SSG initial state
   if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
     const { currentPage: initialPage, routeParams: initialParams } = window.__INITIAL_STATE__;

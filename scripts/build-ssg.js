@@ -17,6 +17,9 @@ if (existsSync(envPath)) {
     config({ path: envPath });
 }
 
+// Also try loading from current directory
+config();
+
 // Environment variables are already available in CI/CD environments like Vercel
 console.log('🔧 Environment check:');
 console.log(`   VITE_PRISMIC_ENDPOINT: ${process.env.VITE_PRISMIC_ENDPOINT ? '✅ Set' : '❌ Missing'}`);
@@ -45,6 +48,7 @@ async function getDynamicRoutes() {
             pressReleases = await getBuildTimePressReleases();
             console.log(`✅ Fetched ${pressReleases.length} press releases from Prismic`);
         } catch (prismicError) {
+            console.error('❌ Prismic error details:', prismicError);
             console.warn('⚠️  Could not fetch from Prismic, falling back to local content:', prismicError.message);
 
             // Fallback to local content
@@ -73,6 +77,15 @@ async function getDynamicRoutes() {
 function generateHTML(templateHTML, route) {
     // Replace the hash-based routing with proper paths
     let html = templateHTML;
+    
+    // Generate cache-busting timestamp (rounded to nearest minute)
+    const now = new Date();
+    const cacheTimestamp = Math.floor(now.getTime() / (60 * 1000)) * (60 * 1000);
+    const cacheParam = `?v=${cacheTimestamp}`;
+    
+    // Add cache-busting parameters to all asset URLs
+    html = html.replace(/src="\/assets\/([^"]+)"/g, `src="/assets/$1${cacheParam}"`);
+    html = html.replace(/href="\/assets\/([^"]+)"/g, `href="/assets/$1${cacheParam}"`);
 
     // Set the initial page state
     const pageData = {
