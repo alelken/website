@@ -218,14 +218,11 @@
           expertise to share, we'd love to hear from you.
         </p>
         <div class="contact__links">
-          <Button href="mailto:contact@alelken.in" variant="primary">
-            Contact Email
-          </Button>
           <Button
             href="https://linkedin.com/company/alelken"
-            variant="secondary"
+            variant="primary"
           >
-            LinkedIn
+            Connect on LinkedIn
           </Button>
         </div>
         <p class="contact__note">
