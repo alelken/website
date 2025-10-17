@@ -80,13 +80,52 @@ function generateHTML(templateHTML, route) {
         routeParams: route.params || {}
     };
 
-    // Inject initial state
+    // Inject initial state and crawlbot redirect logic
+    const crawlbotScript = route.path === '/' ? `
+    <script>
+      window.__INITIAL_STATE__ = ${JSON.stringify(pageData)};
+      
+      // Crawlbot redirect logic (only for root page)
+      (function() {
+        var userAgent = navigator.userAgent.toLowerCase();
+        var crawlbots = ['googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 'facebookexternalhit', 'twitterbot', 'linkedinbot', 'whatsapp', 'telegrambot', 'applebot', 'crawler', 'spider', 'bot'];
+        var isCrawlbot = crawlbots.some(function(bot) { return userAgent.includes(bot); });
+        
+        if (isCrawlbot && window.location.hash) {
+          var hash = window.location.hash;
+          var redirectMap = {
+            '#home': '/',
+            '#product': '/product',
+            '#press': '/press',
+            '#about': '/about'
+          };
+          
+          var canonicalPath = redirectMap[hash];
+          if (canonicalPath && canonicalPath !== '/') {
+            console.log('Crawlbot redirect:', hash, '->', canonicalPath);
+            setTimeout(function() {
+              window.location.replace('https://alelken.in' + canonicalPath);
+            }, 1000);
+          }
+          
+          // Handle press detail redirects
+          if (hash.startsWith('#press/')) {
+            var uid = hash.replace('#press/', '');
+            var pressPath = '/press/' + uid;
+            console.log('Crawlbot redirect:', hash, '->', pressPath);
+            setTimeout(function() {
+              window.location.replace('https://alelken.in' + pressPath);
+            }, 1000);
+          }
+        }
+      })();
+    </script>` : `<script>
+      window.__INITIAL_STATE__ = ${JSON.stringify(pageData)};
+    </script>`;
+
     html = html.replace(
         '<script type="module" crossorigin src="/assets/index-',
-        `<script>
-      window.__INITIAL_STATE__ = ${JSON.stringify(pageData)};
-    </script>
-    <script type="module" crossorigin src="/assets/index-`
+        crawlbotScript + '\n    <script type="module" crossorigin src="/assets/index-'
     );
 
     // Update meta tags based on route

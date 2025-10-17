@@ -4,26 +4,36 @@
 
   // Props
   export let targetUrl = '';
-  export let delay = 0; // Delay in seconds before redirect
+  export let delay = 2; // Delay in seconds before redirect (increased for safety)
   export let showMessage = true;
 
   let isBot = false;
   let redirectUrl = '';
+  let shouldRedirect = false;
 
   onMount(() => {
     isBot = isCrawlbot();
+    
+    // Only proceed if this is actually a crawlbot
+    if (!isBot) {
+      console.log('MetaRedirect: Regular user detected, no redirect needed');
+      return;
+    }
     
     // Determine redirect URL
     if (targetUrl) {
       redirectUrl = targetUrl;
     } else {
-      // Auto-detect from current hash
-      redirectUrl = getCanonicalUrl(window.location.hash);
+      // Auto-detect from current hash, but only if we're on root path
+      if (window.location.pathname === '/') {
+        redirectUrl = getCanonicalUrl(window.location.hash);
+      }
     }
 
-    // If this is a crawlbot and we have a different URL, redirect
-    if (isBot && redirectUrl && window.location.href !== redirectUrl) {
-      console.log(`MetaRedirect: Redirecting crawlbot to ${redirectUrl}`);
+    // Only redirect if we have a valid redirect URL and we're not already there
+    if (redirectUrl && window.location.href !== redirectUrl && window.location.pathname === '/') {
+      shouldRedirect = true;
+      console.log(`MetaRedirect: Crawlbot detected, will redirect to ${redirectUrl} in ${delay}s`);
       
       // Add meta redirect to head
       const metaRedirectHTML = createMetaRedirect(redirectUrl);
@@ -37,14 +47,16 @@
 
       // Perform the redirect after delay
       setTimeout(() => {
-        window.location.replace(redirectUrl);
+        if (shouldRedirect) {
+          window.location.replace(redirectUrl);
+        }
       }, delay * 1000);
     }
   });
 </script>
 
 <!-- Only show content if this is a crawlbot and we're redirecting -->
-{#if isBot && redirectUrl && window.location.href !== redirectUrl}
+{#if shouldRedirect && showMessage}
   <div class="meta-redirect">
     {#if showMessage}
       <div class="meta-redirect__message">

@@ -95,28 +95,21 @@ export function createMetaRedirect(targetUrl) {
 /**
  * Initialize crawlbot redirect handling
  * This should be called on page load to handle redirects
+ * NOTE: This is now primarily handled in the build script for better performance
  */
 export function initializeCrawlbotRedirects() {
   if (typeof window === 'undefined') return;
 
   // Only redirect crawlbots, not regular users
-  if (!isCrawlbot()) return;
-
-  const currentHash = window.location.hash;
-  
-  // If we have a hash-based URL, redirect to canonical URL
-  if (currentHash) {
-    const canonicalUrl = getCanonicalUrl(currentHash);
-    const currentUrl = window.location.href;
-    
-    // Only redirect if we're actually on a hash-based URL
-    if (currentUrl !== canonicalUrl) {
-      console.log(`Crawlbot detected, redirecting from ${currentUrl} to ${canonicalUrl}`);
-      
-      // For crawlbots, use window.location.replace to avoid adding to history
-      window.location.replace(canonicalUrl);
-    }
+  if (!isCrawlbot()) {
+    console.log('Regular user detected, skipping redirect');
+    return;
   }
+
+  console.log('Crawlbot detected, but redirects are handled by build script');
+  
+  // This function is kept for compatibility but the main redirect logic
+  // is now in the build script to avoid interfering with regular users
 }
 
 /**

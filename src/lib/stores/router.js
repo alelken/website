@@ -211,11 +211,6 @@ export function navigateTo(page, params = {}, updateHistory = true) {
  * Initialize the router
  */
 export function initializeRouter() {
-  // Initialize crawlbot redirects first
-  if (typeof window !== 'undefined') {
-    initializeCrawlbotRedirects();
-  }
-
   // Check for SSG initial state
   if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
     const { currentPage: initialPage, routeParams: initialParams } = window.__INITIAL_STATE__;
@@ -233,6 +228,9 @@ export function initializeRouter() {
     currentPage.set(initialPage);
     routeParams.set(initialParams);
   }
+
+  // Crawlbot redirects are handled in the build script for the root page
+  // No need to initialize them here to avoid interfering with regular users
 
   // Listen for hash changes
   const handleHashChange = () => {
