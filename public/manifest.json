@@ -1,0 +1,26 @@
+{
+  "name": "Alelken - Technology for Human Potential",
+  "short_name": "Alelken",
+  "description": "Building systems that heal, educate, and sustain through innovative technology solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ff88",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/assets/logo/5.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "health"],
+  "lang": "en",
+  "dir": "ltr"
+}

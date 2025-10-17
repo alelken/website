@@ -1,0 +1,145 @@
+/* Typography Design Tokens */
+:root {
+  /* Font Families */
+  --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-brand: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+  --text-6xl: 3.75rem;   /* 60px */
+  --text-7xl: 4.5rem;    /* 72px */
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Font Weights */
+  --weight-thin: 100;
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+  
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}
+
+/* Responsive Typography Scale - Mobile First Approach */
+
+/* Semantic Typography Tokens for Responsive Design */
+:root {
+  /* Hero Text - Responsive */
+  --text-hero: var(--text-4xl);
+  --text-hero-mobile: var(--text-3xl);
+  --text-hero-tablet: var(--text-5xl);
+  --text-hero-desktop: var(--text-6xl);
+  --text-hero-large: var(--text-7xl);
+  
+  /* Heading Scales - Responsive */
+  --text-heading-1: var(--text-3xl);
+  --text-heading-1-mobile: var(--text-2xl);
+  --text-heading-1-tablet: var(--text-4xl);
+  --text-heading-1-desktop: var(--text-5xl);
+  
+  --text-heading-2: var(--text-2xl);
+  --text-heading-2-mobile: var(--text-xl);
+  --text-heading-2-tablet: var(--text-3xl);
+  --text-heading-2-desktop: var(--text-4xl);
+  
+  --text-heading-3: var(--text-xl);
+  --text-heading-3-mobile: var(--text-lg);
+  --text-heading-3-tablet: var(--text-2xl);
+  --text-heading-3-desktop: var(--text-3xl);
+  
+  /* Body Text - Responsive */
+  --text-body: var(--text-base);
+  --text-body-mobile: var(--text-base);
+  --text-body-tablet: var(--text-lg);
+  --text-body-desktop: var(--text-lg);
+  
+  /* Lead Text - Responsive */
+  --text-lead: var(--text-lg);
+  --text-lead-mobile: var(--text-lg);
+  --text-lead-tablet: var(--text-xl);
+  --text-lead-desktop: var(--text-2xl);
+}
+
+/* Mobile Adjustments (up to 767px) */
+@media (max-width: 767px) {
+  :root {
+    /* Reduce font sizes for mobile readability */
+    --text-3xl: 1.5rem;    /* 24px on mobile */
+    --text-4xl: 1.875rem;  /* 30px on mobile */
+    --text-5xl: 2.25rem;   /* 36px on mobile */
+    --text-6xl: 2.75rem;   /* 44px on mobile */
+    --text-7xl: 3.25rem;   /* 52px on mobile */
+    
+    /* Apply mobile semantic tokens */
+    --text-hero: var(--text-hero-mobile);
+    --text-heading-1: var(--text-heading-1-mobile);
+    --text-heading-2: var(--text-heading-2-mobile);
+    --text-heading-3: var(--text-heading-3-mobile);
+    --text-body: var(--text-body-mobile);
+    --text-lead: var(--text-lead-mobile);
+  }
+}
+
+/* Tablet Adjustments (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    /* Apply tablet semantic tokens */
+    --text-hero: var(--text-hero-tablet);
+    --text-heading-1: var(--text-heading-1-tablet);
+    --text-heading-2: var(--text-heading-2-tablet);
+    --text-heading-3: var(--text-heading-3-tablet);
+    --text-body: var(--text-body-tablet);
+    --text-lead: var(--text-lead-tablet);
+  }
+}
+
+/* Desktop Adjustments (1024px and up) */
+@media (min-width: 1024px) {
+  :root {
+    /* Increase font sizes for desktop */
+    --text-6xl: 4rem;      /* 64px on desktop */
+    --text-7xl: 5rem;      /* 80px on desktop */
+    
+    /* Apply desktop semantic tokens */
+    --text-hero: var(--text-hero-desktop);
+    --text-heading-1: var(--text-heading-1-desktop);
+    --text-heading-2: var(--text-heading-2-desktop);
+    --text-heading-3: var(--text-heading-3-desktop);
+    --text-body: var(--text-body-desktop);
+    --text-lead: var(--text-lead-desktop);
+  }
+}
+
+/* Large Desktop Adjustments (1280px and up) */
+@media (min-width: 1280px) {
+  :root {
+    /* Apply large desktop hero text */
+    --text-hero: var(--text-hero-large);
+  }
+}
