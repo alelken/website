@@ -7,15 +7,7 @@
   let signupMessage = '';
   let signupSuccess = false;
   
-  function handleGetStarted() {
-    // Navigate to Product page to learn about Alayn
-    navigateTo('product');
-  }
-  
-  function handleLearnMore() {
-    // Navigate to About page to learn about the company
-    navigateTo('about');
-  }
+
   
   async function handleEmailSignup(event) {
     event.preventDefault();
@@ -61,22 +53,7 @@
           Building systems that heal, educate, and sustain through innovative
           solutions
         </p>
-        <div class="hero__cta">
-          <button 
-            class="hero__button hero__button--primary"
-            on:click={handleGetStarted}
-            aria-label="Get started with Alayn, our mental wellness platform"
-          >
-            Explore Alayn
-          </button>
-          <button 
-            class="hero__button hero__button--secondary"
-            on:click={handleLearnMore}
-            aria-label="Learn more about Alelken and our mission"
-          >
-            About Us
-          </button>
-        </div>
+
       </div>
       <div class="hero__visual">
         <div class="hero__illustration">
@@ -497,47 +474,7 @@
     max-width: 28rem;
   }
 
-  .hero__cta {
-    display: flex;
-    gap: var(--space-4);
-    align-items: center;
-  }
 
-  .hero__button {
-    padding: var(--space-4) var(--space-8);
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    border: none;
-    cursor: pointer;
-    transition: all 200ms ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero__button--primary {
-    background-color: var(--color-olive);
-    color: var(--color-text-on-dark);
-  }
-
-  .hero__button--primary:hover {
-    background-color: var(--color-olive-lighter);
-    transform: translateY(-2px);
-  }
-
-  .hero__button--secondary {
-    background-color: transparent;
-    color: var(--color-olive-light);
-    border: 2px solid var(--color-olive-light);
-  }
-
-  .hero__button--secondary:hover {
-    background-color: var(--color-olive-light);
-    color: var(--color-night);
-  }
 
   .hero__visual {
     display: flex;
@@ -1069,14 +1006,7 @@
       font-size: var(--text-lg);
     }
 
-    .hero__cta {
-      flex-direction: column;
-      align-items: stretch;
-    }
 
-    .hero__button {
-      justify-content: center;
-    }
 
     .vision {
       padding: var(--space-16) 0;

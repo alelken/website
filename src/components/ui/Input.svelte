@@ -8,7 +8,7 @@
   export let disabled = false;
   export let id = '';
   export let name = '';
-  export let autocomplete = '';
+
   
   // Generate unique ID if not provided
   $: inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
@@ -36,7 +36,6 @@
       {required}
       {disabled}
       {name}
-      autocomplete={autocomplete}
       id={inputId}
       class="input"
       class:input--error={hasError}
@@ -47,6 +46,7 @@
       on:blur
       on:focus
       on:change
+
     />
   </div>
   
