@@ -7,6 +7,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
+        // Use consistent filenames instead of content hashes
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]',
         manualChunks: {
           // Separate vendor chunks for better caching
           vendor: ['svelte'],
