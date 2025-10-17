@@ -1,4 +1,11 @@
 import { writable, derived } from 'svelte/store';
+import { 
+  getCanonicalUrl, 
+  updatePageMeta, 
+  generateStructuredData, 
+  injectStructuredData,
+  initializeCrawlbotRedirects 
+} from '../seo/redirects.js';
 
 // Valid pages for the application
 const VALID_PAGES = ['home', 'product', 'press', 'about'];
@@ -171,15 +178,16 @@ export function navigateTo(page, params = {}, updateHistory = true) {
       }
     }
 
-    // Update page title and meta description
+    // Update page title, meta description, and SEO tags
     pageMetadata.subscribe(metadata => {
-      document.title = metadata.title;
-
-      // Update meta description
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute('content', metadata.description);
-      }
+      const canonicalUrl = getCanonicalUrl(window.location.hash);
+      
+      // Update all meta tags for SEO
+      updatePageMeta(metadata, canonicalUrl);
+      
+      // Generate and inject structured data
+      const structuredData = generateStructuredData(metadata, canonicalUrl);
+      injectStructuredData(structuredData);
     })();
 
     // Reset navigation state after a brief delay
@@ -220,6 +228,9 @@ export function initializeRouter() {
     currentPage.set(initialPage);
     routeParams.set(initialParams);
   }
+
+  // Crawlbot redirects are handled in the build script for the root page
+  // No need to initialize them here to avoid interfering with regular users
 
   // Listen for hash changes
   const handleHashChange = () => {

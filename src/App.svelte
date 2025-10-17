@@ -3,21 +3,18 @@
   import Header from "./components/layout/Header.svelte";
   import Footer from "./components/layout/Footer.svelte";
   import Router from "./components/Router.svelte";
+  
+  // Import test utilities in development
+  if (import.meta.env.DEV) {
+    import("./lib/seo/test-redirects.js");
+  }
 
   // Handle navigation events from Header component
   function handleNavigate(event) {
     navigateTo(event.detail.page);
   }
 
-  // Update document title and meta description when page changes
-  $: if ($pageMetadata) {
-    document.title = $pageMetadata.title;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', $pageMetadata.description);
-    }
-  }
+  // Meta tags are now handled in the router store for better SEO integration
 </script>
 
 <div class="app">
