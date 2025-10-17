@@ -32,7 +32,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2))",
+      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2))$",
       "headers": [
         {
           "key": "Cache-Control",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "source": "/(sitemap\\.xml|robots\\.txt|manifest\\.json)",
+      "source": "/(sitemap\\.xml|robots\\.txt|manifest\\.json)$",
       "headers": [
         {
           "key": "Cache-Control",
