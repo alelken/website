@@ -73,8 +73,133 @@ async function getDynamicRoutes() {
     }
 }
 
+// Generate basic content for SSR
+function generateBasicContent(route, pressReleases = []) {
+    switch (route.page) {
+        case 'home':
+            return `
+                <main class="home-page">
+                    <section class="hero section">
+                        <div class="container">
+                            <h1>Technology for Human Potential</h1>
+                            <p>Building systems that heal, educate, and sustain through innovative technology solutions.</p>
+                        </div>
+                    </section>
+                </main>
+            `;
+        case 'product':
+            return `
+                <main class="product-page">
+                    <section class="product-hero section">
+                        <div class="container">
+                            <h1>Alayn: Mental Wellness for India</h1>
+                            <p>A culturally-aware mental wellness platform designed specifically for India's diverse population.</p>
+                        </div>
+                    </section>
+                </main>
+            `;
+        case 'press':
+            const pressItems = pressReleases.map(release => `
+                <article class="press-item">
+                    <h3><a href="/press/${release.uid}">${release.title}</a></h3>
+                    <time datetime="${release.date}">${new Date(release.date).toLocaleDateString()}</time>
+                    <p>${release.excerpt}</p>
+                </article>
+            `).join('');
+            return `
+                <main class="press-page">
+                    <section class="press-hero section">
+                        <div class="container">
+                            <h1>Press Releases</h1>
+                            <p>Latest news and announcements from Alelken.</p>
+                        </div>
+                    </section>
+                    <section class="press-list section">
+                        <div class="container">
+                            ${pressItems}
+                        </div>
+                    </section>
+                </main>
+            `;
+        case 'press-detail':
+            const pressRelease = pressReleases.find(p => p.uid === route.params?.uid);
+            if (!pressRelease) {
+                return '<main><h1>Press Release Not Found</h1></main>';
+            }
+            return `
+                <main class="press-detail-page">
+                    <article class="press-article">
+                        <div class="container">
+                            <h1>${pressRelease.title}</h1>
+                            <time datetime="${pressRelease.date}">${new Date(pressRelease.date).toLocaleDateString()}</time>
+                            <div class="press-content">
+                                ${pressRelease.content || pressRelease.excerpt}
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            `;
+        case 'about':
+            return `
+                <main class="about-page">
+                    <section class="about-hero section">
+                        <div class="container">
+                            <h1>About Alelken</h1>
+                            <p>Meet the team behind Alelken and learn about our mission to build technology for human potential.</p>
+                        </div>
+                    </section>
+                </main>
+            `;
+        default:
+            return '<main><h1>404 - Page Not Found</h1></main>';
+    }
+}
+
+// Generate basic layout
+function generateBasicLayout(content, route) {
+    const header = `
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="/" class="nav__logo">Alelken</a>
+                    <ul class="nav__menu">
+                        <li><a href="/" class="${route.page === 'home' ? 'nav__link nav__link--active' : 'nav__link'}">Home</a></li>
+                        <li><a href="/product" class="${route.page === 'product' ? 'nav__link nav__link--active' : 'nav__link'}">Product</a></li>
+                        <li><a href="/press" class="${route.page === 'press' || route.page === 'press-detail' ? 'nav__link nav__link--active' : 'nav__link'}">Press</a></li>
+                        <li><a href="/about" class="${route.page === 'about' ? 'nav__link nav__link--active' : 'nav__link'}">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    `;
+    
+    const footer = `
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__content">
+                    <div class="footer__brand">
+                        <h3>Alelken</h3>
+                        <p>Technology for Human Potential</p>
+                    </div>
+                </div>
+                <div class="footer__bottom">
+                    <p>&copy; ${new Date().getFullYear()} Alelken. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    `;
+    
+    return `
+        <div class="app">
+            ${header}
+            ${content}
+            ${footer}
+        </div>
+    `;
+}
+
 // Generate HTML for a specific route
-function generateHTML(templateHTML, route) {
+async function generateHTML(templateHTML, route, pressReleases = []) {
     // Replace the hash-based routing with proper paths
     let html = templateHTML;
     
@@ -86,6 +211,13 @@ function generateHTML(templateHTML, route) {
     // Add cache-busting parameters to all asset URLs
     html = html.replace(/src="\/assets\/([^"]+)"/g, `src="/assets/$1${cacheParam}"`);
     html = html.replace(/href="\/assets\/([^"]+)"/g, `href="/assets/$1${cacheParam}"`);
+    
+    // Generate basic content for now (can be enhanced later)
+    const pageContent = generateBasicContent(route, pressReleases);
+    const completeLayout = generateBasicLayout(pageContent, route);
+    
+    // Inject the rendered content into the app div
+    html = html.replace('<div id="app"></div>', `<div id="app">${completeLayout}</div>`);
 
     // Set the initial page state
     const pageData = {
@@ -256,7 +388,16 @@ async function buildSSG() {
 
         // Step 4: Generate static HTML for each route
         for (const route of allRoutes) {
-            const html = generateHTML(templateHTML, route);
+            // Convert dynamic routes to press releases format
+            const pressReleasesData = dynamicRoutes.map(r => ({
+                uid: r.params?.uid,
+                title: r.params?.title,
+                excerpt: r.params?.excerpt,
+                content: r.params?.content || r.params?.excerpt,
+                date: new Date().toISOString()
+            }));
+            
+            const html = await generateHTML(templateHTML, route, pressReleasesData);
 
             // Create directory structure
             const routePath = route.path === '/' ? '/index.html' : `${route.path}/index.html`;
@@ -279,7 +420,7 @@ async function buildSSG() {
         // Step 6: Create 404.html for hosting providers
         const notFoundRoute = allRoutes.find(route => route.page === 'not-found');
         if (notFoundRoute) {
-            const notFoundHtml = generateHTML(templateHTML, notFoundRoute);
+            const notFoundHtml = await generateHTML(templateHTML, notFoundRoute, dynamicRoutes);
             writeFileSync(join(distDir, '404.html'), notFoundHtml);
             console.log('  ✅ Generated: /404.html');
         }
