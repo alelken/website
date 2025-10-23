@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { currentPage, navigateTo, pageMetadata } from "./lib/stores/router.js";
   import Header from "./components/layout/Header.svelte";
   import Footer from "./components/layout/Footer.svelte";
@@ -23,8 +24,16 @@
   }
 
   // Meta tags are now handled in the router store for better SEO integration
+  
+  // Handle client-side hydration
+  onMount(() => {
+    // SSR content is automatically hidden by CSS when JS is available
+    // This ensures smooth transition from SSR to client-side rendering
+    console.log('Client-side app mounted, SSR content hidden');
+  });
 </script>
 
+<!-- Client-side content will be rendered here -->
 <div class="app">
   <Header currentPage={$currentPage} on:navigate={handleNavigate} />
 

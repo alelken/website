@@ -18,6 +18,38 @@
 /* 5. Utility Classes - Helper Classes */
 @import './utilities/index.css';
 
+/* 6. SSR Content Handling - Hide from users, keep for crawlers */
+.ssr-content {
+  /* Initially visible for crawlers and users without JS */
+  display: block;
+}
+
+/* Hide SSR content when JavaScript is available (will be handled by JS) */
+.js .ssr-content {
+  /* Hide from visual users but keep for screen readers and crawlers */
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Show SSR content only when JavaScript is disabled */
+.no-js .ssr-content {
+  display: block;
+  position: static;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /*
   CSS Architecture Guidelines:
   

@@ -137,8 +137,10 @@ async function generateHTML(templateHTML, route, pressReleases = []) {
     const pageContent = await renderPageContent(route, pressReleases);
     const completeLayout = await renderCompleteLayout(pageContent, route);
     
-    // Inject the rendered content into the app div
-    html = html.replace('<div id="app"></div>', `<div id="app">${completeLayout}</div>`);
+    // Inject the rendered content into the app div with SSR wrapper
+    html = html.replace('<div id="app"></div>', `<div id="app">
+        <div class="ssr-content" aria-hidden="true">${completeLayout}</div>
+    </div>`);
 
     // Set the initial page state
     const pageData = {
