@@ -7,19 +7,27 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // Use consistent filenames instead of content hashes
+        // Use clean filenames without hashes - cache invalidation via headers only
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]',
         manualChunks: {
-          // Separate vendor chunks for better caching
           vendor: ['svelte'],
           prismic: ['@prismicio/client', '@prismicio/helpers']
         }
       }
+    },
+    emptyOutDir: true,
+    sourcemap: false
+  },
+  // Force no-cache headers in development
+  server: {
+    headers: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
     }
   },
-  // Optimize for production
   define: {
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
   }

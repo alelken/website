@@ -8,14 +8,27 @@
   // Import test utilities in development
   if (import.meta.env.DEV) {
     import("./lib/seo/test-redirects.js");
+    import("./lib/utils/demo-no-cache.js").then(module => {
+      // The demo will auto-run, but you can also call:
+      // module.testCompleteCacheInvalidation();
+      // module.showCacheStatus();
+    });
   }
   
-  // Import cache utilities for automatic refresh
-  import { setupAutoRefresh } from "./lib/utils/cache.js";
+  // Import immediate cache invalidation utilities
+  import { setupImmediateInvalidation, interceptAllRequests } from "./lib/utils/cache.js";
+  import { setupNoCacheEnvironment } from "./lib/utils/no-cache.js";
+  import { setupSmoothLoading } from "./lib/utils/smooth-loading.js";
   
-  // Set up automatic cache refresh every minute
+  // Set up complete no-cache environment with smooth loading
   if (typeof window !== 'undefined') {
-    setupAutoRefresh();
+    // Setup smooth loading first to prevent FOUC
+    setupSmoothLoading();
+    
+    // Then setup cache invalidation
+    setupNoCacheEnvironment();
+    setupImmediateInvalidation();
+    interceptAllRequests();
   }
 
   // Handle navigation events from Header component
@@ -29,12 +42,17 @@
   onMount(() => {
     // SSR content is automatically hidden by CSS when JS is available
     // This ensures smooth transition from SSR to client-side rendering
-    console.log('Client-side app mounted, SSR content hidden');
+    console.log('Client-side app mounted with smooth loading');
+    
+    // Remove loading skeleton class after mount
+    setTimeout(() => {
+      document.querySelector('.app')?.classList.remove('loading-skeleton');
+    }, 100);
   });
 </script>
 
 <!-- Client-side content will be rendered here -->
-<div class="app">
+<div class="app loading-skeleton">
   <Header currentPage={$currentPage} on:navigate={handleNavigate} />
 
   <Router />
