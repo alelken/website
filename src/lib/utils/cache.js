@@ -3,83 +3,46 @@
  */
 
 /**
- * Force reload of assets by recreating DOM elements with no-cache headers
- * This bypasses all caching without modifying URLs and prevents FOUC
+ * Force reload of assets silently in background without UI indicators
+ * This bypasses all caching without modifying URLs
  */
 export function forceAssetReload() {
   if (typeof document === 'undefined') return;
 
-  // Import critical CSS utilities
-  import('./critical-css.js').then(({ showLoadingOverlay, hideLoadingOverlay, handleCSSReload }) => {
-    // Show loading overlay to prevent FOUC
-    showLoadingOverlay();
-    
-    // Handle CSS reload smoothly
-    handleCSSReload();
-    
-    let loadedCount = 0;
-    let totalAssets = 0;
-    
-    // Count total assets to reload
-    totalAssets += document.querySelectorAll('script[src]').length;
-    totalAssets += document.querySelectorAll('link[rel="stylesheet"]').length;
-    
-    const checkAllLoaded = () => {
-      loadedCount++;
-      if (loadedCount >= totalAssets) {
-        // Hide loading overlay after all assets load
-        setTimeout(() => {
-          hideLoadingOverlay();
-        }, 100);
-      }
-    };
+  // Silent background reload - no UI indicators
+  
+  // Force reload all scripts silently
+  document.querySelectorAll('script[src]').forEach((script) => {
+    const src = script.getAttribute('src');
+    if (src && !src.startsWith('data:')) {
+      const newScript = document.createElement('script');
+      newScript.src = src;
+      newScript.type = 'text/javascript';
+      
+      // Add no-cache attributes
+      newScript.setAttribute('cache', 'no-cache');
+      newScript.setAttribute('pragma', 'no-cache');
+      
+      // Silent replacement - no loading indicators
+      script.parentNode?.replaceChild(newScript, script);
+    }
+  });
 
-    // Force reload all scripts
-    document.querySelectorAll('script[src]').forEach((script) => {
-      const src = script.getAttribute('src');
-      if (src && !src.startsWith('data:')) {
-        const newScript = document.createElement('script');
-        newScript.src = src;
-        newScript.type = 'text/javascript';
-        
-        // Add no-cache attributes
-        newScript.setAttribute('cache', 'no-cache');
-        newScript.setAttribute('pragma', 'no-cache');
-        
-        // Track loading
-        newScript.onload = checkAllLoaded;
-        newScript.onerror = checkAllLoaded;
-        
-        // Replace the old script
-        script.parentNode?.replaceChild(newScript, script);
-      }
-    });
-
-    // Force reload all stylesheets
-    document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
-      const href = link.getAttribute('href');
-      if (href && !href.startsWith('data:')) {
-        const newLink = document.createElement('link');
-        newLink.rel = 'stylesheet';
-        newLink.href = href;
-        
-        // Add no-cache attributes
-        newLink.setAttribute('cache', 'no-cache');
-        newLink.setAttribute('pragma', 'no-cache');
-        
-        // Track loading
-        newLink.onload = checkAllLoaded;
-        newLink.onerror = checkAllLoaded;
-        
-        // Replace the old link
-        link.parentNode?.replaceChild(newLink, link);
-      }
-    });
-    
-    // Fallback: hide overlay after 2 seconds if assets don't load
-    setTimeout(() => {
-      hideLoadingOverlay();
-    }, 2000);
+  // Force reload all stylesheets silently
+  document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('data:')) {
+      const newLink = document.createElement('link');
+      newLink.rel = 'stylesheet';
+      newLink.href = href;
+      
+      // Add no-cache attributes
+      newLink.setAttribute('cache', 'no-cache');
+      newLink.setAttribute('pragma', 'no-cache');
+      
+      // Silent replacement - no loading indicators
+      link.parentNode?.replaceChild(newLink, link);
+    }
   });
 }
 
@@ -186,30 +149,24 @@ export function setupImmediateInvalidation() {
   
   // Skip initial invalidation to prevent double loading
   
-  // Set up immediate invalidation on focus (when user returns to tab)
+  // Set up silent invalidation on focus (when user returns to tab)
   window.addEventListener('focus', () => {
-    import('./smooth-loading.js').then(({ handleSmoothReload }) => {
-      handleSmoothReload();
-      setTimeout(invalidateAllAssets, 100);
-    });
+    // Silent background invalidation
+    setTimeout(invalidateAllAssets, 100);
   });
   
-  // Set up immediate invalidation on visibility change
+  // Set up silent invalidation on visibility change
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
-      import('./smooth-loading.js').then(({ handleSmoothReload }) => {
-        handleSmoothReload();
-        setTimeout(invalidateAllAssets, 100);
-      });
+      // Silent background invalidation
+      setTimeout(invalidateAllAssets, 100);
     }
   });
   
-  // Force immediate invalidation every 10 seconds (reduced frequency for better UX)
+  // Force silent invalidation every 10 seconds in background
   const invalidationInterval = setInterval(() => {
-    import('./smooth-loading.js').then(({ handleSmoothReload }) => {
-      handleSmoothReload();
-      setTimeout(invalidateAllAssets, 100);
-    });
+    // Silent background invalidation - no UI indicators
+    invalidateAllAssets();
   }, 10000);
   
   // Clean up on page unload
