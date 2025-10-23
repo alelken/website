@@ -1,6 +1,6 @@
 <script>
-  import Button from "../components/ui/Button.svelte";
-  import { navigateToHome } from "../lib/stores/router.js";
+  import Button from '../components/ui/Button.svelte';
+  import { navigateToHome } from '../lib/stores/router.js';
 
   function handleGoHome() {
     navigateToHome();
@@ -45,32 +45,54 @@
               opacity="0.2"
               fill="none"
             />
-            
+
             <!-- Disconnected nodes -->
             <circle cx="50" cy="150" r="8" fill="currentColor" opacity="0.6" />
             <circle cx="150" cy="150" r="8" fill="currentColor" opacity="0.8" />
             <circle cx="250" cy="150" r="8" fill="currentColor" />
             <circle cx="350" cy="150" r="6" fill="currentColor" opacity="0.3" />
-            
+
             <!-- Question mark symbol -->
-            <circle cx="200" cy="80" r="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5" />
-            <path d="M190 70 Q200 60 210 70 Q210 80 200 85 M200 95 L200 100" stroke="currentColor" stroke-width="2" opacity="0.7" fill="none" />
-            
+            <circle
+              cx="200"
+              cy="80"
+              r="25"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              opacity="0.5"
+            />
+            <path
+              d="M190 70 Q200 60 210 70 Q210 80 200 85 M200 95 L200 100"
+              stroke="currentColor"
+              stroke-width="2"
+              opacity="0.7"
+              fill="none"
+            />
+
             <!-- Floating geometric shapes -->
-            <rect x="80" y="50" width="15" height="15" fill="currentColor" opacity="0.3" transform="rotate(45 87.5 57.5)" />
+            <rect
+              x="80"
+              y="50"
+              width="15"
+              height="15"
+              fill="currentColor"
+              opacity="0.3"
+              transform="rotate(45 87.5 57.5)"
+            />
             <circle cx="320" cy="80" r="6" fill="currentColor" opacity="0.4" />
             <polygon points="100,220 115,240 85,240" fill="currentColor" opacity="0.3" />
           </svg>
         </div>
-        
+
         <div class="not-found-hero__text">
           <h1 class="not-found-hero__title">
             <span class="not-found-hero__title-number">404</span>
             <span class="not-found-hero__title-main">Page Not Found</span>
           </h1>
           <p class="not-found-hero__subtitle">
-            The page you're looking for seems to have wandered off into the digital void. 
-            Don't worry, even the best explorers sometimes take a wrong turn.
+            The page you're looking for seems to have wandered off into the digital void. Don't
+            worry, even the best explorers sometimes take a wrong turn.
           </p>
         </div>
       </div>
@@ -82,13 +104,25 @@
     <div class="suggestions__container">
       <div class="suggestions__content">
         <h2 class="suggestions__title">Let's get you back on track</h2>
-        
+
         <div class="suggestions__grid">
           <div class="suggestion-card">
             <div class="suggestion-card__icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9 22V12H15V22"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </div>
             <h3 class="suggestion-card__title">Go Home</h3>
@@ -100,7 +134,13 @@
           <div class="suggestion-card">
             <div class="suggestion-card__icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M19 12H5M12 19L5 12L12 5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </div>
             <h3 class="suggestion-card__title">Go Back</h3>
@@ -112,7 +152,13 @@
           <div class="suggestion-card">
             <div class="suggestion-card__icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </div>
             <h3 class="suggestion-card__title">Explore</h3>
@@ -120,20 +166,16 @@
               Check out our Product, Press releases, or learn more About us.
             </p>
             <div class="suggestion-card__links">
-              <a href="#product" class="suggestion-link">Product</a>
-              <a href="#press" class="suggestion-link">Press</a>
-              <a href="#about" class="suggestion-link">About</a>
+              <a href="/product" class="suggestion-link">Product</a>
+              <a href="/press" class="suggestion-link">Press</a>
+              <a href="/about" class="suggestion-link">About</a>
             </div>
           </div>
         </div>
 
         <div class="suggestions__actions">
-          <Button variant="primary" on:click={handleGoHome}>
-            Take Me Home
-          </Button>
-          <Button variant="secondary" on:click={handleGoBack}>
-            Go Back
-          </Button>
+          <Button variant="primary" on:click={handleGoHome}>Take Me Home</Button>
+          <Button variant="secondary" on:click={handleGoBack}>Go Back</Button>
         </div>
       </div>
     </div>

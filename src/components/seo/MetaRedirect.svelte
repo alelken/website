@@ -24,10 +24,8 @@
     if (targetUrl) {
       redirectUrl = targetUrl;
     } else {
-      // Auto-detect from current hash, but only if we're on root path
-      if (window.location.pathname === '/') {
-        redirectUrl = getCanonicalUrl(window.location.hash);
-      }
+      // Auto-detect from current path
+      redirectUrl = getCanonicalUrl(window.location.pathname);
     }
 
     // Only redirect if we have a valid redirect URL and we're not already there

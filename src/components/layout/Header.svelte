@@ -7,10 +7,10 @@
   let isMenuOpen = false;
   
   const navigationItems = [
-    { id: 'home', label: 'Home', href: '#home' },
-    { id: 'product', label: 'Product', href: '#product' },
-    { id: 'press', label: 'Press', href: '#press' },
-    { id: 'about', label: 'About', href: '#about' }
+    { id: 'home', label: 'Home', href: '/' },
+    { id: 'product', label: 'Product', href: '/product' },
+    { id: 'press', label: 'Press', href: '/press' },
+    { id: 'about', label: 'About', href: '/about' }
   ];
   
   function toggleMenu() {
@@ -44,7 +44,7 @@
     <!-- Brand/Logo -->
     <div class="header__brand">
       <a 
-        href="#home" 
+        href="/" 
         class="header__logo-link"
         on:click={() => handleNavClick('home')}
         aria-label="Alelken - Go to homepage"

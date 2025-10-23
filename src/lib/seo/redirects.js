@@ -46,22 +46,28 @@ export function isCrawlbot() {
 }
 
 /**
- * Get the canonical URL for a hash-based route
- * @param {string} hash - The current hash (e.g., '#product')
+ * Get the canonical URL for a path
+ * @param {string} path - The current path (e.g., '/product')
  * @returns {string} The canonical URL path
  */
-export function getCanonicalUrl(hash = '') {
+export function getCanonicalUrl(path = '/') {
   const baseUrl = 'https://alelken.in';
   
-  // Handle press detail routes
-  if (hash.startsWith('#press/')) {
-    const uid = hash.replace('#press/', '');
-    return `${baseUrl}/press/${uid}`;
+  // If it's still a hash-based path, convert it
+  if (path.startsWith('#')) {
+    // Handle press detail routes
+    if (path.startsWith('#press/')) {
+      const uid = path.replace('#press/', '');
+      return `${baseUrl}/press/${uid}`;
+    }
+    
+    // Handle standard routes
+    const canonicalPath = ROUTE_REDIRECTS[path] || '/';
+    return `${baseUrl}${canonicalPath}`;
   }
   
-  // Handle standard routes
-  const canonicalPath = ROUTE_REDIRECTS[hash] || '/';
-  return `${baseUrl}${canonicalPath}`;
+  // Already a proper path
+  return `${baseUrl}${path}`;
 }
 
 /**

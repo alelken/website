@@ -25,11 +25,11 @@ export function testRedirects() {
     
     // Test current page redirect
     if (typeof window !== 'undefined') {
-        const currentHash = window.location.hash;
-        const currentCanonical = getCanonicalUrl(currentHash);
-        console.log(`Current: ${currentHash} -> ${currentCanonical}`);
+        const currentPath = window.location.pathname;
+        const currentCanonical = getCanonicalUrl(currentPath);
+        console.log(`Current: ${currentPath} -> ${currentCanonical}`);
         
-        if (currentHash && currentCanonical !== window.location.href) {
+        if (currentPath && currentCanonical !== window.location.href) {
             console.log('⚠️  Current page would redirect to:', currentCanonical);
         } else {
             console.log('✅ Current page is canonical');

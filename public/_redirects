@@ -1,2 +1,12 @@
-# Netlify redirects for SPA fallback
+# Netlify redirects file
+# This file handles URL redirects and rewrites for the Alelken website
+
+# Redirect old hash-based URLs to new clean URLs
+/#home    /    301
+/#product    /product    301
+/#press    /press    301
+/#about    /about    301
+/#press/*    /press/:splat    301
+
+# SPA fallback - serve index.html for all routes that don't match static files
 /*    /index.html   200

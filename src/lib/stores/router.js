@@ -1,10 +1,11 @@
 import { writable, derived } from 'svelte/store';
-import { 
-  getCanonicalUrl, 
-  updatePageMeta, 
-  generateStructuredData, 
+
+import {
+  getCanonicalUrl,
+  updatePageMeta,
+  generateStructuredData,
   injectStructuredData,
-  initializeCrawlbotRedirects 
+  initializeCrawlbotRedirects
 } from '../seo/redirects.js';
 
 // Valid pages for the application
@@ -61,19 +62,19 @@ export const pageMetadata = derived([currentPage, routeParams], ([$currentPage, 
 
 export const breadcrumbs = derived([currentPage, routeParams], ([$currentPage, $routeParams]) => {
   const crumbs = [
-    { label: 'Home', page: 'home', url: '#' }
+    { label: 'Home', page: 'home', url: '/' }
   ];
 
   try {
     if ($currentPage === 'press') {
-      crumbs.push({ label: 'Press Releases', page: 'press', url: '#press' });
+      crumbs.push({ label: 'Press Releases', page: 'press', url: '/press' });
     } else if ($currentPage === 'press-detail') {
-      crumbs.push({ label: 'Press Releases', page: 'press', url: '#press' });
+      crumbs.push({ label: 'Press Releases', page: 'press', url: '/press' });
       if ($routeParams && typeof $routeParams === 'object' && 'title' in $routeParams && $routeParams.title) {
         crumbs.push({ 
           label: String($routeParams.title), 
           page: 'press-detail', 
-          url: `#press/${('uid' in $routeParams && $routeParams.uid) || ''}`,
+          url: `/press/${('uid' in $routeParams && $routeParams.uid) || ''}`,
           current: true 
         });
       }
@@ -85,7 +86,7 @@ export const breadcrumbs = derived([currentPage, routeParams], ([$currentPage, $
       crumbs.push({ 
         label: pageLabels[$currentPage] || $currentPage, 
         page: $currentPage, 
-        url: `#${$currentPage}`,
+        url: `/${$currentPage}`,
         current: true 
       });
     }
@@ -97,18 +98,19 @@ export const breadcrumbs = derived([currentPage, routeParams], ([$currentPage, $
 });
 
 /**
- * Get the current page from URL hash
+ * Get the current page from URL pathname
  * @returns {Object} The current page and params
  */
-export function getCurrentPageFromHash() {
-  const hash = window.location.hash.slice(1); // Remove the # symbol
+export function getCurrentPageFromPath() {
+  const pathname = window.location.pathname;
 
-  if (!hash) {
+  // Handle root path
+  if (pathname === '/') {
     return { page: DEFAULT_PAGE, params: {} };
   }
 
-  // Handle dynamic routes like press/blog-post-slug
-  const parts = hash.split('/').filter(part => part.length > 0);
+  // Handle dynamic routes like /press/blog-post-slug
+  const parts = pathname.split('/').filter(part => part.length > 0);
   const page = parts[0];
 
   if (page === 'press' && parts.length === 2) {
@@ -164,23 +166,25 @@ export function navigateTo(page, params = {}, updateHistory = true) {
     currentPage.set(page);
     routeParams.set(params);
 
-    // Update browser history and URL hash
+    // Update browser history and URL path
     if (updateHistory) {
-      let newHash = '';
+      let newPath = '';
       if (page === 'press-detail' && params.uid) {
-        newHash = `#press/${params.uid}`;
+        newPath = `/press/${params.uid}`;
       } else if (page !== DEFAULT_PAGE) {
-        newHash = `#${page}`;
+        newPath = `/${page}`;
+      } else {
+        newPath = '/';
       }
 
-      if (window.location.hash !== newHash) {
-        window.location.hash = newHash;
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({}, '', newPath);
       }
     }
 
     // Update page title, meta description, and SEO tags
     pageMetadata.subscribe(metadata => {
-      const canonicalUrl = getCanonicalUrl(window.location.hash);
+      const canonicalUrl = getCanonicalUrl(window.location.pathname);
       
       // Update all meta tags for SEO
       updatePageMeta(metadata, canonicalUrl);
@@ -203,7 +207,7 @@ export function navigateTo(page, params = {}, updateHistory = true) {
     // Fallback to home page
     currentPage.set(DEFAULT_PAGE);
     routeParams.set({});
-    window.location.hash = '';
+    window.history.pushState({}, '', '/');
   }
 }
 
@@ -233,11 +237,11 @@ export function initializeRouter() {
   } else {
     // Ensure stores are properly initialized
     if (typeof window !== 'undefined') {
-      console.log('Router initializing with current page:', getCurrentPageFromHash());
+      console.log('Router initializing with current page:', getCurrentPageFromPath());
     }
     
-    // Set initial page based on URL hash
-    const { page: initialPage, params: initialParams } = getCurrentPageFromHash();
+    // Set initial page based on URL path
+    const { page: initialPage, params: initialParams } = getCurrentPageFromPath();
     currentPage.set(initialPage);
     routeParams.set(initialParams);
   }
@@ -245,25 +249,16 @@ export function initializeRouter() {
   // Crawlbot redirects are handled in the build script for the root page
   // No need to initialize them here to avoid interfering with regular users
 
-  // Listen for hash changes
-  const handleHashChange = () => {
-    const { page, params } = getCurrentPageFromHash();
-    navigateTo(page, params, false); // Don't update history since it's already changed
-  };
-
-  window.addEventListener('hashchange', handleHashChange);
-
-  // Listen for browser back/forward buttons
+  // Listen for path changes (popstate for back/forward)
   const handlePopState = () => {
-    const { page, params } = getCurrentPageFromHash();
-    navigateTo(page, params, false);
+    const { page, params } = getCurrentPageFromPath();
+    navigateTo(page, params, false); // Don't update history since it's already changed
   };
 
   window.addEventListener('popstate', handlePopState);
 
   // Return cleanup function
   return () => {
-    window.removeEventListener('hashchange', handleHashChange);
     window.removeEventListener('popstate', handlePopState);
   };
 }
@@ -292,15 +287,15 @@ export function toggleMobileMenu() {
  * Generate a navigation URL for a given page and parameters
  * @param {string} page - The page to navigate to
  * @param {Object} params - Route parameters
- * @returns {string} The hash-based URL
+ * @returns {string} The path-based URL
  */
 export function generateUrl(page, params = {}) {
   if (page === 'press-detail' && params.uid) {
-    return `#press/${params.uid}`;
+    return `/press/${params.uid}`;
   } else if (page === DEFAULT_PAGE) {
-    return '#';
+    return '/';
   } else {
-    return `#${page}`;
+    return `/${page}`;
   }
 }
 
@@ -331,7 +326,7 @@ export function navigateToHome() {
  * @returns {boolean} Whether the current route is valid
  */
 export function isValidRoute() {
-  const { page } = getCurrentPageFromHash();
+  const { page } = getCurrentPageFromPath();
   const allValidPages = [...VALID_PAGES, 'press-detail', NOT_FOUND_PAGE];
   return allValidPages.includes(page);
 }
@@ -341,5 +336,5 @@ export function isValidRoute() {
  * @returns {Object} Current route info
  */
 export function getCurrentRoute() {
-  return getCurrentPageFromHash();
+  return getCurrentPageFromPath();
 }

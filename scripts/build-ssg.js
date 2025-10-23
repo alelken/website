@@ -73,87 +73,8 @@ async function getDynamicRoutes() {
     }
 }
 
-// Generate basic content for SSR
-function generateBasicContent(route, pressReleases = []) {
-    switch (route.page) {
-        case 'home':
-            return `
-                <main class="home-page">
-                    <section class="hero section">
-                        <div class="container">
-                            <h1>Technology for Human Potential</h1>
-                            <p>Building systems that heal, educate, and sustain through innovative technology solutions.</p>
-                        </div>
-                    </section>
-                </main>
-            `;
-        case 'product':
-            return `
-                <main class="product-page">
-                    <section class="product-hero section">
-                        <div class="container">
-                            <h1>Alayn: Mental Wellness for India</h1>
-                            <p>A culturally-aware mental wellness platform designed specifically for India's diverse population.</p>
-                        </div>
-                    </section>
-                </main>
-            `;
-        case 'press':
-            const pressItems = pressReleases.map(release => `
-                <article class="press-item">
-                    <h3><a href="/press/${release.uid}">${release.title}</a></h3>
-                    <time datetime="${release.date}">${new Date(release.date).toLocaleDateString()}</time>
-                    <p>${release.excerpt}</p>
-                </article>
-            `).join('');
-            return `
-                <main class="press-page">
-                    <section class="press-hero section">
-                        <div class="container">
-                            <h1>Press Releases</h1>
-                            <p>Latest news and announcements from Alelken.</p>
-                        </div>
-                    </section>
-                    <section class="press-list section">
-                        <div class="container">
-                            ${pressItems}
-                        </div>
-                    </section>
-                </main>
-            `;
-        case 'press-detail':
-            const pressRelease = pressReleases.find(p => p.uid === route.params?.uid);
-            if (!pressRelease) {
-                return '<main><h1>Press Release Not Found</h1></main>';
-            }
-            return `
-                <main class="press-detail-page">
-                    <article class="press-article">
-                        <div class="container">
-                            <h1>${pressRelease.title}</h1>
-                            <time datetime="${pressRelease.date}">${new Date(pressRelease.date).toLocaleDateString()}</time>
-                            <div class="press-content">
-                                ${pressRelease.content || pressRelease.excerpt}
-                            </div>
-                        </div>
-                    </article>
-                </main>
-            `;
-        case 'about':
-            return `
-                <main class="about-page">
-                    <section class="about-hero section">
-                        <div class="container">
-                            <h1>About Alelken</h1>
-                            <p>Meet the team behind Alelken and learn about our mission to build technology for human potential.</p>
-                        </div>
-                    </section>
-                </main>
-            `;
-        default:
-            return '<main><h1>404 - Page Not Found</h1></main>';
-    }
-}
+// Import the enhanced SSR renderer
+import { renderPageContent, renderCompleteLayout } from './ssr-renderer.js';
 
 // Generate basic layout
 function generateBasicLayout(content, route) {
@@ -212,9 +133,9 @@ async function generateHTML(templateHTML, route, pressReleases = []) {
     html = html.replace(/src="\/assets\/([^"]+)"/g, `src="/assets/$1${cacheParam}"`);
     html = html.replace(/href="\/assets\/([^"]+)"/g, `href="/assets/$1${cacheParam}"`);
     
-    // Generate basic content for now (can be enhanced later)
-    const pageContent = generateBasicContent(route, pressReleases);
-    const completeLayout = generateBasicLayout(pageContent, route);
+    // Use the enhanced SSR renderer
+    const pageContent = await renderPageContent(route, pressReleases);
+    const completeLayout = await renderCompleteLayout(pageContent, route);
     
     // Inject the rendered content into the app div
     html = html.replace('<div id="app"></div>', `<div id="app">${completeLayout}</div>`);
@@ -225,52 +146,15 @@ async function generateHTML(templateHTML, route, pressReleases = []) {
         routeParams: route.params || {}
     };
 
-    // Inject initial state and crawlbot redirect logic
-    const crawlbotScript = route.path === '/' ? `
+    // Inject initial state for client-side hydration
+    const initialStateScript = `
     <script>
-      window.__INITIAL_STATE__ = ${JSON.stringify(pageData)};
-      
-      // Crawlbot redirect logic (only for root page)
-      (function() {
-        var userAgent = navigator.userAgent.toLowerCase();
-        var crawlbots = ['googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 'facebookexternalhit', 'twitterbot', 'linkedinbot', 'whatsapp', 'telegrambot', 'applebot', 'crawler', 'spider', 'bot'];
-        var isCrawlbot = crawlbots.some(function(bot) { return userAgent.includes(bot); });
-        
-        if (isCrawlbot && window.location.hash) {
-          var hash = window.location.hash;
-          var redirectMap = {
-            '#home': '/',
-            '#product': '/product',
-            '#press': '/press',
-            '#about': '/about'
-          };
-          
-          var canonicalPath = redirectMap[hash];
-          if (canonicalPath && canonicalPath !== '/') {
-            console.log('Crawlbot redirect:', hash, '->', canonicalPath);
-            setTimeout(function() {
-              window.location.replace('https://alelken.in' + canonicalPath);
-            }, 1000);
-          }
-          
-          // Handle press detail redirects
-          if (hash.startsWith('#press/')) {
-            var uid = hash.replace('#press/', '');
-            var pressPath = '/press/' + uid;
-            console.log('Crawlbot redirect:', hash, '->', pressPath);
-            setTimeout(function() {
-              window.location.replace('https://alelken.in' + pressPath);
-            }, 1000);
-          }
-        }
-      })();
-    </script>` : `<script>
       window.__INITIAL_STATE__ = ${JSON.stringify(pageData)};
     </script>`;
 
     html = html.replace(
         '<script type="module" crossorigin src="/assets/index-',
-        crawlbotScript + '\n    <script type="module" crossorigin src="/assets/index-'
+        initialStateScript + '\n    <script type="module" crossorigin src="/assets/index-'
     );
 
     // Update meta tags based on route
@@ -432,7 +316,19 @@ async function buildSSG() {
         generateHtaccess(distDir);
         updateNetlifyRedirects(distDir, dynamicRoutes);
 
-        // Step 9: Copy robots.txt if it doesn't exist
+        // Step 9: Create _redirects file for SPA fallback
+        const redirectsContent = `# SPA fallback for client-side routing
+/*    /index.html   200
+
+# Specific redirects for old hash-based URLs
+/#home    /    301
+/#product    /product    301
+/#press    /press    301
+/#about    /about    301
+/#press/*    /press/:splat    301`;
+        writeFileSync(join(distDir, '_redirects'), redirectsContent);
+
+        // Step 10: Copy robots.txt if it doesn't exist
         const robotsPath = join(distDir, 'robots.txt');
         if (!existsSync(robotsPath)) {
             const robotsContent = `User-agent: *
