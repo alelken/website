@@ -68,7 +68,6 @@
             <img
               src="/assets/team/harikrishna.jpg"
               alt="G Harikrishna"
-              loading="lazy"
               on:error={handleImageError}
             />
             <div class="founder__placeholder">GH</div>
@@ -93,7 +92,6 @@
             <img
               src="/assets/team/karthick_balraj.png"
               alt="Karthick Balraj"
-              loading="lazy"
               on:error={handleImageError}
             />
             <div class="founder__placeholder">KB</div>
@@ -117,7 +115,6 @@
             <img
               src="/assets/team/karthick_selvaraj.jpg"
               alt="Karthick Selvaraj"
-              loading="lazy"
               on:error={handleImageError}
             />
             <div class="founder__placeholder">KS</div>

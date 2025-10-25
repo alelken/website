@@ -7,7 +7,7 @@
   export let height = null;
   export let sizes = '100vw';
   export let srcset = '';
-  export let loading = 'lazy';
+  export let loading = 'eager';
   export let decoding = 'async';
   export let fetchpriority = 'auto';
   export let placeholder = '/assets/placeholder.svg';
@@ -20,36 +20,9 @@
   let hasError = false;
   let isIntersecting = false;
   
-  // Intersection Observer for lazy loading
+  // Always show images immediately (no lazy loading)
   onMount(() => {
-    if (loading === 'lazy' && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              isIntersecting = true;
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          rootMargin: '50px' // Start loading 50px before the image enters viewport
-        }
-      );
-      
-      if (imageElement) {
-        observer.observe(imageElement);
-      }
-      
-      return () => {
-        if (imageElement) {
-          observer.unobserve(imageElement);
-        }
-      };
-    } else {
-      // Fallback for browsers without IntersectionObserver
-      isIntersecting = true;
-    }
+    isIntersecting = true;
   });
   
   function handleLoad() {
@@ -80,8 +53,8 @@
     ].join(', ');
   }
   
-  // Determine which image to show
-  $: imageSrc = hasError ? placeholder : (isIntersecting || loading === 'eager') ? src : placeholder;
+  // Always show the actual image (no lazy loading)
+  $: imageSrc = hasError ? placeholder : src;
 </script>
 
 <div 

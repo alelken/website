@@ -1,46 +1,6 @@
 // Performance optimization utilities for mobile
 
-/**
- * Lazy load images using Intersection Observer
- * @param {HTMLElement} element - The image element to observe
- * @param {Object} options - Configuration options
- */
-export function lazyLoadImage(element, options = {}) {
-  const {
-    rootMargin = '50px',
-    threshold = 0.1,
-    placeholder = '/assets/placeholder.svg'
-  } = options;
-
-  if (!('IntersectionObserver' in window)) {
-    // Fallback for browsers without IntersectionObserver
-    loadImage(element);
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        loadImage(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin, threshold });
-
-  observer.observe(element);
-}
-
-/**
- * Load image with error handling
- * @param {HTMLImageElement} img - The image element
- */
-function loadImage(img) {
-  const src = img.dataset.src || img.src;
-  
-  if (src && src !== img.src) {
-    img.src = src;
-  }
-}
+// Lazy loading removed - images now load immediately
 
 /**
  * Preload critical resources

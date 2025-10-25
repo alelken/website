@@ -127,7 +127,6 @@
             <img 
               src={post.featuredImage.url} 
               alt={post.featuredImage.alt || post.title}
-              loading="lazy"
             />
           </div>
         {/if}

@@ -43,14 +43,7 @@
   display: block;
 }
 
-.img-lazy {
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
-
-.img-lazy.loaded {
-  opacity: 1;
-}
+/* Lazy loading removed - images load immediately */
 
 .img-placeholder {
   background-color: var(--color-cream-soft);
@@ -102,9 +95,7 @@
     scroll-behavior: auto !important;
   }
   
-  .img-lazy {
-    transition: none;
-  }
+  /* Lazy loading removed */
   
   .placeholder-shimmer {
     animation: none;

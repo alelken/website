@@ -148,7 +148,6 @@
                 <img 
                   src={release.featuredImage.url || release.featuredImage} 
                   alt={release.featuredImage.alt || release.title}
-                  loading="lazy"
                   class="press-card__image"
                   on:load={handleImageLoad}
                   on:error={handleImageError}

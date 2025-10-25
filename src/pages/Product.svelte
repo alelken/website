@@ -463,7 +463,7 @@
       </div>
       <div class="advisory__content">
         <div class="advisory__photo">
-          <img src="/assets/team/bhuvaneshwari.jpg" alt="Dr. U.L. Bhuvaneswari" loading="lazy" 
+          <img src="/assets/team/bhuvaneshwari.jpg" alt="Dr. U.L. Bhuvaneswari"
                on:error={handleImageError} />
           <div class="advisory__placeholder">UB</div>
         </div>
