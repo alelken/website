@@ -28,20 +28,32 @@ export function forceAssetReload() {
     }
   });
 
-  // Force reload all stylesheets silently
+  // Force reload all stylesheets silently without visual flash
   document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
     const href = link.getAttribute('href');
     if (href && !href.startsWith('data:')) {
-      const newLink = document.createElement('link');
-      newLink.rel = 'stylesheet';
-      newLink.href = href;
+      // Preload the stylesheet first to avoid flash
+      const preloadLink = document.createElement('link');
+      preloadLink.rel = 'preload';
+      preloadLink.as = 'style';
+      preloadLink.href = href;
+      preloadLink.setAttribute('cache', 'no-cache');
+      preloadLink.setAttribute('pragma', 'no-cache');
       
-      // Add no-cache attributes
-      newLink.setAttribute('cache', 'no-cache');
-      newLink.setAttribute('pragma', 'no-cache');
+      // Once preloaded, replace the original stylesheet
+      preloadLink.onload = () => {
+        const newLink = document.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.href = href;
+        newLink.setAttribute('cache', 'no-cache');
+        newLink.setAttribute('pragma', 'no-cache');
+        
+        // Replace only after new CSS is ready
+        link.parentNode?.replaceChild(newLink, link);
+        preloadLink.remove();
+      };
       
-      // Silent replacement - no loading indicators
-      link.parentNode?.replaceChild(newLink, link);
+      document.head.appendChild(preloadLink);
     }
   });
 }
