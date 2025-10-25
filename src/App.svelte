@@ -15,17 +15,21 @@
     });
   }
   
-  // Import immediate cache invalidation utilities
+  // Import background cache invalidation utilities
   import { setupImmediateInvalidation, interceptAllRequests } from "./lib/utils/cache.js";
   import { setupNoCacheEnvironment } from "./lib/utils/no-cache.js";
   import { setupSmoothLoading } from "./lib/utils/smooth-loading.js";
+  import { setupImageProtection } from "./lib/utils/image-protection.js";
   
-  // Set up complete no-cache environment with smooth loading
+  // Set up invisible background cache system with image protection
   if (typeof window !== 'undefined') {
-    // Setup smooth loading first to prevent FOUC
+    // Protect images first - highest priority
+    setupImageProtection();
+    
+    // Setup smooth loading for initial load only
     setupSmoothLoading();
     
-    // Then setup cache invalidation
+    // Setup invisible background cache invalidation
     setupNoCacheEnvironment();
     setupImmediateInvalidation();
     interceptAllRequests();

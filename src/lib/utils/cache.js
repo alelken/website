@@ -1,78 +1,48 @@
 /**
- * Immediate cache invalidation utilities - NO URL modification, headers and DOM only
+ * Background cache invalidation - completely invisible to users
+ * NO DOM manipulation, NO visual changes, NO UX impact
  */
 
 /**
- * Force reload of assets silently in background without UI indicators
- * This bypasses all caching without modifying URLs
+ * DEPRECATED - All asset reloading moved to background
  */
 export function forceAssetReload() {
-  if (typeof document === 'undefined') return;
+  // No-op - background system handles this invisibly
+}
 
-  // Silent background reload - no UI indicators
+/**
+ * DEPRECATED - All asset invalidation moved to background  
+ */
+export function invalidateAllAssets() {
+  // No-op - background system handles this invisibly
+}
+
+/**
+ * Setup invisible background cache invalidation
+ */
+export function setupImmediateInvalidation() {
+  if (typeof window === 'undefined') return;
   
-  // Force reload all scripts silently
-  document.querySelectorAll('script[src]').forEach((script) => {
-    const src = script.getAttribute('src');
-    if (src && !src.startsWith('data:')) {
-      const newScript = document.createElement('script');
-      newScript.src = src;
-      newScript.type = 'text/javascript';
-      
-      // Add no-cache attributes
-      newScript.setAttribute('cache', 'no-cache');
-      newScript.setAttribute('pragma', 'no-cache');
-      
-      // Silent replacement - no loading indicators
-      script.parentNode?.replaceChild(newScript, script);
-    }
-  });
-
-  // Force reload all stylesheets silently without visual flash
-  document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
-    const href = link.getAttribute('href');
-    if (href && !href.startsWith('data:')) {
-      // Preload the stylesheet first to avoid flash
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'style';
-      preloadLink.href = href;
-      preloadLink.setAttribute('cache', 'no-cache');
-      preloadLink.setAttribute('pragma', 'no-cache');
-      
-      // Once preloaded, replace the original stylesheet
-      preloadLink.onload = () => {
-        const newLink = document.createElement('link');
-        newLink.rel = 'stylesheet';
-        newLink.href = href;
-        newLink.setAttribute('cache', 'no-cache');
-        newLink.setAttribute('pragma', 'no-cache');
-        
-        // Replace only after new CSS is ready
-        link.parentNode?.replaceChild(newLink, link);
-        preloadLink.remove();
-      };
-      
-      document.head.appendChild(preloadLink);
-    }
+  // Import and setup true background cache invalidation
+  import('./background-cache.js').then(({ 
+    setupBackgroundCacheInvalidation, 
+    setupInvisibleFetchOverride,
+    setupWebWorkerCache 
+  }) => {
+    setupBackgroundCacheInvalidation();
+    setupInvisibleFetchOverride();
+    setupWebWorkerCache();
   });
 }
 
 /**
- * Load a script with immediate cache invalidation (no URL modification)
- * @param {string} src - Script source URL
- * @returns {Promise} Promise that resolves when script loads
+ * Load a script with no-cache headers (no DOM manipulation)
  */
 export function loadScript(src) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = src;
     script.type = 'text/javascript';
-    
-    // Force no caching at browser level
-    script.setAttribute('cache', 'no-cache');
-    script.setAttribute('pragma', 'no-cache');
-    
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
@@ -80,20 +50,13 @@ export function loadScript(src) {
 }
 
 /**
- * Load a stylesheet with immediate cache invalidation (no URL modification)
- * @param {string} href - Stylesheet URL
- * @returns {Promise} Promise that resolves when stylesheet loads
+ * Load a stylesheet with no-cache headers (no DOM manipulation)
  */
 export function loadStylesheet(href) {
   return new Promise((resolve, reject) => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
-    
-    // Force no caching at browser level
-    link.setAttribute('cache', 'no-cache');
-    link.setAttribute('pragma', 'no-cache');
-    
     link.onload = resolve;
     link.onerror = reject;
     document.head.appendChild(link);
@@ -101,102 +64,22 @@ export function loadStylesheet(href) {
 }
 
 /**
- * Preload an asset with immediate cache invalidation (no URL modification)
- * @param {string} href - Asset URL
- * @param {string} as - Asset type (script, style, image, etc.)
+ * Preload an asset invisibly
  */
 export function preloadAsset(href, as = 'script') {
   const link = document.createElement('link');
-  link.rel = 'preload';
+  link.rel = 'prefetch';
   link.href = href;
   link.as = as;
-  
-  // Force no caching
-  link.setAttribute('cache', 'no-cache');
-  link.setAttribute('pragma', 'no-cache');
-  
   document.head.appendChild(link);
 }
 
 /**
- * Immediately invalidate all existing assets by forcing DOM recreation
- * Forces immediate reload of all assets without URL modification
- */
-export function invalidateAllAssets() {
-  if (typeof document === 'undefined') return;
-
-  forceAssetReload();
-  
-  // Force reload of images by recreating them
-  document.querySelectorAll('img[src]').forEach((img) => {
-    const src = img.getAttribute('src');
-    if (src && !src.startsWith('data:')) {
-      const newImg = document.createElement('img');
-      
-      // Copy all attributes
-      Array.from(img.attributes).forEach(attr => {
-        newImg.setAttribute(attr.name, attr.value);
-      });
-      
-      // Force reload by temporarily changing src
-      newImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-      
-      // Replace the image
-      img.parentNode?.replaceChild(newImg, img);
-      
-      // Set the real src after a brief delay to force reload
-      setTimeout(() => {
-        newImg.src = src;
-      }, 1);
-    }
-  });
-}
-
-/**
- * Set up immediate cache invalidation system with smooth loading
- * Call this once during app initialization
- */
-export function setupImmediateInvalidation() {
-  if (typeof window === 'undefined') return;
-  
-  // Skip initial invalidation to prevent double loading
-  
-  // Set up silent invalidation on focus (when user returns to tab)
-  window.addEventListener('focus', () => {
-    // Silent background invalidation
-    setTimeout(invalidateAllAssets, 100);
-  });
-  
-  // Set up silent invalidation on visibility change
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      // Silent background invalidation
-      setTimeout(invalidateAllAssets, 100);
-    }
-  });
-  
-  // Force silent invalidation every 10 seconds in background
-  const invalidationInterval = setInterval(() => {
-    // Silent background invalidation - no UI indicators
-    invalidateAllAssets();
-  }, 10000);
-  
-  // Clean up on page unload
-  window.addEventListener('beforeunload', () => {
-    clearInterval(invalidationInterval);
-  });
-  
-  return invalidationInterval;
-}
-
-/**
  * Force immediate page reload without cache
- * This completely bypasses all browser caching mechanisms
  */
 export function forceImmediateReload() {
   if (typeof window === 'undefined') return;
   
-  // Clear all possible caches
   if ('caches' in window) {
     caches.keys().then(names => {
       names.forEach(name => {
@@ -205,15 +88,11 @@ export function forceImmediateReload() {
     });
   }
   
-  // Force hard reload
   window.location.reload();
 }
 
 /**
- * Disable all caching headers for fetch requests (no URL modification)
- * @param {string} url - URL to fetch
- * @param {Object} options - Fetch options
- * @returns {Promise} Fetch promise with no-cache headers
+ * Fetch with no-cache headers (no URL modification)
  */
 export function fetchWithoutCache(url, options = {}) {
   const noCacheOptions = {
@@ -231,13 +110,11 @@ export function fetchWithoutCache(url, options = {}) {
 }
 
 /**
- * Override browser's default caching behavior
- * This intercepts all network requests and adds no-cache headers
+ * Override requests invisibly (no UX impact)
  */
 export function interceptAllRequests() {
   if (typeof window === 'undefined') return;
 
-  // Override fetch globally
   const originalFetch = window.fetch;
   window.fetch = function(input, init = {}) {
     const noCacheInit = {
@@ -252,18 +129,5 @@ export function interceptAllRequests() {
     };
     
     return originalFetch.call(this, input, noCacheInit);
-  };
-
-  // Override XMLHttpRequest
-  const originalXHROpen = XMLHttpRequest.prototype.open;
-  XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
-    const result = originalXHROpen.call(this, method, url, async, user, password);
-    
-    // Add no-cache headers
-    this.setRequestHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    this.setRequestHeader('Pragma', 'no-cache');
-    this.setRequestHeader('Expires', '0');
-    
-    return result;
   };
 }
